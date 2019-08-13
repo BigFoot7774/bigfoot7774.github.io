@@ -85,12 +85,7 @@
 }
 @keyframes line-open{
     0%{
-        /* bottom: -100vh; */
         height: 1vh;
-    }
-    50%{
-        /* bottom: 100vh; */
-        height: 100vh;
     }
     99%{
         height: 100vh;
