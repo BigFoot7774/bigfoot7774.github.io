@@ -1,96 +1,211 @@
 @charset "UTF-8";
-
 /* index */
 
-#inc-header * {
-    border: 1px solid;
+#inc-header>* {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
 }
 #inc-header{
     border: 1px solid;
-    text-align: center;
-    vertical-align: middle;
     height: 70px;
     position: fixed;
     width: 100vw;
 }
-#inc-header>div{
-    height: 70px;
+#inc-headerlogo{
+    display: inline;
+    position: fixed;
+    left: 1vw;
+    top: 1vh;
+    
 }
 #inc-headerMenu{
-    font-size: 20px;
+    position: fixed;
+    right: 0px;
+    list-style-type: none;
+    justify-content: space-evenly;
+    outline: 3px solid blue;
+    width: 80vw;
 }
 #inc-headerMenu>li{
-    margin: 20px;
+    font-size: 20px;
+    transition: all 0.5s;
 }
-.wrap{
-    width: 1200px;
+#inc-headerMenu>li:HOVER{color: yellow;}
 
+
+
+@media(max-width:1200px){
+    #inc-headerMenu{
+        flex-direction: column;        
+        top: 0px;
+        width: 200px;
+        height: 100vh;
+        background: rgba(255, 255, 255, 0.7);
+
+        /* 임시 */
+        border: 1px solid;
+    }
+    #inc-headerMenu>li{
+        
+        
+    }
 }
-#welcome-box>div:nth-child(2n+1){
-    width: 50vw;
-    height: 100vh;
+
+/* 햄버거 */
+#inc_hamburger {
+    display: inline;
     z-index: 10000;
-    background: rgba(0,0,0,1);
-}
-#welcome-box>div:first-child{
-    position: fixed;
-    float: left;
-    left: -100vw;
-    animation-name: welcome-left;
-    animation-duration: 1s;
-
-}
-@keyframes welcome-left{
-    0%{
-        left: 0vw;
-    }
-    50%{
-        left: 0vw;
-    }
-    100%{
-        left: -100vw;
-    }
-}
-#welcome-box>div:last-child{
     position: fixed;
     float: right;
-    right: -100vw;
-    animation-name: welcome-right;
-    animation-duration: 1s;
+    right: 1vw;
+    top: 35px;
+    width: 50px;
+    height: 50px;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    background: rgba(0,0,0,0.9);
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    transition: all 0.5s;
 }
-@keyframes welcome-right{
-    0%{
-        right: 0vw;
+#inc_hamburger:HOVER#inc_hamburger>span{
+    background-color: white;
+}
+#inc_hamburger>span {
+    position: absolute;
+    width: 30px;
+    height: 4px;
+    top: 50%;
+    left: 50%;
+    background: rgba(255,255,255,0.8);
+    border-radius: 2px;
+    overflow: hidden;
+    transition: all 0.3s linear;
+}
+
+#inc_hamburger>span::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 100%;
+    top: 0;
+    right: 0;
+    background: rgba(255,255,255,0.2);
+    transition: all 0.3s linear;
+}
+
+#inc_hamburger>span:nth-child(1) {
+    animation: span-first-off 0.5s ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+#inc_hamburger>span:nth-child(2) {
+    animation: span-second-off 0.5s ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+#inc_hamburger>span:nth-child(3) {
+    animation: span-third-off 0.5s ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+#inc_hamburger.on:hover span::before {
+    width: 100%;
+    transition: all 0.3s linear;
+}
+
+#inc_hamburger.on span:nth-child(1) {
+    animation: span-first-on 0.5s ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+#inc_hamburger.on span:nth-child(2) {
+    animation: span-second-on 0.5s ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+#inc_hamburger.on span:nth-child(3) {
+    animation: span-third-on 0.5s ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes span-first-on {
+    0% {
+        transform: translate(-50%, -300%);
     }
-    50%{
-        right: 0vw;
+    30% {
+        transform: translate(-50%, -50%);
     }
-    100%{
-        right: -100vw;
+    100% {
+        transform: translate(-50%, -50%) rotate(-45deg);
     }
 }
-.welcome-line{
-    position: fixed;
-    height: 100vh;
-    background: rgba(255,255,255,1);
-    z-index: 10001;
-    width: 1px;
-    float: left;
-    left: 50vw;
-    height: 0vh;
-}
-.welcome-line{
-    animation-name: line-open;
-    animation-duration: 0.5s;
-}
-@keyframes line-open{
-    0%{
-        height: 1vh;
+
+@keyframes span-first-off {
+    0% {
+        transform: translate(-50%, -50%) rotate(-45deg);
     }
-    99%{
-        height: 100vh;
+    30% {
+        transform: translate(-50%, -50%) rotate(0deg);
     }
-    100%{
-        display: none;
+    100% {
+        transform: translate(-50%, -300%);
+    }
+}
+
+@keyframes span-second-on {
+    0% {
+        transform: translate(-50%, -50%);
+    }
+    25% {
+        background: gray;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        transform: translate(-150%, -50%) scale(0);
+    }
+}
+
+@keyframes span-second-off {
+    0% {
+        transform: translate(-150%, -50%) scale(0);
+    }
+    25% {
+        background: gray;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        transform: translate(-50%, -50%);
+    }
+}
+
+@keyframes span-third-on {
+    0% {
+        transform: translate(-50%, 200%);
+    }
+    30% {
+        transform: translate(-50%, -50%);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(45deg);
+    }
+}
+
+@keyframes span-third-off {
+    0% {
+        transform: translate(-50%, -50%) rotate(45deg);
+    }
+    30% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, 200%);
     }
 }

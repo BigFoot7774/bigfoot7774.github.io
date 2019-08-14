@@ -1,0 +1,70 @@
+@charset "UTF-8";
+
+#welcome-box>div:nth-child(2n+1){
+    width: 50vw;
+    height: 100vh;
+    z-index: 10000;
+    background: rgba(0,0,0,1);
+}
+#welcome-box>div:first-child{
+    position: fixed;
+    float: left;
+    left: -100vw;
+    animation-name: welcome-left;
+    animation-duration: 1s;
+
+}
+@keyframes welcome-left{
+    0%{
+        left: 0vw;
+    }
+    50%{
+        left: 0vw;
+    }
+    100%{
+        left: -100vw;
+    }
+}
+#welcome-box>div:last-child{
+    position: fixed;
+    float: right;
+    right: -100vw;
+    animation-name: welcome-right;
+    animation-duration: 1s;
+}
+@keyframes welcome-right{
+    0%{
+        right: 0vw;
+    }
+    50%{
+        right: 0vw;
+    }
+    100%{
+        right: -100vw;
+    }
+}
+.welcome-line{
+    position: fixed;
+    height: 100vh;
+    background: rgba(255,255,255,1);
+    z-index: 10001;
+    width: 1px;
+    float: left;
+    left: 50vw;
+    height: 0vh;
+}
+.welcome-line{
+    animation-name: line-open;
+    animation-duration: 0.5s;
+}
+@keyframes line-open{
+    0%{
+        height: 1vh;
+    }
+    99%{
+        height: 100vh;
+    }
+    100%{
+        display: none;
+    }
+}
