@@ -1,7 +1,7 @@
-##### ÂüÁ¶¸ñ·Ï
+ï»¿##### ì°¸ì¡°ëª©ë¡
 
-#### ±Û²Ã
-- µÕ±Ù¸ğ²Ã+Fixedsys (https://cactus.tistory.com/193)
+#### ê¸€ê¼´
+- ë‘¥ê·¼ëª¨ê¼´+Fixedsys (https://cactus.tistory.com/193)
 
 #### my Rule
 - no library, no framework
