@@ -2,9 +2,13 @@
 const headerLogo = document.querySelector('#headerLogo');
 
 function AsideFocus(event) {
+    const eye = document.querySelector('.header-eye');
+
 // TODO: 임시로 토글 메소드 달아놓음
 // 조건문 훑은 후 한번 더 확장하게 할 예정
-    document.querySelector('.header-eye').classList.toggle('opacity-1');
+    
+    eye.classList.toggle('opacity-1');
+    eye.classList.toggle('z-index-100');
     document.querySelector('aside').classList.toggle('aside-focus');
     
 }
@@ -45,9 +49,9 @@ function mouseXY(event){
     pupil.style.top = String(locationY)+'px';
 }
 
-// function init() {
-//     headerLogo.addEventListener('click',AsideFocus);
-//     window.addEventListener('mousemove',mouseXY);
-// }
+function headerInit() {
+    headerLogo.addEventListener('click',AsideFocus);
+    window.addEventListener('mousemove',mouseXY);
+}
 
 // init();

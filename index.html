@@ -9,21 +9,26 @@
     <link rel="stylesheet" href="/2_css/headerStyle.css">
     <link rel="stylesheet" href="/2_css/navAsideStyle.css">
 
-    <link rel="stylesheet" href="/2_css/welcome.css">
+    <link rel="stylesheet" href="/2_css/welcomeStyle.css">
 </head>
 <body>
-    <script src="/2_js/welcomeScript.js"></script>
+    <!-- <script src="/2_js/welcomeScript.js"></script> -->
 
     <header class="max-width">
         <div id="headerMSG" class="header-contents max-width">hi</div>
         <img src="/4_img/eye/comfirmedBF.svg" title="Click Me" width="50"
             id="headerLogo">
 <!-- <div id="headerLoading"></div> -->
-        <div class="header-eye opacity-0">
+        <div class="header-eye">
             <img src="/4_img/eye/eyelid.svg" width="25"
              class="header-eye-eyelid">
             <img src="/4_img/eye/pupil.svg" width="3"
              class="header-eye-pupil">
+        </div>
+        <div class="arrowBottom">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
     </header>
     <nav class="max-width">
@@ -71,29 +76,18 @@
 
 <script src="/2_js/headerScript.js"></script>
 <script src="/2_js/wrapContents.js"></script>
-
 <script src="/2_js/loadingScript.js"></script>
-
 <script>
     window.onload = function () {
         //headerScript.js
-        headerLogo.addEventListener('click',AsideFocus);
-        window.addEventListener('mousemove',mouseXY);
+        headerInit();
 
         //loadingScript.js
         insertLoadbar('#headerMSG');
         plusLoadbar('nav');
-
-
-
     }
-    function init() {
-        
-    }
-    init();
 
-    // insertLoadbar('#headerLoading');
+
 </script>
-
 </body>
 </html>
