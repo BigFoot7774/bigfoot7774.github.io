@@ -1,45 +1,99 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel="stylesheet" type="text/css" href="/2_css/welcome.css">
-    <title>Rise Up With BigFoot</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BigFoot</title>
+
+    <link rel="stylesheet" href="/2_css/headerStyle.css">
+    <link rel="stylesheet" href="/2_css/navAsideStyle.css">
+
+    <link rel="stylesheet" href="/2_css/welcome.css">
 </head>
 <body>
-    <!-- 인덱스 페이지 접속 시 애니메이션 효과 -->
-    <div id="welcome-box">
-        <div></div>
-        <div class="welcome-line"></div>
-        <div></div>
-    </div>
-    <div class="wrap">
-            hihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihiihihi
-            hi<br>
-            hi<br>
-            hi<br>
-            hi<br>
-            hi<br>
-            hi<br>
-            hi<br>
-            hi<br>
-            hi<br>
-            hi<br>
-            hi<br>
-            hi<br>
-            hi<br>
-            hi<br>
-            hi<br>
-            hi<br>
-            hi<br>
-            hi<br>
-            hi<br>
-            hi<br>
-        
-    </div>
+    <script src="/2_js/welcomeScript.js"></script>
 
-    
-    <script src="2_js/welcome.js"></script>
+    <header class="max-width">
+        <div id="headerMSG" class="header-contents max-width">hi</div>
+        <img src="/4_img/eye/comfirmedBF.svg" title="Click Me" width="50"
+            id="headerLogo">
+<!-- <div id="headerLoading"></div> -->
+        <div class="header-eye opacity-0">
+            <img src="/4_img/eye/eyelid.svg" width="25"
+             class="header-eye-eyelid">
+            <img src="/4_img/eye/pupil.svg" width="3"
+             class="header-eye-pupil">
+        </div>
+    </header>
+    <nav class="max-width">
+        index > profile > service
+        <div class="nav-background-contents">
+        </div>
+    </nav>
+    <aside></aside>
+    <div class="header-fake-contents"></div>
+<!-- <div class="aside-fake-contents"></div> -->
+
+<div class="wrap freeWrap">
+    <div>hi</div>
+    <div>contents</div>
+    <div>contents</div>
+    <div>contents</div>
+    hihihihihihihihihihihihihihihiihihihiihihihiihihihiihihihiihihihiihihihiihihihiihihihiihihihiihihihiihihihiihihihiihihihiihihihihihihi
+    hihihihihihi<BR>
+        hihihihihihihihihihihihihihihihihih
+        ihihihihihihihihi<BR>
+                hihihihihihihihihihihihihihihihihihihihihihihihi<BR>
+                    hihihihihihihihihihiihihih
+                    ihihihihihihihihihihihihihihihihihihi<BR>
+                        hihihihihihihihihihihihihihihihihihihihihihihihi<BR>
+    hihihihihihihihihihihihihihihihihihhi
+    hihihihihihhihihihihihihihihihihihihihi<BR>
+    hihihihihihihihihihihihihihihihihihihihihihihihi<BR>
+        hihihihihihihihihihihihihihih
+        ihihihihihihihihihi<BR>
+    hihihihihihihihihihihihihihihihihihihihihihihihi<BR>
+    hihihihihihihihihihihihihihihihihihihihihihihihi<BR>
+        hihihihihihihihihihihihihihihihihihihihihihihihi<BR>
+    hihihihihihihihihihihihihihihihihihihihihihihihi<BR>
+        hihihihihihihihihihihihihihihihihihihihihihihihi<BR>
+    hihihihihihihihihihihihihihihihihihihihihihihihi<BR>
+    hihihihihihihihihihihihihihihihihihihihihihihihi<BR>
+        hihihihihihihihihihihihihihihihihihihihihihihihi<BR>
+    hihihihihihihihihihihihihihihihihihihihihihihihi<BR>
+    hihihihihihihihihihihihihihihihihihihihihihihihi<BR>
+        hihihihihihihihihihihihihihihihihihihihihihihihi<BR>
+    hihihihihihihihihihihihihihihihihihihihihihihihi<BR>
+        
+</div>
+
+
+<script src="/2_js/headerScript.js"></script>
+<script src="/2_js/wrapContents.js"></script>
+
+<script src="/2_js/loadingScript.js"></script>
+
+<script>
+    window.onload = function () {
+        //headerScript.js
+        headerLogo.addEventListener('click',AsideFocus);
+        window.addEventListener('mousemove',mouseXY);
+
+        //loadingScript.js
+        insertLoadbar('#headerMSG');
+        plusLoadbar('nav');
+
+
+
+    }
+    function init() {
+        
+    }
+    init();
+
+    // insertLoadbar('#headerLoading');
+</script>
+
 </body>
 </html>

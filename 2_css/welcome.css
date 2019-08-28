@@ -1,12 +1,17 @@
 @import "/2_css/style.css";
 
-#welcome-box>div:nth-child(2n+1){
+.welcome-box{
+    position: fixed;
+    height: 100vh;
+}
+
+.welcome-box>div:nth-child(2n+1){
     width: 50vw;
     height: 100vh;
     z-index: 10000;
     background: rgba(0,0,0,1);
 }
-#welcome-box>div:first-child{
+.welcome-box>div:first-child{
     position: fixed;
     float: left;
     left: -100vw;
@@ -25,7 +30,7 @@
         left: -100vw;
     }
 }
-#welcome-box>div:last-child{
+.welcome-box>div:last-child{
     position: fixed;
     float: right;
     right: -100vw;

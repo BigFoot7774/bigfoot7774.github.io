@@ -26,19 +26,39 @@ nav{
 }
 aside{
     position: fixed;
-    right: -60px;
+    right: 0px;
     background-color: rgba(0, 0, 0, 1);
     height: 100px;
-    width: 60px;
+    width: 100px;
     padding: 10px;
     padding-left: 50px;
     transition: 0.3s all;
+    height: 100vh;
+    transform: rotate(-45deg) translateY(-100px) translateX(40px);;
+    transform-origin: top;
 }
 .aside-focus{
-    height: 100vh;
+    transform: rotate(0deg);
 }
+
+
 @media(min-width:1200px){
     aside{
-        height: 100vh;
+        transform: rotate(0deg);
     }
 }
+
+/* 
+.aside-fake-contents{
+    content: "";
+    display: inline-block;
+    right: 0;
+    top: 0;
+    height: 100vw;
+    width: 160px;
+    transform: rotate(-45deg) translateY(-100px) translateX(20px);;
+    transform-origin: top;
+
+    
+    border: 1px solid;
+} */

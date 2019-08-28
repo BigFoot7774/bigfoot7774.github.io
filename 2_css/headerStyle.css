@@ -12,11 +12,14 @@ header{
     margin: 10px;
     /* filter: invert(100%); */
     cursor: pointer;
+    transform: rotate(-45deg) translateX(-30px) translateY(-35px);
+    transform-origin: top;
+    transition: 1s all;
 }
 .header-eye{
-    position: fixed;
-    top: 45px;
-    right: 40px;
+    position: absolute;
+    top: 25px;
+    right: 75px;
     text-align: center;
     display: inline-block;
     transition: 1s all;
@@ -68,12 +71,11 @@ header{
     .header-eye{
         opacity: 1;
     }
-
 }
 
 .header-fake-contents{
-    content: "40px";
-
+    content: "";
+    height: 70px;
 }
 
 

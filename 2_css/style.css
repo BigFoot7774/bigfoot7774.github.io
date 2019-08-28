@@ -15,8 +15,16 @@ body{
     min-height: 100vh;
 }
 .wrap{
-    max-width: 1200px;
-    width:100vw;
+    /* max-width: 1200px; */
+    /* width:100vw; */
+    margin-left: 10px;
+    margin-right: 160px;
+    border: 1px solid;
+    box-sizing: border-box;
+    word-break: break-all;
+}
+.freeWrap{
+    /* margin-right: 0px; */
 }
 .hidden{
     display: none;

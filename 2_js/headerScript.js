@@ -45,9 +45,9 @@ function mouseXY(event){
     pupil.style.top = String(locationY)+'px';
 }
 
-function init() {
-    headerLogo.addEventListener('click',AsideFocus);
-    window.addEventListener('mousemove',mouseXY);
-}
+// function init() {
+//     headerLogo.addEventListener('click',AsideFocus);
+//     window.addEventListener('mousemove',mouseXY);
+// }
 
-init();
+// init();
