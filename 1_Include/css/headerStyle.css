@@ -1,0 +1,79 @@
+@import "/2_css/style.css";
+
+header{
+    padding: 5px !important;
+    height: 30px !important;
+    background-color: black;
+    text-align: right;
+    position: fixed;
+    z-index: 100;
+}
+#headerLogo{
+    margin: 10px;
+    /* filter: invert(100%); */
+    cursor: pointer;
+}
+.header-eye{
+    position: fixed;
+    top: 45px;
+    right: 40px;
+    text-align: center;
+    display: inline-block;
+    transition: 1s all;
+}
+.header-eye-eyelid{
+    position: absolute;
+}
+.header-eye-pupil{
+    position: fixed;
+    /* filter: invert(100%); */
+}
+/* #headerLoading{
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+} */
+.header-contents{
+    text-align: center;
+    position: fixed;
+    top: 10px;
+    left: 5px;
+    color: white;
+    font-weight: bold;
+}
+.header-msg-success{
+    animation: tinkleContents 1s;
+    animation-iteration-count: infinite;
+    color: green;
+}
+.header-msg-waning{
+    animation: tinkleContents 1s;
+    animation-iteration-count: infinite;
+    color: red;
+}
+@keyframes tinkleContents{
+    0%{
+        opacity: 0;
+    }
+    50%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}
+
+@media(min-width:1200px){
+    .header-eye{
+        opacity: 1;
+    }
+
+}
+
+.header-fake-contents{
+    content: "40px";
+
+}
+
+
