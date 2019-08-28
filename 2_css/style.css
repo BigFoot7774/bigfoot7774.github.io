@@ -1,14 +1,47 @@
 @charset "UTF-8";
 @font-face{
     font-family: 'Dotkey';
-    src: url(/Rise-Up-With-BigFoot/3_font/DungGeunMo.eot);
-    src: url(/Rise-Up-With-BigFoot/3_font/DungGeunMo.ttf) format('truetype');
+    src: url(/3_font/DungGeunMo.eot);
+    src: url(/3_font/DungGeunMo.ttf) format('truetype');
     
 }
-/* index */
-
-html *{
+html, body{
     font-family: 'Dotkey';
-    font-size: 15px;
+    font-size: 20px;
+    margin: 0px;
+    background-color: rgba(255, 255, 255, 0.4);
 }
-
+body{
+    min-height: 100vh;
+}
+.wrap{
+    max-width: 1200px;
+    width:100vw;
+}
+.hidden{
+    display: none;
+}
+.block{
+    display: block;
+}
+.inline{
+    display: inline;
+}
+.inline-block{
+    display: inline-block;
+}
+.max-width{
+    width: 100vw;
+}
+.max-height{
+    height: 100vh;
+}
+.opacity-0{
+    opacity: 0;
+}
+.opacity-1{
+    opacity: 1;
+}
+.z-index-100{
+    z-index: 100;
+}

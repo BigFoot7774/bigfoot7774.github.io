@@ -1,0 +1,45 @@
+@import "/2_css/style.css";
+
+/* header태그 height: 30px, padding: 5px으로 지정
+    top: 40px(30px+5px+5px)부터 headerLogo를 가릴만큼 height지정
+ */
+nav{
+    /* body태그를 투명하게 하여
+    1. 사용자가 클릭은 할 수 없고
+    2. nav태그 컨텐츠가 표시되도록 함
+    (only read) */
+    position: fixed;
+    padding-top: 40px;
+    padding-left: 5px;
+    color: rgba(0, 0, 0, 1);
+    background: url('/4_img/liquor_Trim.gif');
+    background-repeat: no-repeat;
+    background-size: 50vw;
+    background-position: center;
+     /* rgba(255, 255, 255, 0.2); */
+    height: 100vh;
+    z-index: -10000;
+}
+.nav-background-contents{
+    position: relative;
+    text-align: center;
+    margin: 30vh auto 70vh auto;
+}
+aside{
+    position: fixed;
+    right: -60px;
+    background-color: rgba(0, 0, 0, 1);
+    height: 100px;
+    width: 60px;
+    padding: 10px;
+    padding-left: 50px;
+    transition: 0.3s all;
+}
+.aside-focus{
+    height: 100vh;
+}
+@media(min-width:1200px){
+    aside{
+        height: 100vh;
+    }
+}

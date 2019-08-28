@@ -1,4 +1,4 @@
-@charset "UTF-8";
+@import "/2_css/style.css";
 
 #welcome-box>div:nth-child(2n+1){
     width: 50vw;
@@ -11,7 +11,7 @@
     float: left;
     left: -100vw;
     animation-name: welcome-left;
-    animation-duration: 1s;
+    animation-duration: 3s;
 
 }
 @keyframes welcome-left{
@@ -30,7 +30,7 @@
     float: right;
     right: -100vw;
     animation-name: welcome-right;
-    animation-duration: 1s;
+    animation-duration: 3s;
 }
 @keyframes welcome-right{
     0%{
@@ -48,23 +48,20 @@
     height: 100vh;
     background: rgba(255,255,255,1);
     z-index: 10001;
-    width: 1px;
+    width: 0.5vw;
     float: left;
     left: 50vw;
-    height: 0vh;
-}
-.welcome-line{
     animation-name: line-open;
-    animation-duration: 0.5s;
+    animation-duration: 1.5s;
+    opacity: 0;
 }
 @keyframes line-open{
     0%{
+        opacity: 1;
         height: 1vh;
     }
-    99%{
-        height: 100vh;
-    }
     100%{
-        display: none;
+        opacity: 1;
+        height: 100vh;
     }
 }
