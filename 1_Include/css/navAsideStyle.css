@@ -12,11 +12,10 @@ nav{
     padding-top: 40px;
     padding-left: 5px;
     color: rgba(0, 0, 0, 1);
-    background: url('/4_img/liquor_Trim.gif');
+    /* background: url('/4_img/liquor_Trim.gif');
     background-repeat: no-repeat;
     background-size: 50vw;
-    background-position: center;
-     /* rgba(255, 255, 255, 0.2); */
+    background-position: center; */
     height: 100vh;
     z-index: -10000;
 }

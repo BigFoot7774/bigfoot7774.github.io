@@ -10,7 +10,7 @@ header{
 }
 #headerLogo{
     margin: 10px;
-    filter: invert(100%);
+    /* filter: invert(100%); */
     cursor: pointer;
 }
 .header-eye{
@@ -25,19 +25,8 @@ header{
     position: absolute;
 }
 .header-eye-pupil{
-    position: absolute;
-    margin: 2px 5px 2px 5px;
-    filter: invert(100%);
-    top: 5px;
-    left: 6px; 
-    /* 한계값
-        top: 2px; 9px;
-        left: 2px; 10px; 
-        
-        중앙값
-        top: 5px;
-        left: 6px; 
-    */
+    position: fixed;
+    /* filter: invert(100%); */
 }
 /* #headerLoading{
     position: fixed;
@@ -75,7 +64,16 @@ header{
     }
 }
 
+@media(min-width:1200px){
+    .header-eye{
+        opacity: 1;
+    }
+
+}
+
 .header-fake-contents{
     content: "40px";
 
 }
+
+

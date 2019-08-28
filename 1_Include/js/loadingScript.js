@@ -1,3 +1,7 @@
+//request 요청시에 사용할 예정
+
+//태그의 innertext를 loadingPackage로 교체
+//count값이 3일 때만 count초기화
 function insertLoadbar(tagName) {
     const _tagName = document.querySelector(tagName);
     const loadingPackage = ['-','\\','\|','\/']
@@ -13,6 +17,10 @@ function insertLoadbar(tagName) {
     }, 100);
 }
 
+
+//count가 0일때는 바로 삽입
+//0이 아닐때는 innerText내용을 복원한 뒤
+//맨 뒤 한글자만 substr로 걸러내서 교체
 function plusLoadbar(tagName) {
     const text = document.querySelector(tagName);
     let textLength = text.innerText;
