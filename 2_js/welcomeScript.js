@@ -3,10 +3,10 @@ function welcomeEffect() {
     const div1 = document.createElement('div');
     const divLine = document.createElement('div');
     const div2 = document.createElement('div');
+    const ParentBody = document.body;
     
     
-    
-    //금방 지울꺼지만 한번 넣어보고 싶었어
+//금방 지울꺼지만 한번 넣어보고 싶었어
     const tesla = document.createElement('img');
     const johnvonNeumann = document.createElement('img');
 
@@ -18,15 +18,16 @@ function welcomeEffect() {
     johnvonNeumann.style.animation = '2s tinkleContents';
     div1.appendChild(tesla);
     div2.appendChild(johnvonNeumann);
+// 여기까지임시
 
     welcomeBox.classList.add('welcome-box');
     divLine.classList.add('welcome-line');
 
-
     welcomeBox.appendChild(div1);
     welcomeBox.appendChild(divLine);
     welcomeBox.appendChild(div2);
-    document.body.appendChild(welcomeBox);
+   
+    ParentBody.insertBefore(welcomeBox,ParentBody.childNodes[0]);
     
 }
 

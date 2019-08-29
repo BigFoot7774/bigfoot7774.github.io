@@ -1,23 +1,33 @@
-
-const headerLogo = document.querySelector('#headerLogo');
+const header = document.querySelector('header');
+const aside = document.querySelector('aside');
 
 function AsideFocus(event) {
-    const eye = document.querySelector('.header-eye');
-
+    const headerLogo = header.querySelector('#headerLogo');
+    const headereye = header.querySelector('.header-eye');
+    const headerArrow = header.querySelector('.arrow');
+    
 // TODO: 임시로 토글 메소드 달아놓음
 // 조건문 훑은 후 한번 더 확장하게 할 예정
     
-    eye.classList.toggle('opacity-1');
-    eye.classList.toggle('z-index-100');
-    document.querySelector('aside').classList.toggle('aside-focus');
+    headereye.classList.toggle('opacity-1');
+    headereye.classList.toggle('z-index-100');
+    headerArrow.classList.toggle('arrow-reverse');
+    
+    const asideChilden = aside.querySelectorAll('aside>*');
+
+    aside.classList.toggle('aside-focus');
+
+    for (let index = 0; index < asideChilden.length; index++) {
+        asideChilden[index].classList.toggle('opacity-1');
+    }
     
 }
 
 function mouseXY(event){
-    const pupil = document.querySelector('.header-eye-pupil');
+    const pupil = header.querySelector('.header-eye-pupil');
 // eyelidInfo의 getBoundingClientRect()메소드를 호출하여 이 태그의 위치를 기준으로
 // 좌표 정보값을 가지는 객체를 리턴받음
-    const eyelidInfo = document.querySelector('.header-eye-eyelid').getBoundingClientRect();
+    const eyelidInfo = header.querySelector('.header-eye-eyelid').getBoundingClientRect();
 // eventLocation: 현재 마우스 좌표값
     const eventLocation = {X: event.clientX, Y: event.clientY};
 // center: 좌표값 기준이 될 header-eye-eyelid클래스의 X Y좌표 중앙 값

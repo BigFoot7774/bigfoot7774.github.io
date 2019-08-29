@@ -1,4 +1,4 @@
-@import "/2_css/style.css";
+/* @import "/2_css/style.css"; */
 
 header{
     padding: 5px !important;
@@ -67,24 +67,6 @@ header{
     100%{
         opacity: 0;
     }
-}
-.arrowBottom{
-    position: fixed;
-    top: 0;
-    left: 20px;
-    width: 20px;
-    height: 20px;
-    text-align: center;
-    justify-items: auto;
-}
-
-.arrowBottom>span{
-    content: "";
-    width: 10px;
-    height: 10px;
-    border: 1px solid rgba(255, 255, 255, 1);
-    background-color: rgba(255, 255, 255, 1);
-
 }
 
 

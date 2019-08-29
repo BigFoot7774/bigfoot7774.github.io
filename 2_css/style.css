@@ -7,7 +7,7 @@
 }
 html, body{
     font-family: 'Dotkey';
-    font-size: 20px;
+    /* font-size: 16px; */
     margin: 0px;
     background-color: rgba(255, 255, 255, 0.4);
 }
