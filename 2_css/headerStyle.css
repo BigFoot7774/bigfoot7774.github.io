@@ -69,18 +69,10 @@ header{
     }
 }
 
-
-
-
-
-
-
-
-
-
 @media(min-width:1200px){
     .header-eye{
         opacity: 1;
+        z-index: 0;
     }
 }
 

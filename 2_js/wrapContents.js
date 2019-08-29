@@ -17,10 +17,10 @@ function createtag(TagName, contentsHTML, idName, className) {
 
 function wrapContents_init() {
     createtag('div',
+    // <img src="/4_img/liquor_Trim.gif" width=90% >
     `
     <p> 여기는 컨텐츠입니다 임시로 할당 받았습니다</p>
 
-    <img src="/4_img/liquor_Trim.gif" width=100% >
     <p> 이미지도 한번 넣어봤습니다</p>
     <p> 템플릿 리터럴은 정말 좋은 것 같습니다.</p>
     <p> 근데 이 문자(\`)의 이름이 뭔가요?</p>
