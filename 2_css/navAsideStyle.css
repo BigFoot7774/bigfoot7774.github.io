@@ -1,0 +1,117 @@
+/* @import "/2_css/style.css"; */
+
+/* header태그 height: 30px, padding: 5px으로 지정
+    top: 40px(30px+5px+5px)부터 headerLogo를 가릴만큼 height지정
+ */
+nav{
+    /* body태그를 투명하게 하여
+    1. 사용자가 클릭은 할 수 없고
+    2. nav태그 컨텐츠가 표시되도록 함
+    (only read) */
+    position: fixed;
+    padding-top: 40px;
+    padding-left: 5px;
+    color: rgba(0, 0, 0, 1);
+    /* background: url('/4_img/liquor_Trim.gif');
+    background-repeat: no-repeat;
+    background-size: 50vw;
+    background-position: center; */
+    height: 100vh;
+    z-index: -10000;
+}
+.nav-background-contents{
+    position: relative;
+    text-align: center;
+    margin: 30vh auto 70vh auto;
+}
+aside{
+    color: rgba(255, 255, 255, 1);
+    position: fixed;
+    right: 0px;
+    background-color: rgba(0, 0, 0, 1);
+    height: 100px;
+    width: 150px;
+    padding: 100px 5px 10px 5px;
+    transition: 0.3s all;
+    height: 100vh;
+    transform: rotate(-45deg) translateY(-100px) translateX(40px);;
+    transform-origin: top;
+}
+aside>*{
+    opacity: 0;
+}
+.aside-focus{
+    transform: rotate(0deg);
+}
+
+
+@media(min-width:1200px){
+    aside{
+        transform: rotate(0deg);
+    }
+    aside *{
+        opacity: 1;
+    }
+    .arrow{
+        display: none;
+    }
+}
+
+.arrow{
+    position: fixed;
+    font-weight: bold;
+    top: 95px;
+    right: 5px;
+    color: rgba(255, 255, 255, 1);
+    transform: rotate(-45deg);
+
+    animation: bound 0.5s;
+    animation-iteration-count: infinite;
+}
+@keyframes bound{
+    0%{
+        transform: rotate(-45deg) translateX(5px);
+    }
+    50%{
+        transform: rotate(-45deg) translateX(0px);
+    }
+    100%{
+        transform: rotate(-45deg) translateX(5px);
+    }
+}
+
+.arrow-reverse{
+    transform: rotate(135deg);
+    animation: bound-reverse 0.5s;
+    animation-iteration-count: infinite;
+}
+@keyframes bound-reverse{
+    0%{
+        transform: rotate(135deg) translateX(5px);
+    }
+    50%{
+        transform: rotate(135deg) translateX(0px);
+    }
+    100%{
+        transform: rotate(135deg) translateX(5px);
+    }
+}
+
+
+
+
+
+/* 
+.aside-fake-contents{
+    content: "";
+    display: inline-block;
+    right: 0;
+    top: 0;
+    height: 100vw;
+    width: 160px;
+    transform: rotate(-45deg) translateY(-100px) translateX(20px);;
+    transform-origin: top;
+
+    
+    border: 1px solid;
+} */
