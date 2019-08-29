@@ -7,7 +7,7 @@
 }
 html, body{
     font-family: 'Dotkey';
-    font-size: 20px;
+    /* font-size: 16px; */
     margin: 0px;
     background-color: rgba(255, 255, 255, 0.4);
 }
@@ -17,6 +17,10 @@ body{
 .wrap{
     max-width: 1200px;
     width:100vw;
+    padding: 10px;
+    /* margin-right: 160px; */
+    box-sizing: border-box;
+    word-break: break-all;
 }
 .hidden{
     display: none;
