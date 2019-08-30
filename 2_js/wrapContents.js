@@ -27,7 +27,47 @@ function wrapContents_init() {
     <p> 그레이브 엑센트라고도 하고</p>
     <p> 백틱이라고도 하던데 어느게 맞는지 모르겠습니다</p>
     <p> 둘 다 맞는 것일까요?</p>
-
+    <BR>
+    <BR>
+    <BR>
+    <BR>
+    <BR>
+    <BR>
+    <BR>
+    <BR>
+    <BR>
+    <BR>
+    <BR>
+    <BR>
+    <BR>
+    <BR>
+    <BR>
+    <BR>
+    <BR>
+    <BR>
+    <BR>
+    <BR>
+    <BR>
+    <BR>
+    <BR>
+    <BR>
+    <BR>
+    <BR>
+    <BR>
+    <BR>
+    <BR>
+    <BR>
+    <BR>
+    <BR>
+    <BR>
+    <BR>
+    <BR>
+    <BR>
+    <BR>
+    <BR>
+    <BR>
+    <BR>
+    
     `
     ,'wrap','wrap');
 }

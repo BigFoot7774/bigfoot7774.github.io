@@ -10,10 +10,25 @@ html, body{
     /* font-size: 16px; */
     margin: 0px;
     background-color: rgba(255, 255, 255, 0.4);
+    /* background-color: rgba(0, 0, 0, 1); */
 }
 body{
     min-height: 100vh;
 }
+/*
+    기술 인용
+    출처: https://wiki.stillh.art/page/SJ4yEEClg/Transparent-Scrollbar-over-Content */
+        body::-webkit-scrollbar {
+            width: 5px;
+            background: transparent;
+        }
+        body::-webkit-scrollbar-thumb {
+            background: rgba(150, 0, 0, 0.5);
+        }
+        body::-webkit-scrollbar-thumb:HOVER{
+            background: rgba(150, 0, 0, 1);
+        }
+
 .wrap{
     margin: 0 auto;
     max-width: 1200px;

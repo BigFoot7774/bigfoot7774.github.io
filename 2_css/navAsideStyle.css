@@ -44,7 +44,20 @@ aside>*{
     transform: rotate(0deg);
 }
 
-
+.aside-list{
+    font-size: 1.2em;
+}
+.aside-list>li{
+    margin: 0.5em 0px;
+}
+.aside-list>li>a{
+    text-decoration: none;
+    color: inherit;
+    transition: 0.3s all;
+}
+.aside-list>li>a:HOVER{
+    color: rgba(150, 0, 0, 1);
+}
 @media(min-width:1200px){
     aside{
         transform: rotate(0deg);
