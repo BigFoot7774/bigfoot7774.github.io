@@ -1,25 +1,26 @@
 /* @import "/2_css/style.css"; */
 
 header{
-    padding: 5px !important;
-    height: 30px !important;
-    background-color: black;
+    padding: 0.1rem 0px;
+    height: 1.5rem !important;
+    background-color: rgba(0, 0, 0, 0);
     text-align: right;
     position: fixed;
     z-index: 100;
+    box-sizing: border-box;
 }
 #headerLogo{
     margin: 10px;
     /* filter: invert(100%); */
     cursor: pointer;
-    transform: rotate(-45deg) translateX(-30px) translateY(-35px);
+    transform: rotate(-45deg) translateX(-15px) translateY(-20px);
     transform-origin: top;
     transition: 1s all;
 }
 .header-eye{
     position: absolute;
-    top: 25px;
-    right: 75px;
+    top: 15px;
+    right: 45px;
     text-align: center;
     display: inline-block;
     opacity: 0;
@@ -40,11 +41,10 @@ header{
     font-size: 30px;
 } */
 .header-contents{
-    text-align: center;
+    padding-left: 3px;
+    color: rgba(0, 0, 0, 0.5);
+    text-align: left;
     position: fixed;
-    top: 10px;
-    left: 5px;
-    color: white;
     font-weight: bold;
 }
 .header-msg-success{
@@ -163,7 +163,7 @@ header{
 
 .header-fake-contents{
     content: "";
-    height: 70px;
+    height: 1.2rem;
     /* border-bottom: 1px solid rgba(255, 255, 255, 1); */
 }
 

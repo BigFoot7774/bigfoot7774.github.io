@@ -67,12 +67,12 @@
 
     <header class="max-width">
         <div id="headerMSG" class="header-contents max-width">
-            hello welcome
+            index > profile > service > 솧개글
         </div>
-        <img src="/4_img/eye/comfirmedBF.svg" title="Click Me" width="50"
+        <img src="/4_img/eye/comfirmedBF.svg" title="Click Me" width="30"
             id="headerLogo">
         <div class="header-eye">
-            <img src="/4_img/eye/eyelid.svg" width="25"
+            <img src="/4_img/eye/eyelid.svg" width="20"
              class="header-eye-eyelid">
             <img src="/4_img/eye/pupil.svg" width="3"
              class="header-eye-pupil">
@@ -80,7 +80,6 @@
         <div class="arrow">&lt;-</div>
     </header>
     <nav class="max-width">
-        index > profile > service
     </nav>
     <aside>
         <ul class="aside-list">
@@ -117,10 +116,11 @@
     window.onload = function () {
         //headerScript.js
         headerInit();
-
+        insertLoadbar('nav');
+        
         //loadingScript.js
         // insertLoadbar('#headerMSG');
-        plusLoadbar('nav');
+        plusLoadbar('#headerMSG');
     }
     
     

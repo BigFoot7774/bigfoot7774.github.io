@@ -1,10 +1,10 @@
 const header = document.querySelector('header');
 const aside = document.querySelector('aside');
+const headerLogo = header.querySelector('#headerLogo');
+const headereye = header.querySelector('.header-eye');
+const headerArrow = header.querySelector('.arrow');
 
 function AsideFocus(event) {
-    const headerLogo = header.querySelector('#headerLogo');
-    const headereye = header.querySelector('.header-eye');
-    const headerArrow = header.querySelector('.arrow');
     
 // TODO: 임시로 토글 메소드 달아놓음
 // 조건문 훑은 후 한번 더 확장하게 할 예정
@@ -42,18 +42,18 @@ function mouseXY(event){
 //pupil의 위치가 eyelid의 범위에서 벗어나지 않게 
 // 조건문으로 위치 조정
     if (eventLocation.X > eyelidInfo.right-10) {
-        locationX = center.X+2
+        locationX = (center.X+2);
     }
     if (eventLocation.X < eyelidInfo.left+10) {
-        locationX = center.X-5
+        locationX = (center.X-5);
     }
     if (eventLocation.Y > eyelidInfo.bottom-5) {
-        locationY = center.Y+3
+        locationY = (center.Y+3);
     }
     if (eventLocation.Y < eyelidInfo.top+5) {
-        locationY = center.Y-5
+        locationY = (center.Y-5);
     }
-
+// console.log(eventLocation.X , eventLocation.Y);
 //좌표값 반영
     pupil.style.left = String(locationX)+'px';
     pupil.style.top = String(locationY)+'px';
@@ -61,6 +61,7 @@ function mouseXY(event){
 
 function headerInit() {
     headerLogo.addEventListener('click',AsideFocus);
+    headereye.addEventListener('click',AsideFocus);
     window.addEventListener('mousemove',mouseXY);
 }
 
