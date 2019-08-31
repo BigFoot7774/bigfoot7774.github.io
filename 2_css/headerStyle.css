@@ -27,6 +27,7 @@ header{
     transition: 1s all;
     z-index: -1;
 }
+.header-eye:HOVER{cursor: pointer;}
 .header-eye-eyelid{
     position: absolute;
 }
@@ -42,7 +43,7 @@ header{
 } */
 .header-contents{
     padding-left: 3px;
-    color: rgba(0, 0, 0, 0.5);
+    color: rgba(255, 255, 255, 0.5);
     text-align: left;
     position: fixed;
     font-weight: bold;
@@ -72,9 +73,10 @@ header{
 .header-modal{
     /* content: ""; */
     background: rgba(0, 0, 0, 1);
-    color: rgba(255, 255, 255, 1);
+    color: rgba(255, 255, 255, 0.5);
     vertical-align: middle;
     z-index: 101;
+
 }
 .header-modal-component{
     margin: 0px;
@@ -96,9 +98,14 @@ header{
 }
 
 .header-modal-title{
-    border: 1px solid;
+    color: rgba(255, 255, 255, 1);
+    border: 0.5px solid gray;
+    box-shadow: 1px 1px 1px gray,
+                -1px 1px 1px gray,
+                1px -1px 1px gray,
+                -1px -1px 1px gray;
     padding: 3px 10px;
-    width: 80vw;
+    width: 60vw;
     box-sizing: border-box;
 
     /* border-radius: 1rem; */
@@ -118,9 +125,13 @@ header{
     color: red;
 }
 .header-modal-contents{
-    border: 1px solid;
+    border: 0.5px solid gray;
+    box-shadow: 1px 1px 1px gray,
+                -1px 1px 1px gray,
+                1px -1px 1px gray,
+                -1px -1px 1px gray;
     padding: 5px;
-    width: 80vw;
+    width: 60vw;
     box-sizing: border-box;
     
     /* border-radius: 1rem; */
@@ -134,7 +145,7 @@ header{
         width: 0vw;
     }
     100%{
-        width: 80vw;
+        width: 60vw;
     }
 }
 
@@ -163,7 +174,7 @@ header{
 
 .header-fake-contents{
     content: "";
-    height: 1.2rem;
+    height: 1rem;
     /* border-bottom: 1px solid rgba(255, 255, 255, 1); */
 }
 

@@ -9,11 +9,12 @@ html, body{
     font-family: 'Dotkey';
     /* font-size: 16px; */
     margin: 0px;
-    background-color: rgba(255, 255, 255, 0.4);
-    /* background-color: rgba(0, 0, 0, 1); */
+    color: rgba(255, 255, 255, 1);
+    background-color: rgba(0, 0, 0, 1);
+    line-height: 1.2rem;
 }
 body{
-    min-height: 100vh;
+    min-height: 95vh;
 }
 /*
     기술 인용
@@ -30,11 +31,24 @@ body{
         }
 
 .wrap{
-    margin: 0 auto;
-    max-width: 1200px;
-    width:95vw;
+    margin: 10px auto;
     padding: 10px;
-    /* margin-right: 160px; */
+
+    width:95vw;
+    max-width: 1200px;
+    min-height: 90vh;
+    
+    border: 0.5px solid gray;
+    border-radius: 0.5em;
+    box-shadow: 1px 1px 1px gray,
+                -1px 1px 1px gray,
+                1px -1px 1px gray,
+                -1px -1px 1px gray;
+                            
+    background: rgba(255, 255, 255, 0);
+    color: rgba(255, 255, 255, 0.5);
+    filter: grayscale(100%);
+
     box-sizing: border-box;
     word-break: break-all;
 }

@@ -26,42 +26,15 @@
     <div id="modalContents" 
         class="header-modal header-modal-contents">
         contents<BR>
-            나아가지 못하는 길은, 길이 아니다	<BR>
+            나아가지 못하는 길은, 길이 아니다<BR>
                 길은 모두에게 열려있지만	<BR>
                 모두가 그 길을 가질 수 있는 것은 아니다	<BR>
                 근데, 스물 여섯개 먹었다면서	<BR>
                 도대체 뭘 하고 살았길래	<BR>
                 할 줄 아는게 하나도 없어..	<BR>
                 요즘, 보기 드문 청년이네	<BR>
-                그러게요...스물 여섯이 될 동안	<BR>
-                뭘 했을까요... 난?	<BR>
-                스카이팀에서 왔어요,	<BR>
-                낙하산 타고 뚝 떨어졌네요	<BR>
-                Study라는게	<BR>
-                1등은 필요 없는거거든요	<BR>
-                아까는 미안해요	<BR>
-                / 네	<BR>
-                / ..보통은 '아니요, 괜찮습니다' 하는데...	<BR>
-                / 잘못한게 없을때는 '네' 하죠	<BR>
-                이 빌딩 어디에,	<BR>
-                걔 있을 자리가 있겠냐	<BR>
-                길이란 걷는 것이 아니라	<BR>
-                걸음에서 나아가기 위한 것이다	<BR>
-                나아가지 못하는 길은, 길이 아니다	<BR>
-                내 길은 거기서 끝났다,	<BR>
-                기제가 부족하다거나 운이 없어	<BR>
-                매번 사양이다	<BR>
-                난, 그냥 열심히 하지 않은 편이다	<BR>
-                열심히 안한것은 아니지만	<BR>
-                열심히 안해서인걸로 생각하겠다	<BR>
-                난, 열심히 하지 않아서 세상에 나온거다	<BR>
-                난, 열심히 하지 않아서 버려진 것 뿐이다	<BR>
-                노력이요..그러니까 전 지금까지	<BR>
-                제 노력을 쓰지 않았으니까	<BR>
-                쌔빠진 신상입니다! 열심히 하겠습니다	<BR>
-                무조건 열심히 하겠습니다	<BR>
-                일단 분리를 하려면 중심주제를 정하고	<BR>
-                가지는 생각의 흐름을 따라가면 되는거니까	<BR>
+                그러게요...스물 여섯이 될 동안	
+                뭘 했을까요... 난?
     </div>
 </div>
 
@@ -79,11 +52,17 @@
         </div>
         <div class="arrow">&lt;-</div>
     </header>
-    <nav class="max-width">
+    <nav>
+        <div class="nav-title">
+
+        </div>
+        <div class="nav-contents">
+
+        </div>
     </nav>
     <aside>
         <ul class="aside-list">
-            <li><a href="/index.html">
+            <li><a href="/">
                 Home
             </a></li>
             <li><a href="javascript:window.alert('Contact Me')">
@@ -99,8 +78,6 @@
     </aside>
     <div class="header-fake-contents"></div>
     
-
-
 <div id="body-container">
 
 
@@ -116,19 +93,15 @@
     window.onload = function () {
         //headerScript.js
         headerInit();
-        insertLoadbar('nav');
-        
-        //loadingScript.js
-        // insertLoadbar('#headerMSG');
-        plusLoadbar('#headerMSG');
+
+        // loadingScript.js
+        // loadingBar.insert('.nav-title');
     }
-    
-    
 </script>
 
 <!-- 온로드 없이 단독 실행 -->
-<!-- <script src="/2_js/welcomeScript.js"></script> -->
-<script src="/2_js/wrapContents.js"></script>
+<script src="/2_js/welcomeScript.js"></script>
+<script src="/2_js/ContentsScript.js"></script>
 <script src="/2_js/modalScript.js"></script>
 </body>
 </html>

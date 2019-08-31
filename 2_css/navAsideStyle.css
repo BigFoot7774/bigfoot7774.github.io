@@ -9,25 +9,38 @@ nav{
     2. nav태그 컨텐츠가 표시되도록 함
     (only read) */
     position: fixed;
+    margin: 0px;
     padding: 0px;
-    color: rgba(0, 0, 0, 1);
+    color: rgba(255, 255, 255, 1);
+    background: rgba(0, 0, 0, 1);
     text-align: center;
-    font-size: 200px;
     height: 100vh;
-    z-index: -10000;
+    width: 100vw;
+    z-index: -100;
+    overflow: hidden;
+}
+.nav-title{
+    font-size: 200px;
+}
+.nav-contents{
+
 }
 aside{
-    color: rgba(255, 255, 255, 1);
     position: fixed;
     right: 0px;
-    background-color: rgba(0, 0, 0, 1);
-    height: 100px;
     width: 150px;
-    padding: 100px 5px 10px 5px;
-    transition: 0.3s all;
     height: 100vh;
-    transform: rotate(-45deg) translateY(-100px) translateX(70px);;
+    padding: 100px 5px 10px 5px;
+    box-sizing: border-box;
+
+    color: rgba(255, 255, 255, 1);
+    background-color: rgba(0, 0, 0, 1);
+    border-left: 1px solid rgba(255, 255, 255, 1);
+    
+    transition: 0.3s all;
+    transform: rotate(-45deg) translateY(-100px) translateX(65px);;
     transform-origin: top;
+    z-index: 1;
 }
 aside>*{
     opacity: 0;
@@ -39,7 +52,7 @@ aside>*{
 .aside-list{
     list-style: none;
     padding: 5px;
-    font-size: 1.2em;
+    font-size: 1.5em;
 }
 .aside-list>li{
     margin: 0.5em 0px;
