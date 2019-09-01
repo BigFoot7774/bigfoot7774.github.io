@@ -12,7 +12,9 @@
     <link rel="stylesheet" href="/2_css/style.css">
 </head>
 <body>
-    
+<!-- 온로드 없이 단독 실행 모바일기기에서 읽는 속도 때문에 body태그내 최상단으로 배치-->
+<script src="/2_js/welcomeScript.js"></script>
+
 <div id="headerModal" class="header-modal header-modal-component">
     <div class="header-modal header-modal-title">
         <div id="modalTitle">
@@ -26,20 +28,15 @@
     <div id="modalContents" 
         class="header-modal header-modal-contents">
         contents<BR>
-            나아가지 못하는 길은, 길이 아니다<BR>
-                길은 모두에게 열려있지만	<BR>
-                모두가 그 길을 가질 수 있는 것은 아니다	<BR>
-                근데, 스물 여섯개 먹었다면서	<BR>
-                도대체 뭘 하고 살았길래	<BR>
-                할 줄 아는게 하나도 없어..	<BR>
-                요즘, 보기 드문 청년이네	<BR>
-                그러게요...스물 여섯이 될 동안	
-                뭘 했을까요... 난?
+            "My dear Tesla, Many thanks for your letter.<BR>
+             I hope you are progressing and will give us something that will beat Roentgen."<BR>
+            "친애하는 테슬라여, 당신의 편지는 잘 받았네.<BR>
+            나는 자네의 발명이 잘 진행되어 우리에게 뢴트겐의 업적을 이길만한 것을 주었으면 하네."
     </div>
 </div>
 
     <header class="max-width">
-        <div id="headerMSG" class="header-contents max-width">
+        <div id="headerContents" class="header-contents max-width">
             index > profile > service > 솧개글
         </div>
         <img src="/4_img/eye/comfirmedBF.svg" title="Click Me" width="30"
@@ -100,7 +97,6 @@
 </script>
 
 <!-- 온로드 없이 단독 실행 -->
-<script src="/2_js/welcomeScript.js"></script>
 <script src="/2_js/ContentsScript.js"></script>
 <script src="/2_js/modalScript.js"></script>
 </body>
