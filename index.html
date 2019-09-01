@@ -15,7 +15,7 @@
 <!-- 온로드 없이 단독 실행 모바일기기에서 읽는 속도 때문에 body태그내 최상단으로 배치-->
 <script src="/2_js/welcomeScript.js"></script>
 
-<div id="headerModal" class="header-modal header-modal-component">
+<div id="headerModal" class="header-modal header-modal-component flex">
     <div class="header-modal header-modal-title">
         <div id="modalTitle">
             title
@@ -51,10 +51,8 @@
     </header>
     <nav>
         <div class="nav-title">
-
         </div>
         <div class="nav-contents">
-
         </div>
     </nav>
     <aside>
@@ -85,19 +83,16 @@
 
  -->
 <script src="/2_js/headerScript.js"></script>
-<script src="/2_js/loadingScript.js"></script>
 <script>
     window.onload = function () {
         //headerScript.js
         headerInit();
-
-        // loadingScript.js
-        // loadingBar.insert('.nav-title');
+        
     }
 </script>
 
 <!-- 온로드 없이 단독 실행 -->
 <script src="/2_js/ContentsScript.js"></script>
-<script src="/2_js/modalScript.js"></script>
+<script src="/2_js/requestScript.js"></script>
 </body>
 </html>

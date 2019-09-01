@@ -1,4 +1,4 @@
-//request 요청시에 사용할 예정
+// requestScript로 이전
 
 const loadingBar = {
                     insert: function (tagName) {

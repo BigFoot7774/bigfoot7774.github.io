@@ -61,8 +61,8 @@ body{
 .inline{
     display: inline;
 }
-.inline-block{
-    display: inline-block;
+.flex{
+    display: flex;
 }
 .max-width{
     width: 100vw;

@@ -1,3 +1,6 @@
+// requestScript로 이전
+
+
 const headerModal = document.querySelector("#headerModal");
 const headerModalTitle = document.querySelector(".header-modal-title");
 const headerModalClose = document.querySelector(".header-modal-title-close");

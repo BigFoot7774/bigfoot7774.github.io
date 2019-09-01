@@ -1,13 +1,7 @@
 /* @import "/2_css/style.css"; */
 
-/* header태그 height: 30px, padding: 5px으로 지정
-    top: 40px(30px+5px+5px)부터 headerLogo를 가릴만큼 height지정
- */
 nav{
-    /* body태그를 투명하게 하여
-    1. 사용자가 클릭은 할 수 없고
-    2. nav태그 컨텐츠가 표시되도록 함
-    (only read) */
+    /* 로딩 중 nav태그 컨텐츠가 표시되도록 함 */
     position: fixed;
     margin: 0px;
     padding: 0px;
@@ -18,12 +12,17 @@ nav{
     width: 100vw;
     z-index: -100;
     overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 .nav-title{
-    font-size: 200px;
+    font-size: 70px;
 }
 .nav-contents{
-
+    padding-top: 50px;
+    margin-bottom: 30vh;
 }
 aside{
     position: fixed;
