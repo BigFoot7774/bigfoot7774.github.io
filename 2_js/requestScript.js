@@ -172,44 +172,44 @@ const modaljs = {
     }
 };
 
-//정리 필요
-const bodyContainer = document.querySelector('#body-container');
-
-let wrap, title, createdDate ;
-
-
-function createtag(TagName, contentsHTML, idName, className) {
-    console.log(typeof contentsHTML);
-
-    // arguments
-    let title = document.createElement(TagName);
-    title.innerHTML = contentsHTML;
-    title.id = idName;
-    title.classList.add(className);
+//-wrapjs객체(리팩토링 완): 틀만 생성(세부컨텐츠는 별도로 스크립트 구성 필요), wrap 더하기, wrap 초기화
+const wrapjs = {
     
-    bodyContainer.appendChild(title);
-}
+    bodyContainer : document.querySelector('#bodyContainer'),
+    
+    add: function (contentsHTML) {
+        const wrap = document.createElement('div');
+        wrap.className = 'wrap';
+        wrap.innerHTML = contentsHTML;
+        wrapjs.bodyContainer.appendChild(wrap);
+    },
+    reset: function (contentsHTML) {
+        wrapjs.bodyContainer.innerText='';
 
+        const wrap = document.createElement('div');
+        wrap.className = 'wrap';
+        wrap.innerHTML = contentsHTML;
+        wrapjs.bodyContainer.appendChild(wrap);
+    }
+};
 
 function testInit() {
-    createtag('div',
-    // `
-    // <img src="/4_img/Tesla_Sarony.jpg">
-    // <p> 미래가 진실을 말하도록 두라.</p>
-    // <p> 내 업적과 성과는 하나하나 미래에서 평가받을 것이다.</p>
-    // <p> 현재는 그들의 것일지 모른다.</p>
-    // <p> 허나, 미래는, 내가 진정으로 일함으로써 얻은 미래만큼은 다른 누구도 아닌 나의 것이다.</p>
-    // <p> -Nikola Tesla Memorial Center- </p>
-    // <p><BR></p><p><BR></p><p><BR></p><p><BR></p><p><BR></p><p><BR></p><p><BR></p><p><BR></p><p><BR></p><p><BR></p><p><BR></p><p><BR></p>
-    // `,
-    // 'wrap','wrap');
+    wrapjs.reset(`
+        <img src="/4_img/Tesla_Sarony.jpg">
+        <p> 미래가 진실을 말하도록 두라.</p>
+        <p> 내 업적과 성과는 하나하나 미래에서 평가받을 것이다.</p>
+        <p> 현재는 그들의 것일지 모른다.</p>
+        <p> 허나, 미래는, 내가 진정으로 일함으로써 얻은 미래만큼은 다른 누구도 아닌 나의 것이다.</p>
+        <p> -Nikola Tesla Memorial Center- </p>`
+    );
     
+    wrapjs.add('hi');
 
     modaljs.create('hello modal',
-    `My dear Tesla, Many thanks for your letter.<BR>
-    I hope you are progressing and will give us something that will beat Roentgen.<BR>
-    친애하는 테슬라여, 당신의 편지는 잘 받았네.<BR>
-    나는 자네의 발명이 잘 진행되어 우리에게 뢴트겐의 업적을 이길만한 것을 주었으면 하네.`
+        `My dear Tesla, Many thanks for your letter.<BR>
+        I hope you are progressing and will give us something that will beat Roentgen.<BR>
+        친애하는 테슬라여, 당신의 편지는 잘 받았네.<BR>
+        나는 자네의 발명이 잘 진행되어 우리에게 뢴트겐의 업적을 이길만한 것을 주었으면 하네.`
     );
     
 }
