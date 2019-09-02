@@ -78,11 +78,11 @@ const navjs = {
     active: function (navTitle, navContents) {
         navjs.container.classList.add('z-index-100');
         navjs.title.innerHTML = navTitle;
-// loadingjs 삽입
+        // loadingjs 삽입
         loadingjs.plus(this.title);
         navjs.contents.innerHTML = navContents;
         
-// 모달 떠있는 상태에서 실행 시 모달 초기화
+        // 모달 떠있는 상태에서 실행 시 모달 초기화
         modaljs.close();
     },
 
@@ -97,24 +97,39 @@ const navjs = {
 //-navjs객체(리팩토링 완): 생성, 닫기, 드래그
 const modaljs = {
     
-    container: document.querySelector("#headerModal"),
-    titleContainer: document.querySelector(".header-modal-title"),
-    closebtn: document.querySelector(".header-modal-title-close"),
-    title: document.querySelector("#modalTitle"),
-    contents: document.querySelector("#modalContents"),
-    
-
     create: function (titleText, contentsText) {
         
-        modaljs.container.classList.add('flex');
-        modaljs.title.innerText = titleText;
-        modaljs.contents.innerText = contentsText;
-    },
+        let container = document.createElement('div');
+        let header = document.createElement('div');
+        let title = document.createElement('div');
+        let close = document.createElement('a');
+        let contents = document.createElement('div');
 
+        container.className = 'header-modal header-modal-component flex';
+            container.appendChild(header);
+            container.appendChild(contents);
+        
+        header.className = 'header-modal header-modal-title';
+            header.appendChild(title);
+            header.appendChild(close);
+            close.className = 'header-modal-title-close';
+            close.setAttribute('href','javascript:');
+            close.innerHTML = '&times';
+
+        contents.className = 'header-modal header-modal-contents';
+
+
+        title.innerHTML = titleText;
+        contents.innerHTML = contentsText;
+        
+        document.body.appendChild(container);
+
+        close.addEventListener('click',modaljs.close);
+        modaljs.dragElement(container);
+    },
+    
     close: function () {
-        modaljs.title.innerText='';
-        modaljs.contents.innerText='';
-        modaljs.container.classList.remove('flex');
+        document.body.removeChild(document.querySelector('.header-modal'));
     },
 
     //w3s 인용
@@ -157,22 +172,56 @@ const modaljs = {
     }
 };
 
+//정리 필요
+const bodyContainer = document.querySelector('#body-container');
+
+let wrap, title, createdDate ;
 
 
+function createtag(TagName, contentsHTML, idName, className) {
+    console.log(typeof contentsHTML);
 
-
-
-
-
-
-
-function requestInit() {
-    modaljs.closebtn.addEventListener('click',modaljs.close);
-    modaljs.dragElement(modaljs.container);
-
-//임시
-    navjs.active('기달','기다려봐');
+    // arguments
+    let title = document.createElement(TagName);
+    title.innerHTML = contentsHTML;
+    title.id = idName;
+    title.classList.add(className);
+    
+    bodyContainer.appendChild(title);
 }
 
+
+function testInit() {
+    createtag('div',
+    // `
+    // <img src="/4_img/Tesla_Sarony.jpg">
+    // <p> 미래가 진실을 말하도록 두라.</p>
+    // <p> 내 업적과 성과는 하나하나 미래에서 평가받을 것이다.</p>
+    // <p> 현재는 그들의 것일지 모른다.</p>
+    // <p> 허나, 미래는, 내가 진정으로 일함으로써 얻은 미래만큼은 다른 누구도 아닌 나의 것이다.</p>
+    // <p> -Nikola Tesla Memorial Center- </p>
+    // <p><BR></p><p><BR></p><p><BR></p><p><BR></p><p><BR></p><p><BR></p><p><BR></p><p><BR></p><p><BR></p><p><BR></p><p><BR></p><p><BR></p>
+    // `,
+    // 'wrap','wrap');
+    
+
+    modaljs.create('hello modal',
+    `My dear Tesla, Many thanks for your letter.<BR>
+    I hope you are progressing and will give us something that will beat Roentgen.<BR>
+    친애하는 테슬라여, 당신의 편지는 잘 받았네.<BR>
+    나는 자네의 발명이 잘 진행되어 우리에게 뢴트겐의 업적을 이길만한 것을 주었으면 하네.`
+    );
+    
+}
+
+function defaultInit() {
+}
+
+function requestInit() {
+    
+}
+
+testInit();
+defaultInit();
 requestInit();
 
