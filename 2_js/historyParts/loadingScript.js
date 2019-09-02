@@ -1,6 +1,6 @@
 // requestScript로 이전
 
-const loadingBar = {
+const loadingjs = {
                     insert: function (tagName) {
                                 const _tagName = document.querySelector(tagName);
                                 const loadingPackage = ['-','\\','\|','\/']

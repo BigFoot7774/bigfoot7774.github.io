@@ -14,53 +14,58 @@ const requestjs = {
     }
 };
 
-//-loadingjs객체(리팩토링 필)
+//-loadingjs객체(리팩토링 완): innertext 대체&추가, 정지&로딩바제거, 
 const loadingjs = {
 
+    loadingPackage: ['-','\\','\|','\/'],
+
     insert: function (tagName) {
-        const _tagName = document.querySelector(tagName);
-        const loadingPackage = ['-','\\','\|','\/']
         let count = 0;
-        setInterval(function () {
+        insert = setInterval(function() {
             if (count === 3) {
-                _tagName.innerText = loadingPackage[3];
+                tagName.innerText = loadingjs.loadingPackage[3];
                 count = 0;
 //태그의 innertext를 loadingPackage로 교체
 //count값이 3일 때만 count초기화
             }else{
-                _tagName.innerText = loadingPackage[count];
+                tagName.innerText = loadingjs.loadingPackage[count];
                 count++;
             }
         }, 100);
     },
     plus: function (tagName) {
-        const text = document.querySelector(tagName);
-        const loadingPackage = ['-','\\','\|','\/']
-        let textLength = text.innerText;
+        let textLength = tagName.innerText;//호출 당시 최초 길이
         let count = 0;
-
-        setInterval(function () {
+        plus = setInterval(function() {
 //count가 0일때는 바로 삽입
 //0이 아닐때는 innerText내용을 복원한 뒤
 //맨 뒤 한글자만 substr로 걸러내서 교체
-            if (count === 0 && text.innerText.length === textLength.length) {
-                text.innerText += loadingPackage[count];
+            if (count === 0 && tagName.innerText.length === textLength.length) {
+                tagName.innerText += loadingjs.loadingPackage[count];
                 count++;
-            }else if(count === 0 && text.innerText.length != textLength.length){
-                text.innerText = textLength.substr(0, textLength.length);
-                text.innerText += loadingPackage[count];
+            }else if(count === 0 && tagName.innerText.length != textLength.length){
+                tagName.innerText = textLength.substr(0, textLength.length);
+                tagName.innerText += loadingjs.loadingPackage[count];
                 count++;
             }else if(count === 3){
-                text.innerText = textLength.substr(0, textLength.length);
-                text.innerText += loadingPackage[3];
+                tagName.innerText = textLength.substr(0, textLength.length);
+                tagName.innerText += loadingjs.loadingPackage[3];
                 count = 0;
             }else{
-                text.innerText = textLength.substr(0, textLength.length);
-                text.innerText += loadingPackage[count];
+                tagName.innerText = textLength.substr(0, textLength.length);
+                tagName.innerText += loadingjs.loadingPackage[count];
                 count++;
             }
         }, 100);
     },
+    stop: function (query) {
+        try {
+            clearInterval(plus);
+            clearInterval(insert);
+        } catch (error) {} finally {
+            query.innerText = query.innerText.substring(0,query.innerText.length-1);
+        }
+    }
 };
 
 //-navjs객체(리팩토링 완): 생성, 닫기
@@ -73,18 +78,20 @@ const navjs = {
     active: function (navTitle, navContents) {
         navjs.container.classList.add('z-index-100');
         navjs.title.innerHTML = navTitle;
-        loadingjs.plus('.nav-title');
+// loadingjs 삽입
+        loadingjs.plus(this.title);
         navjs.contents.innerHTML = navContents;
-
+        
 // 모달 떠있는 상태에서 실행 시 모달 초기화
         modaljs.close();
     },
 
     inactive: function () {
+        loadingjs.stop(this.title);
         navjs.container.classList.remove('z-index-100');        
         navjs.title.innerHTML = '';
         navjs.contents.innerHTML = '';
-        }
+    }
 };
 
 //-navjs객체(리팩토링 완): 생성, 닫기, 드래그
@@ -164,7 +171,7 @@ function requestInit() {
     modaljs.dragElement(modaljs.container);
 
 //임시
-    navjs.active('title','contents');
+    navjs.active('기달','기다려봐');
 }
 
 requestInit();
