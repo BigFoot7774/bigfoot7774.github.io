@@ -1,17 +1,34 @@
 //-requestjs객체(리팩토링 필)
 const requestjs = {
-    ajaxGet: function (params) {
-        let xhr;
-        // 브라우저 호환성에 따라 생성(IE6이하 호환성이라 지워야 하는 지 고민 중)
-        if (window.XMLHttpRequest) { 
-            xhr = new XMLHttpRequest();
-        } else if (window.ActiveXObject) { 
-            xhr = new ActiveXObject("Microsoft.XMLHTTP");
-        }
+    ajaxGet: function (URL) {
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET', URL, true);
+        xhr.send();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    wrapjs.reset(xhr.response);
+                    navjs.inactive();
+                } else {
+                    navjs.inactive();
+                }
+            } else if (xhr.readyState === 2) {
+                navjs.active();
+            }
+        };
+    },
+    ajaxPost: function (URL) {
+        let xhr = new XMLHttpRequest();
+        xhr.open('POST', URL, true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+//조정 필요
+        xhr.send();
+
         xhr.onreadystatechange = function () {
             
         };
     }
+
 };
 
 //-loadingjs객체(리팩토링 완): innertext 대체&추가, 정지&로딩바제거, 
@@ -79,7 +96,7 @@ const navjs = {
         navjs.container.classList.add('z-index-100');
         navjs.title.innerHTML = navTitle;
         // loadingjs 삽입
-        loadingjs.plus(this.title);
+        loadingjs.plus(navjs.title);
         navjs.contents.innerHTML = navContents;
         
         // 모달 떠있는 상태에서 실행 시 모달 초기화
@@ -87,7 +104,7 @@ const navjs = {
     },
 
     inactive: function () {
-        loadingjs.stop(this.title);
+        loadingjs.stop(navjs.title);
         navjs.container.classList.remove('z-index-100');        
         navjs.title.innerHTML = '';
         navjs.contents.innerHTML = '';
@@ -129,7 +146,9 @@ const modaljs = {
     },
     
     close: function () {
-        document.body.removeChild(document.querySelector('.header-modal'));
+        if (document.querySelector('.header-modal') != null) {
+            document.body.removeChild(document.querySelector('.header-modal'));
+        }
     },
 
     //w3s 인용
@@ -211,7 +230,8 @@ function testInit() {
         친애하는 테슬라여, 당신의 편지는 잘 받았네.<BR>
         나는 자네의 발명이 잘 진행되어 우리에게 뢴트겐의 업적을 이길만한 것을 주었으면 하네.`
     );
-    
+
+    // requestjs.ajaxGet('/1_app/contactMe.html');
 }
 
 function defaultInit() {
