@@ -28,65 +28,83 @@ const requestjs = {
                 }
             } else {
                 navjs.inactive();
-                navjs.active();
+                navjs.loadBase();
             }
         };
     },
-    
+    history: function (params) {
+        
+    }
 };
 
 //-loadingjs객체(리팩토링 완): innertext 대체&추가, 정지&로딩바제거, 
 const loadingjs = {
 
+//interval 주소값 저장 배열
+    intervalAddr: [],
+//tag HTML값 복원을 위한 오브젝트
+    recoveryTagAddr: {},
     loadingPackage: ['-','\\','\|','\/'],
 
     insert: function (tagName) {
+        let tagContents = document.querySelector(tagName);
         let count = 0;
-        insert = setInterval(function() {
+
+        loadingjs.recoveryTagAddr[tagName] = tagContents.innerHTML;
+        loadingjs.intervalAddr.push(setInterval(function() {
             if (count === 3) {
-                tagName.innerText = loadingjs.loadingPackage[3];
+                tagContents.innerText = loadingjs.loadingPackage[3];
                 count = 0;
 //태그의 innertext를 loadingPackage로 교체
 //count값이 3일 때만 count초기화
             }else{
-                tagName.innerText = loadingjs.loadingPackage[count];
+                tagContents.innerText = loadingjs.loadingPackage[count];
                 count++;
             }
-        }, 100);
+        }, 100));
     },
     plus: function (tagName) {
-        let textLength = tagName.innerText;//호출 당시 최초 길이
+        let tagContents = document.querySelector(tagName);
+        let textLength = document.querySelector(tagName).innerHTML;//호출 당시 최초 길이
         let count = 0;
-        plus = setInterval(function() {
+        
+        loadingjs.recoveryTagAddr[tagName] = tagContents.innerHTML;
+        loadingjs.intervalAddr.push(setInterval(function() {
 //count가 0일때는 바로 삽입
 //0이 아닐때는 innerText내용을 복원한 뒤
 //맨 뒤 한글자만 substr로 걸러내서 교체
-            if (count === 0 && tagName.innerText.length === textLength.length) {
-                tagName.innerText += loadingjs.loadingPackage[count];
+            if (count === 0 && tagContents.innerHTML.length === textLength.length) {
+                tagContents.innerHTML += loadingjs.loadingPackage[count];
                 count++;
-            }else if(count === 0 && tagName.innerText.length != textLength.length){
-                tagName.innerText = textLength.substr(0, textLength.length);
-                tagName.innerText += loadingjs.loadingPackage[count];
+            }else if(count === 0 && tagContents.innerHTML.length != textLength.length){
+                tagContents.innerHTML = textLength.substr(0, textLength.length);
+                tagContents.innerHTML += loadingjs.loadingPackage[count];
                 count++;
             }else if(count === 3){
-                tagName.innerText = textLength.substr(0, textLength.length);
-                tagName.innerText += loadingjs.loadingPackage[3];
+                tagContents.innerHTML = textLength.substr(0, textLength.length);
+                tagContents.innerHTML += loadingjs.loadingPackage[3];
                 count = 0;
             }else{
-                tagName.innerText = textLength.substr(0, textLength.length);
-                tagName.innerText += loadingjs.loadingPackage[count];
+                tagContents.innerHTML = textLength.substr(0, textLength.length);
+                tagContents.innerHTML += loadingjs.loadingPackage[count];
                 count++;
             }
-        }, 100);
+        }, 100));
     },
     stop: function (query) {
-        try {
-            clearInterval(plus);
-            clearInterval(insert);
-        } catch (error) {} finally {
-            query.innerText = query.innerText.substring(0,query.innerText.length-1);
+        for (let index = 0; index < loadingjs.intervalAddr.length; index++) {
+            clearInterval(loadingjs.intervalAddr[index]);
         }
-    }
+        loadingjs.intervalAddr = [];
+
+        for (const key in loadingjs.recoveryTagAddr) {
+            if (loadingjs.recoveryTagAddr.hasOwnProperty(key)) {
+                document.querySelector(key).innerHTML = loadingjs.recoveryTagAddr[key];
+            }
+        }
+        loadingjs.recoveryTagAddr = {};
+        // document.querySelector(key).innerHTML.slice(0,-1);
+    },
 };
 
 //-navjs객체(리팩토링 완): 생성, 닫기
@@ -103,20 +121,16 @@ const navjs = {
         loadingjs.plus(navjs.title);
         navjs.contents.innerHTML = navContents;
         
-        // 모달 떠있는 상태에서 실행 시 모달 초기화
-        modaljs.close();
     },
-    active: function () {
+    loadBase: function () {
         navjs.container.classList.add('z-index-100');
         navjs.title.innerHTML = 'loading...';
         // loadingjs 삽입
-        loadingjs.plus(navjs.title);
-        
-        // 모달 떠있는 상태에서 실행 시 모달 초기화
-        modaljs.close();
+        loadingjs.plus('.nav-title');
+
     },
     inactive: function () {
-        loadingjs.stop(navjs.title);
+        loadingjs.stop('.nav-title');
         navjs.container.classList.remove('z-index-100');        
         navjs.title.innerHTML = '';
         navjs.contents.innerHTML = '';
@@ -234,16 +248,17 @@ function testInit() {
         <p> -Nikola Tesla Memorial Center- </p>`
     );
     
+    new requestjs.ajax('GET','/1_app/contactMe.html', wrapjs.add);
+    
+    
     modaljs.create('hello modal',
         `My dear Tesla, Many thanks for your letter.<BR>
         I hope you are progressing and will give us something that will beat Roentgen.<BR>
         친애하는 테슬라여, 당신의 편지는 잘 받았네.<BR>
         나는 자네의 발명이 잘 진행되어 우리에게 뢴트겐의 업적을 이길만한 것을 주었으면 하네.`
     );
-
-    
-    new requestjs.ajax('GET','/1_app/contactMe.html', wrapjs.add);
 }
+
 
 function defaultInit() {
 }

@@ -33,14 +33,11 @@ header{
 }
 .header-eye-pupil{
     position: fixed;
+    display: flex;
+    justify-items: flex-start;
+    flex-direction: row;
     /* filter: invert(100%); */
 }
-/* #headerLoading{
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    font-size: 30px;
-} */
 .header-contents{
     padding-left: 3px;
     color: rgba(255, 255, 255, 0.7);
