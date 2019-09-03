@@ -1,34 +1,38 @@
 //-requestjs객체(리팩토링 필)
 const requestjs = {
-    ajaxGet: function (URL) {
+
+    ajax: function (method, URL, callback) {
         let xhr = new XMLHttpRequest();
-        xhr.open('GET', URL, true);
-        xhr.send();
+        let conResult;
+
+        if (method.toUpperCase() === 'GET') {
+            method = 'GET';
+            xhr.open(method, URL, true);
+            xhr.send();
+//POST 작동 확인 못함
+        }else if (method.toUpperCase() === 'POST') {
+            method = 'POST';
+            parsingURL = URL.split('?');
+            xhr.open(method, parsingURL[0], true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send(parsingURL[1]);
+        }
+
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
-                    wrapjs.reset(xhr.response);
                     navjs.inactive();
+                    callback(xhr.response);
                 } else {
                     navjs.inactive();
                 }
-            } else if (xhr.readyState === 2) {
+            } else {
+                navjs.inactive();
                 navjs.active();
             }
         };
     },
-    ajaxPost: function (URL) {
-        let xhr = new XMLHttpRequest();
-        xhr.open('POST', URL, true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-//조정 필요
-        xhr.send();
-
-        xhr.onreadystatechange = function () {
-            
-        };
-    }
-
+    
 };
 
 //-loadingjs객체(리팩토링 완): innertext 대체&추가, 정지&로딩바제거, 
@@ -102,7 +106,15 @@ const navjs = {
         // 모달 떠있는 상태에서 실행 시 모달 초기화
         modaljs.close();
     },
-
+    active: function () {
+        navjs.container.classList.add('z-index-100');
+        navjs.title.innerHTML = 'loading...';
+        // loadingjs 삽입
+        loadingjs.plus(navjs.title);
+        
+        // 모달 떠있는 상태에서 실행 시 모달 초기화
+        modaljs.close();
+    },
     inactive: function () {
         loadingjs.stop(navjs.title);
         navjs.container.classList.remove('z-index-100');        
@@ -222,8 +234,6 @@ function testInit() {
         <p> -Nikola Tesla Memorial Center- </p>`
     );
     
-    wrapjs.add('hi');
-
     modaljs.create('hello modal',
         `My dear Tesla, Many thanks for your letter.<BR>
         I hope you are progressing and will give us something that will beat Roentgen.<BR>
@@ -231,7 +241,8 @@ function testInit() {
         나는 자네의 발명이 잘 진행되어 우리에게 뢴트겐의 업적을 이길만한 것을 주었으면 하네.`
     );
 
-    // requestjs.ajaxGet('/1_app/contactMe.html');
+    
+    new requestjs.ajax('GET','/1_app/contactMe.html', wrapjs.add);
 }
 
 function defaultInit() {
