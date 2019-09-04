@@ -19,23 +19,21 @@ header{
 }
 .header-eye{
     position: absolute;
-    top: 15px;
-    right: 45px;
+    top: 12px;
+    right: 25px;
     text-align: center;
-    display: inline-block;
     opacity: 0;
     transition: 1s all;
     z-index: -1;
+    color: black;
+    font-size: 1.5em;
 }
 .header-eye:HOVER{cursor: pointer;}
 .header-eye-eyelid{
-    position: absolute;
+    position: relative;
 }
 .header-eye-pupil{
     position: fixed;
-    display: flex;
-    justify-items: flex-start;
-    flex-direction: row;
     /* filter: invert(100%); */
 }
 .header-contents{

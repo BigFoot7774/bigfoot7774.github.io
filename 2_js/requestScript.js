@@ -3,7 +3,6 @@ const requestjs = {
 
     ajax: function (method, URL, callback) {
         let xhr = new XMLHttpRequest();
-        let conResult;
 
         if (method.toUpperCase() === 'GET') {
             method = 'GET';
@@ -32,8 +31,17 @@ const requestjs = {
             }
         };
     },
-    history: function (params) {
-        
+};
+const forwardingURL = {
+
+    pushstate: function (data, title, uri) {
+        window.history.pushState(data, title, uri);
+    },
+    popstate: function (params) {
+        window.addEventListener('popstate',function () {
+            console.log('뒤로가기?');
+            
+         });
     }
 };
 
@@ -156,7 +164,7 @@ const modaljs = {
             header.appendChild(title);
             header.appendChild(close);
             close.className = 'header-modal-title-close';
-            close.setAttribute('href','javascript:');
+            close.setAttribute('href','javascript:;');
             close.innerHTML = '&times';
 
         contents.className = 'header-modal header-modal-contents';
@@ -235,6 +243,9 @@ const wrapjs = {
         wrap.className = 'wrap';
         wrap.innerHTML = contentsHTML;
         wrapjs.bodyContainer.appendChild(wrap);
+    },
+    createElements: function () {
+        
     }
 };
 
@@ -245,18 +256,32 @@ function testInit() {
         <p> 내 업적과 성과는 하나하나 미래에서 평가받을 것이다.</p>
         <p> 현재는 그들의 것일지 모른다.</p>
         <p> 허나, 미래는, 내가 진정으로 일함으로써 얻은 미래만큼은 다른 누구도 아닌 나의 것이다.</p>
-        <p> -Nikola Tesla Memorial Center- </p>`
+        <p> -Nikola Tesla Memorial Center- </p>
+        <p><input type="button" id="testPush" value="PushState"><input type="button" id="testPop" value="PopState"></p>
+        `
     );
     
     new requestjs.ajax('GET','/1_app/contactMe.html', wrapjs.add);
     
     
+    requestjs.ajax('GET','/1_app/NicolaTesla.json', function (data) {
+        wrapjs.add(data);
+    });
+        
+
+
+
     modaljs.create('hello modal',
         `My dear Tesla, Many thanks for your letter.<BR>
         I hope you are progressing and will give us something that will beat Roentgen.<BR>
         친애하는 테슬라여, 당신의 편지는 잘 받았네.<BR>
         나는 자네의 발명이 잘 진행되어 우리에게 뢴트겐의 업적을 이길만한 것을 주었으면 하네.`
     );
+
+    forwardingURL.popstate();
+    
+
+
 }
 
 
