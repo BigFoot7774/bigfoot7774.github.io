@@ -6,7 +6,7 @@ nav{
     margin: 0px;
     padding: 0px;
     color: rgba(255, 255, 255, 1);
-    background: rgba(0, 0, 0, 1);
+    background: rgba(0, 0, 0, 0.5);
     text-align: center;
     height: 100vh;
     width: 100vw;
@@ -18,11 +18,16 @@ nav{
     justify-content: center;
 }
 .nav-title{
+    padding-top: 50px;
     font-size: 70px;
+    background: rgba(0, 0, 0, 1);
+    height: 10vh;
 }
 .nav-contents{
     padding-top: 50px;
-    margin-bottom: 30vh;
+    margin-bottom: 20vh;
+    background: rgba(0, 0, 0, 1);
+    height: 20vh;
 }
 aside{
     position: fixed;
@@ -46,7 +51,7 @@ aside>*{
 }
 .aside-focus{
     transform: rotate(0deg);
-    background: rgba(0, 0, 0, 0.2);
+    /* background: rgba(0, 0, 0, 0.2); */
 }
 
 .aside-list{

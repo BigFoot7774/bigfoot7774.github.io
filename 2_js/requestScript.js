@@ -126,7 +126,7 @@ const navjs = {
         navjs.container.classList.add('z-index-100');
         navjs.title.innerHTML = navTitle;
         // loadingjs 삽입
-        loadingjs.plus(navjs.title);
+        loadingjs.plus('.nav-title');
         navjs.contents.innerHTML = navContents;
         
     },

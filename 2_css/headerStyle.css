@@ -41,10 +41,17 @@ header{
 }
 .header-contents{
     padding-left: 3px;
+    padding-right: 150px;
     color: rgba(255, 255, 255, 0.7);
+
     text-align: left;
+    overflow: hidden;
+    white-space: nowrap;
     position: fixed;
     transition: 0.5s all;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    box-sizing: border-box;
 }
 .header-msg-success{
     animation: tinkleContents 1s;
