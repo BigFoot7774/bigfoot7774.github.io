@@ -16,6 +16,10 @@ html, body{
 body{
     min-height: 95vh;
 }
+img, video{
+    max-width: 100%;
+    height: auto;
+}
 /*
     기술 인용
     출처: https://wiki.stillh.art/page/SJ4yEEClg/Transparent-Scrollbar-over-Content */
@@ -46,11 +50,37 @@ body{
                 -1px -1px 1px gray;
                             
     background: rgba(255, 255, 255, 0);
-    color: rgba(255, 255, 255, 0.5);
     filter: grayscale(100%);
 
     box-sizing: border-box;
-    word-break: break-all;
+    /* word-break: break-all; */
+    word-break: keep-all;
+}
+
+article{
+    display: table;
+}
+article>article{
+    display: table-row;
+}
+article>article section{
+    display: table-cell;
+    padding: 10px;
+}
+article>article section:first-child{
+    width: 30vw;
+}
+@media(max-width:1200px){
+    article>article section{
+        display: block;
+    }   
+    article>article section:first-child{
+        text-align: center;
+        font-size: 1.3em;
+    }
+    article>article section:first-child{
+        width: auto;
+    }
 }
 .hidden{
     display: none;

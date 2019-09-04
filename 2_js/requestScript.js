@@ -146,6 +146,7 @@ const navjs = {
 };
 
 //-navjs객체(리팩토링 완): 생성, 닫기, 드래그
+// new키워드를 통한 새로운 오브젝트 생성의 필요가 없음
 const modaljs = {
     
     create: function (titleText, contentsText) {
@@ -180,8 +181,9 @@ const modaljs = {
     },
     
     close: function () {
-        if (document.querySelector('.header-modal') != null) {
-            document.body.removeChild(document.querySelector('.header-modal'));
+        if (this.parentNode.parentNode != null) {
+            document.body.removeChild(this.parentNode.parentNode);
+                // document.querySelector('.header-modal'));
         }
     },
 
@@ -250,37 +252,18 @@ const wrapjs = {
 };
 
 function testInit() {
-    wrapjs.reset(`
-        <img src="/4_img/Tesla_Sarony.jpg">
-        <p> 미래가 진실을 말하도록 두라.</p>
-        <p> 내 업적과 성과는 하나하나 미래에서 평가받을 것이다.</p>
-        <p> 현재는 그들의 것일지 모른다.</p>
-        <p> 허나, 미래는, 내가 진정으로 일함으로써 얻은 미래만큼은 다른 누구도 아닌 나의 것이다.</p>
-        <p> -Nikola Tesla Memorial Center- </p>
-        <p><input type="button" id="testPush" value="PushState"><input type="button" id="testPop" value="PopState"></p>
-        `
-    );
-    
-    new requestjs.ajax('GET','/1_app/contactMe.html', wrapjs.add);
-    
-    
-    requestjs.ajax('GET','/1_app/NicolaTesla.json', function (data) {
-        wrapjs.add(data);
-    });
-        
-
-
-
-    modaljs.create('hello modal',
-        `My dear Tesla, Many thanks for your letter.<BR>
-        I hope you are progressing and will give us something that will beat Roentgen.<BR>
-        친애하는 테슬라여, 당신의 편지는 잘 받았네.<BR>
-        나는 자네의 발명이 잘 진행되어 우리에게 뢴트겐의 업적을 이길만한 것을 주었으면 하네.`
-    );
-
-    forwardingURL.popstate();
     
 
+    // new requestjs.ajax('GET', '/1_app/NicolaTesla.html', wrapjs.reset);
+    
+    // new requestjs.ajax('GET', '/1_app/modalTest.json', function (data) {
+    //     const data_ = JSON.parse(data);
+    //     modaljs.create(data_['title'], data_['contents']);
+    // });
+
+    // forwardingURL.popstate();
+
+    new requestjs.ajax('GET', '/1_app/pageHistory.html', wrapjs.add);
 
 }
 

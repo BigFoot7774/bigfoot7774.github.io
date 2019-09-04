@@ -10,6 +10,7 @@ header{
     box-sizing: border-box;
 }
 #headerLogo{
+    width: 30px;
     margin: 10px;
     /* filter: invert(100%); */
     cursor: pointer;
@@ -31,8 +32,10 @@ header{
 .header-eye:HOVER{cursor: pointer;}
 .header-eye-eyelid{
     position: relative;
+    width: 20px;
 }
 .header-eye-pupil{
+    width: 3px;
     position: fixed;
     /* filter: invert(100%); */
 }
