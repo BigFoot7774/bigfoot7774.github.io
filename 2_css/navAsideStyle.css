@@ -37,6 +37,7 @@ nav{
 
     background: rgba(0, 0, 0, 1);
     height: 20vh;
+    line-height: 100%;
 }
 @keyframes navCreate{
     from{
