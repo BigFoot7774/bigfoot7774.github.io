@@ -311,6 +311,8 @@ function testInit() {
     const pastDays = Math.floor((new Date().getTime() - dateObj.getTime())/1000/60/60/24);
     document.querySelector('.header-contents').innerText = pastDays+'일 지났다, 긴장하자';
 }
+//정신차리자
+testInit();
 
 
 
@@ -318,8 +320,6 @@ function defaultInit() {
     requestjs.ajax('GET','/1_app/appDataList.json', activeScript.asideList);
 
 
-    //정신차리자
-    testInit();
 
     
     

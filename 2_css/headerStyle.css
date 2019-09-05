@@ -99,6 +99,15 @@ header{
     display: none;
     flex-direction: column;
     align-items: center;
+    animation: modal-pop-up 0.1s;
+}
+@keyframes modal-pop-up{
+    0%{
+        transform: scale(0);
+    }
+    100%{
+        transform: scale(1);
+    }
 }
 .header-modal-title-close{
     text-decoration: none;
@@ -124,7 +133,7 @@ header{
     display: flex;
     justify-content: space-between;
     cursor: move;
-    animation: modal-pop-up 0.3s;
+
 }
 .header-modal-contents{
     border: 0.5px solid gray;
@@ -138,16 +147,8 @@ header{
     max-width: 1000px;
     /* border-radius: 1rem; */
     text-align: center;
-    animation: modal-pop-up 0.3s;
 }
-@keyframes modal-pop-up{
-    0%{
-        width: 0vw;
-    }
-    100%{
-        width: 60vw;
-    }
-}
+
 
 @media(min-width:1200px){
     .header-eye{
