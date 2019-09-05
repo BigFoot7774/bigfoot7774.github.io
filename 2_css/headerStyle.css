@@ -81,6 +81,7 @@ header{
     color: rgba(255, 255, 255, 0.5);
     vertical-align: middle;
     z-index: 101;
+    word-break: keep-all;
 }
 .header-modal-component{
     margin: 0px;
@@ -99,7 +100,14 @@ header{
     flex-direction: column;
     align-items: center;
 }
-
+.header-modal-title-close{
+    text-decoration: none;
+    color: inherit;
+    transition: 0.3s all;
+}
+.header-modal-title-close:HOVER{
+    color: red;
+}
 .header-modal-title{
     color: rgba(255, 255, 255, 1);
     border: 0.5px solid gray;
@@ -113,19 +121,10 @@ header{
     max-width: 1000px;
     /* border-radius: 1rem; */
     font-size: 1.5rem;
-
-    animation: modal-pop-up 1s;
     display: flex;
     justify-content: space-between;
     cursor: move;
-}
-.header-modal-title-close{
-    text-decoration: none;
-    color: inherit;
-    transition: 0.3s all;
-}
-.header-modal-title-close:HOVER{
-    color: red;
+    animation: modal-pop-up 0.3s;
 }
 .header-modal-contents{
     border: 0.5px solid gray;
@@ -139,10 +138,8 @@ header{
     max-width: 1000px;
     /* border-radius: 1rem; */
     text-align: center;
-
-    animation: modal-pop-up 1s;
+    animation: modal-pop-up 0.3s;
 }
-
 @keyframes modal-pop-up{
     0%{
         width: 0vw;
@@ -151,7 +148,6 @@ header{
         width: 60vw;
     }
 }
-
 
 @media(min-width:1200px){
     .header-eye{

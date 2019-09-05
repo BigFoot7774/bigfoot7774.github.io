@@ -8,7 +8,6 @@ const requestjs = {
             method = 'GET';
             xhr.open(method, URL, true);
             xhr.send();
-//POST 작동 확인 못함
         }else if (method.toUpperCase() === 'POST') {
             method = 'POST';
             parsingURL = URL.split('?');
@@ -20,29 +19,32 @@ const requestjs = {
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
-                    navjs.inactive();
                     callback(xhr.response);
                 } else {
-                    navjs.inactive();
+                    document.write('<div align="center">\
+                    \<h1>Sorry</h1><BR>\
+                    <h3>요청하신 페이지를 찾을 수 없습니다.<BR>\
+                    잠시 후 다시 시도해 주세요\
+                    </h3>\
+                    <h3>Please try again later.<BR>\
+                    The requested page was not found\
+                    </h3>\
+                    </div>');
                 }
-            } else {
-                navjs.inactive();
-                navjs.loadBase();
             }
         };
     },
-};
-const forwardingURL = {
-
-    pushstate: function (data, title, uri) {
-        window.history.pushState(data, title, uri);
-    },
-    popstate: function (params) {
-        window.addEventListener('popstate',function () {
-            console.log('뒤로가기?');
+    // 보류
+    // pushstate: function (data, title, uri) {
+    //     const bodyContainer = document.querySelector(data).innerHTML;
+    //     window.history.pushState(bodyContainer, title, uri);
+    // },
+    // popstate: function (params) {
+    //     window.addEventListener('popstate',function () {
+    //         console.log('뒤로가기?');
             
-         });
-    }
+    //      });
+    // }
 };
 
 //-loadingjs객체(리팩토링 완): innertext 대체&추가, 정지&로딩바제거, 
@@ -99,7 +101,7 @@ const loadingjs = {
             }
         }, 100));
     },
-    stop: function (query) {
+    stop: function () {
         for (let index = 0; index < loadingjs.intervalAddr.length; index++) {
             clearInterval(loadingjs.intervalAddr[index]);
         }
@@ -118,30 +120,46 @@ const loadingjs = {
 //-navjs객체(리팩토링 완): 생성, 닫기
 const navjs = {
 
-    container : document.querySelector('nav'),
-    title : document.querySelector('.nav-title'),
-    contents : document.querySelector('.nav-contents'),
+    active: function (title, contents) {
+        nav = document.createElement('nav');
+        navTitle = document.createElement('div');
+        navContents = document.createElement('div');
+        
+        nav.className = 'z-index-100';
+        navTitle.className = 'nav-title';
+        navContents.className = 'nav-contents';
 
-    active: function (navTitle, navContents) {
-        navjs.container.classList.add('z-index-100');
-        navjs.title.innerHTML = navTitle;
+        nav.appendChild(navTitle);
+        nav.appendChild(navContents);
+        document.body.appendChild(nav);
+        
+        navTitle.innerHTML = title;
         // loadingjs 삽입
         loadingjs.plus('.nav-title');
-        navjs.contents.innerHTML = navContents;
+        navContents.innerHTML = contents;
         
     },
     loadBase: function () {
-        navjs.container.classList.add('z-index-100');
-        navjs.title.innerHTML = 'loading...';
+        nav = document.createElement('nav');
+        navTitle = document.createElement('div');
+        navContents = document.createElement('div');
+        
+        nav.className = 'z-index-100';
+        navTitle.className = 'nav-title';
+        navContents.className = 'nav-contents';
+
+        nav.appendChild(navTitle);
+        nav.appendChild(navContents);
+        document.body.appendChild(nav);
+
+        navTitle.innerHTML = 'loading...';
         // loadingjs 삽입
         loadingjs.plus('.nav-title');
 
     },
     inactive: function () {
-        loadingjs.stop('.nav-title');
-        navjs.container.classList.remove('z-index-100');        
-        navjs.title.innerHTML = '';
-        navjs.contents.innerHTML = '';
+        loadingjs.stop();
+        document.body.removeChild(document.querySelector('nav'));
     }
 };
 
@@ -251,31 +269,67 @@ const wrapjs = {
     }
 };
 
+const activeScript = {
+    asideList: function (acceptedData) {
+        let jsonData;
+        if (typeof data === 'object') {
+            jsonData = acceptedData;
+        }else {
+            jsonData = JSON.parse(acceptedData);
+        }
+        const asideList = document.querySelector('#asideList');
+        let tagHTML = '';
+        for (const key in jsonData) {
+            if (jsonData.hasOwnProperty(key)) {
+                tagHTML += `<li><a href="${jsonData[key]}">
+                            ${key}
+                            </a></li>`;
+            }
+        }
+        asideList.innerHTML = tagHTML;
+    },
+    alertModal : function(fileURL) {
+            requestjs.ajax('GET', fileURL, function (data) {
+            const data_ = JSON.parse(data);
+            modaljs.create(data_.title, data_.contents);
+        });
+    },
+    foward: function (URL, contents) {
+        navjs.active('loading...',contents);
+        setTimeout(function() {
+            requestjs.ajax('GET',URL,function(data) {
+                wrapjs.reset(data);
+                navjs.inactive();
+            });
+        }, 1000);
+    }
+};
+
 function testInit() {
     
-
-    // new requestjs.ajax('GET', '/1_app/NicolaTesla.html', wrapjs.reset);
-    
-    // new requestjs.ajax('GET', '/1_app/modalTest.json', function (data) {
-    //     const data_ = JSON.parse(data);
-    //     modaljs.create(data_['title'], data_['contents']);
-    // });
-
-    // forwardingURL.popstate();
-
-    new requestjs.ajax('GET', '/1_app/pageHistory.html', wrapjs.add);
-
+    const dateObj = new Date(2019, 8-1, 9);
+    const pastDays = Math.floor((new Date().getTime() - dateObj.getTime())/1000/60/60/24);
+    document.querySelector('.header-contents').innerText = pastDays+'일 지났다, 긴장하자';
 }
 
 
+
 function defaultInit() {
+    requestjs.ajax('GET','/1_app/appDataList.json', activeScript.asideList);
+
+
+    //정신차리자
+    testInit();
+
+    
+    
+    
 }
 
 function requestInit() {
     
 }
 
-testInit();
 defaultInit();
 requestInit();
 

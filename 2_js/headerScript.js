@@ -25,6 +25,19 @@ const head = {
         }
         
     },
+    RemoveAsideFocus: function (event) {
+        headereye.classList.remove('opacity-1');
+        headereye.classList.remove('z-index-100');
+        headerArrow.classList.remove('arrow-reverse');
+       
+        const asideChilden = aside.querySelectorAll('aside>*');
+
+        aside.classList.remove('aside-focus');
+
+        for (let index = 0; index < asideChilden.length; index++) {
+            asideChilden[index].classList.remove('opacity-1');
+        }
+    },
 
     MouseXY: function (event){
 
@@ -63,12 +76,15 @@ const head = {
     },
 
     navContents:function (event) {
+        // const actionY = event.srcElement.scrollingElement.scrollTop;
         const actionY = event.srcElement.scrollingElement.scrollTop;
         if (scrollTargetTop - actionY < 0) {
             headerNav.classList.add('opacity-0');
+            head.RemoveAsideFocus();
         }else {
             headerNav.classList.remove('opacity-0');
         }
+        scrollTargetTop = actionY;
     }
 };
 

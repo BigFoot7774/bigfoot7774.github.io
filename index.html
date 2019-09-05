@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>BigFoot</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/4_img/BFfavicon.ico" />
     <link rel="stylesheet" href="/2_css/headerStyle.css">
     <link rel="stylesheet" href="/2_css/navAsideStyle.css">
     <link rel="stylesheet" href="/2_css/welcomeStyle.css">
@@ -17,7 +18,7 @@
 
     <header class="max-width">
         <div id="headerContents" class="header-contents max-width">
-            index > profile > service > 소개글
+            <!-- index > profile > service > 소개글 -->
         </div>
         <img src="/4_img/eye/comfirmedBF.svg" title="Click Me" id="headerLogo">
         <div class="header-eye">
@@ -26,38 +27,20 @@
         </div>
         <div class="arrow">&lt;-</div>
     </header>
-    <nav>
-        <div class="nav-title">
-        </div>
-        <div class="nav-contents">
-        </div>
-    </nav>
     <aside>
-        <ul class="aside-list">
-            <li><a href="/">
-                Home
-            </a></li>
-            <li><a href="javascript:window.alert('Contact Me')">
-                Contact Me
-            </a></li>
-            <li><a href="javascript:window.alert('Blog')">
-                Blog
-            </a></li>
-            <li><a href="javascript:window.alert('Service')">
-                Service
-            </a></li>
+        <ul id="asideList" class="aside-list">
         </ul>
     </aside>
     <div class="header-fake-contents"></div>
     
 <div id="bodyContainer">
-
+    <div class="wrap">
+        <input type="button" value="Modal Test" onclick="activeScript.alertModal('/1_app/modalTest.json');">
+        <p>이 깃허브 페이지는 No Library, No Framework를 지향하고 있습니다.(All SelfMade)</p>
+        <p>아직 반길 준비가 덜 되었습니다</p>
+    </div>
 </div>
 
-<!-- 
-
-
- -->
 <script src="/2_js/headerScript.js"></script>
 <script>
     window.onload = function () {
