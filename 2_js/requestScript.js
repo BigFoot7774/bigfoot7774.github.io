@@ -1,17 +1,17 @@
 //-requestjs객체(리팩토링 필)
 const requestjs = {
 
-    ajax: function (method, URL, callback) {
+    ajax: function (method, URL, callback, async) {
         let xhr = new XMLHttpRequest();
 
         if (method.toUpperCase() === 'GET') {
             method = 'GET';
-            xhr.open(method, URL, true);
+            xhr.open(method, URL, async);
             xhr.send();
         }else if (method.toUpperCase() === 'POST') {
             method = 'POST';
             parsingURL = URL.split('?');
-            xhr.open(method, parsingURL[0], true);
+            xhr.open(method, parsingURL[0], async);
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.send(parsingURL[1]);
         }
@@ -20,6 +20,7 @@ const requestjs = {
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
                     callback(xhr.response);
+                    return xhr.status;
                 } else {
                     document.write('<div align="center">\
                     \<h1>Sorry</h1><BR>\
@@ -30,7 +31,10 @@ const requestjs = {
                     The requested page was not found\
                     </h3>\
                     </div>');
+                    return xhr.status;
                 }
+            }else{
+                return xhr.readyState;
             }
         };
     },
@@ -292,15 +296,28 @@ const activeScript = {
             requestjs.ajax('GET', fileURL, function (data) {
             const data_ = JSON.parse(data);
             modaljs.create(data_.title, data_.contents);
-        });
+        }, true);
     },
     foward: function (URL, contents) {
         navjs.active('loading...',contents);
+
+// 보류
+//     let secondvalue;
+//     let resultValue = requestjs.ajax('GET', URL, wrapjs.reset, false);
+//     if (resultValue === 202 || 404) {
+//         secondvalue = 1000;
+//     }else {
+//         secondvalue = 10000;
+//     }
+//     setTimeout(function() {
+//         navjs.inactive();
+//     }, secondvalue);
+
         setTimeout(function() {
             requestjs.ajax('GET',URL,function(data) {
                 wrapjs.reset(data);
                 navjs.inactive();
-            });
+            }, true);
         }, 1000);
     }
 };
@@ -317,7 +334,7 @@ testInit();
 
 
 function defaultInit() {
-    requestjs.ajax('GET','/1_app/appDataList.json', activeScript.asideList);
+    requestjs.ajax('GET','/1_app/appDataList.json', activeScript.asideList, true);
 
 
 
