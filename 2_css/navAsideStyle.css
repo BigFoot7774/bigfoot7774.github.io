@@ -1,50 +1,93 @@
 /* @import "/2_css/style.css"; */
 
-/* header태그 height: 30px, padding: 5px으로 지정
-    top: 40px(30px+5px+5px)부터 headerLogo를 가릴만큼 height지정
- */
 nav{
-    /* body태그를 투명하게 하여
-    1. 사용자가 클릭은 할 수 없고
-    2. nav태그 컨텐츠가 표시되도록 함
-    (only read) */
+    /* 로딩 중 nav태그 컨텐츠가 표시되도록 함 */
     position: fixed;
-    padding-top: 40px;
-    padding-left: 5px;
-    color: rgba(0, 0, 0, 1);
-    /* background: url('/4_img/liquor_Trim.gif');
-    background-repeat: no-repeat;
-    background-size: 50vw;
-    background-position: center; */
-    height: 100vh;
-    z-index: -10000;
-}
-.nav-background-contents{
-    position: relative;
+    top: 0px;
+    margin: 0px;
+    padding: 0px;
+    color: rgba(255, 255, 255, 1);
+    background: rgba(0, 0, 0, 0.5);
     text-align: center;
-    margin: 30vh auto 70vh auto;
+    height: 100vh;
+    width: 100vw;
+    z-index: -100;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    animation: navCreate 0.3s;
+}
+.nav-title{
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+
+    padding-top: 50px;
+    font-size: 70px;
+
+    background: rgba(0, 0, 0, 1);
+    height: 10vh;
+}
+.nav-contents{
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+
+    padding-top: 50px;
+    margin-bottom: 20vh;
+    font-size: 40px;
+
+    background: rgba(0, 0, 0, 1);
+    height: 20vh;
+}
+@keyframes navCreate{
+    from{
+        left: 50vw;
+        width: 0vw;
+    }
+    to{
+        left: 0vw;
+        width: 100vw;
+    }
 }
 aside{
-    color: rgba(255, 255, 255, 1);
     position: fixed;
     right: 0px;
-    background-color: rgba(0, 0, 0, 1);
-    height: 100px;
     width: 150px;
-    padding: 100px 5px 10px 5px;
-    transition: 0.3s all;
     height: 100vh;
-    transform: rotate(-45deg) translateY(-100px) translateX(40px);;
+    padding: 100px 5px 10px 5px;
+    box-sizing: border-box;
+
+    color: rgba(255, 255, 255, 1);
+    background-color: rgba(0, 0, 0, 1);
+    border-left: 1px solid rgba(255, 255, 255, 1);
+    
+    transition: 0.3s all;
+    transform: rotate(-45deg) translateY(-100px) translateX(65px);;
     transform-origin: top;
+    z-index: 1;
 }
 aside>*{
     opacity: 0;
 }
 .aside-focus{
     transform: rotate(0deg);
+    /* background: rgba(0, 0, 0, 0.2); */
 }
-
-
+.aside-list{
+    list-style: none;
+    padding: 5px;
+    font-size: 1.5em;
+}
+.aside-list>li{
+    margin: 1em 0px;
+}
+.aside-list>li>a{
+    text-decoration: none;
+    color: inherit;
+    transition: 0.3s all;
+}
+.aside-list>li>a:HOVER{
+    color: rgba(150, 0, 0, 1);
+}
 @media(min-width:1200px){
     aside{
         transform: rotate(0deg);
@@ -60,7 +103,7 @@ aside>*{
 .arrow{
     position: fixed;
     font-weight: bold;
-    top: 95px;
+    top: 55px;
     right: 5px;
     color: rgba(255, 255, 255, 1);
     transform: rotate(-45deg);

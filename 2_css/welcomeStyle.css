@@ -54,20 +54,23 @@
     height: 100vh;
     background: rgba(255,255,255,1);
     z-index: 10001;
-    width: 0.5vw;
+    width: 2px;
     float: left;
     left: 50vw;
     animation-name: line-open;
     animation-duration: 1.5s;
     opacity: 0;
+    top: 200vh;
 }
 @keyframes line-open{
     0%{
         opacity: 1;
         height: 1vh;
+        top: 0px;
     }
     100%{
         opacity: 1;
         height: 100vh;
+        top: 0px;
     }
 }

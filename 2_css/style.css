@@ -9,18 +9,90 @@ html, body{
     font-family: 'Dotkey';
     /* font-size: 16px; */
     margin: 0px;
-    background-color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 1);
+    background-color: rgba(0, 0, 0, 1);
+    line-height: 1.2rem;
 }
 body{
-    min-height: 100vh;
+    min-height: 95vh;
 }
+img, video{
+    max-width: 100%;
+    height: auto;
+}
+/*
+    기술 인용
+    출처: https://wiki.stillh.art/page/SJ4yEEClg/Transparent-Scrollbar-over-Content */
+        body::-webkit-scrollbar {
+            width: 5px;
+            background: transparent;
+        }
+        body::-webkit-scrollbar-thumb {
+            background: rgba(150, 0, 0, 0.5);
+        }
+        body::-webkit-scrollbar-thumb:HOVER{
+            background: rgba(150, 0, 0, 1);
+        }
+
 .wrap{
+    margin: 10px auto;
+    padding: 10px 150px 10px 10px;
+    
+    width: 95vw;
     max-width: 1200px;
-    width:100vw;
-    padding: 10px;
-    /* margin-right: 160px; */
+    min-height: 100vh;
+    
+    border: 0.5px solid gray;
+    border-radius: 0.5em;
+    box-shadow: 1px 1px 1px gray,
+                -1px 1px 1px gray,
+                1px -1px 1px gray,
+                -1px -1px 1px gray;
+                            
+    background: rgba(255, 255, 255, 0);
+    filter: grayscale(100%);
+
     box-sizing: border-box;
-    word-break: break-all;
+    /* word-break: break-all; */
+    word-break: keep-all;
+    animation: wrapContentsCreate 5s;
+}
+@keyframes wrapContentsCreate{
+    from{
+        height: 0px;
+    }
+    to{
+        height: 100%;
+    }
+}
+
+article{
+    display: table;
+}
+article>article{
+    display: table-row;
+}
+article>article section{
+    display: table-cell;
+    padding: 10px;
+}
+article>article section:first-child{
+    width: 30vw;
+}
+@media(max-width:1200px){
+    .wrap{
+        padding: 10px;
+    }
+    article>article section{
+        display: block;
+    }   
+    article>article section:first-child{
+        text-align: center;
+        font-size: 1.3em;
+    }
+    article>article section:first-child{
+        width: auto;
+    }
 }
 .hidden{
     display: none;
@@ -31,8 +103,8 @@ body{
 .inline{
     display: inline;
 }
-.inline-block{
-    display: inline-block;
+.flex{
+    display: flex;
 }
 .max-width{
     width: 100vw;
@@ -48,4 +120,22 @@ body{
 }
 .z-index-100{
     z-index: 100;
+}
+input[type="button" i] {
+    -webkit-appearance: push-button;
+    user-select: none;
+    white-space: pre;
+    align-items: flex-start;
+    text-align: center;
+    font-family: 'Dotkey';
+    font-size: 1rem;
+    cursor: default;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+    padding: 1px 6px;
+    border-width: 2px;
+    border-style: groove;
+    border-color: rgba(255, 255, 255, 0.5);
+    border-image: initial;
 }
