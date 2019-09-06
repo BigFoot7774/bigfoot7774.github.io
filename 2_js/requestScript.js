@@ -136,34 +136,18 @@ const navjs = {
         nav.appendChild(navTitle);
         nav.appendChild(navContents);
         document.body.appendChild(nav);
-        
         navTitle.innerHTML = title;
         // loadingjs 삽입
         loadingjs.plus('.nav-title');
-        navContents.innerHTML = contents;
+        new Textjs.insertText('.nav-contents', contents, 10);
         
-    },
-    loadBase: function () {
-        nav = document.createElement('nav');
-        navTitle = document.createElement('div');
-        navContents = document.createElement('div');
-        
-        nav.className = 'z-index-100';
-        navTitle.className = 'nav-title';
-        navContents.className = 'nav-contents';
-
-        nav.appendChild(navTitle);
-        nav.appendChild(navContents);
-        document.body.appendChild(nav);
-
-        navTitle.innerHTML = 'loading...';
-        // loadingjs 삽입
-        loadingjs.plus('.nav-title');
-
     },
     inactive: function () {
         loadingjs.stop();
-        document.body.removeChild(document.querySelector('nav'));
+        const navs = document.querySelectorAll('nav');
+        navs.forEach(nav => {
+            document.body.removeChild(nav);
+        });
     }
 };
 
@@ -273,6 +257,47 @@ const wrapjs = {
     }
 };
 
+//-Textjs객체 문자열을 character로 변환하여 한 자씩 interval로 반복해가며 삽입
+const Textjs = {
+    
+    insertText: function (tagName, insertTextValue, interval) {
+        
+        let frontSpan = document.createElement('span');
+        let backSpan = document.createElement('span');
+        backSpan.className = 'input-character';
+        document.querySelector(tagName).appendChild(frontSpan);
+        document.querySelector(tagName).appendChild(backSpan);
+        
+        let timeCount = true;
+        let loopCount = 0;
+        let intervalAddr = setInterval(function() {
+            try {
+                if (insertTextValue.length === loopCount) {
+                    throw 'go catch';
+                } else if(timeCount === true){
+                    backSpan.innerHTML = insertTextValue.charAt(loopCount);
+                    timeCount = false;
+                    
+                }else {
+                    frontSpan.innerHTML += backSpan.innerHTML;
+                    backSpan.innerHTML = '';
+                    timeCount = true;
+                    loopCount++;
+                    
+                }
+
+            } catch (error) {
+                clearInterval(intervalAddr);
+                intervalAddr = null;
+            }
+        }, interval);
+    },
+
+    insertTextLine : function (params) {
+        
+    }
+};
+
 const activeScript = {
     asideList: function (acceptedData) {
         let jsonData;
@@ -324,31 +349,12 @@ const activeScript = {
     }
 };
 
-function testInit() {
-    
+function requestInit() {
     const dateObj = new Date(2019, 8-1, 9);
     const pastDays = Math.floor((new Date().getTime() - dateObj.getTime())/1000/60/60/24);
-    document.querySelector('.header-contents').innerText = pastDays+'일 지났다, 긴장하자';
-}
-//정신차리자
-testInit();
-
-
-
-function defaultInit() {
-    requestjs.ajax('GET','/1_app/appDataList.json', activeScript.asideList, true);
-
-
-
-    
-    
+    document.querySelector('.header-contents').innerText = pastDays+' Days';
     
 }
 
-function requestInit() {
-    
-}
-
-defaultInit();
 requestInit();
 

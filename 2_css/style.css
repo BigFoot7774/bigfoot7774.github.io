@@ -14,6 +14,10 @@ html, body{
     line-height: 1.2rem;
 }
 body{
+    background-image: url('/4_img/background/8-bit-pixel-art-city-2o.jpg');
+    background-repeat: repeat-y;
+    background-position-x: center;
+    background-position-y: top;
     min-height: 95vh;
 }
 img, video{
@@ -24,11 +28,41 @@ a{
     text-decoration: none;
     color: inherit;
 }
-@keyframes aTag{
-    0%{opacity: 0.5;}
-    50%{opacity: 1;}
-    100%{opacity: 0.5;}
+
+input[type="button" i] {
+    -webkit-appearance: push-button;
+    user-select: none;
+    white-space: pre;
+    align-items: flex-start;
+    text-align: center;
+    font-family: 'Dotkey';
+    font-size: 1rem;
+    cursor: default;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+    padding: 1px 6px;
+    border-width: 2px;
+    border-style: groove;
+    border-color: rgba(255, 255, 255, 0.5);
+    border-image: initial;
 }
+
+
+article{
+    display: table;
+}
+article>article{
+    display: table-row;
+}
+article>article section{
+    display: table-cell;
+    padding: 10px;
+}
+article>article section:first-child{
+    width: 30vw;
+}
+
 /*
     기술 인용
     출처: https://wiki.stillh.art/page/SJ4yEEClg/Transparent-Scrollbar-over-Content */
@@ -44,12 +78,11 @@ a{
         }
 
 .wrap{
-    margin: 10px auto;
+    margin: 30px auto;
     padding: 10px 150px 10px 10px;
-    
     width: 95vw;
     max-width: 1200px;
-    min-height: 100vh;
+    min-height: 50vh;
     
     border: 0.5px solid gray;
     border-radius: 0.5em;
@@ -58,50 +91,40 @@ a{
                 1px -1px 1px gray,
                 -1px -1px 1px gray;
                             
-    background: rgba(255, 255, 255, 0);
-    filter: grayscale(100%);
+    background: rgba(0, 0, 0, 1);
+    /* filter: grayscale(100%); */
 
     box-sizing: border-box;
-    /* word-break: break-all; */
-    word-break: keep-all;
-    animation: wrapContentsCreate 5s;
+    word-break: break-all;
+    /* word-break: keep-all; */
+    animation: wrapContentsCreate 0.3s;
 }
 @keyframes wrapContentsCreate{
     from{
-        height: 0px;
+        filter: invert(1);
     }
     to{
-        height: 100%;
+        filter: invert(0);
     }
 }
-
-article{
-    display: table;
+.console-black{
+    padding: 3px;
+    background-color: black;
+    word-break: break-all;
 }
-article>article{
-    display: table-row;
+.decoration{
+    border: 2px solid;
+    /* border-radius: 0.5em; */
+    color: inherit;
 }
-article>article section{
-    display: table-cell;
-    padding: 10px;
+.decoration-green{
+    border: 1px solid green;
+    border-radius: 0.5em;
+    color: green;
 }
-article>article section:first-child{
-    width: 30vw;
-}
-@media(max-width:1200px){
-    .wrap{
-        padding: 10px;
-    }
-    article>article section{
-        display: block;
-    }   
-    article>article section:first-child{
-        text-align: center;
-        font-size: 1.3em;
-    }
-    article>article section:first-child{
-        width: auto;
-    }
+.input-character{
+    background-color: inherit;
+    filter: invert(100%);
 }
 .hidden{
     display: none;
@@ -130,21 +153,45 @@ article>article section:first-child{
 .z-index-100{
     z-index: 100;
 }
-input[type="button" i] {
-    -webkit-appearance: push-button;
-    user-select: none;
-    white-space: pre;
-    align-items: flex-start;
-    text-align: center;
-    font-family: 'Dotkey';
-    font-size: 1rem;
-    cursor: default;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.5);
-    box-sizing: border-box;
-    padding: 1px 6px;
-    border-width: 2px;
-    border-style: groove;
-    border-color: rgba(255, 255, 255, 0.5);
-    border-image: initial;
+.overflow-hidden{
+    overflow: hidden;
 }
+.overflow-auto{
+    overflow: auto;
+}
+.grid-component-1200{
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+}
+.grid-100{grid-column: span 1;}
+.grid-200{grid-column: span 2;}
+.grid-300{grid-column: span 3;}
+.grid-400{grid-column: span 4;}
+.grid-500{grid-column: span 5;}
+.grid-600{grid-column: span 6;}
+.grid-700{grid-column: span 7;}
+.grid-800{grid-column: span 8;}
+.grid-900{grid-column: span 9;}
+.grid-1000{grid-column: span 10;}
+.grid-1100{grid-column: span 11;}
+.grid-1200{grid-column: span 12;}
+@media(max-width:1200px){
+    .wrap{
+        padding: 10px;
+    }
+    article>article section{
+        display: block;
+    }   
+    article>article section:first-child{
+        text-align: center;
+        font-size: 1.3em;
+    }
+    article>article section:first-child{
+        width: auto;
+    }
+    .grid-component-1200{
+        display: inherit;
+    }
+}
+
+

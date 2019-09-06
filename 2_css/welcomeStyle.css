@@ -4,6 +4,7 @@
     position: fixed;
     height: 100vh;
     z-index: 10000;
+    top: 0px;
 }
 
 .welcome-box>div:nth-child(2n+1){

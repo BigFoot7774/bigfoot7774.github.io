@@ -4,7 +4,6 @@ const header = document.querySelector('header');
 const aside = document.querySelector('aside');
 const headerLogo = header.querySelector('#headerLogo');
 const headereye = header.querySelector('.header-eye');
-const headerArrow = header.querySelector('.arrow');
 const headerNav = header.querySelector('#headerContents');
 let scrollTargetTop = 0;
 
@@ -14,7 +13,6 @@ const head = {
 
         headereye.classList.toggle('opacity-1');
         headereye.classList.toggle('z-index-100');
-        headerArrow.classList.toggle('arrow-reverse');
        
         const asideChilden = aside.querySelectorAll('aside>*');
 
@@ -28,7 +26,6 @@ const head = {
     RemoveAsideFocus: function (event) {
         headereye.classList.remove('opacity-1');
         headereye.classList.remove('z-index-100');
-        headerArrow.classList.remove('arrow-reverse');
        
         const asideChilden = aside.querySelectorAll('aside>*');
 
