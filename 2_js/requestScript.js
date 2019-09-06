@@ -43,9 +43,9 @@ const requestjs = {
     //     const bodyContainer = document.querySelector(data).innerHTML;
     //     window.history.pushState(bodyContainer, title, uri);
     // },
-    // popstate: function (params) {
-    //     window.addEventListener('popstate',function () {
-    //         console.log('뒤로가기?');
+    // popstate: function () {
+    //     window.addEventListener('popstate',function (event) {
+    //         console.log(event.state);
             
     //      });
     // }
@@ -317,6 +317,8 @@ const activeScript = {
             requestjs.ajax('GET',URL,function(data) {
                 wrapjs.reset(data);
                 navjs.inactive();
+//headerScript head객체 메소드
+                head.RemoveAsideFocus();
             }, true);
         }, 1000);
     }

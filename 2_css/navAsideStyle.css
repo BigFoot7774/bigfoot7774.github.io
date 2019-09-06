@@ -23,17 +23,18 @@ nav{
     border-top: 1px solid rgba(255, 255, 255, 0.5);
 
     padding-top: 50px;
-    font-size: 70px;
+    font-size: 50px;
 
     background: rgba(0, 0, 0, 1);
     height: 10vh;
+    line-height: 100%;
 }
 .nav-contents{
     border-bottom: 1px solid rgba(255, 255, 255, 0.5);
 
     padding-top: 50px;
     margin-bottom: 20vh;
-    font-size: 40px;
+    font-size: 30px;
 
     background: rgba(0, 0, 0, 1);
     height: 20vh;
@@ -82,8 +83,6 @@ aside>*{
     margin: 1em 0px;
 }
 .aside-list>li>a{
-    text-decoration: none;
-    color: inherit;
     transition: 0.3s all;
 }
 .aside-list>li>a:HOVER{

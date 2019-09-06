@@ -99,7 +99,7 @@ header{
     display: none;
     flex-direction: column;
     align-items: center;
-    animation: modal-pop-up 0.1s;
+    animation: modal-pop-up 0.3s;
 }
 @keyframes modal-pop-up{
     0%{
