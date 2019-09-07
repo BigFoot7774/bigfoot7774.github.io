@@ -1,9 +1,10 @@
-/* @import "/2_css/style.css"; */
+@charset "UTF-8";
 
 .welcome-box{
     position: fixed;
     height: 100vh;
     z-index: 10000;
+    top: 0px;
 }
 
 .welcome-box>div:nth-child(2n+1){
@@ -16,9 +17,10 @@
     position: fixed;
     float: left;
     left: -100vw;
-    animation-name: welcome-left;
-    animation-duration: 3s;
-
+    padding: 30vh 10px 10px 10px;
+    word-break: break-all;
+    box-sizing: border-box;
+    animation: welcome-left 3s;
 }
 @keyframes welcome-left{
     0%{
@@ -35,8 +37,10 @@
     position: fixed;
     float: right;
     right: -100vw;
-    animation-name: welcome-right;
-    animation-duration: 3s;
+    padding: 70vh 10px 10px 10px;
+    word-break: break-all;
+    box-sizing: border-box;
+    animation: welcome-right 3s;
 }
 @keyframes welcome-right{
     0%{
@@ -57,8 +61,7 @@
     width: 2px;
     float: left;
     left: 50vw;
-    animation-name: line-open;
-    animation-duration: 1.5s;
+    animation: line-open 1.5s;
     opacity: 0;
     top: 200vh;
 }

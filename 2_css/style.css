@@ -3,7 +3,6 @@
     font-family: 'Dotkey';
     src: url(/3_font/DungGeunMo.eot);
     src: url(/3_font/DungGeunMo.ttf) format('truetype');
-    
 }
 html, body{
     font-family: 'Dotkey';
@@ -14,58 +13,39 @@ html, body{
     line-height: 1.2rem;
 }
 body{
+    background-image: url('/4_img/background/\(1\).jpg');
+    background-repeat: repeat-y;
+    background-position-x: center;
+    background-position-y: top;
     min-height: 95vh;
 }
 img, video{
     max-width: 100%;
     height: auto;
 }
-/*
-    기술 인용
-    출처: https://wiki.stillh.art/page/SJ4yEEClg/Transparent-Scrollbar-over-Content */
-        body::-webkit-scrollbar {
-            width: 5px;
-            background: transparent;
-        }
-        body::-webkit-scrollbar-thumb {
-            background: rgba(150, 0, 0, 0.5);
-        }
-        body::-webkit-scrollbar-thumb:HOVER{
-            background: rgba(150, 0, 0, 1);
-        }
+a{
+    text-decoration: none;
+    color: inherit;
+}
 
-.wrap{
-    margin: 10px auto;
-    padding: 10px 150px 10px 10px;
-    
-    width: 95vw;
-    max-width: 1200px;
-    min-height: 100vh;
-    
-    border: 0.5px solid gray;
-    border-radius: 0.5em;
-    box-shadow: 1px 1px 1px gray,
-                -1px 1px 1px gray,
-                1px -1px 1px gray,
-                -1px -1px 1px gray;
-                            
-    background: rgba(255, 255, 255, 0);
-    filter: grayscale(100%);
-
+button, input[type="button" i] {
+    -webkit-appearance: push-button;
+    user-select: none;
+    white-space: pre;
+    align-items: flex-start;
+    text-align: center;
+    font-family: 'Dotkey';
+    font-size: 1rem;
+    cursor: default;
+    color: rgba(255, 255, 255, 1);
+    background-color: rgba(0, 0, 0, 1);
     box-sizing: border-box;
-    /* word-break: break-all; */
-    word-break: keep-all;
-    animation: wrapContentsCreate 5s;
+    padding: 1px 6px;
+    border-width: 2px;
+    border-style: groove;
+    border-color: rgba(255, 255, 255, 1);
+    border-image: initial;
 }
-@keyframes wrapContentsCreate{
-    from{
-        height: 0px;
-    }
-    to{
-        height: 100%;
-    }
-}
-
 article{
     display: table;
 }
@@ -79,21 +59,20 @@ article>article section{
 article>article section:first-child{
     width: 30vw;
 }
-@media(max-width:1200px){
-    .wrap{
-        padding: 10px;
-    }
-    article>article section{
-        display: block;
-    }   
-    article>article section:first-child{
-        text-align: center;
-        font-size: 1.3em;
-    }
-    article>article section:first-child{
-        width: auto;
-    }
-}
+
+/*
+    기술 인용
+    출처: https://wiki.stillh.art/page/SJ4yEEClg/Transparent-Scrollbar-over-Content */
+        body::-webkit-scrollbar {
+            width: 5px;
+            background: transparent;
+        }
+        body::-webkit-scrollbar-thumb {
+            background: rgba(150, 0, 0, 0.5);
+        }
+        body::-webkit-scrollbar-thumb:HOVER{
+            background: rgba(150, 0, 0, 1);
+        }
 .hidden{
     display: none;
 }
@@ -106,6 +85,8 @@ article>article section:first-child{
 .flex{
     display: flex;
 }
+.height-half{height: 50vh;}
+.height-300px{height: 300px;}
 .max-width{
     width: 100vw;
 }
@@ -121,21 +102,41 @@ article>article section:first-child{
 .z-index-100{
     z-index: 100;
 }
-input[type="button" i] {
-    -webkit-appearance: push-button;
-    user-select: none;
-    white-space: pre;
-    align-items: flex-start;
-    text-align: center;
-    font-family: 'Dotkey';
-    font-size: 1rem;
-    cursor: default;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.5);
-    box-sizing: border-box;
-    padding: 1px 6px;
-    border-width: 2px;
-    border-style: groove;
-    border-color: rgba(255, 255, 255, 0.5);
-    border-image: initial;
+.overflow-hidden{
+    overflow: hidden;
+}
+.overflow-auto{
+    overflow: auto;
+}
+.grid-component-1200{
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+}
+.grid-100{grid-column: span 1;}
+.grid-200{grid-column: span 2;}
+.grid-300{grid-column: span 3;}
+.grid-400{grid-column: span 4;}
+.grid-500{grid-column: span 5;}
+.grid-600{grid-column: span 6;}
+.grid-700{grid-column: span 7;}
+.grid-800{grid-column: span 8;}
+.grid-900{grid-column: span 9;}
+.grid-1000{grid-column: span 10;}
+.grid-1100{grid-column: span 11;}
+.grid-1200{grid-column: span 12;}
+
+@media(max-width:1200px){
+    article>article section{
+        display: block;
+    }   
+    article>article section:first-child{
+        text-align: center;
+        font-size: 1.3em;
+    }
+    article>article section:first-child{
+        width: auto;
+    }
+    .grid-component-1200{
+        display: inherit;
+    }
 }
