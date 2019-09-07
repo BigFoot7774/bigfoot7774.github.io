@@ -6,16 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>BigFoot</title>
     <link rel="shortcut icon" type="image/x-icon" href="/4_img/BFfavicon.ico" />
+    <link rel="stylesheet" href="/2_css/welcomeStyle.css">
     <link rel="stylesheet" href="/2_css/headerStyle.css">
     <link rel="stylesheet" href="/2_css/navAsideStyle.css">
-    <link rel="stylesheet" href="/2_css/welcomeStyle.css">
-
+    <link rel="stylesheet" href="/2_css/contentsStyle.css">
     <link rel="stylesheet" href="/2_css/style.css">
 </head>
 <body>
-<!-- 온로드 없이 단독 실행, 모바일기기에서 읽는 속도 때문에 body태그내 최상단으로 배치-->
-<script src="/2_js/welcomeScript.js"></script>
-
     <header class="max-width">
         <div id="headerContents" class="header-contents max-width">
             <!-- index > profile > service > 소개글 -->
@@ -25,32 +22,32 @@
             <img src="/4_img/eye/eyelid.svg" class="header-eye-eyelid">
             <img src="/4_img/eye/pupil.svg" class="header-eye-pupil">
         </div>
-        <div class="arrow">&lt;-</div>
     </header>
     <aside>
         <ul id="asideList" class="aside-list">
         </ul>
     </aside>
-    <div class="header-fake-contents"></div>
-    
-<div id="bodyContainer">
+
+    <div id="bodyContainer">
     <div class="wrap">
-        <input type="button" value="Modal Test" onclick="activeScript.alertModal('/1_app/modalTest.json');">
-        <p>이 깃허브 페이지는 No Library, No Framework를 지향하고 있습니다.(All SelfMade)</p>
-        <p>아직 반길 준비가 덜 되었습니다</p>
+        
+
     </div>
 </div>
 
-<script src="/2_js/headerScript.js"></script>
+
+<script src="/2_js/welcomeScript.js"></script>
+<script src="/2_js/requestScript.js"></script>
 <script>
     window.onload = function () {
-        //headerScript.js
-        headerInit();
-        
+
+
     }
+    activeScript.alertModal('/1_app/modalTest.json');
+    requestjs.ajax('GET','/1_app/appDataList.json', activeScript.asideList, true);
+    new Textjs.insertText('#welcomeLeftText','', 1);
+    new Textjs.insertText('#welcomeRightText','', 1);
 </script>
 
-<!-- 온로드 없이 단독 실행 -->
-<script src="/2_js/requestScript.js"></script>
 </body>
 </html>

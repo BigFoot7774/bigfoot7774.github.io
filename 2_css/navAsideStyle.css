@@ -1,4 +1,4 @@
-/* @import "/2_css/style.css"; */
+@charset "UTF-8";
 
 nav{
     /* 로딩 중 nav태그 컨텐츠가 표시되도록 함 */
@@ -22,21 +22,22 @@ nav{
 .nav-title{
     border-top: 1px solid rgba(255, 255, 255, 0.5);
 
-    padding-top: 50px;
-    font-size: 70px;
+    padding-top: 20px;
+    font-size: 50px;
 
     background: rgba(0, 0, 0, 1);
     height: 10vh;
+    line-height: 100%;
 }
 .nav-contents{
     border-bottom: 1px solid rgba(255, 255, 255, 0.5);
 
-    padding-top: 50px;
-    margin-bottom: 20vh;
-    font-size: 40px;
-
+    padding-top: 20px;
+    margin-bottom: 35vh;
+    font-size: 30px;
+    
     background: rgba(0, 0, 0, 1);
-    height: 20vh;
+    height: 10vh;
     line-height: 100%;
 }
 @keyframes navCreate{
@@ -51,18 +52,18 @@ nav{
 }
 aside{
     position: fixed;
+    top: 0px;
     right: 0px;
     width: 150px;
     height: 100vh;
     padding: 100px 5px 10px 5px;
     box-sizing: border-box;
-
     color: rgba(255, 255, 255, 1);
     background-color: rgba(0, 0, 0, 1);
     border-left: 1px solid rgba(255, 255, 255, 1);
     
     transition: 0.3s all;
-    transform: rotate(-45deg) translateY(-100px) translateX(65px);;
+    transform: rotate(-45deg) translateY(-65px) translateX(65px);
     transform-origin: top;
     z-index: 1;
 }
@@ -82,8 +83,6 @@ aside>*{
     margin: 1em 0px;
 }
 .aside-list>li>a{
-    text-decoration: none;
-    color: inherit;
     transition: 0.3s all;
 }
 .aside-list>li>a:HOVER{
@@ -96,66 +95,4 @@ aside>*{
     aside *{
         opacity: 1;
     }
-    .arrow{
-        display: none;
-    }
 }
-
-.arrow{
-    position: fixed;
-    font-weight: bold;
-    top: 55px;
-    right: 5px;
-    color: rgba(255, 255, 255, 1);
-    transform: rotate(-45deg);
-
-    animation: bound 0.5s;
-    animation-iteration-count: infinite;
-}
-@keyframes bound{
-    0%{
-        transform: rotate(-45deg) translateX(5px);
-    }
-    50%{
-        transform: rotate(-45deg) translateX(0px);
-    }
-    100%{
-        transform: rotate(-45deg) translateX(5px);
-    }
-}
-
-.arrow-reverse{
-    transform: rotate(135deg);
-    animation: bound-reverse 0.5s;
-    animation-iteration-count: infinite;
-}
-@keyframes bound-reverse{
-    0%{
-        transform: rotate(135deg) translateX(5px);
-    }
-    50%{
-        transform: rotate(135deg) translateX(0px);
-    }
-    100%{
-        transform: rotate(135deg) translateX(5px);
-    }
-}
-
-
-
-
-
-/* 
-.aside-fake-contents{
-    content: "";
-    display: inline-block;
-    right: 0;
-    top: 0;
-    height: 100vw;
-    width: 160px;
-    transform: rotate(-45deg) translateY(-100px) translateX(20px);;
-    transform-origin: top;
-
-    
-    border: 1px solid;
-} */
