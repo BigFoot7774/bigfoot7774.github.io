@@ -79,9 +79,9 @@ header{
 .header-modal{
     /* content: ""; */
     background: rgba(0, 0, 0, 1);
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 1);
     vertical-align: middle;
-    z-index: 101;
+    z-index: 100;
     word-break: keep-all;
 }
 .header-modal-component{
@@ -112,36 +112,34 @@ header{
 }
 .header-modal-title-close{
     text-decoration: none;
+    padding: 0px;
+    margin: 0px;
+    width: 2rem;
+    height: 1.5rem;
+    text-align: center;
     color: inherit;
+    background-color: inherit;
     transition: 0.3s all;
 }
 .header-modal-title-close:HOVER{
-    color: red;
+    background-color: red;
 }
 .header-modal-title{
-    color: rgba(255, 255, 255, 1);
-    border: 0.5px solid gray;
-    box-shadow: 1px 1px 1px gray,
-                -1px 1px 1px gray,
-                1px -1px 1px gray,
-                -1px -1px 1px gray;
-    padding: 3px 10px;
+    vertical-align: middle;
+    color: rgba(0, 0, 0, 1);
+    border: 1px groove silver;
+    background-color: silver;
+    padding: 0px 0px 0px 5px;
     width: 60vw;
     box-sizing: border-box;
     max-width: 1000px;
     /* border-radius: 1rem; */
-    font-size: 1.5rem;
     display: flex;
     justify-content: space-between;
     cursor: move;
-
 }
 .header-modal-contents{
-    border: 0.5px solid gray;
-    box-shadow: 1px 1px 1px gray,
-                -1px 1px 1px gray,
-                1px -1px 1px gray,
-                -1px -1px 1px gray;
+    border: 1px groove silver;
     padding: 5px;
     width: 60vw;
     box-sizing: border-box;
@@ -149,7 +147,6 @@ header{
     /* border-radius: 1rem; */
     text-align: center;
 }
-
 
 @media(min-width:1200px){
     .header-eye{

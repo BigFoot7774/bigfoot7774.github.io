@@ -157,11 +157,11 @@ const modaljs = {
     
     create: function (titleText, contentsText) {
         
-        let container = document.createElement('div');
-        let header = document.createElement('div');
-        let title = document.createElement('div');
-        let close = document.createElement('a');
-        let contents = document.createElement('div');
+        const container = document.createElement('div');
+        const header = document.createElement('div');
+        const title = document.createElement('div');
+        const close = document.createElement('a');
+        const contents = document.createElement('div');
 
         container.className = 'header-modal header-modal-component flex';
             container.appendChild(header);
@@ -237,23 +237,54 @@ const modaljs = {
 const wrapjs = {
     
     bodyContainer : document.querySelector('#bodyContainer'),
-    
+    wrap : document.querySelector('.wrap'),
+
     add: function (contentsHTML) {
-        const wrap = document.createElement('div');
-        wrap.className = 'wrap';
-        wrap.innerHTML = contentsHTML;
-        wrapjs.bodyContainer.appendChild(wrap);
+        const container = new wrapjs.console(contentsHTML);
+        wrapjs.wrap.appendChild(container);
     },
     reset: function (contentsHTML) {
-        wrapjs.bodyContainer.innerText='';
+        wrapjs.wrap.innerText='';
 
-        const wrap = document.createElement('div');
-        wrap.className = 'wrap';
-        wrap.innerHTML = contentsHTML;
-        wrapjs.bodyContainer.appendChild(wrap);
+        const container = new wrapjs.console(contentsHTML);
+        wrapjs.wrap.appendChild(container);
     },
-    createElements: function () {
-        
+    console: function (contentsHTML) {
+        const container = document.createElement('div');
+        const header = document.createElement('div');
+        const title = document.createElement('div');
+        const icon = document.createElement('img');
+        const btn1 = document.createElement('div');
+        const btn2 = document.createElement('div');
+        const square = document.createElement('span');
+        const btn3 = document.createElement('div');
+        const mainConsole = document.createElement('div');
+
+        container.className = 'command';
+        header.className = 'command-header';
+        title.className = 'command-title';
+        icon.src = '/4_img/cmdicon.png';
+        btn1.className = 'command-btn';
+        btn1.innerHTML = '&minus;';
+        btn2.className = 'command-btn command-btn-squre';
+        btn3.className = 'command-btn command-btn-close';
+        btn2.appendChild(square);
+        btn3.innerHTML = '&times;';
+        mainConsole.id = 'mainConsole';
+        mainConsole.className = 'console-black';
+
+        container.appendChild(header);
+        header.appendChild(title);
+        title.appendChild(icon);
+        title.innerHTML += 'Contents window';
+        header.appendChild(btn1);
+        header.appendChild(btn2);
+        header.appendChild(btn3);
+        container.appendChild(mainConsole);
+
+        mainConsole.innerHTML = contentsHTML;
+
+        return container;
     }
 };
 
@@ -298,6 +329,90 @@ const Textjs = {
     }
 };
 
+//-headerjs객체 헤더로고 움직임, aside바 닫힘, headercontents 투명 조절
+const headerjs = {
+    header: document.querySelector('header'),
+    aside: document.querySelector('aside'),
+    headerLogo: document.querySelector('#headerLogo'),
+    headereye: document.querySelector('.header-eye'),
+    headerNav: document.querySelector('#headerContents'),
+    
+    AsideFocus: function (event) {
+
+        headerjs.headereye.classList.toggle('opacity-1');
+        headerjs.headereye.classList.toggle('z-index-100');
+       
+        const asideChilden = headerjs.aside.querySelectorAll('aside>*');
+
+        headerjs.aside.classList.toggle('aside-focus');
+
+        for (let index = 0; index < asideChilden.length; index++) {
+            asideChilden[index].classList.toggle('opacity-1');
+        }
+        
+    },
+    RemoveAsideFocus: function (event) {
+        headerjs.headereye.classList.remove('opacity-1');
+        headerjs.headereye.classList.remove('z-index-100');
+       
+        const asideChilden = headerjs.aside.querySelectorAll('aside>*');
+
+        headerjs.aside.classList.remove('aside-focus');
+
+        for (let index = 0; index < asideChilden.length; index++) {
+            asideChilden[index].classList.remove('opacity-1');
+        }
+    },
+
+    MouseXY: function (event){
+
+        const pupil = headerjs.header.querySelector('.header-eye-pupil');
+// eyelidInfo의 getBoundingClientRect()메소드를 호출하여 이 태그의 위치를 기준으로
+// 좌표 정보값을 가지는 객체를 리턴받음
+        const eyelidInfo = headerjs.header.querySelector('.header-eye-eyelid').getBoundingClientRect();
+// eventLocation: 현재 마우스 좌표값
+        const eventLocation = {X: event.clientX, Y: event.clientY};
+// center: 좌표값 기준이 될 header-eye-eyelid클래스의 X Y좌표 중앙 값
+        const center = {
+                        X: (eyelidInfo.left + eyelidInfo.right)/2,
+                        Y: (eyelidInfo.top + eyelidInfo.bottom)/2
+                        };
+
+        let locationX = eventLocation.X;
+        let locationY = eventLocation.Y;
+
+    //pupil의 위치가 eyelid의 범위에서 벗어나지 않게 
+    // 조건문으로 위치 조정
+        if (eventLocation.X > eyelidInfo.right-10) {
+            locationX = (center.X+2);
+        }
+        if (eventLocation.X < eyelidInfo.left+10) {
+            locationX = (center.X-5);
+        }
+        if (eventLocation.Y > eyelidInfo.bottom-5) {
+            locationY = (center.Y+3);
+        }
+        if (eventLocation.Y < eyelidInfo.top+5) {
+            locationY = (center.Y-5);
+        }
+    //좌표값 반영
+        pupil.style.left = String(locationX)+'px';
+        pupil.style.top = String(locationY)+'px';
+    },
+
+    navContents:function (event) {
+        const actionY = event.srcElement.scrollingElement.scrollTop;
+        headerjs.RemoveAsideFocus();
+        if (headerjs.scrollTargetTop - actionY < 0) {
+            headerjs.headerNav.classList.add('opacity-0');
+        }else {
+            headerjs.headerNav.classList.remove('opacity-0');
+        }
+        headerjs.scrollTargetTop = actionY;
+    }
+};
+
+
 const activeScript = {
     asideList: function (acceptedData) {
         let jsonData;
@@ -325,25 +440,11 @@ const activeScript = {
     },
     foward: function (URL, contents) {
         navjs.active('loading...',contents);
-
-// 보류
-//     let secondvalue;
-//     let resultValue = requestjs.ajax('GET', URL, wrapjs.reset, false);
-//     if (resultValue === 202 || 404) {
-//         secondvalue = 1000;
-//     }else {
-//         secondvalue = 10000;
-//     }
-//     setTimeout(function() {
-//         navjs.inactive();
-//     }, secondvalue);
-
         setTimeout(function() {
             requestjs.ajax('GET',URL,function(data) {
                 wrapjs.reset(data);
                 navjs.inactive();
-//headerScript head객체 메소드
-                head.RemoveAsideFocus();
+                headerjs.RemoveAsideFocus();
             }, true);
         }, 1000);
     }
@@ -354,7 +455,10 @@ function requestInit() {
     const pastDays = Math.floor((new Date().getTime() - dateObj.getTime())/1000/60/60/24);
     document.querySelector('.header-contents').innerText = pastDays+' Days';
     
+    headerjs.headerLogo.addEventListener('click',headerjs.AsideFocus);
+    headerjs.headereye.addEventListener('click',headerjs.AsideFocus);
+    window.addEventListener('mousemove',headerjs.MouseXY);
+    window.addEventListener('scroll',headerjs.navContents);
 }
 
 requestInit();
-
