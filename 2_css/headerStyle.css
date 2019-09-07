@@ -1,4 +1,4 @@
-/* @import "/2_css/style.css"; */
+@charset "UTF-8";
 
 header{
     padding: 0.1rem 0px;
@@ -57,7 +57,7 @@ header{
 .header-msg-success{
     animation: tinkleContents 1s;
     animation-iteration-count: infinite;
-    color: green;
+    color: royalblue;
 }
 .header-msg-waning{
     animation: tinkleContents 1s;
@@ -66,13 +66,13 @@ header{
 }
 @keyframes tinkleContents{
     0%{
-        opacity: 0;
+        opacity: 0.5;
     }
     50%{
         opacity: 1;
     }
     100%{
-        opacity: 0;
+        opacity: 0.5;
     }
 }
 
@@ -87,7 +87,6 @@ header{
 .header-modal-component{
     margin: 0px;
     padding: 0px;
-    width: 60vw;
     height: auto;
     min-height: 50px;
     box-sizing: border-box;
@@ -95,7 +94,7 @@ header{
     color: rgba(0, 0, 0, 1);
     
     position: fixed;
-    right: 20vw;
+    right: 30vw;
     top: 70px;
     display: none;
     flex-direction: column;
@@ -130,9 +129,9 @@ header{
     border: 1px groove silver;
     background-color: silver;
     padding: 0px 0px 0px 5px;
-    width: 60vw;
+    width: 50vw;
     box-sizing: border-box;
-    max-width: 1000px;
+    max-width: 600px;
     /* border-radius: 1rem; */
     display: flex;
     justify-content: space-between;
@@ -141,9 +140,9 @@ header{
 .header-modal-contents{
     border: 1px groove silver;
     padding: 5px;
-    width: 60vw;
+    width: 50vw;
     box-sizing: border-box;
-    max-width: 1000px;
+    max-width: 600px;
     /* border-radius: 1rem; */
     text-align: center;
 }

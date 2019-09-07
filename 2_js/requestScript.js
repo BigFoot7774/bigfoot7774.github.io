@@ -1,8 +1,8 @@
 //-requestjs객체(리팩토링 필)
-const requestjs = {
+var requestjs = {
 
     ajax: function (method, URL, callback, async) {
-        let xhr = new XMLHttpRequest();
+        var xhr = new XMLHttpRequest();
 
         if (method.toUpperCase() === 'GET') {
             method = 'GET';
@@ -40,7 +40,7 @@ const requestjs = {
     },
     // 보류
     // pushstate: function (data, title, uri) {
-    //     const bodyContainer = document.querySelector(data).innerHTML;
+    //     var bodyContainer = document.querySelector(data).innerHTML;
     //     window.history.pushState(bodyContainer, title, uri);
     // },
     // popstate: function () {
@@ -52,7 +52,7 @@ const requestjs = {
 };
 
 //-loadingjs객체(리팩토링 완): innertext 대체&추가, 정지&로딩바제거, 
-const loadingjs = {
+var loadingjs = {
 
 //interval 주소값 저장 배열
     intervalAddr: [],
@@ -61,8 +61,8 @@ const loadingjs = {
     loadingPackage: ['-','\\','\|','\/'],
 
     insert: function (tagName) {
-        let tagContents = document.querySelector(tagName);
-        let count = 0;
+        var tagContents = document.querySelector(tagName);
+        var count = 0;
 
         loadingjs.recoveryTagAddr[tagName] = tagContents.innerHTML;
         loadingjs.intervalAddr.push(setInterval(function() {
@@ -78,9 +78,9 @@ const loadingjs = {
         }, 100));
     },
     plus: function (tagName) {
-        let tagContents = document.querySelector(tagName);
-        let textLength = document.querySelector(tagName).innerHTML;//호출 당시 최초 길이
-        let count = 0;
+        var tagContents = document.querySelector(tagName);
+        var textLength = document.querySelector(tagName).innerHTML;//호출 당시 최초 길이
+        var count = 0;
         
         loadingjs.recoveryTagAddr[tagName] = tagContents.innerHTML;
         loadingjs.intervalAddr.push(setInterval(function() {
@@ -106,12 +106,12 @@ const loadingjs = {
         }, 100));
     },
     stop: function () {
-        for (let index = 0; index < loadingjs.intervalAddr.length; index++) {
+        for (var index = 0; index < loadingjs.intervalAddr.length; index++) {
             clearInterval(loadingjs.intervalAddr[index]);
         }
         loadingjs.intervalAddr = [];
 
-        for (const key in loadingjs.recoveryTagAddr) {
+        for (var key in loadingjs.recoveryTagAddr) {
             if (loadingjs.recoveryTagAddr.hasOwnProperty(key)) {
                 document.querySelector(key).innerHTML = loadingjs.recoveryTagAddr[key];
             }
@@ -122,7 +122,7 @@ const loadingjs = {
 };
 
 //-navjs객체(리팩토링 완): 생성, 닫기
-const navjs = {
+var navjs = {
 
     active: function (title, contents) {
         nav = document.createElement('nav');
@@ -144,8 +144,8 @@ const navjs = {
     },
     inactive: function () {
         loadingjs.stop();
-        const navs = document.querySelectorAll('nav');
-        navs.forEach(nav => {
+        var navs = document.querySelectorAll('nav');
+        navs.forEach(function(nav) {
             document.body.removeChild(nav);
         });
     }
@@ -153,21 +153,22 @@ const navjs = {
 
 //-navjs객체(리팩토링 완): 생성, 닫기, 드래그
 // new키워드를 통한 새로운 오브젝트 생성의 필요가 없음
-const modaljs = {
+var modaljs = {
     
-    create: function (titleText, contentsText) {
+    create: function (titvarext, contentsText) {
         
-        const container = document.createElement('div');
-        const header = document.createElement('div');
-        const title = document.createElement('div');
-        const close = document.createElement('a');
-        const contents = document.createElement('div');
+        var container = document.createElement('div');
+        var header = document.createElement('div');
+        var title = document.createElement('div');
+        var close = document.createElement('a');
+        var contents = document.createElement('div');
 
         container.className = 'header-modal header-modal-component flex';
             container.appendChild(header);
             container.appendChild(contents);
         
         header.className = 'header-modal header-modal-title';
+            title.className = 'header-msg-success';
             header.appendChild(title);
             header.appendChild(close);
             close.className = 'header-modal-title-close';
@@ -177,7 +178,7 @@ const modaljs = {
         contents.className = 'header-modal header-modal-contents';
 
 
-        title.innerHTML = titleText;
+        title.innerHTML = titvarext;
         contents.innerHTML = contentsText;
         
         document.body.appendChild(container);
@@ -197,7 +198,7 @@ const modaljs = {
     //출처 : https://www.w3schools.com/howto/howto_js_draggable.asp
     dragElement: function (element) {
 
-        let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+        var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
 
         if (this.titleContainer) {
             this.titleContainer.onmousedown = dragMouseDown;
@@ -234,31 +235,31 @@ const modaljs = {
 };
 
 //-wrapjs객체(리팩토링 완): 틀만 생성(세부컨텐츠는 별도로 스크립트 구성 필요), wrap 더하기, wrap 초기화
-const wrapjs = {
+var wrapjs = {
     
     bodyContainer : document.querySelector('#bodyContainer'),
     wrap : document.querySelector('.wrap'),
 
     add: function (contentsHTML) {
-        const container = new wrapjs.console(contentsHTML);
+        var container = new wrapjs.console(contentsHTML);
         wrapjs.wrap.appendChild(container);
     },
     reset: function (contentsHTML) {
         wrapjs.wrap.innerText='';
 
-        const container = new wrapjs.console(contentsHTML);
+        var container = new wrapjs.console(contentsHTML);
         wrapjs.wrap.appendChild(container);
     },
     console: function (contentsHTML) {
-        const container = document.createElement('div');
-        const header = document.createElement('div');
-        const title = document.createElement('div');
-        const icon = document.createElement('img');
-        const btn1 = document.createElement('div');
-        const btn2 = document.createElement('div');
-        const square = document.createElement('span');
-        const btn3 = document.createElement('div');
-        const mainConsole = document.createElement('div');
+        var container = document.createElement('div');
+        var header = document.createElement('div');
+        var title = document.createElement('div');
+        var icon = document.createElement('img');
+        var btn1 = document.createElement('div');
+        var btn2 = document.createElement('div');
+        var square = document.createElement('span');
+        var btn3 = document.createElement('div');
+        var mainConsole = document.createElement('div');
 
         container.className = 'command';
         header.className = 'command-header';
@@ -289,19 +290,19 @@ const wrapjs = {
 };
 
 //-Textjs객체 문자열을 character로 변환하여 한 자씩 interval로 반복해가며 삽입
-const Textjs = {
+var Textjs = {
     
     insertText: function (tagName, insertTextValue, interval) {
         
-        let frontSpan = document.createElement('span');
-        let backSpan = document.createElement('span');
+        var frontSpan = document.createElement('span');
+        var backSpan = document.createElement('span');
         backSpan.className = 'input-character';
         document.querySelector(tagName).appendChild(frontSpan);
         document.querySelector(tagName).appendChild(backSpan);
         
-        let timeCount = true;
-        let loopCount = 0;
-        let intervalAddr = setInterval(function() {
+        var timeCount = true;
+        var loopCount = 0;
+        var intervalAddr = setInterval(function() {
             try {
                 if (insertTextValue.length === loopCount) {
                     throw 'go catch';
@@ -330,7 +331,7 @@ const Textjs = {
 };
 
 //-headerjs객체 헤더로고 움직임, aside바 닫힘, headercontents 투명 조절
-const headerjs = {
+var headerjs = {
     header: document.querySelector('header'),
     aside: document.querySelector('aside'),
     headerLogo: document.querySelector('#headerLogo'),
@@ -342,11 +343,11 @@ const headerjs = {
         headerjs.headereye.classList.toggle('opacity-1');
         headerjs.headereye.classList.toggle('z-index-100');
        
-        const asideChilden = headerjs.aside.querySelectorAll('aside>*');
+        var asideChilden = headerjs.aside.querySelectorAll('aside>*');
 
         headerjs.aside.classList.toggle('aside-focus');
 
-        for (let index = 0; index < asideChilden.length; index++) {
+        for (var index = 0; index < asideChilden.length; index++) {
             asideChilden[index].classList.toggle('opacity-1');
         }
         
@@ -355,31 +356,31 @@ const headerjs = {
         headerjs.headereye.classList.remove('opacity-1');
         headerjs.headereye.classList.remove('z-index-100');
        
-        const asideChilden = headerjs.aside.querySelectorAll('aside>*');
+        var asideChilden = headerjs.aside.querySelectorAll('aside>*');
 
         headerjs.aside.classList.remove('aside-focus');
 
-        for (let index = 0; index < asideChilden.length; index++) {
+        for (var index = 0; index < asideChilden.length; index++) {
             asideChilden[index].classList.remove('opacity-1');
         }
     },
 
     MouseXY: function (event){
 
-        const pupil = headerjs.header.querySelector('.header-eye-pupil');
+        var pupil = headerjs.header.querySelector('.header-eye-pupil');
 // eyelidInfo의 getBoundingClientRect()메소드를 호출하여 이 태그의 위치를 기준으로
 // 좌표 정보값을 가지는 객체를 리턴받음
-        const eyelidInfo = headerjs.header.querySelector('.header-eye-eyelid').getBoundingClientRect();
+        var eyelidInfo = headerjs.header.querySelector('.header-eye-eyelid').getBoundingClientRect();
 // eventLocation: 현재 마우스 좌표값
-        const eventLocation = {X: event.clientX, Y: event.clientY};
+        var eventLocation = {X: event.clientX, Y: event.clientY};
 // center: 좌표값 기준이 될 header-eye-eyelid클래스의 X Y좌표 중앙 값
-        const center = {
+        var center = {
                         X: (eyelidInfo.left + eyelidInfo.right)/2,
                         Y: (eyelidInfo.top + eyelidInfo.bottom)/2
                         };
 
-        let locationX = eventLocation.X;
-        let locationY = eventLocation.Y;
+        var locationX = eventLocation.X;
+        var locationY = eventLocation.Y;
 
     //pupil의 위치가 eyelid의 범위에서 벗어나지 않게 
     // 조건문으로 위치 조정
@@ -401,7 +402,7 @@ const headerjs = {
     },
 
     navContents:function (event) {
-        const actionY = event.srcElement.scrollingElement.scrollTop;
+        var actionY = event.srcElement.scrollingElement.scrollTop;
         headerjs.RemoveAsideFocus();
         if (headerjs.scrollTargetTop - actionY < 0) {
             headerjs.headerNav.classList.add('opacity-0');
@@ -413,17 +414,17 @@ const headerjs = {
 };
 
 
-const activeScript = {
+var activeScript = {
     asideList: function (acceptedData) {
-        let jsonData;
+        var jsonData;
         if (typeof data === 'object') {
             jsonData = acceptedData;
         }else {
             jsonData = JSON.parse(acceptedData);
         }
-        const asideList = document.querySelector('#asideList');
-        let tagHTML = '';
-        for (const key in jsonData) {
+        var asideList = document.querySelector('#asideList');
+        var tagHTML = '';
+        for (var key in jsonData) {
             if (jsonData.hasOwnProperty(key)) {
                 tagHTML += `<li><a href="${jsonData[key]}">
                             ${key}
@@ -434,7 +435,7 @@ const activeScript = {
     },
     alertModal : function(fileURL) {
             requestjs.ajax('GET', fileURL, function (data) {
-            const data_ = JSON.parse(data);
+            var data_ = JSON.parse(data);
             modaljs.create(data_.title, data_.contents);
         }, true);
     },
@@ -451,8 +452,8 @@ const activeScript = {
 };
 
 function requestInit() {
-    const dateObj = new Date(2019, 8-1, 9);
-    const pastDays = Math.floor((new Date().getTime() - dateObj.getTime())/1000/60/60/24);
+    var dateObj = new Date(2019, 8-1, 9);
+    var pastDays = Math.floor((new Date().getTime() - dateObj.getTime())/1000/60/60/24);
     document.querySelector('.header-contents').innerText = pastDays+' Days';
     
     headerjs.headerLogo.addEventListener('click',headerjs.AsideFocus);

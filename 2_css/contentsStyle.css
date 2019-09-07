@@ -1,9 +1,19 @@
 @charset "UTF-8";
+
 .command{
     border: 1px groove silver;
     display: flex;
     justify-content: center;
     flex-direction: column;
+    animation: ContentsCreate 0.3s;
+}
+@keyframes ContentsCreate{
+    from{
+        filter: invert(0.5);
+    }
+    to{
+        filter: invert(0);
+    }
 }
 .command-header{
     color: black;
@@ -68,15 +78,7 @@
 
     box-sizing: border-box;
     /* word-break: keep-all; */
-    animation: wrapContentsCreate 0.3s;
-}
-@keyframes wrapContentsCreate{
-    from{
-        filter: invert(1);
-    }
-    to{
-        filter: invert(0);
-    }
+    
 }
 @media(max-width:1200px){
     .wrap{
