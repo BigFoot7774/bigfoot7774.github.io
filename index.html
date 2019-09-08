@@ -25,6 +25,7 @@
     </header>
     <aside>
         <ul id="asideList" class="aside-list">
+
         </ul>
     </aside>
 
@@ -34,19 +35,30 @@
 
     </div>
 </div>
+<script type="text/javascript">
+    window.onload = function(){
+        
+    };
+//임시
+        if(navigator.userAgent.toLowerCase().indexOf("chrome") === -1 ){
+            document.querySelector('.wrap').innerHTML = '크롬이 아닙니다.';
+        }
+    </script>
+    
+    
+    
 
-
-<script src="/2_js/welcomeScript.js"></script>
 <script src="/2_js/requestScript.js"></script>
+<script src="/2_js/welcomeScript.js"></script>
 <script>
     window.onload = function () {
 
 
     }
-    activeScript.alertModal('/1_app/modalTest.json');
+    
     requestjs.ajax('GET','/1_app/appDataList.json', activeScript.asideList, true);
-    new Textjs.insertText('#welcomeLeftText','', 1);
-    new Textjs.insertText('#welcomeRightText','', 1);
+
+
 </script>
 
 </body>

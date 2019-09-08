@@ -1,8 +1,6 @@
 {
     "Home": "/",
     "Profile": "javascript: activeScript.foward('/1_app/list/profile.html','Profile : 저를 소개합니다');",
-    "History": "javascript: activeScript.foward('/1_app/list/pageHistory.html', 'Page History');",
-    "Blog": "javascript: activeScript.foward('/1_app/list/blog.html','Blog');",
-    "Service Infomation": "javascript: activeScript.foward('/1_app/list/serviceInfo.html','Service Infomation');",
-    "T:Nicola Tesla": "javascript: activeScript.foward('/1_app/list/NicolaTesla.html', 'Nicola Tesla');"
+    "Project": "javascript: activeScript.foward('/1_app/list/Project.html','Project Information');",
+    "Blog": "javascript: activeScript.foward('/1_app/list/blog.html', 'Blog: Test중입니다');"
 }

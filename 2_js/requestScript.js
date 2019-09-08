@@ -22,15 +22,7 @@ var requestjs = {
                     callback(xhr.response);
                     return xhr.status;
                 } else {
-                    document.write('<div align="center">\
-                    \<h1>Sorry</h1><BR>\
-                    <h3>요청하신 페이지를 찾을 수 없습니다.<BR>\
-                    잠시 후 다시 시도해 주세요\
-                    </h3>\
-                    <h3>Please try again later.<BR>\
-                    The requested page was not found\
-                    </h3>\
-                    </div>');
+                    document.write('<div align="center"><h1>Sorry</h1><BR><h3>요청하신 페이지를 찾을 수 없습니다.<BR>잠시 후 다시 시도해 주세요</h3><h3>Please try again later.<BR>The requested page was not found</h3></div>');
                     return xhr.status;
                 }
             }else{
@@ -38,17 +30,6 @@ var requestjs = {
             }
         };
     },
-    // 보류
-    // pushstate: function (data, title, uri) {
-    //     var bodyContainer = document.querySelector(data).innerHTML;
-    //     window.history.pushState(bodyContainer, title, uri);
-    // },
-    // popstate: function () {
-    //     window.addEventListener('popstate',function (event) {
-    //         console.log(event.state);
-            
-    //      });
-    // }
 };
 
 //-loadingjs객체(리팩토링 완): innertext 대체&추가, 정지&로딩바제거, 
@@ -64,46 +45,62 @@ var loadingjs = {
         var tagContents = document.querySelector(tagName);
         var count = 0;
 
-        loadingjs.recoveryTagAddr[tagName] = tagContents.innerHTML;
-        loadingjs.intervalAddr.push(setInterval(function() {
-            if (count === 3) {
-                tagContents.innerText = loadingjs.loadingPackage[3];
-                count = 0;
-//태그의 innertext를 loadingPackage로 교체
-//count값이 3일 때만 count초기화
-            }else{
-                tagContents.innerText = loadingjs.loadingPackage[count];
-                count++;
+        var localAddr = setInterval(function() {
+            try {
+                if (count === 3) {
+                    tagContents.innerText = loadingjs.loadingPackage[3];
+                    count = 0;
+                    //태그의 innertext를 loadingPackage로 교체
+                    //count값이 3일 때만 count초기화
+                }else{
+                    tagContents.innerText = loadingjs.loadingPackage[count];
+                    count++;
+                }
+            } catch (error) {
+                clearInterval(localAddr);
+                var addrIndex = loadingjs.intervalAddr.indexOf(localAddr);
+                loadingjs.intervalAddr.splice(addrIndex, 1);
             }
-        }, 100));
+        }, 100);
+
+        loadingjs.recoveryTagAddr[tagName] = tagContents.innerHTML;
+        loadingjs.intervalAddr.push(localAddr);
     },
     plus: function (tagName) {
         var tagContents = document.querySelector(tagName);
         var textLength = document.querySelector(tagName).innerHTML;//호출 당시 최초 길이
         var count = 0;
         
-        loadingjs.recoveryTagAddr[tagName] = tagContents.innerHTML;
-        loadingjs.intervalAddr.push(setInterval(function() {
-//count가 0일때는 바로 삽입
-//0이 아닐때는 innerText내용을 복원한 뒤
-//맨 뒤 한글자만 substr로 걸러내서 교체
-            if (count === 0 && tagContents.innerHTML.length === textLength.length) {
-                tagContents.innerHTML += loadingjs.loadingPackage[count];
-                count++;
-            }else if(count === 0 && tagContents.innerHTML.length != textLength.length){
-                tagContents.innerHTML = textLength.substr(0, textLength.length);
-                tagContents.innerHTML += loadingjs.loadingPackage[count];
-                count++;
-            }else if(count === 3){
-                tagContents.innerHTML = textLength.substr(0, textLength.length);
-                tagContents.innerHTML += loadingjs.loadingPackage[3];
-                count = 0;
-            }else{
-                tagContents.innerHTML = textLength.substr(0, textLength.length);
-                tagContents.innerHTML += loadingjs.loadingPackage[count];
-                count++;
+        //count가 0일때는 바로 삽입
+        //0이 아닐때는 innerText내용을 복원한 뒤
+        //맨 뒤 한글자만 substr로 걸러내서 교체
+        var localAddr = setInterval(function() {
+            try {
+                
+                if (count === 0 && tagContents.innerHTML.length === textLength.length) {
+                    tagContents.innerHTML += loadingjs.loadingPackage[count];
+                    count++;
+                }else if(count === 0 && tagContents.innerHTML.length != textLength.length){
+                    tagContents.innerHTML = textLength.substr(0, textLength.length);
+                    tagContents.innerHTML += loadingjs.loadingPackage[count];
+                    count++;
+                }else if(count === 3){
+                    tagContents.innerHTML = textLength.substr(0, textLength.length);
+                    tagContents.innerHTML += loadingjs.loadingPackage[3];
+                    count = 0;
+                }else{
+                    tagContents.innerHTML = textLength.substr(0, textLength.length);
+                    tagContents.innerHTML += loadingjs.loadingPackage[count];
+                    count++;
+                }
+            } catch (error) {
+                clearInterval(localAddr);
+                var addrIndex = loadingjs.intervalAddr.indexOf(localAddr);
+                loadingjs.intervalAddr.splice(addrIndex, 1);
+                console.log('here');
             }
-        }, 100));
+        }, 100);
+        loadingjs.intervalAddr.push(localAddr);
     },
     stop: function () {
         for (var index = 0; index < loadingjs.intervalAddr.length; index++) {
@@ -145,9 +142,12 @@ var navjs = {
     inactive: function () {
         loadingjs.stop();
         var navs = document.querySelectorAll('nav');
-        navs.forEach(function(nav) {
-            document.body.removeChild(nav);
-        });
+        for (var i = 0; i < navs.length; i++) {
+            document.body.removeChild(navs[i]);
+        }
+        // navs.forEach(function(nav) {
+        //     document.body.removeChild(nav);
+        // });
     }
 };
 
@@ -168,7 +168,7 @@ var modaljs = {
             container.appendChild(contents);
         
         header.className = 'header-modal header-modal-title';
-            title.className = 'header-msg-success';
+            title.className = 'msg-warning';
             header.appendChild(title);
             header.appendChild(close);
             close.className = 'header-modal-title-close';
@@ -240,17 +240,17 @@ var wrapjs = {
     bodyContainer : document.querySelector('#bodyContainer'),
     wrap : document.querySelector('.wrap'),
 
-    add: function (contentsHTML) {
-        var container = new wrapjs.console(contentsHTML);
+    add: function (titleHTML, contentsHTML) {
+        var container = new wrapjs.console(titleHTML, contentsHTML);
         wrapjs.wrap.appendChild(container);
     },
-    reset: function (contentsHTML) {
+    reset: function (titleHTML, contentsHTML) {
         wrapjs.wrap.innerText='';
 
-        var container = new wrapjs.console(contentsHTML);
+        var container = new wrapjs.console(titleHTML, contentsHTML);
         wrapjs.wrap.appendChild(container);
     },
-    console: function (contentsHTML) {
+    console: function (titleHTML, contentsHTML) {
         var container = document.createElement('div');
         var header = document.createElement('div');
         var title = document.createElement('div');
@@ -277,7 +277,7 @@ var wrapjs = {
         container.appendChild(header);
         header.appendChild(title);
         title.appendChild(icon);
-        title.innerHTML += 'Contents window';
+        title.innerHTML += titleHTML;
         header.appendChild(btn1);
         header.appendChild(btn2);
         header.appendChild(btn3);
@@ -304,9 +304,18 @@ var Textjs = {
         var loopCount = 0;
         var intervalAddr = setInterval(function() {
             try {
+                
+                var character = insertTextValue.charAt(loopCount);
+
                 if (insertTextValue.length === loopCount) {
                     throw 'go catch';
-                } else if(timeCount === true){
+
+                }else if(character === '/'){
+                    frontSpan.innerHTML += '<BR>';
+                    timeCount = true;
+                    loopCount++;
+
+                }else if(timeCount === true){
                     backSpan.innerHTML = insertTextValue.charAt(loopCount);
                     timeCount = false;
                     
@@ -426,9 +435,7 @@ var activeScript = {
         var tagHTML = '';
         for (var key in jsonData) {
             if (jsonData.hasOwnProperty(key)) {
-                tagHTML += `<li><a href="${jsonData[key]}">
-                            ${key}
-                            </a></li>`;
+                tagHTML += '<li><a href="'+jsonData[key]+'">'+key+'</a></li>';
             }
         }
         asideList.innerHTML = tagHTML;
@@ -443,7 +450,7 @@ var activeScript = {
         navjs.active('loading...',contents);
         setTimeout(function() {
             requestjs.ajax('GET',URL,function(data) {
-                wrapjs.reset(data);
+                wrapjs.reset('Contents window',data);
                 navjs.inactive();
                 headerjs.RemoveAsideFocus();
             }, true);
