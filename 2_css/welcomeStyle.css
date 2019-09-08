@@ -17,6 +17,9 @@
     position: fixed;
     float: left;
     left: -100vw;
+    text-align: center;
+    font-size: 5vw;
+    line-height: 100%;
     padding: 30vh 10px 10px 10px;
     word-break: break-all;
     box-sizing: border-box;
@@ -37,7 +40,10 @@
     position: fixed;
     float: right;
     right: -100vw;
-    padding: 70vh 10px 10px 10px;
+    text-align: left;
+    font-size: 3vw;
+    line-height: 100%;
+    padding: 25vh 10px 10px 5vw;
     word-break: break-all;
     box-sizing: border-box;
     animation: welcome-right 3s;
@@ -75,5 +81,15 @@
         opacity: 1;
         height: 100vh;
         top: 0px;
+    }
+}
+
+@media(min-width:1200px){
+    .welcome-box>div:first-child{
+        font-size: 50px;
+    }
+
+    .welcome-box>div:last-child{
+        font-size: 30px;
     }
 }
