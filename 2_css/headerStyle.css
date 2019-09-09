@@ -29,8 +29,8 @@ header{
     z-index: -1;
     color: black;
     font-size: 1.5em;
+    cursor: pointer;
 }
-.header-eye:HOVER{cursor: pointer;}
 .header-eye-eyelid{
     position: relative;
     width: 20px;
@@ -38,12 +38,19 @@ header{
 .header-eye-pupil{
     width: 3px;
     position: fixed;
+    box-shadow: 2px 2px 2px black,
+                2px -2px 2px black,
+                -2px 2px 2px black,
+                -2px -2px 2px black;
     /* filter: invert(100%); */
 }
 .header-contents{
     padding-left: 3px;
-    padding-right: 150px;
+    padding-right: 200px;
     color: rgba(255, 255, 255, 0.7);
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
 
     text-align: left;
     overflow: hidden;
@@ -53,6 +60,10 @@ header{
     text-overflow: ellipsis;
     word-wrap: break-word;
     box-sizing: border-box;
+}
+.header-contents>*{
+    cursor: pointer;
+    
 }
 .header-modal{
     /* content: ""; */

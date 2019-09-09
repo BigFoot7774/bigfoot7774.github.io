@@ -23,13 +23,7 @@
 }
 .command-title{
     display: table-cell;
-}
-.command-title>img{
-    padding: 0px 3px;
-    margin: 0px;
-    vertical-align: middle;
-    width: 1.5em;
-    height: auto;
+    cursor: default;
 }
 .command-btn{
     display: table-cell;
@@ -44,11 +38,11 @@
     cursor: pointer;
     background-color: rgba(255, 255, 255, 0.3);
 }
-.command-btn-squre{
-    vertical-align: middle;
+.command-btn-squre:HOVER{
+    cursor: not-allowed;
 }
 .command-btn-squre>span{
-    border: 1px solid;
+    border: 1px solid rgba(0, 0, 0, 0.1);
     display: inline-block;
     width: 0.5em;
     height: 0.5em;
@@ -68,7 +62,7 @@
 }
 .wrap{
     margin: 30px auto;
-    padding: 50px 150px 10px 10px;
+    padding: 70px 150px 10px 10px;
     width: 95vw;
     max-width: 1600px;
     min-height: 50vh;
@@ -109,6 +103,6 @@
 
 @media(max-width:1200px){
     .wrap{
-        padding: 50px 10px 10px 10px;
+        padding: 70px 10px 10px 10px;
     }
 }

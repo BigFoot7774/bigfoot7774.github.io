@@ -239,6 +239,7 @@ var wrapjs = {
     
     bodyContainer : document.querySelector('#bodyContainer'),
     wrap : document.querySelector('.wrap'),
+    localPageHistory: document.querySelector('#localPageHistory'),
 
     add: function (titleHTML, contentsHTML) {
         var container = new wrapjs.console(titleHTML, contentsHTML);
@@ -264,13 +265,21 @@ var wrapjs = {
         container.className = 'command';
         header.className = 'command-header';
         title.className = 'command-title';
-        icon.src = '/4_img/cmdicon.png';
+        icon.src = '/4_img/icon/cmdicon.png';
+        icon.style.padding = '0px 3px';
+        icon.style.margin = '0px';
+        icon.style.width = '1.2em';
+        icon.style.height = 'auto';
+        icon.style.verticalAlign = 'middle';
+
         btn1.className = 'command-btn';
         btn1.innerHTML = '&minus;';
         btn2.className = 'command-btn command-btn-squre';
         btn3.className = 'command-btn command-btn-close';
         btn2.appendChild(square);
         btn3.innerHTML = '&times;';
+        btn1.setAttribute('onclick','wrapjs.consoleSave()');
+        btn3.setAttribute('onclick','wrapjs.consoleClose()');
         mainConsole.id = 'mainConsole';
         mainConsole.className = 'console-black';
 
@@ -286,6 +295,55 @@ var wrapjs = {
         mainConsole.innerHTML = contentsHTML;
 
         return container;
+    },
+    consoleClose: function () {
+        var PageHistory = JSON.parse(localStorage.getItem('localPageHistory'));
+        var key = this.wrap.querySelector('.command-title').innerHTML;
+        
+        if(PageHistory[key] != null){
+            PageHistory[key] = undefined;
+            localStorage.setItem('localPageHistory', JSON.stringify(PageHistory));
+        }
+
+        this.wrap.innerHTML = '';
+        wrapjs.viewPageHistory();
+    },
+    consoleSave: function () {
+        var PageHistory = JSON.parse(localStorage.getItem('localPageHistory'));
+        var key = this.wrap.querySelector('.command-title').innerHTML;
+        var value = this.wrap.innerHTML;
+
+        if (PageHistory != null) {
+            PageHistory[key] = value;
+            localStorage.setItem('localPageHistory',JSON.stringify(PageHistory));
+        }else {
+            var pageList = {};
+            pageList[key] = value;
+            localStorage.setItem('localPageHistory',JSON.stringify(pageList));
+        }
+        this.wrap.innerHTML = '';
+        wrapjs.viewPageHistory();
+    },
+    viewPageHistory: function () {
+        wrapjs.localPageHistory.innerHTML = '';
+        var PageHistory = JSON.parse(localStorage.getItem('localPageHistory'));
+        for (var key in PageHistory) {
+            if (PageHistory.hasOwnProperty(key)) {
+                var span = document.createElement('span');
+                span.className = 'msg-infomation';
+                span.innerHTML = key;
+                span.setAttribute('onclick', 'wrapjs.getPageHistory(\''+key+'\')');
+                wrapjs.localPageHistory.appendChild(span);
+            }
+        }
+    },
+    getPageHistory: function (key) {
+        var PageHistory = JSON.parse(localStorage.getItem('localPageHistory'));
+        wrapjs.wrap.innerHTML = PageHistory[key];
+        PageHistory[key] = undefined;
+
+        localStorage.setItem('localPageHistory',JSON.stringify(PageHistory));
+        wrapjs.viewPageHistory();
     }
 };
 
@@ -446,11 +504,12 @@ var activeScript = {
             modaljs.create(data_.title, data_.contents);
         }, true);
     },
-    foward: function (URL, contents) {
+    foward: function (URL, title, contents) {
         navjs.active('loading...',contents);
         setTimeout(function() {
-            requestjs.ajax('GET',URL,function(data) {
-                wrapjs.reset('Contents window',data);
+            requestjs.ajax('GET', URL, function(data) {
+                wrapjs.reset(title, data);
+                wrapjs.viewPageHistory();
                 navjs.inactive();
                 headerjs.RemoveAsideFocus();
             }, true);
@@ -459,14 +518,11 @@ var activeScript = {
 };
 
 function requestInit() {
-    var dateObj = new Date(2019, 8-1, 9);
-    var pastDays = Math.floor((new Date().getTime() - dateObj.getTime())/1000/60/60/24);
-    document.querySelector('.header-contents').innerText = pastDays+' Days';
-    
     headerjs.headerLogo.addEventListener('click',headerjs.AsideFocus);
     headerjs.headereye.addEventListener('click',headerjs.AsideFocus);
     window.addEventListener('mousemove',headerjs.MouseXY);
     window.addEventListener('scroll',headerjs.navContents);
+    wrapjs.viewPageHistory();
 }
 
 requestInit();

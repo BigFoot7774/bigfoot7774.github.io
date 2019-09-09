@@ -6,14 +6,13 @@
 }
 html, body{
     font-family: 'Dotkey';
-    /* font-size: 16px; */
     margin: 0px;
     color: rgba(255, 255, 255, 1);
     background-color: rgba(0, 0, 0, 1);
     line-height: 1.2rem;
 }
 body{
-    background-image: url('/4_img/background/\(1\).jpg');
+    background-image: url('/4_img/background/1.jpg');
     background-repeat: repeat-y;
     background-position-x: center;
     background-position-y: top;
@@ -27,7 +26,6 @@ a{
     text-decoration: none;
     color: inherit;
 }
-
 button, input[type="button" i] {
     -webkit-appearance: push-button;
     user-select: none;
@@ -60,6 +58,21 @@ article>article section:first-child{
     width: 30vw;
 }
 
+footer{
+    position: absolute;
+    width: 90%;
+    bottom: 0px;
+    padding: 10px;
+    text-align: center;
+    box-sizing: border-box;
+}footer *{word-break: break-all;}
+footer>ul{
+    list-style: none;
+    padding: 0px;
+}
+footer>ul>li{
+    padding-top: 10px;
+}
 /*
     기술 인용
     출처: https://wiki.stillh.art/page/SJ4yEEClg/Transparent-Scrollbar-over-Content */
