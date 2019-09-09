@@ -2,39 +2,77 @@ welcomejs = {
 
     create : function() {
         var welcomeBox = document.createElement('div');
-        var div1 = document.createElement('div');
+        var divLeft = document.createElement('div');
         var divLine = document.createElement('div');
-        var div2 = document.createElement('div');
+        var divRight = document.createElement('div');
+        var divRightContents = document.createElement('div');
+        var divRightList = document.createElement('ul');
         var ParentBody = document.body;
         
         welcomeBox.classList.add('welcome-box');
         divLine.classList.add('welcome-line');
-        div1.id = 'welcomeLeftText';
-        div2.id = 'welcomeRightText';
-        div1.innerHTML = 'Now Loading...';
-        
-        welcomeBox.appendChild(div1);
+        divLeft.id = 'welcomeLeftText';
+        divRight.id = 'welcomeRightText';
+        divLeft.innerHTML = 'Now Loading...';
+        divRightContents.id = 'divRightContents';
+        divRightList.id = 'divRightList';
+
+
+        welcomeBox.appendChild(divLeft);
         welcomeBox.appendChild(divLine);
-        welcomeBox.appendChild(div2);
+        welcomeBox.appendChild(divRight);
+
+        divRight.appendChild(divRightContents);
+        divRight.appendChild(divRightList);
         
         ParentBody.insertBefore(welcomeBox,ParentBody.childNodes[0]);
-        
-    },
-    remove : function (callback) {
+
         setTimeout(function () {
-            
-            document.body.removeChild(document.querySelector('.welcome-box'));
+            document.querySelector('.welcome-line').style.height = '100vh';
+            new Textjs.insertText('#divRightContents','Welcome To my Page // 제 홈페이지에 오신 것을// 진심으로 환영합니다!', 10);
+        }, 10);
+    },
+
+    remove : function (callback) {
+        
+        setTimeout(function () {
             callback();
-        }, 4000);
+            welcomejs.welcomeBye();
+            
+            setTimeout(function () {
+                document.body.removeChild(document.querySelector('.welcome-box'));
+            },1000);
+        },2000);
+    },
+
+    welcomeBye : function () {
+        document.querySelector('#welcomeLeftText').style.left = '-100vw';
+        document.querySelector('#welcomeRightText').style.right = '-100vw';
+        document.querySelector('.welcome-line').style.display = 'none';
     }
+
+
+
 };
 
 function welcome_init() {
     welcomejs.create();
     loadingjs.plus('#welcomeLeftText');
-    new Textjs.insertText('#welcomeRightText','Welcome To my Page // 제 홈페이지에 오신 것을// 진심으로 환영합니다!', 10);
+    
+    document.addEventListener('DOMContentLoaded', function(){
+        welcomejs.remove(loadingjs.stop);
+    });
 
-    welcomejs.remove(loadingjs.stop);
+
+
+
+
+    if(navigator.userAgent.toLowerCase().indexOf("chrome") === -1 ){
+        document.querySelector('.wrap').innerHTML = '크롬이 아닙니다.';
+    }
+
+    requestjs.ajax('GET','/1_app/appDataList.json', activeScript.asideList, true);
+
 }
 
 welcome_init();
