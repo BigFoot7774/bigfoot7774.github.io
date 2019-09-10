@@ -297,16 +297,16 @@ var wrapjs = {
         return container;
     },
     consoleClose: function () {
-        var PageHistory = JSON.parse(localStorage.getItem('localPageHistory'));
-        var key = this.wrap.querySelector('.command-title').innerHTML;
+        // var PageHistory = JSON.parse(localStorage.getItem('localPageHistory'));
+        // var key = this.wrap.querySelector('.command-title').innerHTML;
         
-        if(PageHistory[key] != null){
-            PageHistory[key] = undefined;
-            localStorage.setItem('localPageHistory', JSON.stringify(PageHistory));
-        }
+        // if(PageHistory[key] != null){
+        //     PageHistory[key] = undefined;
+        //     localStorage.setItem('localPageHistory', JSON.stringify(PageHistory));
+        // }
 
         this.wrap.innerHTML = '';
-        wrapjs.viewPageHistory();
+        // wrapjs.viewPageHistory();
     },
     consoleSave: function () {
         var PageHistory = JSON.parse(localStorage.getItem('localPageHistory'));
@@ -390,10 +390,6 @@ var Textjs = {
                 intervalAddr = null;
             }
         }, interval);
-    },
-
-    insertTextLine : function (params) {
-        
     }
 };
 
@@ -563,7 +559,7 @@ var profileScript = {
                     levelPercent = levelBar.indexOf('□') * 10;
                 }
 
-                targetTag.innerHTML = 'Level : ' + levelBar  + levelPercent + percent;
+                targetTag.innerHTML = 'Level : ' + levelBar  +'<BR>'+ levelPercent + percent;
                 count++;
 
                 if(count === 10) {
@@ -622,6 +618,32 @@ var profileScript = {
                 profileDetails.appendChild(contents);
             }
         }
+    },
+
+    personalInformation: function (data) {
+        var profileDetails = document.querySelector('#profileDetails');
+        profileDetails.innerHTML = '';
+        var HTMLData = '';
+        var parsedData = JSON.parse(data);
+
+        for (var key in parsedData) {
+            if (parsedData.hasOwnProperty(key)) {
+                HTMLData += '<div><fieldset>'+
+                            '<legend>'+key+'</legend>'+
+                            parsedData[key]+'</fieldset></div>';
+            }
+        }
+        profileDetails.innerHTML = HTMLData;
+    },
+
+    introduce: function (data) {
+        var profileDetails = document.querySelector('#profileDetails');
+        profileDetails.innerHTML = '';
+        var HTMLData = '<fieldset id="profileIntroduce"><legend>저를 소개합니다<legend></fieldset>';
+
+        profileDetails.innerHTML = HTMLData;
+        Textjs.insertText('#profileIntroduce', data, 10);
+
     },
 
     titleActive: function (URL, callback) {
