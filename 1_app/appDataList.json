@@ -1,6 +1,6 @@
 {
     "Home": "/",
-    "Profile": "javascript: activeScript.foward('/1_app/list/profile.html', 'Profile', 'Profile : 저를 소개합니다');",
-    "Project": "javascript: activeScript.foward('/1_app/list/Project.html', 'Project', 'Project Information');",
-    "Blog": "javascript: activeScript.foward('/1_app/list/blog.html', 'Blog', 'Blog: Test중입니다');"
+    "Profile": "javascript: defaultScript.foward('/1_app/list/profile.html', 'Profile', 'Profile : 저를 소개합니다');",
+    "Project": "javascript: defaultScript.foward('/1_app/list/Project.html', 'Project', 'Project Information');",
+    "Blog": "javascript: defaultScript.foward('/1_app/list/blog.html', 'Blog', 'Blog: Test중입니다');"
 }
