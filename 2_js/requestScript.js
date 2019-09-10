@@ -357,7 +357,7 @@ var Textjs = {
         backSpan.className = 'input-character';
         document.querySelector(tagName).appendChild(frontSpan);
         document.querySelector(tagName).appendChild(backSpan);
-        
+
         var timeCount = true;
         var loopCount = 0;
         var intervalAddr = setInterval(function() {
@@ -368,10 +368,34 @@ var Textjs = {
                 if (insertTextValue.length === loopCount) {
                     throw 'go catch';
 
-                }else if(character === '/'){
-                    frontSpan.innerHTML += '<BR>';
-                    timeCount = true;
-                    loopCount++;
+// 문자중에 lessthan이 나올 떄 greater than을 찾아 태그로 묶어서 삽입
+
+                }else if(character === '<'){
+                    var insertTextsubstr = insertTextValue.substr(loopCount,insertTextValue.length);
+                    var tagEnd = insertTextsubstr.indexOf('>');
+                    var substrText = insertTextsubstr.substr(0, tagEnd+1);
+                    
+                    var closeTag = '</'+substrText.substr(1, substrText.length);
+                    var localTagName = substrText.substr(1, substrText.length-2);
+                    
+                    if (insertTextsubstr.indexOf(closeTag) != -1) {
+                        var localTag = document.createElement(localTagName);
+                        localTag.id = 'localTag' + intervalAddr;
+                        frontSpan.appendChild(localTag);
+
+                        var localInsertText = insertTextsubstr.substr(substrText.length, insertTextsubstr.indexOf(closeTag) - substrText.length);
+                        new Textjs.insertText('#'+localTag.id, localInsertText, interval);
+
+                        timeCount = true;
+                        loopCount += insertTextsubstr.indexOf(closeTag)+closeTag.length;
+
+
+                    }else{
+                        frontSpan.innerHTML += substrText;
+                        timeCount = true;
+                        loopCount += substrText.length;
+
+                    }
 
                 }else if(timeCount === true){
                     backSpan.innerHTML = insertTextValue.charAt(loopCount);
@@ -639,10 +663,8 @@ var profileScript = {
     introduce: function (data) {
         var profileDetails = document.querySelector('#profileDetails');
         profileDetails.innerHTML = '';
-        var HTMLData = '<fieldset id="profileIntroduce"><legend>저를 소개합니다<legend></fieldset>';
-
-        profileDetails.innerHTML = HTMLData;
-        Textjs.insertText('#profileIntroduce', data, 10);
+        
+        profileDetails.innerHTML = data;
 
     },
 
