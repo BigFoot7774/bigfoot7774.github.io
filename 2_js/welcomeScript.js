@@ -29,7 +29,7 @@ welcomejs = {
 
         setTimeout(function () {
             document.querySelector('.welcome-line').style.height = '100vh';
-            new Textjs.insertText('#divRightContents','Welcome To my Page <BR><BR> 찾아주셔서 감사합니다.', 10);
+            new Textjs.insertText('#divRightContents','Welcome To my Page <BR><BR> Developer 고태흥입니다.', 10);
         }, 10);
     },
 
@@ -42,7 +42,7 @@ welcomejs = {
                 document.body.removeChild(document.querySelector('.welcome-box'));
                 callback();
             },2000);
-        },2000);
+        },4000);
     },
 
     welcomeBye : function () {
@@ -73,6 +73,11 @@ function welcome_init() {
     });
     
 }
+function test() {
+    
+    defaultScript.foward('/1_app/list/profile.html', 'Profile', 'Profile : 저를 소개합니다');
 
+}
+// test();
 welcome_init();
 browserCheck();

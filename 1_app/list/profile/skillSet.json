@@ -15,9 +15,9 @@
                 "level": 3,
                 "description": "CSS"
                 },
-  "javaScript": {"imgURL": "/4_img/language icon/javaScript.png",
+  "js": {"imgURL": "/4_img/language icon/js.png",
                 "level": 4,
-                "description": "javascript(vanila)"
+                "description": "javascript"
                 },
   "jQuery": {"imgURL": "/4_img/language icon/jquery.gif",
                 "level": 3,

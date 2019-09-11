@@ -104,15 +104,22 @@ var loadingjs = {
     },
     stop: function () {
         for (var index = 0; index < loadingjs.intervalAddr.length; index++) {
-            clearInterval(loadingjs.intervalAddr[index]);
+                clearInterval(loadingjs.intervalAddr[index]);
         }
+        
         loadingjs.intervalAddr = [];
-
+        
         for (var key in loadingjs.recoveryTagAddr) {
             if (loadingjs.recoveryTagAddr.hasOwnProperty(key)) {
-                document.querySelector(key).innerHTML = loadingjs.recoveryTagAddr[key];
+
+                try {
+                    document.querySelector(key).innerHTML = loadingjs.recoveryTagAddr[key];
+                } catch (error) {
+                    //Interval종료 후 복구될 recoveryTagAddr값이 다를 경우의 예외처리
+                }
             }
         }
+        
         loadingjs.recoveryTagAddr = {};
         // document.querySelector(key).innerHTML.slice(0,-1);
     },
@@ -348,6 +355,13 @@ var wrapjs = {
 };
 
 //-Textjs객체 문자열을 character로 변환하여 한 자씩 interval로 반복해가며 삽입
+//지금까지 확인된 사항: 
+// 1. 단일태그는 문제없이 삽입가능 (예시:<img>태그나 <BR>태그)
+// 2. 시작과 끝이 있는 태그는 class, id나 속성은 삽입불가능
+//      예시: <div>hi</div> 가능
+//              <div class="greet">hi</div> 불가능
+//          해결할 수는 있지만 코드가 엄청 난해해지고 복잡해질 수 밖에 없음
+//          해결 후 성능적 이슈가 없을 것이라는 장담이 어려움
 var Textjs = {
     
     insertText: function (tagName, insertTextValue, interval) {
@@ -380,11 +394,12 @@ var Textjs = {
                     
                     if (insertTextsubstr.indexOf(closeTag) != -1) {
                         var localTag = document.createElement(localTagName);
-                        localTag.id = 'localTag' + intervalAddr;
+                        // localTag.id = 'localTag' + intervalAddr;
                         frontSpan.appendChild(localTag);
 
                         var localInsertText = insertTextsubstr.substr(substrText.length, insertTextsubstr.indexOf(closeTag) - substrText.length);
-                        new Textjs.insertText('#'+localTag.id, localInsertText, interval);
+                        // new Textjs.insertText('#'+localTag.id, localInsertText, 1);
+                        localTag.innerHTML = localInsertText;
 
                         timeCount = true;
                         loopCount += insertTextsubstr.indexOf(closeTag)+closeTag.length;
@@ -491,11 +506,16 @@ var headerjs = {
     navContents:function (event) {
         var actionY = event.srcElement.scrollingElement.scrollTop;
         headerjs.RemoveAsideFocus();
-        if (headerjs.scrollTargetTop - actionY < 0) {
-            headerjs.headerNav.classList.add('opacity-0');
-        }else {
-            headerjs.headerNav.classList.remove('opacity-0');
+        try {
+            if (headerjs.scrollTargetTop - actionY < 0) {
+                headerjs.headerNav.classList.add('opacity-0');
+            }else {
+                headerjs.headerNav.classList.remove('opacity-0');
+            }
+        } catch (error) {
+            //1200px이상 확장시 에러
         }
+
         headerjs.scrollTargetTop = actionY;
     }
 };
@@ -662,13 +682,25 @@ var profileScript = {
 
     introduce: function (data) {
         var profileDetails = document.querySelector('#profileDetails');
+
         profileDetails.innerHTML = '';
-        
-        profileDetails.innerHTML = data;
+
+        Textjs.insertText('#profileDetails', data, 1);
+        // profileDetails.innerHTML = data;
+
 
     },
 
-    titleActive: function (URL, callback) {
+    titleActive: function (URL, callback, contentsName) {
+        var contentsDetails = document.querySelector('#contentsDetails');
+
+        if (contentsName != undefined) {
+            contentsDetails.innerHTML = 'Contents Details: ' + contentsName;
+
+        }else{
+            contentsDetails.innerHTML = 'Contents Details';
+        }
+
         requestjs.ajax('GET', URL, callback, true);
     }
 };
@@ -676,11 +708,19 @@ var profileScript = {
 function requestInit() {
     headerjs.headerLogo.addEventListener('click',headerjs.AsideFocus);
     headerjs.headereye.addEventListener('click',headerjs.AsideFocus);
+    window.addEventListener('click',function (event) {
+        if (event.target.nodeName != 'A' && event.target.nodeName != 'ASIDE' && event.target.nodeName != 'IMG') {
+            headerjs.RemoveAsideFocus();
+        }
+    });
+    
     window.addEventListener('mousemove',headerjs.MouseXY);
     window.addEventListener('scroll',headerjs.navContents);
+    
+    
+    
     requestjs.ajax('GET','/1_app/appDataList.json', defaultScript.asideList, true);
     wrapjs.viewPageHistory();
-    
 }
 
 requestInit();
