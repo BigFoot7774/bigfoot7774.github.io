@@ -57,7 +57,7 @@
     font-family: 'Dotkey';
 }
 .input-character{
-    background-color: inherit;
+    background-color: rgba(37, 92, 194, 1);
     filter: invert(100%);
 }
 .wrap{
@@ -140,5 +140,10 @@
     }
     .prifile-list>li{
         display: block;
+    }
+}
+@media(max-height: 700px){
+    footer{
+        display: none;
     }
 }

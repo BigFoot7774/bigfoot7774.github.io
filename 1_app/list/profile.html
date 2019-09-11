@@ -3,19 +3,63 @@
         <legend class="prifile-category">Category</legend>
         <ul class="prifile-list">
             <li>
-                <a class="profile-title" href="javascript: profileScript.titleActive('/1_app/list/profile/introduce.html', profileScript.introduce)">자기소개</a>
+                <a class="profile-title aboutMe"
+                 href="javascript: for(let i = 0; i < document.querySelectorAll('.aboutMe').length; i++) {document.querySelectorAll('.aboutMe')[i].classList.toggle('hidden');}">
+                    자기 소개
+                </a>
+                <fieldset class="profile-title aboutMe hidden">
+                    <legend style="cursor: pointer;" onclick="for(let i = 0; i < document.querySelectorAll('.aboutMe').length; i++) {document.querySelectorAll('.aboutMe')[i].classList.toggle('hidden');}">
+                        자기 소개
+                    </legend>
+                    <ul class="prifile-list">
+                        <li>
+                            <a href="javascript: profileScript.titleActive('/1_app/list/profile/introduce1.html', profileScript.introduce, '성장 과정')">
+                                성장 과정
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript: profileScript.titleActive('/1_app/list/profile/introduce2.html', profileScript.introduce)">
+                                성격
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript: profileScript.titleActive('/1_app/list/profile/introduce3.html', profileScript.introduce)">
+                                경험
+                            </a>
+                        </li>
+                    </ul>
+                </fieldset>
             </li>
             <li>
-                <a class="profile-title" href="javascript: profileScript.titleActive('/1_app/list/profile/personalInformation.json', profileScript.personalInformation)">기본 정보</a>
+                <a class="profile-title"
+                 href="javascript: profileScript.titleActive('/1_app/list/profile/personalInformation.json', profileScript.personalInformation, '기본 정보')">
+                    기본 정보
+                </a>
             </li>
             <li>
-                <a class="profile-title" href="javascript: profileScript.titleActive('/1_app/list/profile/skillSet.json', profileScript.skillListParse)">기술수준</a>
+                <a class="profile-title"
+                 href="javascript: profileScript.titleActive('/1_app/list/profile/skillSet.json', profileScript.skillListParse, '기술 수준')">
+                    기술 수준
+                </a>
             </li>
         </ul>
     </fieldset>
     <fieldset>
-        <legend>Contents Details</legend>
-        <img src="/4_img/icon/BFfavicon.ico" onload="profileScript.titleActive('/1_app/list/profile/default.html', function (data) {Textjs.insertText('#profileDetails', data, 1);}) ; this.parentNode.removeChild(this);">
+        <legend id="contentsDetails">Contents Details</legend>
+        <img src="/4_img/icon/BFfavicon.ico"
+         onload="profileScript.titleActive('/1_app/list/profile/default.html',
+//스크립트태그를 사용할 수 없어서 이미지 onload를 통한 날코딩...
+            function (data) {
+                Textjs.insertText('#profileDetails', data, 1);
+                });
+                
+//읽기 편하게 하단 여백추가
+            var bottomSpace = document.createElement('div');
+            bottomSpace.innerHTML = '<BR><BR><BR><BR><BR>';
+            contentsDetails.parentNode.parentNode.appendChild(bottomSpace);
+
+//스크립트 수행 후 제거
+            this.parentNode.removeChild(this);">
             
         <div id="profileDetails">
         </div>
