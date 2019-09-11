@@ -28,7 +28,6 @@ header{
     transition: 1s all;
     z-index: -1;
     color: black;
-    font-size: 1.5em;
     cursor: pointer;
 }
 .header-eye-eyelid{

@@ -708,9 +708,14 @@ var profileScript = {
 function requestInit() {
     headerjs.headerLogo.addEventListener('click',headerjs.AsideFocus);
     headerjs.headereye.addEventListener('click',headerjs.AsideFocus);
+
     window.addEventListener('click',function (event) {
-        if (event.target.nodeName != 'A' && event.target.nodeName != 'ASIDE' && event.target.nodeName != 'IMG') {
-            headerjs.RemoveAsideFocus();
+        var aside = document.querySelector('aside');
+        
+//이벤트의 path배열 중 aside node가 없거나, 이벤트 타겟의 id 속성이 headerLogo가 아니면 headerjs.RemoveAsideFocus(); 실행
+        if(!(event.path.indexOf(aside) != -1 || event.target.id === 'headerLogo')){
+                headerjs.RemoveAsideFocus();
+                
         }
     });
     

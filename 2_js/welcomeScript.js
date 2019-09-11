@@ -41,8 +41,8 @@ welcomejs = {
             setTimeout(function () {
                 document.body.removeChild(document.querySelector('.welcome-box'));
                 callback();
-            },2000);
-        },4000);
+            },1000);
+        },1000);
     },
 
     welcomeBye : function () {
@@ -65,19 +65,9 @@ function browserCheck() {
 }
 
 function welcome_init() {
-    welcomejs.create();
-    loadingjs.plus('#welcomeLeftText');
-    
-    document.addEventListener('DOMContentLoaded', function(){
-        welcomejs.remove(loadingjs.stop);
-    });
-    
+    // defaultScript.foward('/1_app/list/profile.html', 'Profile', 'Profile : 저를 소개합니다');
 }
-function test() {
     
-    defaultScript.foward('/1_app/list/profile.html', 'Profile', 'Profile : 저를 소개합니다');
 
-}
-// test();
 welcome_init();
 browserCheck();
