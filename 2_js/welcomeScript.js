@@ -29,7 +29,7 @@ welcomejs = {
 
         setTimeout(function () {
             document.querySelector('.welcome-line').style.height = '100vh';
-            new Textjs.insertText('#divRightContents','Welcome To my Page // 제 홈페이지에 오신 것을// 진심으로 환영합니다!', 10);
+            new Textjs.insertText('#divRightContents','Welcome To my Page <BR><BR> 찾아주셔서 감사합니다.', 10);
         }, 10);
     },
 

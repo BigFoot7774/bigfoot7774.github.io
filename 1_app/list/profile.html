@@ -3,19 +3,22 @@
         <legend class="prifile-category">Category</legend>
         <ul class="prifile-list">
             <li>
-                <a class="profile-title" href="javascript: profileScript.titleActive('/1_app/list/profile/skillSet.json', profileScript.skillListParse)">자기소개</a>
+                <a class="profile-title" href="javascript: profileScript.titleActive('/1_app/list/profile/introduce.html', profileScript.introduce)">자기소개</a>
             </li>
             <li>
-                <a class="profile-title" href="javascript: profileScript.titleActive('/1_app/list/profile/skillSet.json', profileScript.skillListParse)">기술수준(언어)</a>
+                <a class="profile-title" href="javascript: profileScript.titleActive('/1_app/list/profile/personalInformation.json', profileScript.personalInformation)">기본 정보</a>
             </li>
             <li>
-                <a class="profile-title" href="javascript: profileScript.titleActive('/1_app/list/profile/skillSet.json', profileScript.skillListParse)">기술수준(경험)</a>
+                <a class="profile-title" href="javascript: profileScript.titleActive('/1_app/list/profile/skillSet.json', profileScript.skillListParse)">기술수준</a>
             </li>
         </ul>
     </fieldset>
-    <div id="profileDetails">
-        <BR>카테고리를 눌러주세요!
-    </div>
-
+    <fieldset>
+        <legend>Contents Details</legend>
+        <img src="/4_img/icon/BFfavicon.ico" onload="profileScript.titleActive('/1_app/list/profile/default.html', function (data) {Textjs.insertText('#profileDetails', data, 1);}) ; this.parentNode.removeChild(this);">
+            
+        <div id="profileDetails">
+        </div>
+    </fieldset>
 
 </body>

@@ -106,7 +106,9 @@
     display: inline-block;
 }
 
-
+#profileDetails>*{
+    animation: ContentsCreate 1s;
+}
 .profile-title{
     font-size: 1.5em;
 }
