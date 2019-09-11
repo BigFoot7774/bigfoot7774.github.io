@@ -68,7 +68,7 @@ footer{
 }footer *{word-break: break-all;}
 footer>ul{
     list-style: none;
-    padding: 0px;
+    padding: 0px 0px 50px 0px;
 }
 footer>ul>li{
     padding-top: 10px;

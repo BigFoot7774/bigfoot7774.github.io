@@ -1,9 +1,24 @@
 <body>
-    <img src="/1_app/list/img/Tesla_Sarony.jpg" onload="activeScript.alertModal('/1_app/modalTest.json');">
-    <!-- this.parentNode.removeChild(this);"> -->
-    <p> 미래가 진실을 말하도록 두라.</p>
-    <p> 내 업적과 성과는 하나하나 미래에서 평가받을 것이다.</p>
-    <p> 현재는 그들의 것일지 모른다.</p>
-    <p> 허나, 미래는, 내가 진정으로 일함으로써 얻은 미래만큼은 다른 누구도 아닌 나의 것이다.</p>
-    <p> -Nikola Tesla Memorial Center- </p>
+    <fieldset>
+        <legend class="prifile-category">Category</legend>
+        <ul class="prifile-list">
+            <li>
+                <a class="profile-title" href="javascript: profileScript.titleActive('/1_app/list/profile/introduce.html', profileScript.introduce)">자기소개</a>
+            </li>
+            <li>
+                <a class="profile-title" href="javascript: profileScript.titleActive('/1_app/list/profile/personalInformation.json', profileScript.personalInformation)">기본 정보</a>
+            </li>
+            <li>
+                <a class="profile-title" href="javascript: profileScript.titleActive('/1_app/list/profile/skillSet.json', profileScript.skillListParse)">기술수준</a>
+            </li>
+        </ul>
+    </fieldset>
+    <fieldset>
+        <legend>Contents Details</legend>
+        <img src="/4_img/icon/BFfavicon.ico" onload="profileScript.titleActive('/1_app/list/profile/default.html', function (data) {Textjs.insertText('#profileDetails', data, 1);}) ; this.parentNode.removeChild(this);">
+            
+        <div id="profileDetails">
+        </div>
+    </fieldset>
+
 </body>

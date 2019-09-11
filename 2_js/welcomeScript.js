@@ -29,19 +29,19 @@ welcomejs = {
 
         setTimeout(function () {
             document.querySelector('.welcome-line').style.height = '100vh';
-            new Textjs.insertText('#divRightContents','Welcome To my Page // 제 홈페이지에 오신 것을// 진심으로 환영합니다!', 10);
+            new Textjs.insertText('#divRightContents','Welcome To my Page <BR><BR> 찾아주셔서 감사합니다.', 10);
         }, 10);
     },
 
     remove : function (callback) {
         
         setTimeout(function () {
-            callback();
             welcomejs.welcomeBye();
             
             setTimeout(function () {
                 document.body.removeChild(document.querySelector('.welcome-box'));
-            },1000);
+                callback();
+            },2000);
         },2000);
     },
 
@@ -55,6 +55,15 @@ welcomejs = {
 
 };
 
+function browserCheck() {
+    if(navigator.userAgent.toLowerCase().indexOf("chrome") === -1 ){
+        requestjs.ajax('GET', '/1_app/browserCheck.json',function (data) {
+            var parsedData = JSON.parse(data);
+            modaljs.create(parsedData.title, parsedData.contents);
+        },true);
+    }
+}
+
 function welcome_init() {
     welcomejs.create();
     loadingjs.plus('#welcomeLeftText');
@@ -62,17 +71,8 @@ function welcome_init() {
     document.addEventListener('DOMContentLoaded', function(){
         welcomejs.remove(loadingjs.stop);
     });
-
-
-
-
-
-    if(navigator.userAgent.toLowerCase().indexOf("chrome") === -1 ){
-        document.querySelector('.wrap').innerHTML = '크롬이 아닙니다.';
-    }
-
-    requestjs.ajax('GET','/1_app/appDataList.json', activeScript.asideList, true);
-
+    
 }
 
 welcome_init();
+browserCheck();

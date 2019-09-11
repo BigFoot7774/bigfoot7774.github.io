@@ -155,7 +155,7 @@ var navjs = {
 // new키워드를 통한 새로운 오브젝트 생성의 필요가 없음
 var modaljs = {
     
-    create: function (titvarext, contentsText) {
+    create: function (titleText, contentsText) {
         
         var container = document.createElement('div');
         var header = document.createElement('div');
@@ -178,7 +178,7 @@ var modaljs = {
         contents.className = 'header-modal header-modal-contents';
 
 
-        title.innerHTML = titvarext;
+        title.innerHTML = titleText;
         contents.innerHTML = contentsText;
         
         document.body.appendChild(container);
@@ -272,7 +272,7 @@ var wrapjs = {
         icon.style.height = 'auto';
         icon.style.verticalAlign = 'middle';
 
-        btn1.className = 'command-btn';
+        btn1.className = 'command-btn command-btn-save';
         btn1.innerHTML = '&minus;';
         btn2.className = 'command-btn command-btn-squre';
         btn3.className = 'command-btn command-btn-close';
@@ -297,16 +297,16 @@ var wrapjs = {
         return container;
     },
     consoleClose: function () {
-        var PageHistory = JSON.parse(localStorage.getItem('localPageHistory'));
-        var key = this.wrap.querySelector('.command-title').innerHTML;
+        // var PageHistory = JSON.parse(localStorage.getItem('localPageHistory'));
+        // var key = this.wrap.querySelector('.command-title').innerHTML;
         
-        if(PageHistory[key] != null){
-            PageHistory[key] = undefined;
-            localStorage.setItem('localPageHistory', JSON.stringify(PageHistory));
-        }
+        // if(PageHistory[key] != null){
+        //     PageHistory[key] = undefined;
+        //     localStorage.setItem('localPageHistory', JSON.stringify(PageHistory));
+        // }
 
         this.wrap.innerHTML = '';
-        wrapjs.viewPageHistory();
+        // wrapjs.viewPageHistory();
     },
     consoleSave: function () {
         var PageHistory = JSON.parse(localStorage.getItem('localPageHistory'));
@@ -357,7 +357,7 @@ var Textjs = {
         backSpan.className = 'input-character';
         document.querySelector(tagName).appendChild(frontSpan);
         document.querySelector(tagName).appendChild(backSpan);
-        
+
         var timeCount = true;
         var loopCount = 0;
         var intervalAddr = setInterval(function() {
@@ -368,10 +368,34 @@ var Textjs = {
                 if (insertTextValue.length === loopCount) {
                     throw 'go catch';
 
-                }else if(character === '/'){
-                    frontSpan.innerHTML += '<BR>';
-                    timeCount = true;
-                    loopCount++;
+// 문자중에 lessthan이 나올 떄 greater than을 찾아 태그로 묶어서 삽입
+
+                }else if(character === '<'){
+                    var insertTextsubstr = insertTextValue.substr(loopCount,insertTextValue.length);
+                    var tagEnd = insertTextsubstr.indexOf('>');
+                    var substrText = insertTextsubstr.substr(0, tagEnd+1);
+                    
+                    var closeTag = '</'+substrText.substr(1, substrText.length);
+                    var localTagName = substrText.substr(1, substrText.length-2);
+                    
+                    if (insertTextsubstr.indexOf(closeTag) != -1) {
+                        var localTag = document.createElement(localTagName);
+                        localTag.id = 'localTag' + intervalAddr;
+                        frontSpan.appendChild(localTag);
+
+                        var localInsertText = insertTextsubstr.substr(substrText.length, insertTextsubstr.indexOf(closeTag) - substrText.length);
+                        new Textjs.insertText('#'+localTag.id, localInsertText, interval);
+
+                        timeCount = true;
+                        loopCount += insertTextsubstr.indexOf(closeTag)+closeTag.length;
+
+
+                    }else{
+                        frontSpan.innerHTML += substrText;
+                        timeCount = true;
+                        loopCount += substrText.length;
+
+                    }
 
                 }else if(timeCount === true){
                     backSpan.innerHTML = insertTextValue.charAt(loopCount);
@@ -390,10 +414,6 @@ var Textjs = {
                 intervalAddr = null;
             }
         }, interval);
-    },
-
-    insertTextLine : function (params) {
-        
     }
 };
 
@@ -481,7 +501,7 @@ var headerjs = {
 };
 
 
-var activeScript = {
+var defaultScript = {
     asideList: function (acceptedData) {
         var jsonData;
         if (typeof data === 'object') {
@@ -504,8 +524,16 @@ var activeScript = {
             modaljs.create(data_.title, data_.contents);
         }, true);
     },
+
     foward: function (URL, title, contents) {
+//consoleSave 메소드 강제실행 현재 보고 있는 페이지들 저장
+        var savebtns = document.querySelectorAll('.command-btn-save');
+        for (var i = 0; i < savebtns.length; i++) {
+            savebtns[i].onclick();
+        }
+
         navjs.active('loading...',contents);
+        
         setTimeout(function() {
             requestjs.ajax('GET', URL, function(data) {
                 wrapjs.reset(title, data);
@@ -514,6 +542,134 @@ var activeScript = {
                 headerjs.RemoveAsideFocus();
             }, true);
         }, 1000);
+    },
+
+
+};
+
+var profileScript = {
+    
+    levelLoading: function (level, tagName, description) {
+        var count = 0;
+        var targetTag = document.querySelector(tagName);
+        var levelBar = '';
+        var percent;
+        var levelPercent;
+        var interval = setInterval(function () {
+            try {
+                if (count < level) {
+                    levelBar += '■';
+                }else if(count < 10){
+                    levelBar += '□';
+                }
+                
+                switch (levelBar) {
+                    case '■': percent = '% (하)';
+                    break;
+                    case '■■■': percent = '% (중하)';
+                    break;
+                    case '■■■■■': percent = '% (중)';
+                    break;
+                    case '■■■■■■■': percent = '% (중상)';
+                    break;
+                    case '■■■■■■■■■': percent = '% (상)';
+                    break;
+                    case '■■■■■■■■■■': percent = '% (최상)';
+                    break;
+                }
+                if(levelBar.indexOf('□') * 10 < 0){
+                    levelPercent = (count + 1) * 10;
+                }else{
+                    levelPercent = levelBar.indexOf('□') * 10;
+                }
+
+                targetTag.innerHTML = 'Level : ' + levelBar  +'<BR>'+ levelPercent + percent;
+                count++;
+
+                if(count === 10) {
+                    clearInterval(interval);
+                    loadingjs.stop();
+                }
+            } catch (error) {
+                clearInterval(interval);
+                loadingjs.stop();
+            }
+        },100);
+        loadingjs.insert(description);
+    },
+    
+    create: function (language, imgURL, level, description) {
+        var skillContainer = document.createElement('div');
+        var title = document.createElement('div');
+        var titleImg = document.createElement('img');
+        var skillSet = document.createElement('div');
+        var skillLevel = document.createElement('div');
+        var skillDescription = document.createElement('div');
+        
+        skillContainer.className = 'prifile-skill';
+        title.className = 'prifile-skill-title flex';
+        titleImg.src = imgURL;
+        titleImg.setAttribute('onload','profileScript.levelLoading('+level+',\"#'+language+'\",\"#'+language+'Description\")');
+        skillSet.className = 'profile-skill-set';
+        skillLevel.id = language;
+        skillDescription.id = language+'Description';
+        skillDescription.className = 'prifile-skill-description';
+        skillDescription.innerHTML = description;
+
+        skillContainer.appendChild(title);
+        skillContainer.appendChild(skillSet);
+
+        title.appendChild(titleImg);
+        skillSet.appendChild(skillLevel);
+        skillSet.appendChild(skillDescription);
+
+        return skillContainer;
+    },
+
+    skillListParse: function (data) {
+        var profileDetails = document.querySelector('#profileDetails');
+        profileDetails.innerHTML = '';
+        var parsedData = JSON.parse(data);
+
+        for (var key in parsedData) {
+            if (parsedData.hasOwnProperty(key)) {
+                var language = key;
+                var img = parsedData[key].imgURL;
+                var skillLevel = parsedData[key].level;
+                var skillDescription = parsedData[key].description;
+
+                var contents = profileScript.create(language, img, skillLevel, skillDescription);
+                profileDetails.appendChild(contents);
+            }
+        }
+    },
+
+    personalInformation: function (data) {
+        var profileDetails = document.querySelector('#profileDetails');
+        profileDetails.innerHTML = '';
+        var HTMLData = '';
+        var parsedData = JSON.parse(data);
+
+        for (var key in parsedData) {
+            if (parsedData.hasOwnProperty(key)) {
+                HTMLData += '<div><fieldset>'+
+                            '<legend>'+key+'</legend>'+
+                            parsedData[key]+'</fieldset></div>';
+            }
+        }
+        profileDetails.innerHTML = HTMLData;
+    },
+
+    introduce: function (data) {
+        var profileDetails = document.querySelector('#profileDetails');
+        profileDetails.innerHTML = '';
+        
+        profileDetails.innerHTML = data;
+
+    },
+
+    titleActive: function (URL, callback) {
+        requestjs.ajax('GET', URL, callback, true);
     }
 };
 
@@ -522,7 +678,9 @@ function requestInit() {
     headerjs.headereye.addEventListener('click',headerjs.AsideFocus);
     window.addEventListener('mousemove',headerjs.MouseXY);
     window.addEventListener('scroll',headerjs.navContents);
+    requestjs.ajax('GET','/1_app/appDataList.json', defaultScript.asideList, true);
     wrapjs.viewPageHistory();
+    
 }
 
 requestInit();

@@ -1,0 +1,4 @@
+{
+ "title": "We do not support browsers other than Chrome",
+ "contents": "<p>이 페이지는 크롬브라우저에서만 테스트가 완료된 페이지입니다.</p><p>가급적 크롬브라우저로 이용해주시기바랍니다.</p><p>- Chrome Browser Download Link -</p><div style=\"display: flex; text-align: center; justify-content: space-around;\"><a href=\"https://www.google.com/intl/ko/chrome/\" target=\"_blank\">&lt;DeskTop Version&gt;</a><BR><a href=\"https://play.google.com/store/apps/details?id=com.android.chrome&hl=ko\" target=\"_blank\">&lt;Google Play&gt;</a><BR><a href=\"https://apps.apple.com/kr/app/chrome-google%EC%9D%B4-%EB%A7%8C%EB%93%A0-%EC%9B%B9%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80/id535886823\" target=\"_blank\">&lt;Apple Store&gt;</a><BR></div>"
+}

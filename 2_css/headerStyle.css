@@ -49,17 +49,17 @@ header{
     padding-right: 200px;
     color: rgba(255, 255, 255, 0.7);
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     height: 50px;
 
     text-align: left;
-    overflow: hidden;
     white-space: nowrap;
     position: fixed;
     transition: 0.5s all;
-    text-overflow: ellipsis;
+    overflow: hidden;
     word-wrap: break-word;
     box-sizing: border-box;
+    text-overflow: ellipsis;
 }
 .header-contents>*{
     cursor: pointer;

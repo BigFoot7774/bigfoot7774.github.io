@@ -1,0 +1,34 @@
+{
+  "java": {"imgURL": "/4_img/language icon/java.png",
+        "level": 4,
+        "description": "JAVA"
+        },
+  "SpringFramework": {"imgURL": "/4_img/language icon/spring.png",
+                        "level": 2,
+                        "description": "Spring"
+                        },
+  "HTML5": {"imgURL": "/4_img/language icon/HTML5.svg",
+                "level": 7,
+                "description": "HTML"
+                },
+  "CSS": {"imgURL": "/4_img/language icon/css.png",
+                "level": 3,
+                "description": "CSS"
+                },
+  "javaScript": {"imgURL": "/4_img/language icon/javaScript.png",
+                "level": 4,
+                "description": "javascript(vanila)"
+                },
+  "jQuery": {"imgURL": "/4_img/language icon/jquery.gif",
+                "level": 3,
+                "description": "jQuery"
+                },
+  "mySQL": {"imgURL": "/4_img/language icon/mysql.svg",
+                "level": 4,
+                "description": "mySQL"
+                },
+  "Confidence": {"imgURL": "/4_img/language icon/confidence.png",
+                "level": 10,
+                "description": "노력"
+                }
+}
