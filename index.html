@@ -11,11 +11,13 @@
     <link rel="stylesheet" href="/2_css/headerStyle.css">
     <link rel="stylesheet" href="/2_css/navAsideStyle.css">
     <link rel="stylesheet" href="/2_css/contentsStyle.css">
-    <link rel="stylesheet" href="/2_css/style.css">
+    <!-- <link rel="stylesheet" href="/2_css/style.css"> -->
 </head>
 <body>
     <header class="max-width">
-        <div id="localPageHistory" class="header-contents max-width">
+        <div class="header-contents-frame">
+            <div id="localPageHistory" class="header-contents">
+            </div>
         </div>
         <img src="/4_img/eye/comfirmedBF.svg" title="Click Me" id="headerLogo">
         <div class="header-eye">
@@ -62,7 +64,16 @@
     window.onload = function () {
         loadingjs.plus('#welcomeLeftText');
         welcomejs.remove(loadingjs.stop);
+
+        defaultScript.foward('/1_app/list/Home.html', 'Home', '찾아주셔서 감사합니다!~');
     }
+    var link = document.createElement('link');
+    link.setAttribute('rel','stylesheet');
+    link.setAttribute('href','/2_css/style.css');
+    document.querySelector('head').appendChild(link);
+
+
+
 
     document.addEventListener('DOMContentLoaded', function(){
         welcomejs.create();

@@ -305,7 +305,11 @@ var wrapjs = {
         return container;
     },
     consoleMaxWidth: function () {
-        this.wrap.childNodes[0].classList.toggle('command-max-width');
+        var thisContainer = this.wrap.childNodes;
+        for (var i = 0; i < thisContainer.length; i++) {
+            thisContainer[i].classList.toggle('command-max-width');
+        }
+        
     },
     consoleClose: function () {
         this.wrap.innerHTML = '';
@@ -341,6 +345,11 @@ var wrapjs = {
         }
     },
     getPageHistory: function (key) {
+        saveBtn = document.querySelector('.command-btn-save');
+        if(saveBtn != null) {
+            saveBtn.onclick();
+        }
+        
         var PageHistory = JSON.parse(localStorage.getItem('localPageHistory'));
         wrapjs.wrap.innerHTML = PageHistory[key];
         PageHistory[key] = undefined;
