@@ -286,6 +286,7 @@ var wrapjs = {
         btn2.appendChild(square);
         btn3.innerHTML = '&times;';
         btn1.setAttribute('onclick','wrapjs.consoleSave()');
+        btn2.setAttribute('onclick','wrapjs.consoleMaxWidth()');
         btn3.setAttribute('onclick','wrapjs.consoleClose()');
         mainConsole.id = 'mainConsole';
         mainConsole.className = 'console-black';
@@ -303,17 +304,12 @@ var wrapjs = {
 
         return container;
     },
+    consoleMaxWidth: function () {
+        this.wrap.childNodes[0].classList.toggle('command-max-width');
+    },
     consoleClose: function () {
-        // var PageHistory = JSON.parse(localStorage.getItem('localPageHistory'));
-        // var key = this.wrap.querySelector('.command-title').innerHTML;
-        
-        // if(PageHistory[key] != null){
-        //     PageHistory[key] = undefined;
-        //     localStorage.setItem('localPageHistory', JSON.stringify(PageHistory));
-        // }
-
         this.wrap.innerHTML = '';
-        // wrapjs.viewPageHistory();
+
     },
     consoleSave: function () {
         var PageHistory = JSON.parse(localStorage.getItem('localPageHistory'));
@@ -438,7 +434,7 @@ var headerjs = {
     aside: document.querySelector('aside'),
     headerLogo: document.querySelector('#headerLogo'),
     headereye: document.querySelector('.header-eye'),
-    headerNav: document.querySelector('#headerContents'),
+    localPageHistory: document.querySelector('#localPageHistory'),
     
     AsideFocus: function (event) {
 
@@ -506,15 +502,11 @@ var headerjs = {
     navContents:function (event) {
         var actionY = event.srcElement.scrollingElement.scrollTop;
         headerjs.RemoveAsideFocus();
-        try {
             if (headerjs.scrollTargetTop - actionY < 0) {
-                headerjs.headerNav.classList.add('opacity-0');
+                headerjs.localPageHistory.classList.add('opacity-0');
             }else {
-                headerjs.headerNav.classList.remove('opacity-0');
+                headerjs.localPageHistory.classList.remove('opacity-0');
             }
-        } catch (error) {
-            //1200px이상 확장시 에러
-        }
 
         headerjs.scrollTargetTop = actionY;
     }
@@ -708,9 +700,14 @@ var profileScript = {
 function requestInit() {
     headerjs.headerLogo.addEventListener('click',headerjs.AsideFocus);
     headerjs.headereye.addEventListener('click',headerjs.AsideFocus);
+
     window.addEventListener('click',function (event) {
-        if (event.target.nodeName != 'A' && event.target.nodeName != 'ASIDE' && event.target.nodeName != 'IMG') {
-            headerjs.RemoveAsideFocus();
+        var aside = document.querySelector('aside');
+        
+//이벤트의 path배열 중 aside node가 없거나, 이벤트 타겟의 id 속성이 headerLogo가 아니면 headerjs.RemoveAsideFocus(); 실행
+        if(!(event.path.indexOf(aside) != -1 || event.target.id === 'headerLogo')){
+                headerjs.RemoveAsideFocus();
+                
         }
     });
     

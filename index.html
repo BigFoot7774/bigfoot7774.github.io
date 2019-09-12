@@ -58,10 +58,17 @@
         </div>
     </div>
 
-    
-    
-    
+<script>
+    window.onload = function () {
+        loadingjs.plus('#welcomeLeftText');
+        welcomejs.remove(loadingjs.stop);
+    }
 
+    document.addEventListener('DOMContentLoaded', function(){
+        welcomejs.create();
+    });
+
+</script>
 <script src="/2_js/requestScript.js"></script>
 <script src="/2_js/welcomeScript.js"></script>
 </body>
