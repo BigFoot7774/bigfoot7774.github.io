@@ -43,28 +43,48 @@ header{
                 -2px -2px 2px black;
     /* filter: invert(100%); */
 }
-.header-contents{
+.header-contents-frame{
+    width: 100vw;
     padding-left: 3px;
-    padding-right: 200px;
-    color: rgba(255, 255, 255, 0.7);
-    display: flex;
-    justify-content: left;
-    height: 50px;
-
-    text-align: left;
-    white-space: nowrap;
+    padding-right: 160px;
+    height: 90px;
     position: fixed;
-    transition: 0.5s all;
-    overflow: hidden;
-    word-wrap: break-word;
+    text-align: left;
     box-sizing: border-box;
-    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
+.header-contents{
+    padding: 0px;
+    margin: 0px;
+    color: rgba(255, 255, 255, 0.7);
+    display: block;
+    height: 90px;
+    text-align: left;
+    transition: 0.5s all;
+    box-sizing: border-box;
+    overflow-x: scroll;
+    white-space: nowrap;
+}
+    .header-contents::-webkit-scrollbar {
+        width: 5px;
+        background: transparent;
+    }
+    .header-contents::-webkit-scrollbar-thumb {
+        background: rgba(150, 0, 0, 0);
+    }
+    .header-contents::-webkit-scrollbar-thumb:HOVER{
+        background: rgba(150, 0, 0, 0);
+    }
 .header-contents>*{
     cursor: pointer;
     padding: 0px 10px;
-    width: 120px;
+    box-sizing: border-box;
     
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 .header-modal{
     /* content: ""; */
