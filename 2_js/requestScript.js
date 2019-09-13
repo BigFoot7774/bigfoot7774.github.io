@@ -22,7 +22,18 @@ var requestjs = {
                     callback(xhr.response);
                     return xhr.status;
                 } else {
-                    document.write('<div align="center"><h1>Sorry</h1><BR><h3>요청하신 페이지를 찾을 수 없습니다.<BR>잠시 후 다시 시도해 주세요</h3><h3>Please try again later.<BR>The requested page was not found</h3></div>');
+                    document.write('<div align="center">'+
+                                    '<h1>Sorry, Your Request not found</h1>'+
+                                    '<BR>'+
+                                    '<h3>요청하신 페이지를 찾을 수 없습니다.<BR>'+
+                                        '잠시 후 다시 시도해 주세요</h3>'+
+                                    '<h3>Please try again later.<BR>'+
+                                        'The requested page was not found</h3>'+
+                                    '<a href="/" style="text-decoration: none; color: red; font-weight: bold;">'+
+                                        '[처음 페이지로 되돌아가기]<BR>'+
+                                        '[Return to the index page]'+
+                                    '<a/>'+
+                                    '</div>');
                     return xhr.status;
                 }
             }else{
