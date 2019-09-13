@@ -22,7 +22,18 @@ var requestjs = {
                     callback(xhr.response);
                     return xhr.status;
                 } else {
-                    document.write('<div align="center"><h1>Sorry</h1><BR><h3>요청하신 페이지를 찾을 수 없습니다.<BR>잠시 후 다시 시도해 주세요</h3><h3>Please try again later.<BR>The requested page was not found</h3></div>');
+                    document.write('<div align="center">'+
+                                    '<h1>Sorry, Your Request not found</h1>'+
+                                    '<BR>'+
+                                    '<h3>요청하신 페이지를 찾을 수 없습니다.<BR>'+
+                                        '잠시 후 다시 시도해 주세요</h3>'+
+                                    '<h3>Please try again later.<BR>'+
+                                        'The requested page was not found</h3>'+
+                                    '<a href="/" style="text-decoration: none; color: red; font-weight: bold;">'+
+                                        '[처음 페이지로 되돌아가기]<BR>'+
+                                        '[Return to the index page]'+
+                                    '<a/>'+
+                                    '</div>');
                     return xhr.status;
                 }
             }else{
@@ -97,7 +108,6 @@ var loadingjs = {
                 clearInterval(localAddr);
                 var addrIndex = loadingjs.intervalAddr.indexOf(localAddr);
                 loadingjs.intervalAddr.splice(addrIndex, 1);
-                console.log('here');
             }
         }, 100);
         loadingjs.intervalAddr.push(localAddr);
@@ -369,7 +379,7 @@ var wrapjs = {
 //          해결 후 성능적 이슈가 없을 것이라는 장담이 어려움
 var Textjs = {
     
-    insertText: function (tagName, insertTextValue, interval) {
+    insertText: function (tagName, insertTextValue, interval, callback) {
         
         var frontSpan = document.createElement('span');
         var backSpan = document.createElement('span');
@@ -432,6 +442,11 @@ var Textjs = {
             } catch (error) {
                 clearInterval(intervalAddr);
                 intervalAddr = null;
+                try {
+                    callback();
+                } catch (error) {
+                    console.log('Ended writing Text');
+                }
             }
         }, interval);
     }
@@ -706,6 +721,15 @@ var profileScript = {
     }
 };
 
+function browserCheck() {
+    if(navigator.userAgent.toLowerCase().indexOf("chrome") === -1 ){
+        requestjs.ajax('GET', '/1_app/browserCheck.json',function (data) {
+            var parsedData = JSON.parse(data);
+            modaljs.create(parsedData.title, parsedData.contents);
+        },true);
+    }
+}
+
 function requestInit() {
     headerjs.headerLogo.addEventListener('click',headerjs.AsideFocus);
     headerjs.headereye.addEventListener('click',headerjs.AsideFocus);
@@ -723,10 +747,10 @@ function requestInit() {
     window.addEventListener('mousemove',headerjs.MouseXY);
     window.addEventListener('scroll',headerjs.navContents);
     
-    
-    
     requestjs.ajax('GET','/1_app/appDataList.json', defaultScript.asideList, true);
     wrapjs.viewPageHistory();
 }
 
+
+browserCheck();
 requestInit();

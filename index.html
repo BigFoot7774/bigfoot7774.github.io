@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/2_css/headerStyle.css">
     <link rel="stylesheet" href="/2_css/navAsideStyle.css">
     <link rel="stylesheet" href="/2_css/contentsStyle.css">
-    <!-- <link rel="stylesheet" href="/2_css/style.css"> -->
+    <link rel="stylesheet" href="/2_css/style.css">
 </head>
 <body>
     <header class="max-width">
@@ -60,27 +60,37 @@
         </div>
     </div>
 
+<script src="/2_js/requestScript.js"></script>
 <script>
-    window.onload = function () {
-        loadingjs.plus('#welcomeLeftText');
-        welcomejs.remove(loadingjs.stop);
-
-        defaultScript.foward('/1_app/list/Home.html', 'Home', '찾아주셔서 감사합니다!~');
-    }
-    var link = document.createElement('link');
-    link.setAttribute('rel','stylesheet');
-    link.setAttribute('href','/2_css/style.css');
-    document.querySelector('head').appendChild(link);
-
-
-
-
+//시점: 스크립트 로드 완료 후 최초실행
     document.addEventListener('DOMContentLoaded', function(){
-        welcomejs.create();
+        
+        navjs.active('loading...', '찾아주셔서 감사합니다 <BR><BR> - Developer BigFoot (TaeHeung Ko) -<BR><BR>');
+
     });
 
+//시점: DOM 로드 완료 후 실행
+    window.onload = function () {
+        
+        welcomeHome();
+        if (sessionStorage.getItem('everVisited') != 'true') {
+            setTimeout(navjs.inactive, 3000);
+            sessionStorage.setItem('everVisited', true);
+        }else{
+            navjs.inactive();
+        }
+    }
+    
+
+    function welcomeHome() {
+        
+        requestjs.ajax('GET','/1_app/list/home.html', function (data) {
+
+            wrapjs.reset('Home - Help me', data);
+
+        },true);
+    }
+
 </script>
-<script src="/2_js/requestScript.js"></script>
-<script src="/2_js/welcomeScript.js"></script>
 </body>
 </html>
