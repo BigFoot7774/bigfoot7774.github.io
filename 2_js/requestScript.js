@@ -97,7 +97,6 @@ var loadingjs = {
                 clearInterval(localAddr);
                 var addrIndex = loadingjs.intervalAddr.indexOf(localAddr);
                 loadingjs.intervalAddr.splice(addrIndex, 1);
-                console.log('here');
             }
         }, 100);
         loadingjs.intervalAddr.push(localAddr);
@@ -369,7 +368,7 @@ var wrapjs = {
 //          해결 후 성능적 이슈가 없을 것이라는 장담이 어려움
 var Textjs = {
     
-    insertText: function (tagName, insertTextValue, interval) {
+    insertText: function (tagName, insertTextValue, interval, callback) {
         
         var frontSpan = document.createElement('span');
         var backSpan = document.createElement('span');
@@ -432,6 +431,11 @@ var Textjs = {
             } catch (error) {
                 clearInterval(intervalAddr);
                 intervalAddr = null;
+                try {
+                    callback();
+                } catch (error) {
+                    console.log('Ended writing Text');
+                }
             }
         }, interval);
     }
@@ -706,6 +710,15 @@ var profileScript = {
     }
 };
 
+function browserCheck() {
+    if(navigator.userAgent.toLowerCase().indexOf("chrome") === -1 ){
+        requestjs.ajax('GET', '/1_app/browserCheck.json',function (data) {
+            var parsedData = JSON.parse(data);
+            modaljs.create(parsedData.title, parsedData.contents);
+        },true);
+    }
+}
+
 function requestInit() {
     headerjs.headerLogo.addEventListener('click',headerjs.AsideFocus);
     headerjs.headereye.addEventListener('click',headerjs.AsideFocus);
@@ -723,10 +736,10 @@ function requestInit() {
     window.addEventListener('mousemove',headerjs.MouseXY);
     window.addEventListener('scroll',headerjs.navContents);
     
-    
-    
     requestjs.ajax('GET','/1_app/appDataList.json', defaultScript.asideList, true);
     wrapjs.viewPageHistory();
 }
 
+
+browserCheck();
 requestInit();

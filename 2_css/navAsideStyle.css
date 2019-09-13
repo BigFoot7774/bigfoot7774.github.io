@@ -17,6 +17,7 @@ nav{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    font-size: 10rem;
     animation: navCreate 0.3s;
 }
 .nav-title{
@@ -26,7 +27,7 @@ nav{
     font-size: 50px;
 
     background: rgba(0, 0, 0, 1);
-    height: 10vh;
+    min-height: 10vh;
     line-height: 100%;
 }
 .nav-contents{
@@ -37,7 +38,7 @@ nav{
     font-size: 30px;
     
     background: rgba(0, 0, 0, 1);
-    height: 10vh;
+    min-height: 10vh;
     line-height: 100%;
 }
 @keyframes navCreate{

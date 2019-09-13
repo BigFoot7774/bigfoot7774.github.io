@@ -55,14 +55,7 @@ welcomejs = {
 
 };
 
-function browserCheck() {
-    if(navigator.userAgent.toLowerCase().indexOf("chrome") === -1 ){
-        requestjs.ajax('GET', '/1_app/browserCheck.json',function (data) {
-            var parsedData = JSON.parse(data);
-            modaljs.create(parsedData.title, parsedData.contents);
-        },true);
-    }
-}
+
 
 function welcome_init() {
     // defaultScript.foward('/1_app/list/profile.html', 'Profile', 'Profile : 저를 소개합니다');
@@ -70,4 +63,3 @@ function welcome_init() {
     
 
 welcome_init();
-browserCheck();
