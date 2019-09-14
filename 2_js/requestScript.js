@@ -156,6 +156,25 @@ var navjs = {
         new Textjs.insertText('.nav-contents', contents, 10);
         
     },
+    normalActive: function (title, contents) {
+        nav = document.createElement('nav');
+        navTitle = document.createElement('div');
+        navContents = document.createElement('div');
+        
+        nav.className = 'z-index-100';
+        navTitle.className = 'nav-title';
+        navContents.className = 'nav-contents';
+        navContents.style.fontSize = '1rem';
+        
+        nav.appendChild(navTitle);
+        nav.appendChild(navContents);
+        document.body.appendChild(nav);
+        navTitle.innerHTML = title;
+        navContents.innerHTML = contents;
+        // loadingjs 삽입
+        loadingjs.plus('.nav-title');
+
+    },
     inactive: function () {
         loadingjs.stop();
         var navs = document.querySelectorAll('nav');
@@ -561,7 +580,7 @@ var defaultScript = {
         }, true);
     },
 
-    foward: function (URL, title, contents) {
+    forward: function (URL, title, contents) {
 //consoleSave 메소드 강제실행 현재 보고 있는 페이지들 저장
         var savebtns = document.querySelectorAll('.command-btn-save');
         for (var i = 0; i < savebtns.length; i++) {
@@ -645,6 +664,7 @@ var profileScript = {
         skillContainer.className = 'prifile-skill';
         title.className = 'prifile-skill-title flex';
         titleImg.src = imgURL;
+        titleImg.className = 'consoleImg-horizon';
         titleImg.setAttribute('onload','profileScript.levelLoading('+level+',\"#'+language+'\",\"#'+language+'Description\")');
         skillSet.className = 'profile-skill-set';
         skillLevel.id = language;

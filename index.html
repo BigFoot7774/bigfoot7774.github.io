@@ -62,17 +62,22 @@
 
 <script src="/2_js/requestScript.js"></script>
 <script>
-//시점: 스크립트 로드 완료 후 최초실행
-    document.addEventListener('DOMContentLoaded', function(){
-        
-        navjs.active('loading...', '찾아주셔서 감사합니다 <BR><BR> - Developer BigFoot (TaeHeung Ko) -<BR><BR>');
 
-    });
+//시점: 스크립트 로드 완료 후 최초실행
+document.addEventListener('DOMContentLoaded', function(){
+    
+    navjs.normalActive('loading...', '찾아주셔서 감사합니다. 잠시만 기다려주세요!<BR><BR> - Developer BigFoot (TaeHeung Ko) -');
+
+});
 
 //시점: DOM 로드 완료 후 실행
-    window.onload = function () {
-        
-        welcomeHome();
+window.onload = function () {
+    
+    welcomeHome();
+    closeNavWelcome();
+}
+    
+    function closeNavWelcome() {
         if (sessionStorage.getItem('everVisited') != 'true') {
             setTimeout(navjs.inactive, 3000);
             sessionStorage.setItem('everVisited', true);
@@ -80,14 +85,11 @@
             navjs.inactive();
         }
     }
-    
 
     function welcomeHome() {
-        
         requestjs.ajax('GET','/1_app/list/home.html', function (data) {
-
-            wrapjs.reset('Home - Help me', data);
-
+            wrapjs.reset('Home - Help me', '');
+            Textjs.insertText('#mainConsole', data, 10);
         },true);
     }
 
