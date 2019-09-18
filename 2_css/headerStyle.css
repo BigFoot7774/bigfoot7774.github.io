@@ -65,6 +65,7 @@ header{
     box-sizing: border-box;
     overflow-x: scroll;
     white-space: nowrap;
+    -ms-overflow-style: none;
 }
     .header-contents::-webkit-scrollbar {
         width: 5px;
