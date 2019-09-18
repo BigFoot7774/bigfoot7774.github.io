@@ -60,7 +60,7 @@
         </div>
     </div>
 
-<script src="/2_js/requestScript.js"></script>
+<script src="/2_js/script.js"></script>
 <script>
 
 //시점: 스크립트 로드 완료 후 최초실행
@@ -88,8 +88,8 @@ window.onload = function () {
 
     function welcomeHome() {
         requestjs.ajax('GET','/1_app/list/home.html', function (data) {
-            wrapjs.reset('Home - Help me', '');
-            Textjs.insertText('#mainConsole', data, 10);
+            wrapjs.reset('Home - guide', '');
+            document.querySelector('#mainConsole').innerHTML = data;
         },true);
     }
 

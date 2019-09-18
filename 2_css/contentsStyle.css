@@ -104,6 +104,11 @@
         opacity: 0.5;
     }
 }
+.home-guide fieldset{
+    padding: 10px;
+    margin: 10px;
+}
+
 .prifile-category{
     font-size: 2em;
 }

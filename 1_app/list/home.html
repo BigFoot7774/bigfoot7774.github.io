@@ -1,60 +1,80 @@
-<fieldset>
-    <legend>도움말</legend>
-    <table>
-        <!-- <tbody>
-            <tr>
-                <td>
-                    <img class="consoleImg-horizon" src="/1_app/list/home/logo-after.png"><BR><BR><BR><BR>
-                    메뉴바
-                </td>
-                <td>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;←<BR>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;←<BR>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;←<BR>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;←<BR>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;←<BR><BR><BR><BR>
-                </td>
-                <td>
-                    <img class="consoleImg-horizon" src="/1_app/list/home/logo-before.png"><BR>
-                    우측 상단에 로고를 누르시면 메뉴들을 확인 할 수 있습니다.
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <img class="consoleImg-horizon" src="/1_app/list/home/SaveConsoleWindow.png"><BR>
-                    1. 저장(최소화)
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <img class="consoleImg-horizon" src="/1_app/list/home/MaximumConsoleWindow.png"><BR>
-                    2. 최대화
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <img class="consoleImg-horizon" src="/1_app/list/home/CloseConsoleWindow.png"><BR>
-                    3. 닫기
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <BR>
-<img src="/1_app/list/home/localHistory.png" class="consoleImg-vertical"><BR>
-1. 저장버튼을 눌러 저장된 화면은 위 그림과 같이 좌측 상단에 표시됩니다.<BR>
-    클릭하시면 다시 불러오실 수 있습니다.<BR><BR>
-
-<img src="/1_app/list/home/window-min.png" class="consoleImg-vertical"><BR><BR>
-<center>↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓</center><BR>
-<img src="/1_app/list/home/window-max.png" class="consoleImg-vertical"><BR><BR>
-
-2. 모바일버전은 가로폭이 좁아 보기 불편 할 수도 있습니다.<BR>
-  최대화 버튼을 누르시면 가로폭을 최대로 키워서 볼 수 있습니다.<BR><BR>
-    
-<img src="/1_app/list/home/closeWindow-before.png" class="consoleImg-vertical"><BR><BR>
-<center>↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓</center><BR>
-<img src="/1_app/list/home/closeWindow-after.png" class="consoleImg-vertical"><BR><BR>
-
-3. X버튼을 누르시면 현재 보는 창을 닫을 수 있습니다.<BR><BR> -->
-
-</fieldset>
+<div class="home-guide">
+    <div class="grid-component-1200">
+        <div class="grid-600" style="text-align: center; border: 1px groove; margin: 0px 10px;">
+            <h1 style="font-weight: normal;">
+                WELCOME!
+            </h1>
+            <img style="width: 40px; height: 40px;" src="/4_img/icon/BFfavicon.ico"
+                 onload="Textjs.insertText('#welcomeMungu',
+                 '<BR>방문해 주신것을 진심으로 환영합니다<BR><BR>기본 기능 안내의 설명을 보시고<BR><BR>더 편하게 구경하시기 바랍니다.<BR><BR>',10);">
+            <div id="welcomeMungu"></div>
+        </div>
+        <div class="grid-600" style="text-align: center; border: 1px groove; margin: 0px 10px;">
+            <h3>기본 기능 안내</h3>
+            <ul class="list-noneDeco">
+                <li style="cursor: pointer" onclick="window.scrollTo(null, document.querySelector('#homeVideo1').getBoundingClientRect().top)">
+                    1. 네비게이션 바
+                </li>
+                <li style="cursor: pointer" onclick="window.scrollTo(null, document.querySelector('#homeVideo2').getBoundingClientRect().top)">
+                    2. 히스토리 기능
+                </li>
+                <li style="cursor: pointer" onclick="window.scrollTo(null, document.querySelector('#homeVideo3').getBoundingClientRect().top)">
+                    3. 현재 창 저장
+                </li>
+                <li style="cursor: pointer" onclick="window.scrollTo(null, document.querySelector('#homeVideo4').getBoundingClientRect().top)">
+                    4. 불러오기
+                </li>
+                <li style="cursor: pointer" onclick="window.scrollTo(null, document.querySelector('#homeVideo5').getBoundingClientRect().top)">
+                    5. 현재 창 닫기
+                </li>
+                <li style="cursor: pointer" onclick="window.scrollTo(null, document.querySelector('#homeVideo6').getBoundingClientRect().top)">
+                    6. 현재 창 최대화
+                </li>
+            </ul>
+        </div>
+    </div>
+    <fieldset>
+        <legend>1. 네비게이션바 설명</legend>
+        <video id="homeVideo1" class="consoleImg-horizon" src="/1_app/list/home/네비게이션설명.mp4" controls="controls">
+            <p>현재 환경에서 지원되지 않는 형식의 동영상입니다. 다른 브라우저를 이용해주세요</p>
+        </video>
+        <p>오른쪽 상단의 로고를 누르시면 네비게이션바를 통해 이동하실 수 있습니다.</p>
+        <p>(데스크탑환경에서는 네비게이션바가 자동활성화 됩니다)</p>
+    </fieldset>
+    <fieldset>
+        <legend>2. 히스토리 기능</legend>
+        <video id="homeVideo2" class="consoleImg-horizon" src="/1_app/list/home/히스토리 기능.mp4" controls="controls">
+            <p>현재 환경에서 지원되지 않는 형식의 동영상입니다. 다른 브라우저를 이용해주세요</p>
+        </video>
+        <p>페이지를 이동 시 이전 창의 정보가 저장됩니다.</p>
+        <p>브라우저를 종료하시더라도 다시 접속하시면 보셨던 정보를 불러오실 수 있습니다.</p>
+    </fieldset>
+    <fieldset>
+        <legend>3. 현재 창 저장</legend>
+        <video id="homeVideo3" class="consoleImg-horizon" src="/1_app/list/home/저장.mp4" controls="controls">
+            <p>현재 환경에서 지원되지 않는 형식의 동영상입니다. 다른 브라우저를 이용해주세요</p>
+        </video>
+        <p>보고계신 창의 최소화 버튼을 누르시면 현재 창의 정보를 저장할 수 있습니다.</p>
+    </fieldset>
+    <fieldset>
+        <legend>4. 불러오기</legend>
+        <video id="homeVideo4" class="consoleImg-horizon" src="/1_app/list/home/불러오기.mp4" controls="controls">
+            <p>현재 환경에서 지원되지 않는 형식의 동영상입니다. 다른 브라우저를 이용해주세요</p>
+        </video>
+        <p>"3.현재 창 저장 기능"을 통해 저장했던 목록이나 "2.히스토리 기능"을 통해 저장되었던 정보를 불러올 수 있습니다.</p>
+    </fieldset>
+    <fieldset>
+        <legend>5. 현재 창 닫기</legend>
+        <video id="homeVideo5" class="consoleImg-horizon" src="/1_app/list/home/닫기.mp4" controls="controls">
+            <p>현재 환경에서 지원되지 않는 형식의 동영상입니다. 다른 브라우저를 이용해주세요</p>
+        </video>
+        <p>창의 닫기버튼을 통해 현재 창을 닫을 수 있습니다.(현재 창만 종료)</p>
+    </fieldset>
+    <fieldset>
+        <legend>6. 현재 창 최대화</legend>
+        <video id="homeVideo6" class="consoleImg-horizon" src="/1_app/list/home/최대화.mp4" controls="controls">
+            <p>현재 환경에서 지원되지 않는 형식의 동영상입니다. 다른 브라우저를 이용해주세요</p>
+        </video>
+        <p>현재 창 최대화 기능을 통해 좌우 넓이를 최대로 넓혀 편하게 이용 하실 수 있습니다.</p>
+    </fieldset>
+</div>
