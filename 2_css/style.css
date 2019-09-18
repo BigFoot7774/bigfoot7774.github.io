@@ -121,6 +121,17 @@ footer>ul>li{
 .overflow-auto{
     overflow: auto;
 }
+.list-inline>li{
+    display: inline-block;
+}
+.list-noneDeco{
+    list-style: none;
+    padding: 20px;
+}
+.list-noneDeco>li{
+    margin: 10px;
+}
+
 .grid-component-1200{
     display: grid;
     grid-template-columns: repeat(12, 1fr);

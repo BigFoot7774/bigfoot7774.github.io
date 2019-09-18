@@ -664,7 +664,6 @@ var profileScript = {
         skillContainer.className = 'prifile-skill';
         title.className = 'prifile-skill-title flex';
         titleImg.src = imgURL;
-        titleImg.className = 'consoleImg-horizon';
         titleImg.setAttribute('onload','profileScript.levelLoading('+level+',\"#'+language+'\",\"#'+language+'Description\")');
         skillSet.className = 'profile-skill-set';
         skillLevel.id = language;
