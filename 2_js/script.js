@@ -550,7 +550,7 @@ var headerjs = {
             }else {
                 headerjs.localPageHistory.classList.remove('opacity-0');
             }
-
+//객체에 추가, 저장 후에 스크롤링 될때마다 호출저장 반복
         headerjs.scrollTargetTop = actionY;
     }
 };

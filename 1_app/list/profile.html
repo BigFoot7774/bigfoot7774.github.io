@@ -3,12 +3,12 @@
         <legend class="prifile-category">Category</legend>
         <ul class="prifile-list">
             <li>
-                <a class="profile-title aboutMe"
-                 href="javascript: for(let i = 0; i < document.querySelectorAll('.aboutMe').length; i++) {document.querySelectorAll('.aboutMe')[i].classList.toggle('hidden');}">
+                <a class="profile-title aboutMe" style="cursor: pointer;"
+                 onclick="for(var i = 0; i < document.querySelectorAll('.aboutMe').length; i++) {document.querySelectorAll('.aboutMe')[i].classList.toggle('hidden');}">
                     자기 소개
                 </a>
                 <fieldset class="profile-title aboutMe hidden">
-                    <legend style="cursor: pointer;" onclick="for(let i = 0; i < document.querySelectorAll('.aboutMe').length; i++) {document.querySelectorAll('.aboutMe')[i].classList.toggle('hidden');}">
+                    <legend style="cursor: pointer;" onclick="for(var i = 0; i < document.querySelectorAll('.aboutMe').length; i++) {document.querySelectorAll('.aboutMe')[i].classList.toggle('hidden');}">
                         자기 소개
                     </legend>
                     <ul class="prifile-list">
