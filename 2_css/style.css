@@ -17,6 +17,7 @@ body{
     background-position-x: center;
     background-position-y: top;
     min-height: 95vh;
+    overflow-y: overlay;
 }
 img, video{
     max-width: 100%;
@@ -135,6 +136,7 @@ footer>ul>li{
 .grid-component-1200{
     display: grid;
     grid-template-columns: repeat(12, 1fr);
+    
 }
 .grid-100{grid-column: span 1;}
 .grid-200{grid-column: span 2;}
