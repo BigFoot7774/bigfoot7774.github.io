@@ -208,7 +208,7 @@ var modaljs = {
             header.appendChild(title);
             header.appendChild(close);
             close.className = 'header-modal-title-close';
-            close.setAttribute('href','javascript:;');
+            close.setAttribute('style','cursor: pointer;');
             close.innerHTML = '&times';
 
         contents.className = 'header-modal header-modal-contents';
@@ -337,6 +337,7 @@ var wrapjs = {
         var thisContainer = this.wrap.childNodes;
         for (var i = 0; i < thisContainer.length; i++) {
             thisContainer[i].classList.toggle('command-max-width');
+            thisContainer[i].querySelector('#mainConsole').classList.toggle('console-black-max-height');
         }
         
     },

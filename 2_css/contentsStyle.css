@@ -5,6 +5,7 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
+    box-sizing: border-box;
     animation: ContentsCreate 1s;
 }
 .command-max-width{
@@ -59,6 +60,14 @@
     background-color: black;
     word-break: break-all;
     font-family: 'Dotkey';
+    max-height: 75vh;
+    box-sizing: border-box;
+    overflow-y: scroll;
+}
+.console-black-max-height{
+    height: 100%;
+    max-height: inherit;
+    overflow: hidden;
 }
 .console-black * {
     color: white;
