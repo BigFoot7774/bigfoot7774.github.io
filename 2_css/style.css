@@ -17,7 +17,7 @@ body{
     background-position-x: center;
     background-position-y: top;
     min-height: 95vh;
-    overflow-y: overlay;
+    overflow: overlay;
 }
 img, video{
     max-width: 100%;

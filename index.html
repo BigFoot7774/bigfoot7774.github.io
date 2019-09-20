@@ -62,23 +62,32 @@
 
 <script src="/2_js/script.js"></script>
 <script>
-
-//시점: 스크립트 로드 완료 후 최초실행
+//--------------------시점: 스크립트 로드 완료 후 최초실행--------------------------
 document.addEventListener('DOMContentLoaded', function(){
     
+    //페이지 로딩동안 로딩창 최초생성
     navjs.normalActive('loading...', '찾아주셔서 감사합니다. 잠시만 기다려주세요!<BR><BR> - Developer BigFoot (TaeHeung Ko) -');
 
 });
+//-------------------------------------------------------------------------------
 
-//시점: DOM 로드 완료 후 실행
+//--------------------시점: DOM 로드 완료 후 실행----------------------------------
 window.onload = function () {
     
     welcomeHome();
     closeNavWelcome();
-    window.addEventListener('scroll', autoPlayVideo);
-    window.addEventListener('resize', autoPlayVideo);
-}
+    window.addEventListener('scroll', scrolljs.autoPlayVideo);
+    window.addEventListener('resize', scrolljs.autoPlayVideo);
     
+}
+//-------------------------------------------------------------------------------
+
+
+
+
+
+
+//로드 완료 후 최초 로딩창 close
     function closeNavWelcome() {
         if (sessionStorage.getItem('everVisited') != 'true') {
             setTimeout(navjs.inactive, 3000);
@@ -88,6 +97,7 @@ window.onload = function () {
         }
     }
 
+//home.html 요청
     function welcomeHome() {
         requestjs.ajax('GET','/1_app/list/home.html', function (data) {
             wrapjs.reset('Home - guide', '');
@@ -95,28 +105,8 @@ window.onload = function () {
         },true);
     }
 
-    function autoPlayVideo(event){
-        var videos = document.querySelectorAll('#bodyContainer video');
-        
-    for(var i = 0; i < videos.length; i++) {
-        var video = videos[i];
-        var x = video.offsetLeft, y = video.offsetTop, w = video.offsetWidth, h = video.offsetHeight, r = x + w,
-            b = y + h,
-            visibleX, visibleY, visible;
 
-            visibleX = Math.max(0, Math.min(w, window.pageXOffset + window.innerWidth - x, r - window.pageXOffset));
-            visibleY = Math.max(0, Math.min(h, window.pageYOffset + window.innerHeight - y, b - window.pageYOffset));
-
-            visible = visibleX * visibleY / (w * h);
-
-            if (visible > 0.8) {
-                video.play();
-            } else {
-                video.pause();
-            }
-
-        }
-    }
+    
 </script>
 </body>
 </html>

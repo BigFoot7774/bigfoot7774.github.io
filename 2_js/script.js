@@ -330,6 +330,8 @@ var wrapjs = {
         container.appendChild(mainConsole);
 
         mainConsole.innerHTML = contentsHTML;
+        mainConsole.addEventListener('scroll', scrolljs.autoPlayConsoleVideo);
+        mainConsole.addEventListener('resize', scrolljs.autoPlayConsoleVideo);
 
         return container;
     },
@@ -554,6 +556,63 @@ var headerjs = {
 //객체에 추가, 저장 후에 스크롤링 될때마다 호출저장 반복
         headerjs.scrollTargetTop = actionY;
     }
+};
+
+
+//기타 스크롤 이벤트에 관련된 보조객체
+var scrolljs = {
+
+//브라우저: 페이지 스크롤시 모든 동영상태그는 포커스되면 자동 재생(애드이벤트리스너 콜백구현)
+    autoPlayVideo: function (event){
+        var videos = document.querySelectorAll('#bodyContainer video');
+
+        for(var i = 0; i < videos.length; i++) {
+            var video = videos[i];
+            var x = video.offsetLeft;
+            var y = video.offsetTop;
+            var w = video.offsetWidth;
+            var h = video.offsetHeight;
+            var width = x + w;
+            var height = y + h;
+
+            var targetX = Math.max(0, Math.min(w, window.pageXOffset + window.innerWidth - x, width - window.pageXOffset));
+            var targetY = Math.max(0, Math.min(h, window.pageYOffset + window.innerHeight - y, height - window.pageYOffset));
+            
+            if (targetX * targetY / (w * h) > 0.9999) {
+                video.play();
+            } else {
+                video.pause();
+            }
+
+        }
+    },
+
+//mainConsole태그 컨텐츠: 
+//페이지 스크롤시 모든 동영상태그는 포커스되면 자동 재생(애드이벤트리스너 콜백구현)
+    autoPlayConsoleVideo: function (event) {
+        var videos = this.querySelectorAll('video');
+       
+        for(var i = 0; i < videos.length; i++) {
+            var video = videos[i].getBoundingClientRect();
+            var x = video.x;
+            var y = video.y;
+            var w = video.width;
+            var h = video.height;
+            var width = x + w;
+            var height = y + h;
+            
+            var targetX = Math.max(0, Math.min(w, this.clientWidth +60 - x, width));
+            var targetY = Math.max(0, Math.min(h, this.clientHeight +125 - y, height));
+
+            if (targetX * targetY / (w * h) > 0.9) {
+                videos[i].play();
+            } else {
+                videos[i].pause();
+            }
+
+        }
+    }
+
 };
 
 
