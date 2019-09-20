@@ -75,6 +75,8 @@ window.onload = function () {
     
     welcomeHome();
     closeNavWelcome();
+    window.addEventListener('scroll', autoPlayVideo);
+    window.addEventListener('resize', autoPlayVideo);
 }
     
     function closeNavWelcome() {
@@ -93,6 +95,28 @@ window.onload = function () {
         },true);
     }
 
+    function autoPlayVideo(event){
+        var videos = document.querySelectorAll('#bodyContainer video');
+        
+    for(var i = 0; i < videos.length; i++) {
+        var video = videos[i];
+        var x = video.offsetLeft, y = video.offsetTop, w = video.offsetWidth, h = video.offsetHeight, r = x + w,
+            b = y + h,
+            visibleX, visibleY, visible;
+
+            visibleX = Math.max(0, Math.min(w, window.pageXOffset + window.innerWidth - x, r - window.pageXOffset));
+            visibleY = Math.max(0, Math.min(h, window.pageYOffset + window.innerHeight - y, b - window.pageYOffset));
+
+            visible = visibleX * visibleY / (w * h);
+
+            if (visible > 0.8) {
+                video.play();
+            } else {
+                video.pause();
+            }
+
+        }
+    }
 </script>
 </body>
 </html>

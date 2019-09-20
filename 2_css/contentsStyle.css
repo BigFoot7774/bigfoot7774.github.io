@@ -118,8 +118,6 @@
     margin: 10px;
 }
 .home-guide video{
-    border: 1px groove white;
-    animation: clickVideo 1s infinite;
     max-height: 400px;
     width: auto;
     margin: 0px auto;
@@ -128,17 +126,6 @@
 .home-guide>fieldset{
     display: flex;
     flex-direction: column;
-}
-@keyframes clickVideo{
-    0%{
-        border: 1px groove white;
-    }
-    50%{
-        border: 1px groove rgba(37, 92, 194, 1);
-    }
-    100%{
-        border: 1px groove white;
-    }
 }
 .prifile-category{
     font-size: 2em;
