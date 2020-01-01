@@ -2,6 +2,7 @@
     <fieldset>
         <legend class="prifile-category">Category</legend>
         <ul class="prifile-list">
+        <!--
             <li>
                 <a class="profile-title aboutMe" style="cursor: pointer;"
                  onclick="for(var i = 0; i < document.querySelectorAll('.aboutMe').length; i++) {document.querySelectorAll('.aboutMe')[i].classList.toggle('hidden');}">
@@ -36,10 +37,11 @@
                     기본 정보
                 </a>
             </li>
+        -->
             <li>
                 <a class="profile-title"
-                 href="javascript: profileScript.titleActive('/1_app/list/profile/skillSet.json', profileScript.skillListParse, '기술 수준')">
-                    기술 수준
+                 href="javascript: profileScript.titleActive('/1_app/list/profile/skillSet.json', profileScript.skillListParse, 'Skill Level')">
+                    Skill Level
                 </a>
             </li>
         </ul>
