@@ -10,19 +10,24 @@ header{
     z-index: 100;
     box-sizing: border-box;
 }
+#logo-group{
+    position: fixed;
+    float: right;
+    right: -5px;
+    z-index: 9999;
+    top: 5px;
+}
 #headerLogo{
     width: 30px;
-    margin: 10px;
+    margin: 5px 10px;
     /* filter: invert(100%); */
     cursor: pointer;
-    transform: rotate(-45deg) translateX(-15px) translateY(-20px);
-    transform-origin: top;
     transition: 1s all;
+    z-index: 9999;
 }
 .header-eye{
     position: absolute;
-    top: 12px;
-    right: 25px;
+    top: 8px;
     text-align: center;
     opacity: 0;
     transition: 1s all;
@@ -31,12 +36,15 @@ header{
     cursor: pointer;
 }
 .header-eye-eyelid{
-    position: relative;
-    width: 20px;
+    position: fixed;
+    width: 15px;
+    right: 12px;
 }
 .header-eye-pupil{
     width: 3px;
     position: fixed;
+    top: 17px;
+    right: 18px;
     box-shadow: 2px 2px 2px black,
                 2px -2px 2px black,
                 -2px 2px 2px black,

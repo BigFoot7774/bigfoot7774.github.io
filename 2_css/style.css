@@ -5,7 +5,7 @@
     src: url(/3_font/DungGeunMo.ttf) format('truetype');
 }
 html, body{
-    font-family: 'Dotkey';
+    font-family: Dotkey;
     margin: 0px;
     color: rgba(255, 255, 255, 1);
     background-color: rgba(0, 0, 0, 1);

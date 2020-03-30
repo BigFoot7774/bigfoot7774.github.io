@@ -511,10 +511,10 @@ var headerjs = {
 
     MouseXY: function (event){
 
-        var pupil = headerjs.header.querySelector('.header-eye-pupil');
+        var pupil = document.querySelector('.header-eye-pupil');
 // eyelidInfo의 getBoundingClientRect()메소드를 호출하여 이 태그의 위치를 기준으로
 // 좌표 정보값을 가지는 객체를 리턴받음
-        var eyelidInfo = headerjs.header.querySelector('.header-eye-eyelid').getBoundingClientRect();
+        var eyelidInfo = document.querySelector('.header-eye-eyelid').getBoundingClientRect();
 // eventLocation: 현재 마우스 좌표값
         var eventLocation = {X: event.clientX, Y: event.clientY};
 // center: 좌표값 기준이 될 header-eye-eyelid클래스의 X Y좌표 중앙 값

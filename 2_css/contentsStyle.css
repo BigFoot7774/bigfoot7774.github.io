@@ -196,7 +196,7 @@
         padding: 0px;
     }
 }
-@media(max-height: 700px){
+@media(max-height: 500px){
     footer{
         display: none;
     }

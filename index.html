@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>BigFoot</title>
+    <title>Sasquatche</title>
     <link rel="shortcut icon" type="image/x-icon" href="/4_img/icon/BFfavicon.ico" />
     <link rel="stylesheet" href="/2_css/welcomeStyle.css">
     <link rel="stylesheet" href="/2_css/headerStyle.css">
@@ -19,34 +19,30 @@
             <div id="localPageHistory" class="header-contents">
             </div>
         </div>
-        <img src="/4_img/eye/comfirmedBF.svg" title="Click Me" id="headerLogo">
+    </header>
+    <div id="logo-group">
+        <img src="/4_img/icon/sasquatche-white.png" title="Click Me" id="headerLogo">
         <div class="header-eye">
             <img src="/4_img/eye/eyelid.svg" class="header-eye-eyelid">
             <img src="/4_img/eye/pupil.svg" class="header-eye-pupil">
         </div>
-    </header>
+    </div>
     <aside>
         <ul id="asideList" class="aside-list">
 
         </ul>
         <footer>
             <ul>
-                <li>
-                    <img src="4_img/icon/QRcode.png" width="50"><BR>
-                    this Page<BR>
-                    (QR code)
-                </li>
                 <li> 
-                    <a href="https://github.com/BigFoot7774/bigfoot7774.github.io" target="_blank">
-                        <img src="4_img/icon/BFfavicon.ico" width="50">
+                    <a href="https://github.com/Sasquatche/Sasquatche.github.io" target="_blank">
+                        <img src="4_img/icon/BFfavicon.ico" width="32">
                     </a><BR>
-                    this Page<BR>
-                    (git)
+                    This Page<BR>
                 </li>
                 <li></li>
                 <li> 
-                    <a href="https://github.com/BigFoot7774" target="_blank">
-                        <img src="4_img/icon/GitHub-Mark-Light-64px.png" width="50">
+                    <a href="https://github.com/Sasquatche" target="_blank">
+                        <img src="4_img/icon/GitHub-Mark-Light-32px.png" width="32">
                     </a><BR>
                     Github
                 </li>
@@ -66,7 +62,7 @@
 document.addEventListener('DOMContentLoaded', function(){
     
     //페이지 로딩동안 로딩창 최초생성
-    navjs.normalActive('loading...', '찾아주셔서 감사합니다. 잠시만 기다려주세요!<BR><BR> - Developer BigFoot (TaeHeung Ko) -');
+    navjs.normalActive('loading...', 'Thank you so much for visiting my page !<BR>Please wait a few seconds<BR><BR> - Developer Sasqutche -');
 
 });
 //-------------------------------------------------------------------------------
@@ -78,7 +74,7 @@ window.onload = function () {
     closeNavWelcome();
     window.addEventListener('scroll', scrolljs.autoPlayVideo);
     window.addEventListener('resize', scrolljs.autoPlayVideo);
-    
+    keyset()
 }
 //-------------------------------------------------------------------------------
 
@@ -105,6 +101,29 @@ window.onload = function () {
         },true);
     }
 
+    function keyset() {
+        window.addEventListener('keydown', function () {
+
+            // if (event.ctrlKey && event.keyCode === 87) wrapjs.consoleClose();
+            if (event.keyCode === 27){
+                event.preventDefault();
+                wrapjs.consoleClose();
+            }
+            if (event.ctrlKey && event.keyCode === 83){
+                event.preventDefault();
+                wrapjs.consoleSave();
+            }
+
+        });
+
+    }
+
+            
+
+
+
+
+    
 
     
 </script>
