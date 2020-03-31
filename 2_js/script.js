@@ -534,10 +534,10 @@ var headerjs = {
         if (eventLocation.X < eyelidInfo.left+10) {
             locationX = (center.X-5);
         }
-        if (eventLocation.Y > eyelidInfo.bottom-5) {
+        if (eventLocation.Y > eyelidInfo.bottom-2) {
             locationY = (center.Y+3);
         }
-        if (eventLocation.Y < eyelidInfo.top+5) {
+        if (eventLocation.Y < eyelidInfo.top+2) {
             locationY = (center.Y-5);
         }
     //좌표값 반영
