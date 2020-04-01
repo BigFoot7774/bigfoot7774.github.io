@@ -27,7 +27,7 @@ header{
 }
 .header-eye{
     position: absolute;
-    top: 8px;
+    top: 11px;
     text-align: center;
     opacity: 0;
     transition: 1s all;
@@ -37,11 +37,11 @@ header{
 }
 .header-eye-eyelid{
     position: fixed;
-    width: 15px;
-    right: 12px;
+    width: 13px;
+    right: 13px;
 }
 .header-eye-pupil{
-    width: 3px;
+    width: 2px;
     position: fixed;
     top: 17px;
     right: 18px;

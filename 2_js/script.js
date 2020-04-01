@@ -528,17 +528,17 @@ var headerjs = {
 
     //pupil의 위치가 eyelid의 범위에서 벗어나지 않게 
     // 조건문으로 위치 조정
-        if (eventLocation.X > eyelidInfo.right-10) {
-            locationX = (center.X+2);
+        if (eventLocation.X > eyelidInfo.right-5) {
+            locationX = (center.X+3);
         }
-        if (eventLocation.X < eyelidInfo.left+10) {
-            locationX = (center.X-5);
+        if (eventLocation.X < eyelidInfo.left+5) {
+            locationX = (center.X-3);
         }
         if (eventLocation.Y > eyelidInfo.bottom-2) {
             locationY = (center.Y+3);
         }
         if (eventLocation.Y < eyelidInfo.top+2) {
-            locationY = (center.Y-5);
+            locationY = (center.Y-3);
         }
     //좌표값 반영
         pupil.style.left = String(locationX)+'px';
