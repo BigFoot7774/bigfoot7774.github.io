@@ -11,6 +11,11 @@
     padding: 5px;
     position: absolute;
     left: -40px;
+    color: rgba(255, 255, 255, 0);
+    background: url('../4_img/background/ClMo.gif');
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-size: cover;
 }
 
 #headerLogo:HOVER{
