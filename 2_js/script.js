@@ -3,18 +3,19 @@ var requestjs = {
 
     ajax: function (method, URL, callback, async) {
         var xhr = new XMLHttpRequest();
+        var parsingURL = [];
 
-        if (method.toUpperCase() === 'GET') {
+        // if (method.toUpperCase() === 'GET') {
             method = 'GET';
             xhr.open(method, URL, async);
             xhr.send();
-        }else if (method.toUpperCase() === 'POST') {
-            method = 'POST';
-            parsingURL = URL.split('?');
-            xhr.open(method, parsingURL[0], async);
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.send(parsingURL[1]);
-        }
+        // }else if (method.toUpperCase() === 'POST') {
+        //     method = 'POST';
+        //     parsingURL = URL.split('?');
+        //     xhr.open(method, parsingURL[0], async);
+        //     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        //     xhr.send(parsingURL[1]);
+        // }
 
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
@@ -301,7 +302,7 @@ var wrapjs = {
         container.className = 'command';
         header.className = 'command-header';
         title.className = 'command-title';
-        icon.src = '/4_img/icon/cmdicon.png';
+        icon.src = '4_img/icon/cmdicon.png';
         icon.style.padding = '0px 3px';
         icon.style.margin = '0px';
         icon.style.width = '1.2em';
@@ -802,7 +803,7 @@ var profileScript = {
 
 function browserCheck() {
     if(navigator.userAgent.toLowerCase().indexOf("chrome") === -1 ){
-        requestjs.ajax('GET', '/1_app/browserCheck.json',function (data) {
+        requestjs.ajax('GET', '1_app/browserCheck.json',function (data) {
             var parsedData = JSON.parse(data);
             modaljs.create(parsedData.title, parsedData.contents);
         },true);
@@ -826,7 +827,7 @@ function requestInit() {
     window.addEventListener('mousemove',headerjs.MouseXY);
     window.addEventListener('scroll',headerjs.navContents);
     
-    requestjs.ajax('GET','/1_app/appDataList.json', defaultScript.asideList, true);
+    requestjs.ajax('GET','1_app/appDataList.json', defaultScript.asideList, true);
     wrapjs.viewPageHistory();
 }
 

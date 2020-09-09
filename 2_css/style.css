@@ -1,8 +1,8 @@
 @charset "UTF-8";
 @font-face{
     font-family: 'Dotkey';
-    src: url(/3_font/DungGeunMo.eot);
-    src: url(/3_font/DungGeunMo.ttf) format('truetype');
+    src: url(../3_font/DungGeunMo.eot);
+    src: url(../3_font/DungGeunMo.ttf) format('truetype');
 }
 html, body{
     font-family: Dotkey;
@@ -12,7 +12,7 @@ html, body{
     line-height: 1.2rem;
 }
 body{
-    background-image: url('/4_img/background/1.jpg');
+    background-image: url('../4_img/background/1.jpg');
     background-repeat: repeat-y;
     background-position-x: center;
     background-position-y: top;
@@ -102,7 +102,7 @@ footer>ul>li{
 .height-half{height: 50vh;}
 .height-300px{height: 300px;}
 .max-width{
-    width: 100vw;
+    width: 100%;
 }
 .max-height{
     height: 100vh;
