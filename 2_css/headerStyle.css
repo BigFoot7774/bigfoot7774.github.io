@@ -3,6 +3,7 @@
 header{
     padding: 0.1rem 0px;
     height: 1.5rem !important;
+    width: 80vw;
     background-color: rgba(0, 0, 0, 0);
     text-align: right;
     position: fixed;
@@ -17,44 +18,10 @@ header{
     z-index: 9999;
     top: 5px;
 }
-#headerLogo{
-    width: 30px;
-    margin: 5px 10px;
-    /* filter: invert(100%); */
-    cursor: pointer;
-    transition: 1s all;
-    z-index: 9999;
-}
-.header-eye{
-    position: absolute;
-    top: 11px;
-    text-align: center;
-    opacity: 0;
-    transition: 1s all;
-    z-index: -1;
-    color: black;
-    cursor: pointer;
-}
-.header-eye-eyelid{
-    position: fixed;
-    width: 13px;
-    right: 13px;
-}
-.header-eye-pupil{
-    width: 2px;
-    position: fixed;
-    top: 17px;
-    right: 18px;
-    box-shadow: 2px 2px 2px black,
-                2px -2px 2px black,
-                -2px 2px 2px black,
-                -2px -2px 2px black;
-    /* filter: invert(100%); */
-}
 .header-contents-frame{
-    width: 100vw;
+    width: 80vw;
     padding-left: 3px;
-    padding-right: 160px;
+    margin-right: 160px;
     height: 40px;
     position: fixed;
     text-align: left;

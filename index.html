@@ -6,7 +6,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Xasquatch</title>
-    <link rel="shortcut icon" type="image/x-icon" href="4_img/icon/BFfavicon.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="4_img/icon/BFfavicon.ico"/>
     <link rel="stylesheet" href="2_css/welcomeStyle.css">
     <link rel="stylesheet" href="2_css/headerStyle.css">
     <link rel="stylesheet" href="2_css/navAsideStyle.css">
@@ -14,102 +14,94 @@
     <link rel="stylesheet" href="2_css/style.css">
 </head>
 <body>
-    <header class="max-width">
-        <div class="header-contents-frame">
-            <div id="localPageHistory" class="header-contents">
-            </div>
-        </div>
-    </header>
-    <div id="logo-group">
-        <img src="4_img/icon/sasquatche-white.png" title="Click Me" id="headerLogo">
-        <div class="header-eye">
-            <img src="4_img/eye/eyelid.svg" class="header-eye-eyelid">
-            <img src="4_img/eye/pupil.svg" class="header-eye-pupil">
+<header>
+    <div class="header-contents-frame">
+        <div id="localPageHistory" class="header-contents">
         </div>
     </div>
-    <aside>
+</header>
+<aside>
+    <div>
+        <h4 id="headerLogo" class="header-logo">Xasquatch</h4>
         <ul id="asideList" class="aside-list">
 
         </ul>
-        <footer>
-            <ul>
-                <li> 
-                    <a href="https://github.com/bigfoot7774/bigfoot7774.github.io" target="_blank">
-                        <img src="4_img/icon/BFfavicon.ico" width="32">
-                    </a><BR>
-                    This Page<BR>
-                </li>
-                <li></li>
-                <li> 
-                    <a href="https://github.com/bigfoot7774" target="_blank">
-                        <img src="4_img/icon/GitHub-Mark-Light-32px.png" width="32">
-                    </a><BR>
-                    Github
-                </li>
-            </ul>
-        </footer>
-    </aside>
-    <div id="bodyContainer">
-        <div class="wrap">
-            
-
-        </div>
     </div>
+    <footer>
+        <ul>
+            <li>
+                <a href="https://github.com/bigfoot7774/bigfoot7774.github.io" target="_blank">
+                    <img src="4_img/icon/BFfavicon.ico" width="32">
+                </a><BR>
+                This Page<BR>
+            </li>
+            <li></li>
+            <li>
+                <a href="https://github.com/bigfoot7774" target="_blank">
+                    <img src="4_img/icon/GitHub-Mark-Light-32px.png" width="32">
+                </a><BR>
+                Github
+            </li>
+        </ul>
+    </footer>
+</aside>
+<div id="bodyContainer">
+    <div class="wrap">
+
+
+    </div>
+</div>
 
 <script src="2_js/script.js"></script>
 <script>
-//--------------------시점: 스크립트 로드 완료 후 최초실행--------------------------
-document.addEventListener('DOMContentLoaded', function(){
-    
-    //페이지 로딩동안 로딩창 최초생성
-    navjs.normalActive('loading...', 'Thank you so much for visiting my page !<BR>Please wait a few seconds<BR><BR> - Developer Xasqutch -');
+    //--------------------시점: 스크립트 로드 완료 후 최초실행--------------------------
+    document.addEventListener('DOMContentLoaded', function () {
 
-});
-//-------------------------------------------------------------------------------
+        //페이지 로딩동안 로딩창 최초생성
+        navjs.normalActive('loading...', 'Thank you so much for visiting my page !<BR>Please wait a few seconds<BR><BR> - Developer Xasqutch -');
 
-//--------------------시점: DOM 로드 완료 후 실행----------------------------------
-window.onload = function () {
-    
-    welcomeHome();
-    closeNavWelcome();
-    window.addEventListener('scroll', scrolljs.autoPlayVideo);
-    window.addEventListener('resize', scrolljs.autoPlayVideo);
-    keyset()
-}
-//-------------------------------------------------------------------------------
+    });
+    //-------------------------------------------------------------------------------
 
+    //--------------------시점: DOM 로드 완료 후 실행----------------------------------
+    window.onload = function () {
 
+        welcomeHome();
+        closeNavWelcome();
+        window.addEventListener('scroll', scrolljs.autoPlayVideo);
+        window.addEventListener('resize', scrolljs.autoPlayVideo);
+        keyset()
+    }
+    //-------------------------------------------------------------------------------
 
 
-
-
-//로드 완료 후 최초 로딩창 close
+    //로드 완료 후 최초 로딩창 close
     function closeNavWelcome() {
         if (sessionStorage.getItem('everVisited') != 'true') {
             setTimeout(navjs.inactive, 3000);
             sessionStorage.setItem('everVisited', true);
-        }else{
+        } else {
             navjs.inactive();
         }
     }
 
-//home.html 요청
+    //home.html 요청
     function welcomeHome() {
-        requestjs.ajax('GET','1_app/list/home.html', function (data) {
+        requestjs.ajax('GET', '1_app/list/home.html', function (data) {
             wrapjs.reset('Home - guide', '');
             document.querySelector('#mainConsole').innerHTML = data;
-        },true);
+        }, true);
     }
 
     function keyset() {
         window.addEventListener('keydown', function () {
 
             // if (event.ctrlKey && event.keyCode === 87) wrapjs.consoleClose();
-            if (event.keyCode === 27){
+            if (event.keyCode === 27) {
                 event.preventDefault();
                 wrapjs.consoleClose();
             }
-            if (event.ctrlKey && event.keyCode === 83){
+            if (event.ctrlKey && event.keyCode === 83) {
                 event.preventDefault();
                 wrapjs.consoleSave();
             }
@@ -118,14 +110,7 @@ window.onload = function () {
 
     }
 
-            
 
-
-
-
-    
-
-    
 </script>
 </body>
 </html>

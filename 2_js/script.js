@@ -480,36 +480,31 @@ var headerjs = {
     header: document.querySelector('header'),
     aside: document.querySelector('aside'),
     headerLogo: document.querySelector('#headerLogo'),
-    headereye: document.querySelector('.header-eye'),
     localPageHistory: document.querySelector('#localPageHistory'),
     
     AsideFocus: function (event) {
 
-        headerjs.headereye.classList.toggle('opacity-1');
-        headerjs.headereye.classList.toggle('z-index-100');
-       
+
         var asideChilden = headerjs.aside.querySelectorAll('aside>*');
 
         headerjs.aside.classList.toggle('aside-focus');
-
+/*
         for (var index = 0; index < asideChilden.length; index++) {
             asideChilden[index].classList.toggle('opacity-1');
-        }
+        }*/
         
     },
     RemoveAsideFocus: function (event) {
-        headerjs.headereye.classList.remove('opacity-1');
-        headerjs.headereye.classList.remove('z-index-100');
-       
+
         var asideChilden = headerjs.aside.querySelectorAll('aside>*');
 
         headerjs.aside.classList.remove('aside-focus');
-
+/*
         for (var index = 0; index < asideChilden.length; index++) {
             asideChilden[index].classList.remove('opacity-1');
-        }
+        }*/
     },
-
+/*
     MouseXY: function (event){
 
         var pupil = document.querySelector('.header-eye-pupil');
@@ -527,7 +522,7 @@ var headerjs = {
         var locationX = eventLocation.X;
         var locationY = eventLocation.Y;
 
-    //pupil의 위치가 eyelid의 범위에서 벗어나지 않게 
+    //pupil의 위치가 eyelid의 범위에서 벗어나지 않게
     // 조건문으로 위치 조정
         if (eventLocation.X > eyelidInfo.right-5) {
             locationX = (center.X+3);
@@ -544,7 +539,7 @@ var headerjs = {
     //좌표값 반영
         pupil.style.left = String(locationX)+'px';
         pupil.style.top = String(locationY)+'px';
-    },
+    },*/
 
     navContents:function (event) {
         var actionY = event.srcElement.scrollingElement.scrollTop;
@@ -812,7 +807,6 @@ function browserCheck() {
 
 function requestInit() {
     headerjs.headerLogo.addEventListener('click',headerjs.AsideFocus);
-    headerjs.headereye.addEventListener('click',headerjs.AsideFocus);
 
     window.addEventListener('click',function (event) {
         var aside = document.querySelector('aside');

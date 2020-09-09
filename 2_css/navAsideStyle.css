@@ -1,5 +1,22 @@
 @charset "UTF-8";
 
+#headerLogo{
+    display: block;
+    opacity: 1 !important;
+    cursor: pointer;
+    transform: rotate(-270deg);
+    transform-origin: bottom;
+    z-index: 9999;
+    margin: 0px;
+    padding: 5px;
+    position: absolute;
+    left: -40px;
+}
+
+#headerLogo:HOVER{
+    cursor: pointer;
+}
+
 nav{
     /* 로딩 중 nav태그 컨텐츠가 표시되도록 함 */
     position: fixed;
@@ -57,19 +74,24 @@ aside{
     right: 0px;
     width: 150px;
     height: 100vh;
-    padding: 100px 5px 10px 5px;
+    padding: 10px 5px 10px 5px;
     box-sizing: border-box;
     color: rgba(255, 255, 255, 1);
     background-color: rgba(0, 0, 0, 1);
     border-left: 1px solid rgba(255, 255, 255, 1);
-    
+    text-align: left;
     transition: 0.3s all;
-    transform: rotate(-45deg) translateY(-65px) translateX(65px);
+    transform: rotate(-45deg) translateX(70px) translateY(-25px);
     transform-origin: top;
     z-index: 1;
 }
 aside>*{
-    opacity: 0;
+    opacity: 1;
+}
+aside>div:first-child{
+    display: flex;
+    justify-content: space-around;
+    padding-top: 40px;
 }
 .aside-focus{
     transform: rotate(0deg);
@@ -77,6 +99,7 @@ aside>*{
 }
 .aside-list{
     list-style: none;
+    margin-top: 100px;
     padding: 5px;
     font-size: 1.5em;
 }
