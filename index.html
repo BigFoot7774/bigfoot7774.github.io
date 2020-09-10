@@ -6,7 +6,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Xasquatch</title>
-    <link rel="shortcut icon" type="image/x-icon" href="4_img/icon/BFfavicon.ico"/>
+    <link rel="shortcut icon" type="image/x-icon" href="4_img/icon/Xasquatch.ico"/>
     <link rel="stylesheet" href="2_css/welcomeStyle.css">
     <link rel="stylesheet" href="2_css/headerStyle.css">
     <link rel="stylesheet" href="2_css/navAsideStyle.css">
@@ -31,7 +31,7 @@
         <ul>
             <li>
                 <a href="https://github.com/bigfoot7774/bigfoot7774.github.io" target="_blank">
-                    <img src="4_img/icon/BFfavicon.ico" width="32">
+                    <img src="4_img/icon/Xasquatch.ico" width="32">
                 </a><BR>
                 This Page<BR>
             </li>
@@ -78,7 +78,7 @@
     //로드 완료 후 최초 로딩창 close
     function closeNavWelcome() {
         if (sessionStorage.getItem('everVisited') != 'true') {
-            setTimeout(navjs.inactive, 3000);
+            setTimeout(navjs.inactive, 1000);
             sessionStorage.setItem('everVisited', true);
         } else {
             navjs.inactive();
