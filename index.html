@@ -77,7 +77,7 @@
 
     //로드 완료 후 최초 로딩창 close
     function closeNavWelcome() {
-        if (sessionStorage.getItem('everVisited') != 'true') {
+        if (sessionStorage.getItem('everVisited') !== 'true') {
             setTimeout(navjs.inactive, 1000);
             sessionStorage.setItem('everVisited', true);
         } else {
