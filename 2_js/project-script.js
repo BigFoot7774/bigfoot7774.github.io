@@ -7,7 +7,7 @@ function ShowSelectedContents(data) {
     var projectSectionSelected = document.querySelector('#project-section-selected');
     toggleActivate(projectSectionSelected);
     projectSectionSelected.innerHTML = '<section>' + data.innerHTML + '</section>';
-
+    window.scrollTo(0, 0);
 }
 
 function makeprojectSection(data) {
