@@ -107,6 +107,15 @@ footer>ul>li{
 .max-height{
     height: 100vh;
 }
+.activate {
+    height: 100%;
+    width: 100%;
+}
+
+.unactivate {
+    height: 0%;
+    width: 0%;
+}
 .opacity-0{
     opacity: 0;
 }
