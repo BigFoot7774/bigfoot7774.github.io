@@ -88,7 +88,7 @@
     //home.html 요청
     function welcomeHome() {
         requestjs.ajax('GET', '1_app/list/home.html', function (data) {
-            wrapjs.reset('Home - guide', '');
+            wrapjs.reset('Home', '');
             document.querySelector('#mainConsole').innerHTML = data;
         }, true);
     }

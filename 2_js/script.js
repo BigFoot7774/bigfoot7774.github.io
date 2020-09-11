@@ -796,9 +796,9 @@ var profileScript = {
     }
 };
 
-function browserCheck() {
+function checkBrowser() {
     if(navigator.userAgent.toLowerCase().indexOf("chrome") === -1 ){
-        requestjs.ajax('GET', '1_app/browserCheck.json',function (data) {
+        requestjs.ajax('GET', '1_app/checkBrowser.json',function (data) {
             var parsedData = JSON.parse(data);
             modaljs.create(parsedData.title, parsedData.contents);
         },true);
@@ -826,5 +826,5 @@ function requestInit() {
 }
 
 
-browserCheck();
+checkBrowser();
 requestInit();

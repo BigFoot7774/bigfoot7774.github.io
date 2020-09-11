@@ -1,13 +1,23 @@
 <div class="home-guide">
     <div class="grid-component-1200">
-        <div class="grid-600" style="text-align: center; border: 1px groove; margin: 0px 10px;">
-            <h1 style="font-weight: normal;">
+        <div class="grid-600" style="text-align: center; border: 1px groove; padding-bottom:10px; margin: 0px 10px;">
+            <h1>
                 WELCOME!
             </h1>
-            <img style="width: 40px; height: 40px;" src="4_img/icon/Xasquatch.ico"
-                 onload="Textjs.insertText('#welcomeMungu',
-                 'Thank you so much for visiting my page!<BR><BR>',10);">
-            <div id="welcomeMungu"></div>
+            <div id="welcomeText"></div>
+
+            <img src="4_img/icon/Xasquatch.ico"
+                 onload="
+                 var data = 'Welcome to my page.<BR><BR>' +
+                  'I\'m Ko Hyunseok(=Xasquatch)<BR><BR>' +
+                   'who dreams of becoming a developer.<BR><BR>' +
+                    'Thank you again for visiting my page.<BR><BR>' +
+                     'Have fun browsing the my page!~'
+//스크립트태그를 사용할 수 없어서 이미지 onload를 통한 날코딩...
+                Textjs.insertText('#welcomeText', data, 1);
+//스크립트 수행 후 제거
+            this.parentNode.removeChild(this);">
+
         </div>
         <div class="grid-600" style="text-align: center; border: 1px groove; margin: 0px 10px;">
             <h3>Basic function guide</h3>

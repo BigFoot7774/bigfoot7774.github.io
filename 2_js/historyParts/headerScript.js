@@ -41,7 +41,7 @@ const headerjs = {
         }
     },
 
-    MouseXY: function (event){
+/*    MouseXY: function (event){
 
         const pupil = headerjs.header.querySelector('.header-eye-pupil');
 // eyelidInfo의 getBoundingClientRect()메소드를 호출하여 이 태그의 위치를 기준으로
@@ -58,7 +58,7 @@ const headerjs = {
         let locationX = eventLocation.X;
         let locationY = eventLocation.Y;
 
-    //pupil의 위치가 eyelid의 범위에서 벗어나지 않게 
+    //pupil의 위치가 eyelid의 범위에서 벗어나지 않게
     // 조건문으로 위치 조정
         if (eventLocation.X > eyelidInfo.right-10) {
             locationX = (center.X+2);
@@ -75,7 +75,7 @@ const headerjs = {
     //좌표값 반영
         pupil.style.left = String(locationX)+'px';
         pupil.style.top = String(locationY)+'px';
-    },
+    },*/
 
     navContents:function (event) {
         // const actionY = event.srcElement.scrollingElement.scrollTop;
