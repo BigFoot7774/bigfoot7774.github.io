@@ -5,12 +5,7 @@
 }
 
 /*********************************************보충필요*/
-#project-section-contents {
-    display: flex;
-    justify-content: space-around;
-    flex-flow: row wrap;
 
-}
 
 #project-section-selected {
     position: absolute;
@@ -86,7 +81,16 @@
     width: 1200px;
     padding: 10px;
 }
+#project-section-selected > section > div > div:first-child {
+    display: none;
+}
 
+#project-section-contents {
+    display: flex;
+    justify-content: space-around;
+    flex-flow: row wrap;
+
+}
 
 #project-section-contents > section {
     width: 300px;
@@ -105,8 +109,14 @@
     text-overflow: ellipsis;
 }
 
-#project-section-contents > section > h5 {
+#project-section-contents > section > h5,
+#project-section-contents > section > div > div:last-child {
     display: none;
+}
+
+#project-section-contents > section > div > div:first-child > * {
+    width: 200px;
+    height: 200px;
 }
 
 #project-section-contents > section:hover {
