@@ -1,8 +1,11 @@
 @charset "UTF-8";
 @font-face{
     font-family: 'Dotkey';
-    src: url(../3_font/DungGeunMo.eot);
-    src: url(../3_font/DungGeunMo.ttf) format('truetype');
+    src: url(../3_font/DungGeunMo.woff2) format('woff2'),
+        url(../3_font/DungGeunMo.woff) format('woff'),
+        url(../3_font/DungGeunMo.ttf) format('truetype'),
+        url(../3_font/DungGeunMo.otf) format('opentype'),
+        url(../3_font/DungGeunMo.eot);
 }
 html, body{
     font-family: Dotkey;
