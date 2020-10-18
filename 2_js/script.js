@@ -436,7 +436,7 @@ var Textjs = {
                     var closeTag = '</' + substrText.substr(1, substrText.length);
                     var localTagName = substrText.substr(1, substrText.length - 2);
 
-                    if (insertTextsubstr.indexOf(closeTag) != -1) {
+                    if (insertTextsubstr.indexOf(closeTag) !== -1) {
                         var localTag = document.createElement(localTagName);
                         // localTag.id = 'localTag' + intervalAddr;
                         frontSpan.appendChild(localTag);
