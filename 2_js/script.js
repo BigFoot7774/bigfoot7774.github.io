@@ -376,7 +376,7 @@ var wrapjs = {
         for (var key in PageHistory) {
             if (PageHistory.hasOwnProperty(key)) {
                 var span = document.createElement('span');
-                span.className = 'msg-infomation';
+                span.className = 'msg-warning';
                 span.innerHTML = key;
                 span.setAttribute('onclick', 'wrapjs.getPageHistory(\'' + key + '\')');
                 wrapjs.localPageHistory.appendChild(span);
