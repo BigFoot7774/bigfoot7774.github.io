@@ -11,9 +11,9 @@
     padding: 5px;
     position: absolute;
     left: -40px;
-    color: rgba(255, 255, 255, 0);
-    background: url('../4_img/background/ClMo.gif');
-    background-clip: text;
+    color: rgba(255, 255, 255, 1);
+    /*background: url('../4_img/background/f7531767a6c3f8af51123596437735bd.gif');*/
+    /*background-clip: text;*/
     -webkit-background-clip: text;
     background-size: cover;
 }

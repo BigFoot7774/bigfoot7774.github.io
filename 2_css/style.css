@@ -9,17 +9,19 @@
 }
 html, body{
     font-family: Dotkey;
-    margin: 0px;
+    margin: 0;
     color: rgba(255, 255, 255, 1);
     background-color: rgba(0, 0, 0, 1);
     line-height: 1.2rem;
 }
 body{
-    background-image: url('../4_img/background/4.gif');
+    background-image: url('../4_img/background/f7531767a6c3f8af51123596437735bd.gif');
     background-position-x: center;
-    background-position-y: top;
+    /*background-position-y: center;*/
+    /*background-repeat: no-repeat;*/
+    background-size: 100vw auto;
+    background-attachment: fixed;
     min-height: 95vh;
-    background-size: 100vw 100vh;
 }
 img, video{
     max-width: 100%;
