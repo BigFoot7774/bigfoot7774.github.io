@@ -60,7 +60,7 @@
     background-color: black;
     word-break: break-all;
     font-family: 'Dotkey';
-    min-height: 50vh;
+    max-height: 75vh;
     box-sizing: border-box;
     overflow-y: scroll;
 }
