@@ -11,8 +11,8 @@
     position: absolute;
     color: white;
     z-index: 1;
-    left: 0px;
-    top: -100px;
+    left: 0;
+    top: 0;
     background: rgba(0, 0, 0, 0.7);
     transition: 0.5s all;
 
@@ -93,8 +93,8 @@
 }
 
 #project-section-contents > section {
-    width: 300px;
-    height: 250px;
+    width: 150px;
+    height: 150px;
     margin: 10px;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3),
     -1px 1px 3px rgba(0, 0, 0, 0.3),
@@ -115,8 +115,8 @@
 }
 
 #project-section-contents > section > div > div:first-child > * {
-    width: 200px;
-    height: 200px;
+    width: 100px;
+    height: 100px;
 }
 
 #project-section-contents > section:hover {

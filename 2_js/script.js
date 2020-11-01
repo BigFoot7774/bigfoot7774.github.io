@@ -305,7 +305,7 @@ var wrapjs = {
         var btn3 = document.createElement('div');
         var mainConsole = document.createElement('div');
 
-        container.className = 'command command-max-width';
+        container.className = 'command';
         header.className = 'command-header';
         title.className = 'command-title';
         icon.src = '4_img/icon/cmdicon.png';
@@ -325,7 +325,7 @@ var wrapjs = {
         btn2.setAttribute('onclick', 'wrapjs.consoleMaxWidth()');
         btn3.setAttribute('onclick', 'wrapjs.consoleClose()');
         mainConsole.id = 'mainConsole';
-        mainConsole.className = 'console-black console-black-max-height';
+        mainConsole.className = 'console-black';
 
         container.appendChild(header);
         header.appendChild(title);
