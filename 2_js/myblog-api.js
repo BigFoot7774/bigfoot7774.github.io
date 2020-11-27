@@ -29,7 +29,9 @@ var myAjax = {
 
         xhr.onreadystatechange = function () {
             if (xhr.readyState === xhr.DONE) {
-                footerEffect.loadingToggle();
+                try {
+                    footerEffect.loadingToggle();
+                } catch (e) {console.log('my blog by xasquatch에서 정보를 불러옵니다.')}
                 if (xhr.status === 200 || xhr.status === 201) {
                     result = xhr.response;
                     callback(result);
@@ -38,7 +40,9 @@ var myAjax = {
                     alert('잘못 된 접근 입니다 다시 시도해주세요');
                 }
             } else {
-                footerEffect.addLoadingState();
+                try {
+                    footerEffect.addLoadingState();
+                } catch (e) {console.log('my blog by xasquatch에서 정보를 불러옵니다.')}
             }
         };
 
