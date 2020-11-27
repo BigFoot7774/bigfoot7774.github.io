@@ -31,7 +31,9 @@ var myAjax = {
             if (xhr.readyState === xhr.DONE) {
                 try {
                     footerEffect.loadingToggle();
-                } catch (e) {console.log('my blog by xasquatch에서 정보를 불러옵니다.')}
+                } catch (e) {
+                    console.log('my blog by xasquatch에서 정보를 불러옵니다.')
+                }
                 if (xhr.status === 200 || xhr.status === 201) {
                     result = xhr.response;
                     callback(result);
@@ -42,7 +44,9 @@ var myAjax = {
             } else {
                 try {
                     footerEffect.addLoadingState();
-                } catch (e) {console.log('my blog by xasquatch에서 정보를 불러옵니다.')}
+                } catch (e) {
+                    console.log('my blog by xasquatch에서 정보를 불러옵니다.')
+                }
             }
         };
 
@@ -145,7 +149,7 @@ var myBoard = {
                 });
             }
 
-            myHistory.pushState(document.querySelector('#myblog-main-section').innerHTML);
+            myHistory.replaceState(document.querySelector('#myblog-main-section').innerHTML, '/api/members/' + memberNo + '/boards/');
         }, url);
 
     },
@@ -221,7 +225,7 @@ var myBoard = {
         boardListContainer.style.display = 'flex';
         boardListContainer.style.flexDirection = 'row';
         boardListContainer.style.flexWrap = 'wrap';
-
+        boardListContainer.style.justifyContent = 'space-evenly';
         for (var board of boardList) {
             var boardContainer = document.createElement('a');
             boardContainer.style.width = '150px';
@@ -247,11 +251,18 @@ var myBoard = {
 myHistory = {
     autoSetting: function () {
         window.onpopstate = function (e) {
-            document.querySelector('#myblog-main-section').innerHTML = e.state;
+            if (e.state !== null) {
+                document.querySelector('#myblog-main-section').innerHTML = e.state;
+            }
+            console.dir(e);
         }
     },
     pushState: function (data, url) {
         window.history.pushState(data, 'My Blog By Xasquatch', url);
+        myHistory.autoSetting();
+    },
+    replaceState: function (data) {
+        window.history.replaceState(data, 'My Blog By Xasquatch', window.location.href);
         myHistory.autoSetting();
     }
 
