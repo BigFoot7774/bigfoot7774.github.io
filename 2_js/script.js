@@ -828,8 +828,8 @@ var scrollJs = {
 
 function checkBrowser() {
     if (navigator.userAgent.toLowerCase().indexOf("chrome") === -1) {
-        requestjs.asyncGetData('1_app/checkBrowser.json', function (data) {
-            var parsedData = JSON.parse(data);
+        requestjs.asyncGetData('https://myblog.xasquatch.net/api/members/8/resources/5', function (data) {
+            var parsedData = JSON.parse(data).data.resource.contents;
             modaljs.create(parsedData.title, parsedData.contents);
         });
     }
@@ -851,7 +851,10 @@ function requestInit() {
     window.addEventListener('mousemove', headerjs.MouseXY);
     window.addEventListener('scroll', headerjs.navContents);
 
-    requestjs.asyncGetData('1_app/appDataList.json', defaultScript.asideList);
+    requestjs.asyncGetData('https://myblog.xasquatch.net/api/members/8/resources/4', function (data) {
+        var parsedData = JSON.parse(data).data.resource.contents;
+        defaultScript.asideList(parsedData);
+    });
     wrapjs.viewPageHistory();
 }
 
