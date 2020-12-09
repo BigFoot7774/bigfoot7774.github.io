@@ -50,7 +50,6 @@ nav{
 
     background: rgba(0, 0, 0, 1);
     min-height: 10vh;
-    line-height: 100%;
 }
 .nav-contents{
     border-bottom: 1px solid rgba(255, 255, 255, 0.5);
@@ -61,7 +60,6 @@ nav{
     
     background: rgba(0, 0, 0, 1);
     min-height: 10vh;
-    line-height: 100%;
 }
 @keyframes navCreate{
     from{

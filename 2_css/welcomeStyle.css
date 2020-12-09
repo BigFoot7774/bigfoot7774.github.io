@@ -19,7 +19,6 @@
     left: 0vw;
     text-align: center;
     font-size: 5vw;
-    line-height: 100%;
     padding: 30vh 10px 10px 10px;
     word-break: break-all;
     box-sizing: border-box;
@@ -31,7 +30,6 @@
     right: 0vw;
     text-align: left;
     font-size: 3vw;
-    line-height: 100%;
     padding: 25vh 10px 10px 5vw;
     word-break: break-all;
     box-sizing: border-box;
