@@ -1,34 +1,36 @@
 <body>
-    <fieldset>
-        <legend class="prifile-category">Category</legend>
-        <ul class="prifile-list">
-            <li>
-                <a class="profile-title"
-                 href="javascript: profileScript.titleActive('1_app/list/profile/skillSet.json', profileScript.skillListParse, 'Skill Level')">
-                    Skill Level
-                </a>
-            </li>
-        </ul>
-    </fieldset>
-    <fieldset>
-        <legend id="contentsDetails">Contents Details</legend>
-        <img src="4_img/icon/Xasquatch.ico"
+<fieldset>
+    <legend class="prifile-category">Category</legend>
+    <ul class="prifile-list">
+        <li>
+            <a class="profile-title"
+               href="javascript: profileScript.titleActive('https://myblog.xasquatch.net/api/members/8/resources/3', function(data) {
+
+                    var parsedData = JSON.parse(data);
+                    profileScript.skillListParse(parsedData.data.resource.contents);
+                 }, 'Skill Level')">
+                Skill Level
+            </a>
+        </li>
+    </ul>
+</fieldset>
+<fieldset>
+    <legend id="contentsDetails">Contents Details</legend>
+    <img src="4_img/icon/Xasquatch.ico"
          onload="profileScript.titleActive('1_app/list/profile/default.html',
-//스크립트태그를 사용할 수 없어서 이미지 onload를 통한 날코딩...
             function (data) {
                 Textjs.insertText('#profileDetails', data, 1);
                 });
-                
-//읽기 편하게 하단 여백추가
+
             var bottomSpace = document.createElement('div');
             bottomSpace.innerHTML = '<BR><BR><BR><BR><BR>';
             contentsDetails.parentNode.parentNode.appendChild(bottomSpace);
 
 //스크립트 수행 후 제거
             this.parentNode.removeChild(this);">
-            
-        <div id="profileDetails">
-        </div>
-    </fieldset>
+
+    <div id="profileDetails">
+    </div>
+</fieldset>
 
 </body>

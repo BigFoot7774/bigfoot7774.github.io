@@ -398,6 +398,7 @@ var wrapjs = {
     }
 };
 
+
 //-Textjs객체 문자열을 character로 변환하여 한 자씩 interval로 반복해가며 삽입
 //지금까지 확인된 사항: 
 // 1. 단일태그는 문제없이 삽입가능 (예시:<img>태그나 <BR>태그)
@@ -480,6 +481,7 @@ var Textjs = {
         }, interval);
     }
 };
+
 
 //-headerjs객체 헤더로고 움직임, aside바 닫힘, headercontents 투명 조절
 var headerjs = {
@@ -802,9 +804,10 @@ var profileScript = {
 
         } else {
             contentsDetails.innerHTML = 'Contents Details';
+
         }
 
-        requestjs.asyncGetData(URL, callback);
+        myAjax.submit('GET', URL, callback);
     }
 };
 
