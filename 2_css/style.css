@@ -31,7 +31,7 @@ a{
     text-decoration: none;
     color: inherit;
 }
-button, input[type="button" i] {
+button, input[type="button" i], select {
     -webkit-appearance: push-button;
     user-select: none;
     white-space: pre;
