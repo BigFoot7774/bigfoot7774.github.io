@@ -1,19 +1,21 @@
 @charset "UTF-8";
-@font-face{
+@font-face {
     font-family: 'Dotkey';
     src: url(../3_font/DungGeunMo.woff2) format('woff2'),
-        url(../3_font/DungGeunMo.woff) format('woff'),
-        url(../3_font/DungGeunMo.ttf) format('truetype'),
-        url(../3_font/DungGeunMo.otf) format('opentype'),
-        url(../3_font/DungGeunMo.eot);
+    url(../3_font/DungGeunMo.woff) format('woff'),
+    url(../3_font/DungGeunMo.ttf) format('truetype'),
+    url(../3_font/DungGeunMo.otf) format('opentype'),
+    url(../3_font/DungGeunMo.eot);
 }
-html, body{
+
+html, body {
     font-family: Dotkey;
     margin: 0;
     color: rgba(255, 255, 255, 1);
     background-color: rgba(0, 0, 0, 1);
 }
-body{
+
+body {
     background-image: url('../4_img/background/f7531767a6c3f8af51123596437735bd.gif');
     background-position-x: center;
     /*background-position-y: center;*/
@@ -22,14 +24,17 @@ body{
     background-attachment: fixed;
     min-height: 95vh;
 }
-img, video{
+
+img, video {
     max-width: 100%;
     height: auto;
 }
-a{
+
+a {
     text-decoration: none;
     color: inherit;
 }
+
 button, input[type="button" i], select {
     -webkit-appearance: push-button;
     user-select: none;
@@ -48,68 +53,102 @@ button, input[type="button" i], select {
     border-color: rgba(255, 255, 255, 1);
     border-image: initial;
 }
-article{
+
+article {
     display: table;
 }
-article>article{
+
+article > article {
     display: table-row;
 }
-article>article section{
+
+article > article section {
     display: table-cell;
     padding: 10px;
 }
-article>article section:first-child{
+
+article > article section:first-child {
     width: 30vw;
 }
 
-footer{
+footer {
     position: absolute;
     width: 90%;
     bottom: 0px;
     padding: 10px;
     text-align: center;
     box-sizing: border-box;
-}footer *{word-break: break-all;}
-footer>ul{
+}
+
+footer * {
+    word-break: break-all;
+}
+
+footer > ul {
     list-style: none;
     padding: 0px 0px 50px 0px;
 }
-footer>ul>li{
+
+footer > ul > li {
     padding-top: 10px;
 }
+
+@media (max-height: 600px) {
+
+    footer{
+        display: none;
+    }
+
+}
+
 /*
     기술 인용
     출처: https://wiki.stillh.art/page/SJ4yEEClg/Transparent-Scrollbar-over-Content */
-        body::-webkit-scrollbar {
-            width: 5px;
-            background: transparent;
-        }
-        body::-webkit-scrollbar-thumb {
-            background: rgba(150, 0, 0, 0.5);
-        }
-        body::-webkit-scrollbar-thumb:HOVER{
-            background: rgba(150, 0, 0, 1);
-        }
-.hidden{
+body::-webkit-scrollbar {
+    width: 5px;
+    background: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+    background: rgba(150, 0, 0, 0.5);
+}
+
+body::-webkit-scrollbar-thumb:HOVER {
+    background: rgba(150, 0, 0, 1);
+}
+
+.hidden {
     display: none;
 }
-.block{
+
+.block {
     display: block;
 }
-.inline{
+
+.inline {
     display: inline;
 }
-.flex{
+
+.flex {
     display: flex;
 }
-.height-half{height: 50vh;}
-.height-300px{height: 300px;}
-.max-width{
+
+.height-half {
+    height: 50vh;
+}
+
+.height-300px {
+    height: 300px;
+}
+
+.max-width {
     width: 100%;
 }
-.max-height{
+
+.max-height {
     height: 100vh;
 }
+
 .activate {
     height: 100%;
     width: 100%;
@@ -119,62 +158,109 @@ footer>ul>li{
     height: 0%;
     width: 0%;
 }
-.opacity-0{
+
+.opacity-0 {
     opacity: 0;
 }
-.opacity-1{
+
+.opacity-1 {
     opacity: 1;
 }
-.z-index-100{
+
+.z-index-100 {
     z-index: 100;
 }
-.overflow-hidden{
+
+.overflow-hidden {
     overflow: hidden;
 }
-.overflow-auto{
+
+.overflow-auto {
     overflow: auto;
 }
-.list-inline>li{
+
+.list-inline > li {
     display: inline-block;
 }
-.list-noneDeco{
+
+.list-noneDeco {
     list-style: none;
     padding: 20px;
 }
-.list-noneDeco>li{
+
+.list-noneDeco > li {
     margin: 10px;
 }
 
-.grid-component-1200{
+.grid-component-1200 {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    
-}
-.grid-100{grid-column: span 1;}
-.grid-200{grid-column: span 2;}
-.grid-300{grid-column: span 3;}
-.grid-400{grid-column: span 4;}
-.grid-500{grid-column: span 5;}
-.grid-600{grid-column: span 6;}
-.grid-700{grid-column: span 7;}
-.grid-800{grid-column: span 8;}
-.grid-900{grid-column: span 9;}
-.grid-1000{grid-column: span 10;}
-.grid-1100{grid-column: span 11;}
-.grid-1200{grid-column: span 12;}
 
-@media(max-width:1200px){
-    article>article section{
+}
+
+.grid-100 {
+    grid-column: span 1;
+}
+
+.grid-200 {
+    grid-column: span 2;
+}
+
+.grid-300 {
+    grid-column: span 3;
+}
+
+.grid-400 {
+    grid-column: span 4;
+}
+
+.grid-500 {
+    grid-column: span 5;
+}
+
+.grid-600 {
+    grid-column: span 6;
+}
+
+.grid-700 {
+    grid-column: span 7;
+}
+
+.grid-800 {
+    grid-column: span 8;
+}
+
+.grid-900 {
+    grid-column: span 9;
+}
+
+.grid-1000 {
+    grid-column: span 10;
+}
+
+.grid-1100 {
+    grid-column: span 11;
+}
+
+.grid-1200 {
+    grid-column: span 12;
+}
+
+@media (max-width: 1200px) {
+    article > article section {
         display: block;
-    }   
-    article>article section:first-child{
+    }
+
+    article > article section:first-child {
         text-align: center;
         font-size: 1.3em;
     }
-    article>article section:first-child{
+
+    article > article section:first-child {
         width: auto;
     }
-    .grid-component-1200{
+
+    .grid-component-1200 {
         display: inherit;
     }
 }
