@@ -92,7 +92,7 @@
 
     //home.html 요청
     function welcomeHome() {
-        requestjs.asyncGetData('1_app/list/home.html', function (data) {
+        requestjs.asyncGetData('https://xasquatch.net/1_app/list/home.html', function (data) {
             wrapjs.reset('Home', '');
             document.querySelector('#mainConsole').innerHTML = data;
         });
