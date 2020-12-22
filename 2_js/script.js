@@ -850,6 +850,11 @@ function requestInit() {
 
     window.addEventListener('mousemove', headerjs.MouseXY);
     window.addEventListener('scroll', headerjs.navContents);
+
+    requestjs.asyncGetData('https://myblog.xasquatch.net/api/members/8/resources/4', function (data) {
+        var parsedData = JSON.parse(data).data.resource.contents;
+        defaultScript.asideList(parsedData);
+    });
     wrapjs.viewPageHistory();
 }
 
