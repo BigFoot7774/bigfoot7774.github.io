@@ -1,6 +1,62 @@
 <section id="myblog-main-section">
-    <img src="https://xasquatch.net/4_img/icon/loading.gif" onload="
-        myBoard.recursiveGetBoardList(8, 'https://myblog.xasquatch.net/api/members/8/boards');
+    <img class="loading-img" src="https://xasquatch.net/4_img/icon/loading.gif" onload="
+        myAjax.submit('GET','https://myblog.xasquatch.net/api/members/8/boards?keyword=project',function(data) {
+
+          var mainSection = document.querySelector('#myblog-main-section');
+          var calledData = JSON.parse(data).data;
+          var boardList = calledData.boardList;
+          var pageBlockList = calledData.pageBlockList;
+
+          var boardListSection = document.createElement('section');
+          boardListSection.id = 'board-list-section';
+          for (var board of boardList) {
+              console.log(board)
+              var boardSection = document.createElement('a');
+              var boardThumbnailDiv = document.createElement('div');
+              boardThumbnailDiv.innerHTML = board.thumbnail;
+              var boardTitle = document.createElement('p');
+              boardTitle.innerHTML = board.title;
+
+              boardSection.appendChild(boardThumbnailDiv);
+              boardSection.appendChild(boardTitle);
+              boardSection.setAttribute('href','https://myblog.xasquatch.net/api/members/8/boards/'+ board.no);
+              boardSection.addEventListener('click', function(e) {
+                  e.preventDefault();
+                  navjs.active('now loading...', this.querySelector('p').innerText);
+
+                  myAjax.submit('GET', this.href, function(data) {
+                      var boardInfo = JSON.parse(data).data.board;
+
+                      alert(JSON.stringify(boardInfo,null,2));
+
+                      navjs.inactive();
+                  });
+
+
+              })
+
+
+              boardListSection.appendChild(boardSection);
+          }
+
+
+
+
+
+
+          var pageBlockSection = document.createElement('section');
+          pageBlockSection.id = 'page-block-section';
+          for(var i = 0; i < pageBlockList.length; i++) {
+              pageBlockSection.innerHTML += pageBlockList[i];
+
+          }
+
+
+          mainSection.appendChild(boardListSection);
+          mainSection.appendChild(pageBlockSection);
+          document.querySelector('.loading-img').remove();
+
+        })
 ">
 
 </section>
