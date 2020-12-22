@@ -27,7 +27,12 @@
     <div>
         <h4 id="headerLogo" class="header-logo">Xasquatch</h4>
         <ul id="asideList" class="aside-list">
-
+            <img src="http://xasquatch.net/4_img/icon/loading.gif" onload="function callResourceForList() {
+              requestjs.asyncGetData('https://myblog.xasquatch.net/api/members/8/resources/4', function (data) {
+                var parsedData = JSON.parse(data).data.resource.contents;
+                defaultScript.asideList(parsedData);
+            });
+        }">
         </ul>
     </div>
     <footer>
