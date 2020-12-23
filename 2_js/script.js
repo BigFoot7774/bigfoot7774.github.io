@@ -731,14 +731,14 @@ var profileScript = {
         var skillLevel = document.createElement('div');
         var skillDescription = document.createElement('div');
 
-        skillContainer.className = 'prifile-skill';
-        title.className = 'prifile-skill-title flex';
+        skillContainer.className = 'profile-skill';
+        title.className = 'profile-skill-title flex';
         titleImg.src = imgURL;
         titleImg.setAttribute('onload', 'profileScript.levelLoading(' + level + ',\"#' + language + '\",\"#' + language + 'Description\")');
         skillSet.className = 'profile-skill-set';
         skillLevel.id = language;
         skillDescription.id = language + 'Description';
-        skillDescription.className = 'prifile-skill-description';
+        skillDescription.className = 'profile-skill-description';
         skillDescription.innerHTML = description;
 
         skillContainer.appendChild(title);

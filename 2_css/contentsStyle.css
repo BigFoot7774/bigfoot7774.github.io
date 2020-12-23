@@ -148,11 +148,11 @@
     flex-direction: column;
 }
 
-.prifile-category {
+.profile-category {
     font-size: 2em;
 }
 
-.prifile-list > li {
+.profile-list > li {
     padding: 20px;
     display: inline-block;
 }
@@ -170,12 +170,12 @@
     font-size: 1.5em;
 }
 
-.prifile-skill {
+.profile-skill {
     display: flex;
     padding: 10px;
 }
 
-.prifile-skill > * {
+.profile-skill > * {
     padding: 5px;
 }
 
@@ -185,13 +185,13 @@
     justify-content: space-around;
 }
 
-.prifile-skill-title {
+.profile-skill-title {
     background-color: white;
     border-radius: 5%;
     width: 50px;
 }
 
-.prifile-skill-title > img {
+.profile-skill-title > img {
     max-width: 50px;
     max-height: 50px;
     margin: 0px auto;
@@ -220,12 +220,12 @@
         padding: 70px 10px 10px 10px;
     }
 
-    .prifile-list > li {
+    .profile-list > li {
         display: block;
     }
 
     .command-max-width {
-        padding: 0px;
+        padding: 0;
     }
 }
 
