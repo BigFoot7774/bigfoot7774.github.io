@@ -29,7 +29,7 @@ var requestjs = {
                         '잠시 후 다시 시도해 주세요</h3>' +
                         '<h3>Please try again later.<BR>' +
                         'The requested page was not found</h3>' +
-                        '<a href="/" style="text-decoration: none; color: red; font-weight: bold;">' +
+                        '<a href="https://xasquatch.net" style="text-decoration: none; color: red; font-weight: bold;">' +
                         '[처음 페이지로 되돌아가기]<BR>' +
                         '[Return to the index page]' +
                         '<a/>' +
