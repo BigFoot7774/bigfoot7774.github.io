@@ -829,7 +829,7 @@ var scrollJs = {
 function checkBrowser() {
     if (navigator.userAgent.toLowerCase().indexOf("chrome") === -1) {
         requestjs.asyncGetData('https://myblog.xasquatch.net/api/members/8/resources/5', function (data) {
-            var parsedData = JSON.parse(data).data.resource.contents;
+            var parsedData = JSON.parse(data).data.resource;
             modaljs.create(parsedData.title, parsedData.contents);
         });
     }
