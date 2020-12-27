@@ -21,7 +21,6 @@
               boardSection.setAttribute('href','https://myblog.xasquatch.net/api/members/8/boards/'+ board.no);
               boardSection.addEventListener('click', function(e) {
                   e.preventDefault();
-                  window.history.replaceState(mainSection.innerHTML, null, window.location.href);
                   navjs.active('now loading...', this.querySelector('p').innerText);
 
                   myAjax.submit('GET', this.href, function(data) {
@@ -78,7 +77,7 @@
                           var mainSection = document.querySelector('#myblog-main-section');
                           mainSection.innerHTML = '';
                           mainSection.appendChild(mainFieldset);
-                          window.history.pushState(mainSection.innerHTML, null,'/members/8/boards/'+boardInfo.no);
+                          window.history.pushState(mainSection.innerHTML, null,'https://xasquatch.net/members/8/boards/'+boardInfo.no);
 
                       }
                       a(boardInfo);
@@ -101,6 +100,9 @@
 
 
               boardListSection.appendChild(boardSection);
+
+              if (window.location.href !== 'https://xasquatch.net')
+              window.history.pushState(mainSection.innerHTML, null, 'https://xasquatch.net');
 
           }
 
