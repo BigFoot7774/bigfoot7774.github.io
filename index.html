@@ -62,7 +62,7 @@
     document.addEventListener('DOMContentLoaded', function () {
 
         //페이지 로딩동안 로딩창 최초생성
-        navjs.normalActive('loading...', 'Thank you so much for visiting my page !<BR>Please wait a few seconds<BR><BR> - Developer Xasqutch -');
+        navJs.normalActive('loading...', 'Thank you so much for visiting my page !<BR>Please wait a few seconds<BR><BR> - Developer Xasqutch -');
 
     });
     //-------------------------------------------------------------------------------
@@ -82,10 +82,10 @@
     //로드 완료 후 최초 로딩창 close
     function closeNavWelcome() {
         if (sessionStorage.getItem('everVisited') !== 'true') {
-            setTimeout(navjs.inactive, 1000);
+            setTimeout(navJs.inactive, 1000);
             sessionStorage.setItem('everVisited', true);
         } else {
-            navjs.inactive();
+            navJs.inactive();
         }
     }
 

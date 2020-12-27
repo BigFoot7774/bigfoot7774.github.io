@@ -50,6 +50,74 @@ var requestjs = {
 
 };
 
+var projectJs = {
+    manageProjectHistory: function () {
+        window.onpopstate = function (e) {
+            if (e.state !== null) {
+                document.querySelector('#myblog-main-section').innerHTML = e.state;
+            }
+
+        }
+
+    },
+    makeBoardList: function (boardInfo) {
+
+        var mainFieldset = document.createElement('fieldset');
+        mainFieldset.style.margin = '5px';
+        var titleLegend = document.createElement('legend');
+        titleLegend.style.fontSize = '50px';
+        titleLegend.style.fontWeight = 'bold';
+        titleLegend.innerText = boardInfo.title;
+        mainFieldset.appendChild(titleLegend);
+
+        var nameFiledSet = document.createElement('fieldset');
+        var nameLegend = document.createElement('legend');
+        nameLegend.innerText = 'Nick Name';
+        var nameValue = document.createElement('p');
+        nameValue.innerHTML = boardInfo.mbr_nickname;
+        nameFiledSet.appendChild(nameLegend);
+        nameFiledSet.appendChild(nameValue);
+
+        var dateFiledSet = document.createElement('fieldset');
+        var dateLegend = document.createElement('legend');
+        dateLegend.innerText = 'Created Date';
+        var dateValue = document.createElement('p');
+        dateValue.innerHTML = boardInfo.created_date;
+        dateFiledSet.appendChild(dateLegend);
+        dateFiledSet.appendChild(dateValue);
+
+        var contentsFieldset = document.createElement('fieldset');
+        var contentsLegend = document.createElement('legend');
+        contentsLegend.innerText = 'Contents'
+        var contentsDiv = document.createElement('div');
+        contentsDiv.innerHTML = boardInfo.contents;
+        contentsFieldset.appendChild(contentsLegend);
+        contentsFieldset.appendChild(contentsDiv);
+
+        var backDiv = document.createElement('div');
+        backDiv.style.padding = '20px';
+        backDiv.style.textAlign = 'center';
+        var backBtn = document.createElement('button');
+        backBtn.setAttribute('onclick', 'history.back();');
+        backBtn.innerHTML = 'BACK';
+        backDiv.appendChild(backBtn);
+
+        mainFieldset.appendChild(nameFiledSet);
+        mainFieldset.appendChild(dateFiledSet);
+        mainFieldset.appendChild(contentsFieldset);
+        mainFieldset.appendChild(backDiv);
+
+        var mainSection = document.querySelector('#myblog-main-section');
+        mainSection.innerHTML = '';
+        mainSection.appendChild(mainFieldset);
+        window.history.pushState(mainSection.innerHTML, null, 'https://xasquatch.net/members/8/boards/' + boardInfo.no);
+
+    }
+
+
+}
+
+
 //-loadingjs객체(리팩토링 완): innertext 대체&추가, 정지&로딩바제거,
 var loadingjs = {
 
@@ -142,8 +210,8 @@ var loadingjs = {
     },
 };
 
-//-navjs객체(리팩토링 완): 생성, 닫기
-var navjs = {
+//-navJs객체(리팩토링 완): 생성, 닫기
+var navJs = {
 
     active: function (title, contents) {
         nav = document.createElement('nav');
@@ -194,7 +262,7 @@ var navjs = {
     }
 };
 
-//-navjs객체(리팩토링 완): 생성, 닫기, 드래그
+//-navJs객체(리팩토링 완): 생성, 닫기, 드래그
 // new키워드를 통한 새로운 오브젝트 생성의 필요가 없음
 var modaljs = {
 
@@ -651,13 +719,13 @@ var defaultScript = {
             savebtns[i].onclick();
         }
 
-        navjs.active('loading...', contents);
+        navJs.active('loading...', contents);
 
         setTimeout(function () {
             requestjs.asyncGetData(URL, function (data) {
                 wrapjs.reset(title, data);
                 wrapjs.viewPageHistory();
-                navjs.inactive();
+                navJs.inactive();
                 headerjs.RemoveAsideFocus();
             });
         }, 1000);
