@@ -21,6 +21,7 @@
               boardSection.setAttribute('href','https://myblog.xasquatch.net/api/members/8/boards/'+ board.no);
               boardSection.addEventListener('click', function(e) {
                   e.preventDefault();
+                  window.history.pushState(mainSection.innerHTML, null,'/members/8/boards');
                   navjs.active('now loading...', this.querySelector('p').innerText);
 
                   myAjax.submit('GET', this.href, function(data) {
@@ -100,7 +101,7 @@
 
 
               boardListSection.appendChild(boardSection);
-              // window.history.pushState(mainSection.innerHTML, null,'/members/8/boards');
+
           }
 
 
