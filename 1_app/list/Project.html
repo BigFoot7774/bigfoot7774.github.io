@@ -1,5 +1,14 @@
 <section id="myblog-main-section">
     <img class="loading-img" src="https://xasquatch.net/4_img/icon/loading.gif" onload="
+        var mainSection = document.querySelector('#myblog-main-section');
+        var childNodes = mainSection.childNodes;
+        for (var childNode of childNodes) {
+            if (childNode.id === 'board-list-section'){
+                document.querySelector('.loading-img').remove();
+                return;
+            }
+
+        }
         myAjax.submit('GET','https://myblog.xasquatch.net/api/members/8/boards?keyword=project',function(data) {
 
           var mainSection = document.querySelector('#myblog-main-section');
