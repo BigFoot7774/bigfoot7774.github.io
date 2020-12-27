@@ -36,8 +36,6 @@
 
 
               boardListSection.appendChild(boardSection);
-              if (window.location.href !== 'https://xasquatch.net')
-              window.history.replaceState(mainSection.innerHTML, null, 'https://xasquatch.net');
 
           }
 
@@ -56,8 +54,10 @@
 
           mainSection.appendChild(boardListSection);
           mainSection.appendChild(pageBlockSection);
-          document.querySelector('.loading-img').remove();
+          if (window.location.href !== 'https://xasquatch.net')
+          window.history.replaceState(mainSection.innerHTML, null, 'https://xasquatch.net');
 
+          document.querySelector('.loading-img').remove();
         })
 ">
 
