@@ -4,21 +4,6 @@
         var childNodes = mainSection.childNodes;
         for (var childNode of childNodes) {
             if (childNode.id === 'board-list-section'){
-                var boardATags = document.querySelectorAll('#board-list-section>a');
-                for (var boardATag of boardATags) {
-                    boardATag.addEventListener('click',function(e) {
-                      e.preventDefault();
-                      navJs.active('now loading...', this.querySelector('p').innerText);
-
-                      myAjax.submit('GET', this.href, function(data) {
-                          var boardInfo = JSON.parse(data).data.board;
-
-                          projectJs.makeBoardList(boardInfo);
-                          projectJs.manageProjectHistory();
-                          navJs.inactive();
-                      })});
-                }
-
                 document.querySelector('.loading-img').remove();
                 return;
             }
@@ -42,30 +27,11 @@
               boardSection.appendChild(boardThumbnailDiv);
               boardSection.appendChild(boardTitle);
               boardSection.setAttribute('href','https://myblog.xasquatch.net/api/members/8/boards/'+ board.no);
-              boardSection.addEventListener('click', function(e) {
-                  e.preventDefault();
-                  navJs.active('now loading...', this.querySelector('p').innerText);
-
-                  myAjax.submit('GET', this.href, function(data) {
-                      var boardInfo = JSON.parse(data).data.board;
-
-                      projectJs.makeBoardList(boardInfo);
-                      projectJs.manageProjectHistory();
-                      navJs.inactive();
-                  });
-
-
-              });
-
+              boardSection.setAttribute('onclick', 'projectJs.boardClickEventManagement(e)');
 
               boardListSection.appendChild(boardSection);
 
           }
-
-
-
-
-
 
           var pageBlockSection = document.createElement('section');
           pageBlockSection.id = 'page-block-section';

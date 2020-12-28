@@ -112,6 +112,21 @@ var projectJs = {
         mainSection.appendChild(mainFieldset);
         window.history.pushState(mainSection.innerHTML, null, 'https://xasquatch.net/members/8/boards/' + boardInfo.no);
 
+    },
+
+    boardClickEventManagement: function(e) {
+        e.preventDefault();
+        navJs.active('now loading...', this.querySelector('p').innerText);
+
+        myAjax.submit('GET', this.href, function(data) {
+            var boardInfo = JSON.parse(data).data.board;
+
+            projectJs.makeBoardList(boardInfo);
+            projectJs.manageProjectHistory();
+            navJs.inactive();
+        });
+
+
     }
 
 
