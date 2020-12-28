@@ -4,7 +4,7 @@
         var childNodes = mainSection.childNodes;
         for (var childNode of childNodes) {
             if (childNode.id === 'board-list-section'){
-                var boardATags = document.querySelectorAll('.board-list-section>a');
+                var boardATags = document.querySelectorAll('#board-list-section>a');
                 for (var boardATag of boardATags) {
                     boardATag.addEventListener('click',function(e) {
                       e.preventDefault();
