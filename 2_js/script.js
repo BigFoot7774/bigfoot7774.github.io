@@ -114,11 +114,11 @@ var projectJs = {
 
     },
 
-    boardClickEventManagement: function(e) {
+    boardClickEventManagement: function(e, element) {
         e.preventDefault();
-        navJs.active('now loading...', this.querySelector('p').innerText);
+        navJs.active('now loading...', element.querySelector('p').innerText);
 
-        myAjax.submit('GET', this.href, function(data) {
+        myAjax.submit('GET', element.href, function(data) {
             var boardInfo = JSON.parse(data).data.board;
 
             projectJs.makeBoardList(boardInfo);

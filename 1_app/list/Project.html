@@ -27,7 +27,7 @@
               boardSection.appendChild(boardThumbnailDiv);
               boardSection.appendChild(boardTitle);
               boardSection.setAttribute('href','https://myblog.xasquatch.net/api/members/8/boards/'+ board.no);
-              boardSection.setAttribute('onclick', 'projectJs.boardClickEventManagement(e)');
+              boardSection.setAttribute('onclick', 'projectJs.boardClickEventManagement(event, this)');
 
               boardListSection.appendChild(boardSection);
 
