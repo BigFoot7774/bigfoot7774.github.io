@@ -8,7 +8,7 @@
                 return;
             }
         }
-        myAjax.submit('GET','https://myblog.xasquatch.net/api/members/8/boards?keyword=project',function(data) {
+        myAjax.submit('GET','https://myblog.xasquatch.net/api/members/8/boards?page-limit=5&keyword=project',function(data) {
 
           var mainSection = document.querySelector('#myblog-main-section');
           var calledData = JSON.parse(data).data;
@@ -38,6 +38,13 @@
           for(var i = 0; i < pageBlockList.length; i++) {
               pageBlockSection.innerHTML += pageBlockList[i];
 
+          }
+          var blockATags = pageBlockSection.querySelectorAll('a');
+          for (var blockATag of blockATags) {
+              blockATag.setAttribute('onclick', function(e, element) {
+                  e.preventDefault();
+                  
+              });
           }
 
 
