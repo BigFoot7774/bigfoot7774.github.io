@@ -20,7 +20,7 @@ body {
     background-position-x: center;
     /*background-position-y: center;*/
     /*background-repeat: no-repeat;*/
-    background-size: 100vw auto;
+    background-size: 100% auto;
     background-attachment: fixed;
     min-height: 95vh;
 }
