@@ -23,7 +23,7 @@ function makeProjectSection(data) {
 
         tagH2.innerHTML = parsedDataKey;
         if (parsedData[parsedDataKey]['thumbnail'] === null || parsedData[parsedDataKey]['thumbnail'] === "") {
-            tagThumbnailDiv.innerHTML = '<img src="https://xasquatch.net/4_img/icon/Xasquatch.ico"/>';
+            tagThumbnailDiv.innerHTML = '<img src="4_img/icon/Xasquatch.ico"/>';
 
         } else {
             tagThumbnailDiv.innerHTML = parsedData[parsedDataKey]['thumbnail'];

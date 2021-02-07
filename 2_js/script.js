@@ -110,7 +110,7 @@ var projectJs = {
         var mainSection = document.querySelector('#myblog-main-section');
         mainSection.innerHTML = '';
         mainSection.appendChild(mainFieldset);
-        window.history.pushState(mainSection.innerHTML, null, 'https://xasquatch.net/members/8/boards/' + boardInfo.no);
+        window.history.pushState(mainSection.innerHTML, null, 'members/8/boards/' + boardInfo.no);
 
     },
 
@@ -391,7 +391,7 @@ var wrapjs = {
         container.className = 'command';
         header.className = 'command-header';
         title.className = 'command-title';
-        icon.src = 'https://xasquatch.net/4_img/icon/cmdicon.png';
+        icon.src = '4_img/icon/cmdicon.png';
         icon.style.padding = '0px 3px';
         icon.style.margin = '0px';
         icon.style.width = '1.2em';
