@@ -1,6 +1,6 @@
 {
     "Home": "./",
-    "Profile": "javascript: defaultScript.forward('1_app/list/profile.html', 'Profile', 'Profile : Now Loading....');",
-    "Project": "javascript: defaultScript.forward('1_app/list/Project.html', 'Project', 'Project Information');",
-    "Contact Me": "javascript: defaultScript.forward('1_app/list/contactMe.html', 'Contact Me', 'Now Loading....');"
+    "Profile": "javascript: defaultScript.forward('app/list/profile.html', 'Profile', 'Profile : Now Loading....');",
+    "Project": "javascript: defaultScript.forward('app/list/Project.html', 'Project', 'Project Information');",
+    "Contact Me": "javascript: defaultScript.forward('app/list/contactMe.html', 'Contact Me', 'Now Loading....');"
 }

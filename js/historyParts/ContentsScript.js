@@ -17,7 +17,7 @@ function createtag(TagName, contentsHTML, idName, className) {
 
 function wrapContents_init() {
     createtag('div',
-    // <img src="/4_img/liquor_Trim.gif" width=90% >
+    // <img src="/img/liquor_Trim.gif" width=90% >
     `
     <img src="/img/Tesla_Sarony.jpg">
     <p> 미래가 진실을 말하도록 두라.</p>

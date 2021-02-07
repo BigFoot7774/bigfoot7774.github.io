@@ -58,7 +58,7 @@ welcomejs = {
 
 
 function welcome_init() {
-    // defaultScript.foward('/1_app/list/profile.html', 'Profile', 'Profile : 저를 소개합니다');
+    // defaultScript.foward('/app/list/profile.html', 'Profile', 'Profile : 저를 소개합니다');
 }
     
 
