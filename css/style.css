@@ -1,11 +1,11 @@
 @charset "UTF-8";
 @font-face {
     font-family: 'Dotkey';
-    src: url(../3_font/DungGeunMo.woff2) format('woff2'),
-    url(../3_font/DungGeunMo.woff) format('woff'),
-    url(../3_font/DungGeunMo.ttf) format('truetype'),
-    url(../3_font/DungGeunMo.otf) format('opentype'),
-    url(../3_font/DungGeunMo.eot);
+    src: url(../font/DungGeunMo.woff2) format('woff2'),
+    url(../font/DungGeunMo.woff) format('woff'),
+    url(../font/DungGeunMo.ttf) format('truetype'),
+    url(../font/DungGeunMo.otf) format('opentype'),
+    url(../font/DungGeunMo.eot);
 }
 
 html, body {
@@ -16,7 +16,7 @@ html, body {
 }
 
 body {
-    background-image: url('../4_img/background/f7531767a6c3f8af51123596437735bd.gif');
+    background-image: url('../img/background/f7531767a6c3f8af51123596437735bd.gif');
     background-position-x: center;
     /*background-position-y: center;*/
     /*background-repeat: no-repeat;*/
