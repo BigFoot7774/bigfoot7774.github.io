@@ -1,0 +1,26 @@
+{
+  "java": {"imgURL": "img/language icon/java.png",
+    "level": 4,
+    "description": "JAVA"
+  },
+  "SpringFramework": {"imgURL": "img/language icon/spring.png",
+    "level": 2,
+    "description": "Spring"
+  },
+  "HTML5": {"imgURL": "img/language icon/HTML5.svg",
+    "level": 7,
+    "description": "HTML"
+  },
+  "CSS": {"imgURL": "img/language icon/css.png",
+    "level": 3,
+    "description": "CSS"
+  },
+  "js": {"imgURL": "img/language icon/js.png",
+    "level": 4,
+    "description": "javascript"
+  },
+  "Confidence": {"imgURL": "img/language icon/confidence.png",
+    "level": 10,
+    "description": "Confidence"
+  }
+}

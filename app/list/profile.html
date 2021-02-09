@@ -4,10 +4,8 @@
     <ul class="profile-list">
         <li>
             <a class="profile-title"
-               href="javascript: profileScript.titleActive('https://myblog.xasquatch.net/api/members/8/resources/3', function(data) {
-
-                    var parsedData = JSON.parse(data);
-                    profileScript.skillListParse(parsedData.data.resource.contents);
+               href="javascript: profileScript.titleActive('app/list/profile/skillSet.json', function(data) {
+                    profileScript.skillListParse(data);
                  }, 'Skill Level')">
                 Skill Level
             </a>

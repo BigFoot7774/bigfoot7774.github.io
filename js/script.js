@@ -391,7 +391,7 @@ var wrapjs = {
         container.className = 'command';
         header.className = 'command-header';
         title.className = 'command-title';
-        icon.src = '4_img/icon/cmdicon.png';
+        icon.src = 'img/icon/cmdicon.png';
         icon.style.padding = '0px 3px';
         icon.style.margin = '0px';
         icon.style.width = '1.2em';
@@ -911,8 +911,8 @@ var scrollJs = {
 
 function checkBrowser() {
     if (navigator.userAgent.toLowerCase().indexOf("chrome") === -1) {
-        requestjs.asyncGetData('https://myblog.xasquatch.net/api/members/8/resources/5', function (data) {
-            var parsedData = JSON.parse(JSON.parse(data).data.resource.contents);
+        requestjs.asyncGetData('app/browserCheck.json', function (data) {
+            var parsedData = JSON.parse(data);
             modaljs.create(parsedData.title, parsedData.contents);
         });
     }
@@ -934,9 +934,8 @@ function requestInit() {
     window.addEventListener('mousemove', headerjs.MouseXY);
     window.addEventListener('scroll', headerjs.navContents);
 
-    requestjs.asyncGetData('https://myblog.xasquatch.net/api/members/8/resources/4', function (data) {
-        var parsedData = JSON.parse(data).data.resource.contents;
-        defaultScript.asideList(parsedData);
+    requestjs.asyncGetData('app/appDataList.json', function (data) {
+        defaultScript.asideList(data);
     });
     wrapjs.viewPageHistory();
 }
