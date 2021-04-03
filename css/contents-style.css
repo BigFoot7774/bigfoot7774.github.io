@@ -6,9 +6,13 @@
     justify-content: center;
     flex-direction: column;
     box-sizing: border-box;
-    animation: ContentsCreate 1s;
+    z-index: 1;
+    position: fixed;
+    left: 20vw;
+    min-width: 70vw;
 }
-.command *{
+
+.command * {
     z-index: 1;
 }
 
@@ -16,17 +20,8 @@
     padding-right: 150px;
     position: absolute;
     width: 100%;
-    left: 0px;
+    left: 0 !important;
     box-sizing: border-box;
-}
-
-@keyframes ContentsCreate {
-    from {
-        filter: invert(0.8);
-    }
-    to {
-        filter: invert(0);
-    }
 }
 
 .command-header {
@@ -246,12 +241,11 @@
     justify-content: space-around;
 }
 
-#board-list-section > a ,#page-block-section > a{
+#board-list-section > a, #page-block-section > a {
     padding: 10px;
     margin: 10px;
     border: 1px outset;
 }
-
 
 
 #page-block-section {

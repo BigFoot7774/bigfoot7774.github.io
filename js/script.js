@@ -1,54 +1,82 @@
-//-requestjs객체(리팩토링 필)
-var requestjs = {
+var request = {
 
-    ajax: function (method, URL, callback, async) {
-        var xhr = new XMLHttpRequest();
-        var parsingURL = [];
+    json: 'application/json',
+    form: 'application/x-www-form-urlencoded',
+    formFile: 'multipart/form-data',
 
-        if (method.toUpperCase() === 'GET') {
-            xhr.open(method, URL, async);
-            xhr.send();
-        } else if (method.toUpperCase() === 'POST') {
-            method = 'POST';
-            parsingURL = URL.split('?');
-            xhr.open(method, parsingURL[0], async);
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.send(parsingURL[1]);
+    setContentsType: function (inputContentsType) {
+        var contentsType = 'text/plain';
+
+        if (inputContentsType.toUpperCase() === 'FORM') {
+            contentsType = request.form;
+
+        } else if (inputContentsType.toUpperCase() === 'FORMFILE') {
+            contentsType = request.formFile;
+
+        } else if (inputContentsType.toUpperCase() === 'JSON') {
+            contentsType = request.json;
+
         }
+        return contentsType;
+    },
+
+    submit: function (method, url, callback, inputContentsType, sendData) {
+        var xhr = new XMLHttpRequest();
+
+        var result = null;
+        var contentsType = null;
 
         xhr.onreadystatechange = function () {
             if (xhr.readyState === xhr.DONE) {
                 if (xhr.status === 200 || xhr.status === 201) {
-                    callback(xhr.response);
-                    return xhr.status;
-                } else {
-                    document.write('<div align="center">' +
-                        '<h1>Sorry, Your Request not found</h1>' +
-                        '<BR>' +
-                        '<h3>요청하신 페이지를 찾을 수 없습니다.<BR>' +
-                        '잠시 후 다시 시도해 주세요</h3>' +
-                        '<h3>Please try again later.<BR>' +
-                        'The requested page was not found</h3>' +
-                        '<a href="https://xasquatch.net" style="text-decoration: none; color: red; font-weight: bold;">' +
-                        '[처음 페이지로 되돌아가기]<BR>' +
-                        '[Return to the index page]' +
-                        '<a/>' +
-                        '</div>');
-                    return xhr.status;
+                    result = xhr.response;
+                    callback(result);
                 }
-            } else {
-                return xhr.readyState;
             }
         };
-    },
-    asyncGetData: function (url, callBack) {
-        requestjs.ajax('GET', url, callBack, true);
-    },
-    GetData: function (url, callBack) {
-        requestjs.ajax('GET', url, callBack, false);
-    }
+        if (method.toUpperCase() === 'GET') {
+            xhr.open(method, url);
+            xhr.send();
+        } else if (method.toUpperCase() === 'POST' || method.toUpperCase() === 'PUT' || method.toUpperCase() === 'DELETE' || method.toUpperCase() === 'PATCH') {
+            method = method.toUpperCase();
+            contentsType = request.setContentsType(inputContentsType);
+            xhr.open(method, url, true);
+            if (contentsType !== request.formFile)
+                xhr.setRequestHeader('Content-Type', contentsType);
+            xhr.send(sendData);
+        }
 
-};
+    },
+
+    alertModal: function (fileURL) {
+        request.submit('GET', fileURL, function (data) {
+            var data_ = JSON.parse(data);
+            modaljs.create(data_.title, data_.contents);
+        });
+    },
+
+    forward: function (URL, title, contents) {
+//consoleSave 메소드 강제실행 현재 보고 있는 페이지들 저장
+        var savebtns = document.querySelectorAll('.command-btn-save');
+        for (var i = 0; i < savebtns.length; i++) {
+            savebtns[i].onclick();
+        }
+
+        navJs.active('loading...', contents);
+
+        setTimeout(function () {
+            request.submit('GET', URL, function (data) {
+                wrapjs.reset(title, data);
+                wrapjs.viewPageHistory();
+                navJs.inactive();
+                headerjs.RemoveAsideFocus();
+                modaljs.dragElement(document.querySelector('.command'));
+            });
+        }, 1000);
+    },
+
+
+}
 
 var projectJs = {
     manageProjectHistory: function () {
@@ -114,11 +142,11 @@ var projectJs = {
 
     },
 
-    boardClickEventManagement: function(e, element) {
+    boardClickEventManagement: function (e, element) {
         e.preventDefault();
         navJs.active('now loading...', element.querySelector('p').innerText);
 
-        myAjax.submit('GET', element.href, function(data) {
+        request.submit('GET', element.href, function (data) {
             var boardInfo = JSON.parse(data).data.board;
 
             projectJs.makeBoardList(boardInfo);
@@ -702,53 +730,6 @@ var scrolljs = {
 
 };
 
-
-var defaultScript = {
-    asideList: function (acceptedData) {
-        var jsonData;
-        if (typeof data === 'object') {
-            jsonData = acceptedData;
-        } else {
-            jsonData = JSON.parse(acceptedData);
-        }
-        var asideList = document.querySelector('#asideList');
-        var tagHTML = '';
-        for (var key in jsonData) {
-            if (jsonData.hasOwnProperty(key)) {
-                tagHTML += '<li><a href="' + jsonData[key] + '">' + key + '</a></li>';
-            }
-        }
-        asideList.innerHTML = tagHTML;
-    },
-    alertModal: function (fileURL) {
-        requestjs.asyncGetData(fileURL, function (data) {
-            var data_ = JSON.parse(data);
-            modaljs.create(data_.title, data_.contents);
-        });
-    },
-
-    forward: function (URL, title, contents) {
-//consoleSave 메소드 강제실행 현재 보고 있는 페이지들 저장
-        var savebtns = document.querySelectorAll('.command-btn-save');
-        for (var i = 0; i < savebtns.length; i++) {
-            savebtns[i].onclick();
-        }
-
-        navJs.active('loading...', contents);
-
-        setTimeout(function () {
-            requestjs.asyncGetData(URL, function (data) {
-                wrapjs.reset(title, data);
-                wrapjs.viewPageHistory();
-                navJs.inactive();
-                headerjs.RemoveAsideFocus();
-            });
-        }, 1000);
-    },
-
-
-};
-
 var profileScript = {
 
     levelLoading: function (level, tagName, description) {
@@ -758,51 +739,54 @@ var profileScript = {
         var percent;
         var levelPercent;
         var interval = setInterval(function () {
-            try {
-                if (count < level) {
-                    levelBar += '■';
-                } else if (count < 10) {
-                    levelBar += '□';
-                }
+                try {
+                    if (count < level) {
+                        levelBar += '■';
+                    } else if (count < 10) {
+                        levelBar += '□';
+                    }
 
-                switch (levelBar) {
-                    case '■':
-                        percent = '% (하)';
-                        break;
-                    case '■■■':
-                        percent = '% (중하)';
-                        break;
-                    case '■■■■■':
-                        percent = '% (중)';
-                        break;
-                    case '■■■■■■■':
-                        percent = '% (중상)';
-                        break;
-                    case '■■■■■■■■■':
-                        percent = '% (상)';
-                        break;
-                    case '■■■■■■■■■■':
-                        percent = '% (최상)';
-                        break;
-                }
-                if (levelBar.indexOf('□') * 10 < 0) {
-                    levelPercent = (count + 1) * 10;
-                } else {
-                    levelPercent = levelBar.indexOf('□') * 10;
-                }
+                    switch (levelBar) {
+                        case '■':
+                            percent = '% (하)';
+                            break;
+                        case '■■■':
+                            percent = '% (중하)';
+                            break;
+                        case '■■■■■':
+                            percent = '% (중)';
+                            break;
+                        case '■■■■■■■':
+                            percent = '% (중상)';
+                            break;
+                        case '■■■■■■■■■':
+                            percent = '% (상)';
+                            break;
+                        case '■■■■■■■■■■':
+                            percent = '% (최상)';
+                            break;
+                    }
 
-                targetTag.innerHTML = 'Level : ' + levelBar + '<BR>' + levelPercent + percent;
-                count++;
+                    if (levelBar.indexOf('□') * 10 < 0) {
+                        levelPercent = (count + 1) * 10;
+                    } else {
+                        levelPercent = levelBar.indexOf('□') * 10;
+                    }
 
-                if (count === 10) {
+                    targetTag.innerHTML = 'Level : ' + levelBar + '<BR>' + levelPercent + percent;
+                    count++;
+
+                    if (count === 10) {
+                        clearInterval(interval);
+                        loadingjs.stop();
+                    }
+                } catch
+                    (error) {
                     clearInterval(interval);
                     loadingjs.stop();
                 }
-            } catch (error) {
-                clearInterval(interval);
-                loadingjs.stop();
-            }
-        }, 100);
+            }, 100
+        );
         loadingjs.insert(description);
     },
 
@@ -890,9 +874,9 @@ var profileScript = {
 
         }
 
-        myAjax.submit('GET', URL, callback);
+        request.submit('GET', URL, callback);
     }
-};
+}
 
 /*
 var scrollJs = {
@@ -911,7 +895,7 @@ var scrollJs = {
 
 function checkBrowser() {
     if (navigator.userAgent.toLowerCase().indexOf("chrome") === -1) {
-        requestjs.asyncGetData('app/browserCheck.json', function (data) {
+        request.asyncGetData('app/browserCheck.json', function (data) {
             var parsedData = JSON.parse(data);
             modaljs.create(parsedData.title, parsedData.contents);
         });
@@ -934,12 +918,103 @@ function requestInit() {
     window.addEventListener('mousemove', headerjs.MouseXY);
     window.addEventListener('scroll', headerjs.navContents);
 
-    requestjs.asyncGetData('app/appDataList.json', function (data) {
-        defaultScript.asideList(data);
-    });
+    // request.asyncGetData('app/appDataList.json', function (data) {
+    // defaultScript.asideList(data);
+    // });
     wrapjs.viewPageHistory();
 }
 
+var primarySetting = {
+    getAppList: function () {
+        var iconContainer = document.querySelector('#icon-container');
+        request.submit('GET', 'app/appDataList.json', function (data) {
+            var appList = JSON.parse(data);
+            for (var key in appList) {
+                var appContainer = document.createElement('div');
+                if (key === 'Home') {
+                    appContainer.setAttribute('onclick',
+                        'window.location.href="' + appList[key]['url'] + '"');
+                } else {
+                    appContainer.setAttribute('onclick',
+                        'request.forward("' + appList[key]['url'] + '", "' + key + '", "Now Loading....")');
+                }
+                appContainer.setAttribute('onerror',
+                    "this.src = 'img/icon/Xasquatch.png'");
+
+                var appImage = document.createElement('img');
+                appImage.src = appList[key]['icon'];
+
+                var appTitle = document.createElement('p');
+                appTitle.innerText = key;
+
+                appContainer.appendChild(appImage);
+                appContainer.appendChild(appTitle);
+                iconContainer.appendChild(appContainer);
+            }
+        });
+    }
+}
+
+
+var defaultScript = {
+    asideList: function (acceptedData) {
+        var jsonData;
+        if (typeof data === 'object') {
+            jsonData = acceptedData;
+        } else {
+            jsonData = JSON.parse(acceptedData);
+        }
+        var asideList = document.querySelector('#asideList');
+        var tagHTML = '';
+        for (var key in jsonData) {
+            if (jsonData.hasOwnProperty(key)) {
+                tagHTML += '<li><a href="' + jsonData[key] + '">' + key + '</a></li>';
+            }
+        }
+        asideList.innerHTML = tagHTML;
+    }
+};
 
 checkBrowser();
 requestInit();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

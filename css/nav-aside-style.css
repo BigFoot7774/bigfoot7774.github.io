@@ -72,6 +72,7 @@ nav{
     }
 }
 aside{
+    z-index: 2;
     position: fixed;
     top: 0px;
     right: 0px;
@@ -86,7 +87,6 @@ aside{
     transition: 0.3s all;
     transform: rotate(-45deg) translateX(70px) translateY(-25px);
     transform-origin: top;
-    z-index: 2;
 }
 aside>*{
     opacity: 1;
