@@ -9,10 +9,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Xasquatch</title>
     <link rel="shortcut icon" type="image/x-icon" href="img/icon/Xasquatch.ico"/>
-    <link rel="stylesheet" href="css/welcomeStyle.css">
-    <link rel="stylesheet" href="css/headerStyle.css">
-    <link rel="stylesheet" href="css/navAsideStyle.css">
-    <link rel="stylesheet" href="css/contentsStyle.css">
+    <link rel="stylesheet" href="css/welcome-style.css">
+    <link rel="stylesheet" href="css/header-style.css">
+    <link rel="stylesheet" href="css/nav-aside-style.css">
+    <link rel="stylesheet" href="css/contents-style.css">
+    <link rel="stylesheet" href="css/home-style.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -47,11 +48,17 @@
         </ul>
     </footer>
 </aside>
-<div id="bodyContainer">
-    <div class="wrap">
+<section id="bodyContainer">
+    <article class="wrap">
 
-    </div>
-</div>
+    </article>
+    <article id="icon-container">
+        <div>
+            <img src="img/icon/Xasquath.png" onerror="this.src = 'img/icon/Xasquatch.png'"/>
+            <p>profile</p>
+        </div>
+    </article>
+</section>
 
 <script src="js/script.js"></script>
 <script src="js/project-script.js"></script>
@@ -68,12 +75,10 @@
 
     //--------------------시점: DOM 로드 완료 후 실행----------------------------------
     window.onload = function () {
-
-        welcomeHome();
         closeNavWelcome();
         window.addEventListener('scroll', scrolljs.autoPlayVideo);
         window.addEventListener('resize', scrolljs.autoPlayVideo);
-        keyset()
+        keySet();
     }
     //-------------------------------------------------------------------------------
 
@@ -88,31 +93,23 @@
         }
     }
 
-    //home.html 요청
-    function welcomeHome() {
-        requestjs.asyncGetData('app/list/home.html', function (data) {
-            wrapjs.reset('Home', '');
-            document.querySelector('#mainConsole').innerHTML = data;
-        });
-    }
-
-    function keyset() {
-        window.addEventListener('keydown', function () {
-
-            // if (event.ctrlKey && event.keyCode === 87) wrapjs.consoleClose();
+    function keySet() {
+        window.addEventListener('keydown', function (event) {
             if (event.keyCode === 27) {
                 event.preventDefault();
                 wrapjs.consoleClose();
             }
-            if (event.ctrlKey && event.keyCode === 83) {
+            if (event.keyCode === 17 && event.keyCode === 83) {
                 event.preventDefault();
                 wrapjs.consoleSave();
             }
+            if (event.keyCode === 17 && event.keyCode === 79) {
+                event.preventDefault();
 
+            }
         });
 
     }
-
 
 </script>
 </body>

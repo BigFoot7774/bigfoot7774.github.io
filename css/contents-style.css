@@ -8,6 +8,9 @@
     box-sizing: border-box;
     animation: ContentsCreate 1s;
 }
+.command *{
+    z-index: 1;
+}
 
 .command-max-width {
     padding-right: 150px;

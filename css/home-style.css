@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+#icon-container {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    top: 50px;
+}
+
+#icon-container > div {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 10px;
+    cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, 0);
+}
+
+#icon-container > div:HOVER {
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.5);
+}
+
+#icon-container > div:focus {
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.8);
+
+}
+
+#icon-container p {
+    margin: 0;
+    padding: 0;
+}
+
+#icon-container img {
+    max-width: 80px;
+    max-height: 80px;
+}
