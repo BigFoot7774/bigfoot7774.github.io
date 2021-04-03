@@ -1,6 +1,18 @@
 {
-    "Home": "./",
-    "Profile": "javascript: defaultScript.forward('app/list/profile.html', 'Profile', 'Profile : Now Loading....');",
-    "Project": "javascript: defaultScript.forward('app/list/Project.html', 'Project', 'Project Information');",
-    "Contact Me": "javascript: defaultScript.forward('app/list/contactMe.html', 'Contact Me', 'Now Loading....');"
+  "Home": {
+    "url": "./",
+    "icon":"img/icon/home.png"
+  },
+  "Profile": {
+    "url": "app/list/profile.html",
+    "icon":"img/icon/profile.png"
+  },
+  "Project": {
+    "url": "app/list/project.png",
+    "icon":"img/icon/home.png"
+  },
+  "Contact Me": {
+    "url": "app/list/contact-me.html",
+    "icon":"img/icon/contact-me.png"
+  }
 }
