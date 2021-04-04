@@ -331,7 +331,7 @@ var modaljs = {
         document.body.appendChild(container);
 
         close.addEventListener('click', modaljs.close);
-        modaljs.dragElement(header);
+        wrapjs.dragElement(header);
     },
 
     close: function () {
@@ -340,44 +340,6 @@ var modaljs = {
         } catch (e) {
             console.log(e);
         }
-    },
-
-    //w3s 인용
-    //출처 : https://www.w3schools.com/howto/howto_js_draggable.asp
-    dragElement: function (element) {
-
-        var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-        try {
-            element.onmousedown = dragMouseDown;
-        } catch (e) {
-            console.log(e);
-        }
-
-        function dragMouseDown(event) {
-            event = event || window.event;
-            event.preventDefault();
-            pos3 = event.clientX;
-            pos4 = event.clientY;
-            document.onmouseup = closeDragElement;
-            document.onmousemove = elementDrag;
-        }
-
-        function elementDrag(event) {
-            event = event || window.event;
-            event.preventDefault();
-            pos1 = pos3 - event.clientX;
-            pos2 = pos4 - event.clientY;
-            pos3 = event.clientX;
-            pos4 = event.clientY;
-            element.parentNode.style.top = (element.parentNode.offsetTop - pos2) + "px";
-            element.parentNode.style.left = (element.parentNode.offsetLeft - pos1) + "px";
-        }
-
-        function closeDragElement() {
-            document.onmouseup = null;
-            document.onmousemove = null;
-        }
-
     }
 };
 
@@ -519,6 +481,10 @@ var wrapjs = {
     //w3s 인용
     //출처 : https://www.w3schools.com/howto/howto_js_draggable.asp
     dragElement: function (element) {
+        wrapjs.dragMouseElement(element);
+        wrapjs.dragTouchElement(element);
+    },
+    dragMouseElement: function (element) {
 
         var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
         try {
@@ -552,6 +518,33 @@ var wrapjs = {
             document.onmousemove = null;
         }
 
+    },
+    dragTouchElement: function (element) {
+
+        var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+        try {
+            element.ontouchmove = dragTouchDown;
+        } catch (e) {
+            console.log(e);
+        }
+
+        function dragTouchDown(event) {
+            console.dir(event);
+            event.preventDefault();
+            pos3 = event.changedTouches[0].clientX;
+            pos4 = event.changedTouches[0].clientY;
+            document.ontouchend = elementDrag;
+        }
+
+        function elementDrag(event) {
+            pos1 = pos3 - event.changedTouches[0].clientX;
+            pos2 = pos4 - event.changedTouches[0].clientY;
+            pos3 = event.changedTouches[0].clientX;
+            pos4 = event.changedTouches[0].clientY;
+            element.parentNode.style.top = (element.parentNode.offsetTop - pos2) + "px";
+            element.parentNode.style.left = (element.parentNode.offsetLeft - pos1) + "px";
+            console.log('y:',element.parentNode.offsetTop - pos2,'x:',(element.parentNode.offsetLeft - pos1))
+        }
     }
 };
 
@@ -928,7 +921,9 @@ var primarySetting = {
             for (var key in appList) {
                 var appContainer = document.createElement('div');
                 if (appList[key]['url'].indexOf('https') !== -1) {
-                    appContainer.setAttribute('onclick', 'window.open("' + appList[key]['url'] + '")');
+                    appContainer.setAttribute('onclick',
+                        'if(window.confirm("'+key+'('+appList[key]['url']+')\\n해당페이지로 이동하시겠습니까?"))' +
+                        ' window.open("' + appList[key]['url'] + '")');
                 } else {
                     appContainer.setAttribute('onclick',
                         'request.forward("' + appList[key]['url'] + '", "' + key + '", "Now Loading....", this)');
