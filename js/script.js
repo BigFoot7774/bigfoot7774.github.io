@@ -56,7 +56,6 @@ var request = {
     },
 
     forward: function (URL, title, contents, element) {
-//consoleSave 메소드 강제실행 현재 보고 있는 페이지들 저장
         navJs.active('loading...', contents);
 
         setTimeout(function () {
@@ -64,7 +63,7 @@ var request = {
                 wrapjs.reset(title + '[Day:' + new Date().getDate() + ', ' + new Date().toLocaleTimeString() + ']', data, element);
                 wrapjs.viewPageHistory();
                 navJs.inactive();
-                headerjs.RemoveAsideFocus();
+                aside.removeFocus();
             });
         }, 1000);
     },
@@ -409,7 +408,9 @@ var wrapjs = {
         container.className = 'command';
         header.className = 'command-header';
         title.className = 'command-title';
-        if (titleHTML.indexOf('<img') === -1 || imgSrc !== undefined) {
+        var imgStartIndex = titleHTML.indexOf('<img');
+        var imgEndIndex = titleHTML.indexOf('>');
+        if (imgStartIndex === -1 || imgSrc !== undefined) {
             icon.src = imgSrc;
             // icon.setAttribute('onerror', "this.src='img/icon/cmdicon.png'");
             icon.style.padding = '0px 3px';
@@ -418,6 +419,9 @@ var wrapjs = {
             icon.style.height = 'auto';
             icon.style.verticalAlign = 'middle';
             iconContainer.appendChild(icon);
+        } else {
+            iconContainer.innerHTML = titleHTML.substring(imgStartIndex, imgEndIndex + 1);
+            titleHTML = titleHTML.substring(imgEndIndex + 1, titleHTML.length);
         }
 
         btn1.className = 'command-btn command-btn-save';
@@ -432,13 +436,13 @@ var wrapjs = {
         mainConsole.classList.add('mainConsole');
         mainConsole.classList.add('console-black');
 
-        container.appendChild(header);
-        header.appendChild(title);
         title.appendChild(iconContainer);
         title.innerHTML += '<span>' + titleHTML + '</span>';
+        header.appendChild(title);
         header.appendChild(btn1);
         header.appendChild(btn2);
         header.appendChild(btn3);
+        container.appendChild(header);
         container.appendChild(mainConsole);
 
         mainConsole.innerHTML = contentsHTML;
@@ -467,20 +471,23 @@ var wrapjs = {
         if (pageHistory != null) {
             pageHistory[key] = value;
             localStorage.setItem('localPageHistory', JSON.stringify(pageHistory));
+
         } else {
             var pageList = {};
             pageList[key] = value;
             localStorage.setItem('localPageHistory', JSON.stringify(pageList));
+
         }
         wrapjs.consoleClose(element);
         wrapjs.viewPageHistory();
+        aside.addFocus();
     },
     viewPageHistory: function () {
         wrapjs.localPageHistory.innerHTML = '';
         var pageHistory = JSON.parse(localStorage.getItem('localPageHistory'));
         for (var key in pageHistory) {
             if (pageHistory.hasOwnProperty(key)) {
-                var span = document.createElement('span');
+                var span = document.createElement('li');
                 span.className = 'msg-warning';
                 span.innerHTML = key;
                 span.setAttribute('onclick', 'wrapjs.getPageHistory(\'' + key + '\')');
@@ -585,81 +592,35 @@ var Textjs = {
 };
 
 //-headerjs객체 헤더로고 움직임, aside바 닫힘, headercontents 투명 조절
-var headerjs = {
+var aside = {
     header: document.querySelector('header'),
-    aside: document.querySelector('aside'),
+    asideTag: document.querySelector('aside'),
     headerLogo: document.querySelector('#headerLogo'),
     localPageHistory: document.querySelector('#localPageHistory'),
 
-    AsideFocus: function (event) {
-
-
-        var asideChilden = headerjs.aside.querySelectorAll('aside>*');
-
-        headerjs.aside.classList.toggle('aside-focus');
-        /*
-                for (var index = 0; index < asideChilden.length; index++) {
-                    asideChilden[index].classList.toggle('opacity-1');
-                }*/
+    addFocus: function (event) {
+        aside.asideTag.classList.add('aside-focus');
 
     },
-    RemoveAsideFocus: function (event) {
+    toggleFocus: function (event) {
+        aside.asideTag.classList.toggle('aside-focus');
 
-        var asideChilden = headerjs.aside.querySelectorAll('aside>*');
-
-        headerjs.aside.classList.remove('aside-focus');
-        /*
-                for (var index = 0; index < asideChilden.length; index++) {
-                    asideChilden[index].classList.remove('opacity-1');
-                }*/
     },
-    /*
-        MouseXY: function (event){
+    removeFocus: function (event) {
+        aside.asideTag.classList.remove('aside-focus');
 
-            var pupil = document.querySelector('.header-eye-pupil');
-    // eyelidInfo의 getBoundingClientRect()메소드를 호출하여 이 태그의 위치를 기준으로
-    // 좌표 정보값을 가지는 객체를 리턴받음
-            var eyelidInfo = document.querySelector('.header-eye-eyelid').getBoundingClientRect();
-    // eventLocation: 현재 마우스 좌표값
-            var eventLocation = {X: event.clientX, Y: event.clientY};
-    // center: 좌표값 기준이 될 header-eye-eyelid클래스의 X Y좌표 중앙 값
-            var center = {
-                            X: (eyelidInfo.left + eyelidInfo.right)/2,
-                            Y: (eyelidInfo.top + eyelidInfo.bottom)/2
-                            };
-
-            var locationX = eventLocation.X;
-            var locationY = eventLocation.Y;
-
-        //pupil의 위치가 eyelid의 범위에서 벗어나지 않게
-        // 조건문으로 위치 조정
-            if (eventLocation.X > eyelidInfo.right-5) {
-                locationX = (center.X+3);
-            }
-            if (eventLocation.X < eyelidInfo.left+5) {
-                locationX = (center.X-3);
-            }
-            if (eventLocation.Y > eyelidInfo.bottom-2) {
-                locationY = (center.Y+3);
-            }
-            if (eventLocation.Y < eyelidInfo.top+2) {
-                locationY = (center.Y-3);
-            }
-        //좌표값 반영
-            pupil.style.left = String(locationX)+'px';
-            pupil.style.top = String(locationY)+'px';
-        },*/
-
+    },
     navContents: function (event) {
         var actionY = event.srcElement.scrollingElement.scrollTop;
-        headerjs.RemoveAsideFocus();
-        if (headerjs.scrollTargetTop - actionY < 0) {
-            headerjs.localPageHistory.classList.add('opacity-0');
+        aside.removeFocus();
+        if (aside.scrollTargetTop - actionY < 0) {
+            aside.localPageHistory.classList.add('opacity-0');
         } else {
-            headerjs.localPageHistory.classList.remove('opacity-0');
+            aside.localPageHistory.classList.remove('opacity-0');
         }
 //객체에 추가, 저장 후에 스크롤링 될때마다 호출저장 반복
-        headerjs.scrollTargetTop = actionY;
+        aside.scrollTargetTop = actionY;
+
     }
 };
 
@@ -856,7 +817,7 @@ var profileScript = {
     titleActive: function (URL, callback, contentsName) {
         var contentsDetails = document.querySelector('#contentsDetails');
 
-        if (contentsName != undefined) {
+        if (contentsName !== undefined) {
             contentsDetails.innerHTML = 'Contents Details: ' + contentsName;
 
         } else {
@@ -885,7 +846,7 @@ var scrollJs = {
 
 function checkBrowser() {
     if (navigator.userAgent.toLowerCase().indexOf("chrome") === -1) {
-        request.asyncGetData('app/browserCheck.json', function (data) {
+        request.submit('GET', 'app/browserCheck.json', function (data) {
             var parsedData = JSON.parse(data);
             modaljs.create(parsedData.title, parsedData.contents);
         });
@@ -893,19 +854,25 @@ function checkBrowser() {
 }
 
 function requestInit() {
-    headerjs.headerLogo.addEventListener('click', headerjs.AsideFocus);
+    aside.headerLogo.addEventListener('click', aside.toggleFocus);
+//     window.addEventListener('click', function (event) {
+//         var asideTag = document.querySelector('aside');
+//         var commandHeader = document.querySelector('.command-header');
+//         var clickElementResult = false;
+//         var clickElementArray = event.path;
+//         for (var key in clickElementArray) {
+//             if (clickElementArray[key] === asideTag) clickElementResult = true;
+//             if (clickElementArray[key] === commandHeader) clickElementResult = true;
+//         }
+//
+// //이벤트의 path배열 중 aside node가 없거나, 이벤트 타겟의 id 속성이 headerLogo가 아니면 aside.removeFocus(); 실행
+//         if (!(clickElementResult || event.target.id === 'headerLogo')) {
+//             aside.removeFocus();
+//
+//         }
+//     });
 
-    window.addEventListener('click', function (event) {
-        var aside = document.querySelector('aside');
-
-//이벤트의 path배열 중 aside node가 없거나, 이벤트 타겟의 id 속성이 headerLogo가 아니면 headerjs.RemoveAsideFocus(); 실행
-        if (!(event.path.indexOf(aside) != -1 || event.target.id === 'headerLogo')) {
-            headerjs.RemoveAsideFocus();
-
-        }
-    });
-
-    window.addEventListener('scroll', headerjs.navContents);
+    window.addEventListener('scroll', aside.navContents);
 
     // request.asyncGetData('app/appDataList.json', function (data) {
     // defaultScript.asideList(data);
@@ -938,26 +905,6 @@ var primarySetting = {
         });
     }
 }
-
-
-var defaultScript = {
-    asideList: function (acceptedData) {
-        var jsonData;
-        if (typeof data === 'object') {
-            jsonData = acceptedData;
-        } else {
-            jsonData = JSON.parse(acceptedData);
-        }
-        var asideList = document.querySelector('#asideList');
-        var tagHTML = '';
-        for (var key in jsonData) {
-            if (jsonData.hasOwnProperty(key)) {
-                tagHTML += '<li><a href="' + jsonData[key] + '">' + key + '</a></li>';
-            }
-        }
-        asideList.innerHTML = tagHTML;
-    }
-};
 
 checkBrowser();
 requestInit();
