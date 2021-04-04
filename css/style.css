@@ -7,6 +7,9 @@
     url(../font/DungGeunMo.otf) format('opentype'),
     url(../font/DungGeunMo.eot);
 }
+*{
+    overscroll-behavior: contain;
+}
 
 html, body {
     font-family: Dotkey;
