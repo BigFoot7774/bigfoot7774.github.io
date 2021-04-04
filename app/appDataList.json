@@ -4,15 +4,15 @@
     "icon": "img/icon/profile.png"
   },
   "Stacks": {
-    "url": "./",
+    "url": "app/list/stacks.html",
     "icon": "img/icon/skill.png"
   },
   "Project": {
-    "url": "./",
+    "url": "app/list/project.html",
     "icon": "img/icon/introduction.png"
   },
   "Salary": {
-    "url": "app/list/project.html",
+    "url": "app/list/salary.html",
     "icon": "img/icon/salary.png"
   },
   "Contact Me": {
@@ -20,11 +20,11 @@
     "icon": "img/icon/contact-me.png"
   },
   "바로가기": {
-    "url": "./",
+    "url": "app/list/shortcuts.html",
     "icon": "img/icon/link.png"
   },
   "PDF로 저장": {
-    "url": "./",
+    "url": "https://xasquatch.net/app/list/pdf.html",
     "icon": "img/icon/pdf.png"
   },
   "Github": {
