@@ -335,7 +335,11 @@ var modaljs = {
     },
 
     close: function () {
-        this.parentNode.parentNode.remove();
+        try {
+            this.parentNode.parentNode.remove();
+        } catch (e) {
+            console.log(e);
+        }
     },
 
     //w3s 인용
@@ -343,8 +347,11 @@ var modaljs = {
     dragElement: function (element) {
 
         var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-
-        element.onmousedown = dragMouseDown;
+        try {
+            element.onmousedown = dragMouseDown;
+        } catch (e) {
+            console.log(e);
+        }
 
         function dragMouseDown(event) {
             event = event || window.event;
@@ -404,7 +411,7 @@ var wrapjs = {
 
         container.className = 'command';
         header.className = 'command-header';
-        container.addEventListener('mousedown', function (event) {
+        container.addEventListener('click', function (event) {
             wrapjs.wrap.insertBefore(wrapjs.wrap.lastChild, this);
         });
 
@@ -459,8 +466,11 @@ var wrapjs = {
 
     },
     consoleClose: function (element) {
-        element.parentNode.parentNode.remove();
-
+        try {
+            element.parentNode.parentNode.remove();
+        } catch (e) {
+            console.log(e);
+        }
     },
     consoleSave: function (element) {
         var pageHistory = JSON.parse(localStorage.getItem('localPageHistory'));
@@ -511,8 +521,11 @@ var wrapjs = {
     dragElement: function (element) {
 
         var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-
-        element.onmousedown = dragMouseDown;
+        try {
+            element.onmousedown = dragMouseDown;
+        } catch (e) {
+            console.log(e);
+        }
 
         function dragMouseDown(event) {
             event = event || window.event;
