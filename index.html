@@ -66,57 +66,26 @@
 </section>
 
 <script src="js/script.js"></script>
-<script src="js/project-script.js"></script>
+<script src="js/projectApp.js"></script>
 <script src="js/myblog-api.js"></script>
 <script>
     //--------------------시점: 스크립트 로드 완료 후 최초실행--------------------------
     document.addEventListener('DOMContentLoaded', function () {
-
-        //페이지 로딩동안 로딩창 최초생성
         navJs.normalActive('loading...', 'Thank you so much for visiting my page !<BR>Please wait a few seconds<BR><BR> - Developer Xasqutch -');
 
     });
-    //-------------------------------------------------------------------------------
-
     //--------------------시점: DOM 로드 완료 후 실행----------------------------------
     window.onload = function () {
-        closeNavWelcome();
-        keySet();
+        primary.closeNavWelcome();
+        primary.keySet();
         window.addEventListener('scroll', scrolljs.autoPlayVideo);
         window.addEventListener('resize', scrolljs.autoPlayVideo);
     }
+    primary.getAppList();
+    primary.checkBrowser();
+    primary.clickAndScrollSetting();
+    wrapjs.viewPageHistory();
 
-    //-------------------------------------------------------------------------------
-    function keySet() {
-        window.addEventListener('keydown', function (event) {
-            if (event.keyCode === 27) {
-                event.preventDefault();
-                var btnClose = document.querySelectorAll('.command-btn-close');
-                wrapjs.consoleClose(btnClose[btnClose.length - 1]);
-            }
-            if (event.ctrlKey && event.keyCode === 83) {
-                event.preventDefault();
-                var btnSave = document.querySelectorAll('.command-btn-save');
-                wrapjs.consoleSave(btnSave[btnSave.length - 1]);
-            }
-            if (event.ctrlKey && event.keyCode === 79) {
-                event.preventDefault();
-                aside.toggleFocus();
-            }
-        });
-    }
-
-    //로드 완료 후 최초 로딩창 close
-    function closeNavWelcome() {
-        if (sessionStorage.getItem('everVisited') !== 'true') {
-            setTimeout(navJs.inactive, 1000);
-            sessionStorage.setItem('everVisited', true);
-        } else {
-            navJs.inactive();
-        }
-    }
-
-    primarySetting.getAppList();
 </script>
 </body>
 </html>

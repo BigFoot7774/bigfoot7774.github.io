@@ -376,7 +376,8 @@ var wrapjs = {
         container.addEventListener('click', function (event) {
             try {
                 wrapjs.wrap.insertBefore(wrapjs.wrap.lastChild, this);
-            } catch (e) {}
+            } catch (e) {
+            }
         });
 
         title.className = 'command-title';
@@ -852,34 +853,6 @@ var profileScript = {
             }
         }
     },
-
-    personalInformation: function (data) {
-        var profileDetails = document.querySelector('#profileDetails');
-        profileDetails.innerHTML = '';
-        var HTMLData = '';
-        var parsedData = JSON.parse(data);
-
-        for (var key in parsedData) {
-            if (parsedData.hasOwnProperty(key)) {
-                HTMLData += '<div><fieldset>' +
-                    '<legend>' + key + '</legend>' +
-                    parsedData[key] + '</fieldset></div>';
-            }
-        }
-        profileDetails.innerHTML = HTMLData;
-    },
-
-    introduce: function (data) {
-        var profileDetails = document.querySelector('#profileDetails');
-
-        profileDetails.innerHTML = '';
-
-        Textjs.insertText('#profileDetails', data, 1);
-        // profileDetails.innerHTML = data;
-
-
-    },
-
     titleActive: function (URL, callback, contentsName) {
         var contentsDetails = document.querySelector('#contentsDetails');
 
@@ -894,51 +867,7 @@ var profileScript = {
         request.submit('GET', URL, callback);
     }
 }
-
-/*
-var scrollJs = {
-    scrollToTop: function () {
-        window.scrollTo(0, 0);
-    },
-
-    viewScrollBtn: function () {
-
-
-        scrollJs.scrollToTop();
-    }
-}
-*/
-
-
-function checkBrowser() {
-    if (navigator.userAgent.toLowerCase().indexOf("chrome") === -1) {
-        request.submit('GET', 'app/browserCheck.json', function (data) {
-            var parsedData = JSON.parse(data);
-            modaljs.create(parsedData.title, parsedData.contents);
-        });
-    }
-}
-
-function requestInit() {
-    aside.headerLogo.addEventListener('click', aside.toggleFocus);
-    window.addEventListener('click', function (event) {
-        if (event.target.className.indexOf('non-flip') === -1
-            && event.target.className.indexOf('header-logo') === -1
-            && event.target.className.indexOf('command') === -1) {
-            aside.removeFocus();
-
-        }
-    });
-
-    window.addEventListener('scroll', aside.navContents);
-
-    // request.asyncGetData('app/appDataList.json', function (data) {
-    // defaultScript.asideList(data);
-    // });
-    wrapjs.viewPageHistory();
-}
-
-var primarySetting = {
+var primary = {
     getAppList: function () {
         var iconContainer = document.querySelector('#icon-container');
         request.submit('GET', 'app/appDataList.json', function (data) {
@@ -969,49 +898,51 @@ var primarySetting = {
                 iconContainer.appendChild(appContainer);
             }
         });
+    },
+    clickAndScrollSetting: function () {
+        aside.headerLogo.addEventListener('click', aside.toggleFocus);
+        window.addEventListener('click', function (event) {
+            if (event.target.className.indexOf('non-flip') === -1
+                && event.target.className.indexOf('header-logo') === -1
+                && event.target.className.indexOf('command') === -1) {
+                aside.removeFocus();
+
+            }
+        });
+        window.addEventListener('scroll', aside.navContents);
+    },
+    checkBrowser: function () {
+        if (navigator.userAgent.toLowerCase().indexOf("chrome") !== -1) return;
+        request.submit('GET', 'app/browserCheck.json', function (data) {
+            var parsedData = JSON.parse(data);
+            modaljs.create(parsedData.title, parsedData.contents);
+        });
+
+    },
+    keySet: function () {
+        window.addEventListener('keydown', function (event) {
+            if (event.keyCode === 27) {
+                event.preventDefault();
+                var btnClose = document.querySelectorAll('.command-btn-close');
+                wrapjs.consoleClose(btnClose[btnClose.length - 1]);
+            }
+            if (event.ctrlKey && event.keyCode === 83) {
+                event.preventDefault();
+                var btnSave = document.querySelectorAll('.command-btn-save');
+                wrapjs.consoleSave(btnSave[btnSave.length - 1]);
+            }
+            if (event.ctrlKey && event.keyCode === 79) {
+                event.preventDefault();
+                aside.toggleFocus();
+            }
+        });
+    },
+    closeNavWelcome: function () {
+        if (sessionStorage.getItem('everVisited') !== 'true') {
+            setTimeout(navJs.inactive, 1000);
+            sessionStorage.setItem('everVisited', true);
+        } else {
+            navJs.inactive();
+        }
     }
 }
-
-checkBrowser();
-requestInit();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
