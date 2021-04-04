@@ -108,6 +108,7 @@ aside>div:first-child{
 }
 .aside-list>li{
     margin: 1em 0px;
+    cursor: pointer;
 }
 @media(min-width:1200px){
     aside{

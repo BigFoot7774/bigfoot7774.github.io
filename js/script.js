@@ -65,7 +65,7 @@ var request = {
                 navJs.inactive();
                 aside.removeFocus();
             });
-        }, 1000);
+        }, 500);
     },
 
 
