@@ -57,20 +57,14 @@ var request = {
 
     forward: function (URL, title, contents) {
 //consoleSave 메소드 강제실행 현재 보고 있는 페이지들 저장
-        var savebtns = document.querySelectorAll('.command-btn-save');
-        for (var i = 0; i < savebtns.length; i++) {
-            savebtns[i].onclick();
-        }
-
         navJs.active('loading...', contents);
 
         setTimeout(function () {
             request.submit('GET', URL, function (data) {
-                wrapjs.reset(title, data);
+                wrapjs.reset(title + '[Day:' + new Date().getDay() +', '+new Date().toLocaleTimeString() + ']', data, this);
                 wrapjs.viewPageHistory();
                 navJs.inactive();
                 headerjs.RemoveAsideFocus();
-                modaljs.dragElement(document.querySelector('.command'));
             });
         }, 1000);
     },
@@ -354,11 +348,7 @@ var modaljs = {
 
         var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
 
-        if (this.titleContainer) {
-            this.titleContainer.onmousedown = dragMouseDown;
-        } else {
-            element.onmousedown = dragMouseDown;
-        }
+        element.onmousedown = dragMouseDown;
 
         function dragMouseDown(event) {
             event = event || window.event;
@@ -399,13 +389,12 @@ var wrapjs = {
         var container = new wrapjs.console(titleHTML, contentsHTML);
         wrapjs.wrap.appendChild(container);
     },
-    reset: function (titleHTML, contentsHTML) {
-        wrapjs.wrap.innerText = '';
-
-        var container = new wrapjs.console(titleHTML, contentsHTML);
+    reset: function (titleHTML, contentsHTML, element) {
+        var container = new wrapjs.console(titleHTML, contentsHTML, element.src);
+        modaljs.dragElement(container);
         wrapjs.wrap.appendChild(container);
     },
-    console: function (titleHTML, contentsHTML) {
+    console: function (titleHTML, contentsHTML, imgSrc) {
         var container = document.createElement('div');
         var header = document.createElement('div');
         var title = document.createElement('div');
@@ -419,12 +408,15 @@ var wrapjs = {
         container.className = 'command';
         header.className = 'command-header';
         title.className = 'command-title';
-        icon.src = 'img/icon/cmdicon.png';
-        icon.style.padding = '0px 3px';
-        icon.style.margin = '0px';
-        icon.style.width = '1.2em';
-        icon.style.height = 'auto';
-        icon.style.verticalAlign = 'middle';
+        if (titleHTML.indexOf('<img') === -1 || imgSrc === undefined) {
+            icon.src = imgSrc;
+            icon.setAttribute('onerror', "this.src='img/icon/cmdicon.png'");
+            icon.style.padding = '0px 3px';
+            icon.style.margin = '0px';
+            icon.style.width = '1.2em';
+            icon.style.height = 'auto';
+            icon.style.verticalAlign = 'middle';
+        }
 
         btn1.className = 'command-btn command-btn-save';
         btn1.innerHTML = '&minus;';
@@ -432,16 +424,16 @@ var wrapjs = {
         btn3.className = 'command-btn command-btn-close';
         btn2.appendChild(square);
         btn3.innerHTML = '&times;';
-        btn1.setAttribute('onclick', 'wrapjs.consoleSave()');
-        btn2.setAttribute('onclick', 'wrapjs.consoleMaxWidth()');
-        btn3.setAttribute('onclick', 'wrapjs.consoleClose()');
-        mainConsole.id = 'mainConsole';
-        mainConsole.className = 'console-black';
+        btn1.setAttribute('onclick', 'wrapjs.consoleSave(this)');
+        btn2.setAttribute('onclick', 'wrapjs.consoleMaxWidth(this)');
+        btn3.setAttribute('onclick', 'wrapjs.consoleClose(this)');
+        mainConsole.classList.add('mainConsole');
+        mainConsole.classList.add('console-black');
 
         container.appendChild(header);
         header.appendChild(title);
         title.appendChild(icon);
-        title.innerHTML += titleHTML;
+        title.innerHTML += '<span>' + titleHTML + '</span>';
         header.appendChild(btn1);
         header.appendChild(btn2);
         header.appendChild(btn3);
@@ -453,32 +445,25 @@ var wrapjs = {
 
         return container;
     },
-    consoleMaxWidth: function () {
-        var thisContainer = this.wrap.childNodes;
-        for (var i = 0; i < thisContainer.length; i++) {
-            thisContainer[i].classList.toggle('command-max-width');
-            thisContainer[i].querySelector('#mainConsole').classList.toggle('console-black-max-height');
-        }
+    consoleMaxWidth: function (element) {
+        var thisContainer = element.parentNode.parentNode;
+        thisContainer.classList.toggle('command-max-width');
+        thisContainer.querySelector('.mainConsole').classList.toggle('console-black-max-height');
 
     },
-    consoleClose: function () {
-        this.wrap.innerHTML = '';
+    consoleClose: function (element) {
+        element.parentNode.parentNode.remove();
 
     },
-    consoleSave: function () {
-        var PageHistory = JSON.parse(localStorage.getItem('localPageHistory'));
-        var key = this.wrap.querySelector('.command-title').innerHTML;
-        var value = this.wrap.innerHTML;
+    consoleSave: function (element) {
+        var thisContainer = element.parentNode.parentNode;
+        var key = thisContainer.querySelector('.command-title>span').innerText;
+        var value = thisContainer.querySelector('.mainConsole').innerHTML;
 
-        if (PageHistory != null) {
-            PageHistory[key] = value;
-            localStorage.setItem('localPageHistory', JSON.stringify(PageHistory));
-        } else {
-            var pageList = {};
-            pageList[key] = value;
-            localStorage.setItem('localPageHistory', JSON.stringify(pageList));
-        }
-        this.wrap.innerHTML = '';
+        var pageList = {};
+        pageList[key] = value;
+        localStorage.setItem('localPageHistory', JSON.stringify(pageList));
+        wrapjs.consoleClose(element);
         wrapjs.viewPageHistory();
     },
     viewPageHistory: function () {
@@ -489,22 +474,19 @@ var wrapjs = {
                 var span = document.createElement('span');
                 span.className = 'msg-warning';
                 span.innerHTML = key;
-                span.setAttribute('onclick', 'wrapjs.getPageHistory(\'' + key + '\')');
+                span.setAttribute('onclick', 'wrapjs.getPageHistory("' + key + '")');
                 wrapjs.localPageHistory.appendChild(span);
             }
         }
     },
     getPageHistory: function (key) {
-        saveBtn = document.querySelector('.command-btn-save');
-        if (saveBtn != null) {
-            saveBtn.onclick();
-        }
+        var pageHistory = JSON.parse(localStorage.getItem('localPageHistory'));
+        var container = wrapjs.console(key, pageHistory[key], undefined);
+        modaljs.dragElement(container);
+        wrapjs.wrap.appendChild(container);
+        pageHistory[key] = undefined;
 
-        var PageHistory = JSON.parse(localStorage.getItem('localPageHistory'));
-        wrapjs.wrap.innerHTML = PageHistory[key];
-        PageHistory[key] = undefined;
-
-        localStorage.setItem('localPageHistory', JSON.stringify(PageHistory));
+        localStorage.setItem('localPageHistory', JSON.stringify(pageHistory));
         wrapjs.viewPageHistory();
     }
 };
@@ -592,7 +574,6 @@ var Textjs = {
         }, interval);
     }
 };
-
 
 //-headerjs객체 헤더로고 움직임, aside바 닫힘, headercontents 투명 조절
 var headerjs = {
@@ -915,7 +896,6 @@ function requestInit() {
         }
     });
 
-    window.addEventListener('mousemove', headerjs.MouseXY);
     window.addEventListener('scroll', headerjs.navContents);
 
     // request.asyncGetData('app/appDataList.json', function (data) {

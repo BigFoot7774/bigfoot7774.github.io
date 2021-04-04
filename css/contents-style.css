@@ -30,7 +30,7 @@
     left: 0 !important;
     box-sizing: border-box;
 }
-.command-max-width>#mainConsole{
+.command-max-width>.mainConsole{
     min-height: 60vh;
 }
 .command-header {
