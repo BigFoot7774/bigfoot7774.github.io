@@ -138,23 +138,6 @@
     }
 }
 
-.home-guide fieldset {
-    padding: 10px;
-    margin: 10px;
-}
-
-.home-guide video {
-    max-height: 400px;
-    width: auto;
-    margin: 0px auto;
-    box-sizing: border-box;
-}
-
-.home-guide > fieldset {
-    display: flex;
-    flex-direction: column;
-}
-
 .profile-category {
     font-size: 2em;
 }
