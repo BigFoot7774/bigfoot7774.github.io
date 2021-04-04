@@ -87,12 +87,27 @@ footer * {
 
 footer > ul {
     list-style: none;
-    padding: 0px 0px 50px 0px;
+    padding: 0;
 }
+
+footer li {
+    padding: 5px;
+    margin: 10px 0;
+    font-weight: bold;
+    box-shadow: 2px 2px 5px rgba(150, 0, 0, 0.5),
+                2px -2px 5px rgba(150, 0, 0, 0.5),
+                -2px -2px 5px rgba(150, 0, 0, 0.5),
+                -2px 2px 5px rgba(150, 0, 0, 0.5);
+    transition: 0.5s all;
+}
+footer li:HOVER{
+    background: silver;
+}
+
 
 @media (max-height: 600px) {
 
-    footer{
+    footer {
         display: none;
     }
 

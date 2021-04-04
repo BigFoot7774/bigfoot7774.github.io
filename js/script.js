@@ -457,6 +457,20 @@ var wrapjs = {
         wrapjs.viewPageHistory();
         aside.addFocus();
     },
+    consoleAllClose: function () {
+        var closeBtnList = document.querySelectorAll('.command-btn-close');
+        for (var closeBtn of closeBtnList) {
+            wrapjs.consoleClose(closeBtn);
+        }
+
+    },
+    consoleAllSave: function () {
+        var saveBtnList = document.querySelectorAll('.command-btn-save');
+        for (var saveBtn of saveBtnList) {
+            wrapjs.consoleSave(saveBtn);
+        }
+
+    },
     viewPageHistory: function () {
         wrapjs.localPageHistory.innerHTML = '';
         var pageHistory = JSON.parse(localStorage.getItem('localPageHistory'));
@@ -478,6 +492,10 @@ var wrapjs = {
         pageHistory[key] = undefined;
 
         localStorage.setItem('localPageHistory', JSON.stringify(pageHistory));
+        wrapjs.viewPageHistory();
+    },
+    dropPageHistory: function () {
+        localStorage.removeItem('localPageHistory');
         wrapjs.viewPageHistory();
     },
     //w3s 인용
@@ -929,7 +947,7 @@ var primarySetting = {
                 var appContainer = document.createElement('div');
                 if (appList[key]['url'].indexOf('https') !== -1) {
                     appContainer.setAttribute('onclick',
-                        'if(window.confirm("' + key + '(' + appList[key]['url'] + ')\\n해당페이지로 이동하시겠습니까?"))' +
+                        'if(window.confirm("' + key + '  ' + appList[key]['url'] + '\\n해당페이지로 이동하시겠습니까?"))' +
                         ' window.open("' + appList[key]['url'] + '")');
                 } else {
                     appContainer.setAttribute('onclick',

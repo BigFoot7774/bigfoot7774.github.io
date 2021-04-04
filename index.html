@@ -32,7 +32,22 @@
     </div>
     <footer>
         <ul>
-            <li style="border-radius:20px; color: black; background: rgba(255,255,255,0.7); padding: 5px 0;">
+            <li>
+                <a href="javascript:if (window.confirm('현재 페이지 히스토리를 전부 비우시겠습니까?'))wrapjs.dropPageHistory();">
+                    스토리지<BR>비우기
+                </a>
+            </li>
+            <li>
+                <a href="javascript:if (window.confirm('현재 열려있는 모든 콘솔창을 닫으시겠습니까?'))wrapjs.consoleAllClose();">
+                    모든 창 닫기
+                </a>
+            </li>
+            <li>
+                <a href="javascript:if (window.confirm('현재 열려있는 모든 콘솔창을 저장하시겠습니까?'))wrapjs.consoleAllSave();">
+                    모든 창 저장
+                </a>
+            </li>
+            <li>
                 <a href="https://github.com/xasquatch/xasquatch.github.io" target="_blank">
                     <img src="img/icon/Xasquatch.ico" style="width: 32px;height: 32px;"><BR>
                     <b>This Page</b>
@@ -74,7 +89,6 @@
     //-------------------------------------------------------------------------------
     function keySet() {
         window.addEventListener('keydown', function (event) {
-            console.log(event);
             if (event.keyCode === 27) {
                 event.preventDefault();
                 var btnClose = document.querySelectorAll('.command-btn-close');

@@ -113,12 +113,13 @@ aside > div:first-child {
     margin-top: 100px;
     padding: 5px;
     font-size: 1em;
-    max-height: 50vh;
+    max-height: 35vh;
     overflow: auto;
     box-shadow: 2px 2px 5px rgba(150, 0, 0, 0.5),
                 2px -2px 5px rgba(150, 0, 0, 0.5),
                 -2px -2px 5px rgba(150, 0, 0, 0.5),
                 -2px 2px 5px rgba(150, 0, 0, 0.5);
+    min-width: 90%;
 }
 
 .aside-list > li {
