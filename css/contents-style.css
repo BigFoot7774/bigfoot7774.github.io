@@ -60,7 +60,7 @@
     background-color: rgba(255, 255, 255, 0.3);
 }
 
-.command-btn-squre > span {
+.command-btn-square > span {
     border: 1px solid rgba(0, 0, 0, 1);
     display: inline-block;
     width: 0.5em;

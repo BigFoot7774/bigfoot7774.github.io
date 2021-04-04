@@ -315,7 +315,7 @@ var modaljs = {
         container.appendChild(contents);
 
         header.className = 'header-modal header-modal-title';
-        title.className = 'msg-warning non-flip';
+        title.className = 'non-flip';
         header.appendChild(title);
         header.appendChild(close);
         close.className = 'header-modal-title-close';
@@ -331,14 +331,11 @@ var modaljs = {
         document.body.appendChild(container);
 
         close.addEventListener('click', modaljs.close);
-        modaljs.dragElement(container);
+        modaljs.dragElement(header);
     },
 
     close: function () {
-        if (this.parentNode.parentNode != null) {
-            document.body.removeChild(this.parentNode.parentNode);
-            // document.querySelector('.header-modal'));
-        }
+        this.parentNode.parentNode.remove();
     },
 
     //w3s 인용
@@ -365,8 +362,8 @@ var modaljs = {
             pos2 = pos4 - event.clientY;
             pos3 = event.clientX;
             pos4 = event.clientY;
-            element.style.top = (element.offsetTop - pos2) + "px";
-            element.style.left = (element.offsetLeft - pos1) + "px";
+            element.parentNode.style.top = (element.parentNode.offsetTop - pos2) + "px";
+            element.parentNode.style.left = (element.parentNode.offsetLeft - pos1) + "px";
         }
 
         function closeDragElement() {
@@ -407,6 +404,10 @@ var wrapjs = {
 
         container.className = 'command';
         header.className = 'command-header';
+        container.addEventListener('mousedown', function (event) {
+            wrapjs.wrap.insertBefore(wrapjs.wrap.lastChild, this);
+        });
+
         title.className = 'command-title';
         var imgStartIndex = titleHTML.indexOf('<img');
         var imgEndIndex = titleHTML.indexOf('>');
@@ -426,7 +427,7 @@ var wrapjs = {
 
         btn1.className = 'command-btn command-btn-save';
         btn1.innerHTML = '&minus;';
-        btn2.className = 'command-btn command-btn-squre';
+        btn2.className = 'command-btn command-btn-square';
         btn3.className = 'command-btn command-btn-close';
         btn2.appendChild(square);
         btn3.innerHTML = '&times;';
@@ -488,7 +489,7 @@ var wrapjs = {
         for (var key in pageHistory) {
             if (pageHistory.hasOwnProperty(key)) {
                 var span = document.createElement('li');
-                span.className = 'msg-warning non-flip';
+                span.className = 'non-flip';
                 span.innerHTML = key;
                 span.setAttribute('onclick', 'wrapjs.getPageHistory(\'' + key + '\')');
                 wrapjs.localPageHistory.appendChild(span);
@@ -890,8 +891,6 @@ function checkBrowser() {
 function requestInit() {
     aside.headerLogo.addEventListener('click', aside.toggleFocus);
     window.addEventListener('click', function (event) {
-        console.dir(event);
-        console.dir(event.target.className);
         if (event.target.className.indexOf('non-flip') === -1
             && event.target.className.indexOf('header-logo') === -1
             && event.target.className.indexOf('command') === -1) {

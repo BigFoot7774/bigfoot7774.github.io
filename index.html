@@ -73,11 +73,31 @@
     //--------------------시점: DOM 로드 완료 후 실행----------------------------------
     window.onload = function () {
         closeNavWelcome();
+        keySet();
         window.addEventListener('scroll', scrolljs.autoPlayVideo);
         window.addEventListener('resize', scrolljs.autoPlayVideo);
     }
-    //-------------------------------------------------------------------------------
 
+    //-------------------------------------------------------------------------------
+    function keySet() {
+        window.addEventListener('keydown', function (event) {
+            console.log(event);
+            if (event.keyCode === 27) {
+                event.preventDefault();
+                var btnClose = document.querySelectorAll('.command-btn-close');
+                wrapjs.consoleClose(btnClose[btnClose.length - 1]);
+            }
+            if (event.ctrlKey && event.keyCode === 83) {
+                event.preventDefault();
+                var btnSave = document.querySelectorAll('.command-btn-save');
+                wrapjs.consoleSave(btnSave[btnSave.length-1]);
+            }
+            if (event.ctrlKey && event.keyCode === 79) {
+                event.preventDefault();
+                aside.toggleFocus();
+            }
+        });
+    }
 
     //로드 완료 후 최초 로딩창 close
     function closeNavWelcome() {

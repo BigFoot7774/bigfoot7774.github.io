@@ -104,16 +104,10 @@ aside>div:first-child{
     list-style: none;
     margin-top: 100px;
     padding: 5px;
-    font-size: 1.5em;
+    font-size: 1em;
 }
 .aside-list>li{
     margin: 1em 0px;
-}
-.aside-list>li>a{
-    transition: 0.3s all;
-}
-.aside-list>li>a:HOVER{
-    color: rgba(150, 0, 0, 1);
 }
 @media(min-width:1200px){
     aside{
