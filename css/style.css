@@ -7,15 +7,13 @@
     url(../font/DungGeunMo.otf) format('opentype'),
     url(../font/DungGeunMo.eot);
 }
-*{
-    overscroll-behavior: contain;
-}
 
 html, body {
     font-family: Dotkey;
     margin: 0;
     color: rgba(255, 255, 255, 1);
     background-color: rgba(0, 0, 0, 1);
+    overscroll-behavior-y: none;
 }
 
 body {
