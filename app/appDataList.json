@@ -8,7 +8,7 @@
     "icon":"img/icon/profile.png"
   },
   "Project": {
-    "url": "app/list/project.png",
+    "url": "app/list/project.html",
     "icon":"img/icon/home.png"
   },
   "Contact Me": {
