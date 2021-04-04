@@ -315,7 +315,7 @@ var modaljs = {
         container.appendChild(contents);
 
         header.className = 'header-modal header-modal-title';
-        title.className = 'msg-warning';
+        title.className = 'msg-warning non-flip';
         header.appendChild(title);
         header.appendChild(close);
         close.className = 'header-modal-title-close';
@@ -385,12 +385,12 @@ var wrapjs = {
     localPageHistory: document.querySelector('#localPageHistory'),
 
     add: function (titleHTML, contentsHTML) {
-        var container = new wrapjs.console(titleHTML, contentsHTML);
+        var container = wrapjs.console(titleHTML, contentsHTML);
         wrapjs.wrap.appendChild(container);
     },
     reset: function (titleHTML, contentsHTML, element) {
-        var container = new wrapjs.console(titleHTML, contentsHTML, element.querySelector('img').src);
-        modaljs.dragElement(container);
+        var container = wrapjs.console(titleHTML, contentsHTML, element.querySelector('img').src);
+        wrapjs.dragElement(container.querySelector('.command-header'));
         wrapjs.wrap.appendChild(container);
     },
     console: function (titleHTML, contentsHTML, imgSrc) {
@@ -488,7 +488,7 @@ var wrapjs = {
         for (var key in pageHistory) {
             if (pageHistory.hasOwnProperty(key)) {
                 var span = document.createElement('li');
-                span.className = 'msg-warning';
+                span.className = 'msg-warning non-flip';
                 span.innerHTML = key;
                 span.setAttribute('onclick', 'wrapjs.getPageHistory(\'' + key + '\')');
                 wrapjs.localPageHistory.appendChild(span);
@@ -498,12 +498,46 @@ var wrapjs = {
     getPageHistory: function (key) {
         var pageHistory = JSON.parse(localStorage.getItem('localPageHistory'));
         var container = wrapjs.console(key, pageHistory[key], undefined);
-        modaljs.dragElement(container);
+        wrapjs.dragElement(container.querySelector('.command-header'));
         wrapjs.wrap.appendChild(container);
         pageHistory[key] = undefined;
 
         localStorage.setItem('localPageHistory', JSON.stringify(pageHistory));
         wrapjs.viewPageHistory();
+    },
+    //w3s 인용
+    //출처 : https://www.w3schools.com/howto/howto_js_draggable.asp
+    dragElement: function (element) {
+
+        var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+
+        element.onmousedown = dragMouseDown;
+
+        function dragMouseDown(event) {
+            event = event || window.event;
+            event.preventDefault();
+            pos3 = event.clientX;
+            pos4 = event.clientY;
+            document.onmouseup = closeDragElement;
+            document.onmousemove = elementDrag;
+        }
+
+        function elementDrag(event) {
+            event = event || window.event;
+            event.preventDefault();
+            pos1 = pos3 - event.clientX;
+            pos2 = pos4 - event.clientY;
+            pos3 = event.clientX;
+            pos4 = event.clientY;
+            element.parentNode.style.top = (element.parentNode.offsetTop - pos2) + "px";
+            element.parentNode.style.left = (element.parentNode.offsetLeft - pos1) + "px";
+        }
+
+        function closeDragElement() {
+            document.onmouseup = null;
+            document.onmousemove = null;
+        }
+
     }
 };
 
@@ -855,22 +889,16 @@ function checkBrowser() {
 
 function requestInit() {
     aside.headerLogo.addEventListener('click', aside.toggleFocus);
-//     window.addEventListener('click', function (event) {
-//         var asideTag = document.querySelector('aside');
-//         var commandHeader = document.querySelector('.command-header');
-//         var clickElementResult = false;
-//         var clickElementArray = event.path;
-//         for (var key in clickElementArray) {
-//             if (clickElementArray[key] === asideTag) clickElementResult = true;
-//             if (clickElementArray[key] === commandHeader) clickElementResult = true;
-//         }
-//
-// //이벤트의 path배열 중 aside node가 없거나, 이벤트 타겟의 id 속성이 headerLogo가 아니면 aside.removeFocus(); 실행
-//         if (!(clickElementResult || event.target.id === 'headerLogo')) {
-//             aside.removeFocus();
-//
-//         }
-//     });
+    window.addEventListener('click', function (event) {
+        console.dir(event);
+        console.dir(event.target.className);
+        if (event.target.className.indexOf('non-flip') === -1
+            && event.target.className.indexOf('header-logo') === -1
+            && event.target.className.indexOf('command') === -1) {
+            aside.removeFocus();
+
+        }
+    });
 
     window.addEventListener('scroll', aside.navContents);
 
