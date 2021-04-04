@@ -55,13 +55,13 @@ var request = {
         });
     },
 
-    forward: function (URL, title, contents) {
+    forward: function (URL, title, contents, element) {
 //consoleSave 메소드 강제실행 현재 보고 있는 페이지들 저장
         navJs.active('loading...', contents);
 
         setTimeout(function () {
             request.submit('GET', URL, function (data) {
-                wrapjs.reset(title + '[Day:' + new Date().getDay() + ', ' + new Date().toLocaleTimeString() + ']', data, this);
+                wrapjs.reset(title + '[Day:' + new Date().getDate() + ', ' + new Date().toLocaleTimeString() + ']', data, element);
                 wrapjs.viewPageHistory();
                 navJs.inactive();
                 headerjs.RemoveAsideFocus();
@@ -390,7 +390,7 @@ var wrapjs = {
         wrapjs.wrap.appendChild(container);
     },
     reset: function (titleHTML, contentsHTML, element) {
-        var container = new wrapjs.console(titleHTML, contentsHTML, element.src);
+        var container = new wrapjs.console(titleHTML, contentsHTML, element.querySelector('img').src);
         modaljs.dragElement(container);
         wrapjs.wrap.appendChild(container);
     },
@@ -399,6 +399,7 @@ var wrapjs = {
         var header = document.createElement('div');
         var title = document.createElement('div');
         var icon = document.createElement('img');
+        var iconContainer = document.createElement('span');
         var btn1 = document.createElement('div');
         var btn2 = document.createElement('div');
         var square = document.createElement('span');
@@ -408,14 +409,15 @@ var wrapjs = {
         container.className = 'command';
         header.className = 'command-header';
         title.className = 'command-title';
-        if (titleHTML.indexOf('<img') === -1 || imgSrc === undefined) {
+        if (titleHTML.indexOf('<img') === -1 || imgSrc !== undefined) {
             icon.src = imgSrc;
-            icon.setAttribute('onerror', "this.src='img/icon/cmdicon.png'");
+            // icon.setAttribute('onerror', "this.src='img/icon/cmdicon.png'");
             icon.style.padding = '0px 3px';
             icon.style.margin = '0px';
             icon.style.width = '1.2em';
             icon.style.height = 'auto';
             icon.style.verticalAlign = 'middle';
+            iconContainer.appendChild(icon);
         }
 
         btn1.className = 'command-btn command-btn-save';
@@ -432,7 +434,7 @@ var wrapjs = {
 
         container.appendChild(header);
         header.appendChild(title);
-        title.appendChild(icon);
+        title.appendChild(iconContainer);
         title.innerHTML += '<span>' + titleHTML + '</span>';
         header.appendChild(btn1);
         header.appendChild(btn2);
@@ -456,25 +458,32 @@ var wrapjs = {
 
     },
     consoleSave: function (element) {
+        var pageHistory = JSON.parse(localStorage.getItem('localPageHistory'));
         var thisContainer = element.parentNode.parentNode;
-        var key = thisContainer.querySelector('.command-title>span').innerText;
+        var key = thisContainer.querySelector('.command-title>span:first-child').innerHTML
+            + thisContainer.querySelector('.command-title>span:last-child').innerText;
         var value = thisContainer.querySelector('.mainConsole').innerHTML;
 
-        var pageList = {};
-        pageList[key] = value;
-        localStorage.setItem('localPageHistory', JSON.stringify(pageList));
+        if (pageHistory != null) {
+            pageHistory[key] = value;
+            localStorage.setItem('localPageHistory', JSON.stringify(pageHistory));
+        } else {
+            var pageList = {};
+            pageList[key] = value;
+            localStorage.setItem('localPageHistory', JSON.stringify(pageList));
+        }
         wrapjs.consoleClose(element);
         wrapjs.viewPageHistory();
     },
     viewPageHistory: function () {
         wrapjs.localPageHistory.innerHTML = '';
-        var PageHistory = JSON.parse(localStorage.getItem('localPageHistory'));
-        for (var key in PageHistory) {
-            if (PageHistory.hasOwnProperty(key)) {
+        var pageHistory = JSON.parse(localStorage.getItem('localPageHistory'));
+        for (var key in pageHistory) {
+            if (pageHistory.hasOwnProperty(key)) {
                 var span = document.createElement('span');
                 span.className = 'msg-warning';
                 span.innerHTML = key;
-                span.setAttribute('onclick', 'wrapjs.getPageHistory("' + key + '")');
+                span.setAttribute('onclick', 'wrapjs.getPageHistory(\'' + key + '\')');
                 wrapjs.localPageHistory.appendChild(span);
             }
         }
@@ -912,7 +921,7 @@ var primarySetting = {
             for (var key in appList) {
                 var appContainer = document.createElement('div');
                 appContainer.setAttribute('onclick',
-                    'request.forward("' + appList[key]['url'] + '", "' + key + '", "Now Loading....")');
+                    'request.forward("' + appList[key]['url'] + '", "' + key + '", "Now Loading....", this)');
                 appContainer.setAttribute('onerror',
                     "this.src = 'img/icon/Xasquatch.png'");
 
