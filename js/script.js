@@ -927,8 +927,14 @@ var primarySetting = {
             var appList = JSON.parse(data);
             for (var key in appList) {
                 var appContainer = document.createElement('div');
-                appContainer.setAttribute('onclick',
-                    'request.forward("' + appList[key]['url'] + '", "' + key + '", "Now Loading....", this)');
+                if (appList[key]['url'].indexOf('https') !== -1) {
+                    appContainer.setAttribute('onclick', 'window.open("' + appList[key]['url'] + '")');
+                } else {
+                    appContainer.setAttribute('onclick',
+                        'request.forward("' + appList[key]['url'] + '", "' + key + '", "Now Loading....", this)');
+
+                }
+
                 appContainer.setAttribute('onerror',
                     "this.src = 'img/icon/Xasquatch.png'");
 

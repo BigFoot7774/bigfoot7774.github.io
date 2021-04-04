@@ -105,6 +105,8 @@ aside>div:first-child{
     margin-top: 100px;
     padding: 5px;
     font-size: 1em;
+    max-height: 50vh;
+    overflow: auto;
 }
 .aside-list>li{
     margin: 1em 0px;

@@ -32,18 +32,11 @@
     </div>
     <footer>
         <ul>
-            <li>
+            <li style="border-radius:20px; color: black; background: rgba(255,255,255,0.7); padding: 5px 0;">
                 <a href="https://github.com/xasquatch/xasquatch.github.io" target="_blank">
-                    <img src="img/icon/Xasquatch.ico" width="32">
-                </a><BR>
-                This Page<BR>
-            </li>
-            <li></li>
-            <li>
-                <a href="https://github.com/xasquatch" target="_blank">
-                    <img src="img/icon/GitHub-Mark-Light-32px.png" width="32">
-                </a><BR>
-                Github
+                    <img src="img/icon/Xasquatch.ico" style="width: 32px;height: 32px;"><BR>
+                    <b>This Page</b>
+                </a>
             </li>
         </ul>
     </footer>
@@ -90,7 +83,7 @@
             if (event.ctrlKey && event.keyCode === 83) {
                 event.preventDefault();
                 var btnSave = document.querySelectorAll('.command-btn-save');
-                wrapjs.consoleSave(btnSave[btnSave.length-1]);
+                wrapjs.consoleSave(btnSave[btnSave.length - 1]);
             }
             if (event.ctrlKey && event.keyCode === 79) {
                 event.preventDefault();

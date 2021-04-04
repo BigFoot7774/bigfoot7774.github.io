@@ -89,10 +89,6 @@ footer > ul {
     padding: 0px 0px 50px 0px;
 }
 
-footer > ul > li {
-    padding-top: 10px;
-}
-
 @media (max-height: 600px) {
 
     footer{
@@ -104,16 +100,16 @@ footer > ul > li {
 /*
     기술 인용
     출처: https://wiki.stillh.art/page/SJ4yEEClg/Transparent-Scrollbar-over-Content */
-body::-webkit-scrollbar {
+*::-webkit-scrollbar {
     width: 5px;
     background: transparent;
 }
 
-body::-webkit-scrollbar-thumb {
+*::-webkit-scrollbar-thumb {
     background: rgba(150, 0, 0, 0.5);
 }
 
-body::-webkit-scrollbar-thumb:HOVER {
+*::-webkit-scrollbar-thumb:HOVER {
     background: rgba(150, 0, 0, 1);
 }
 

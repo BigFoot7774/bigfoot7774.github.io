@@ -15,7 +15,9 @@
     margin: 10px;
     cursor: pointer;
     border: 1px solid rgba(0, 0, 0, 0);
-
+    width: 90px;
+    min-height: 90px;
+    justify-content: center;
 }
 
 #icon-container > div:HOVER {
