@@ -525,27 +525,32 @@ var wrapjs = {
 
         var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
         try {
-            element.ontouchmove = dragTouchDown;
+            element.ontouchstart = dragTouchStart;
         } catch (e) {
             console.log(e);
         }
 
-        function dragTouchDown(event) {
-            console.dir(event);
-            event.preventDefault();
-            pos3 = event.changedTouches[0].clientX;
-            pos4 = event.changedTouches[0].clientY;
-            document.ontouchend = elementDrag;
+        function dragTouchStart(event) {
+            event = event || window.event;
+            pos3 = event.clientX;
+            pos4 = event.clientY;
+            document.ontouchend = closeDragElement;
+            document.ontouchmove = elementDrag;
         }
 
         function elementDrag(event) {
+            event = event || window.event;
             pos1 = pos3 - event.changedTouches[0].clientX;
             pos2 = pos4 - event.changedTouches[0].clientY;
             pos3 = event.changedTouches[0].clientX;
             pos4 = event.changedTouches[0].clientY;
             element.parentNode.style.top = (element.parentNode.offsetTop - pos2) + "px";
             element.parentNode.style.left = (element.parentNode.offsetLeft - pos1) + "px";
-            console.log('y:', element.parentNode.offsetTop - pos2, 'x:', (element.parentNode.offsetLeft - pos1))
+        }
+
+        function closeDragElement() {
+            document.ontouchend = null;
+            document.ontouchmove = null;
         }
     }
 };
