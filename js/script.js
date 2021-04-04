@@ -61,7 +61,7 @@ var request = {
 
         setTimeout(function () {
             request.submit('GET', URL, function (data) {
-                wrapjs.reset(title + '[Day:' + new Date().getDay() +', '+new Date().toLocaleTimeString() + ']', data, this);
+                wrapjs.reset(title + '[Day:' + new Date().getDay() + ', ' + new Date().toLocaleTimeString() + ']', data, this);
                 wrapjs.viewPageHistory();
                 navJs.inactive();
                 headerjs.RemoveAsideFocus();
@@ -911,13 +911,8 @@ var primarySetting = {
             var appList = JSON.parse(data);
             for (var key in appList) {
                 var appContainer = document.createElement('div');
-                if (key === 'Home') {
-                    appContainer.setAttribute('onclick',
-                        'window.location.href="' + appList[key]['url'] + '"');
-                } else {
-                    appContainer.setAttribute('onclick',
-                        'request.forward("' + appList[key]['url'] + '", "' + key + '", "Now Loading....")');
-                }
+                appContainer.setAttribute('onclick',
+                    'request.forward("' + appList[key]['url'] + '", "' + key + '", "Now Loading....")');
                 appContainer.setAttribute('onerror',
                     "this.src = 'img/icon/Xasquatch.png'");
 

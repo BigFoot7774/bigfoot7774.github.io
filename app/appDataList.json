@@ -1,8 +1,4 @@
 {
-  "Home": {
-    "url": "./",
-    "icon":"img/icon/home.png"
-  },
   "Profile": {
     "url": "app/list/profile.html",
     "icon":"img/icon/profile.png"
