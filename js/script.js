@@ -374,7 +374,9 @@ var wrapjs = {
         container.className = 'command';
         header.className = 'command-header';
         container.addEventListener('click', function (event) {
-            wrapjs.wrap.insertBefore(wrapjs.wrap.lastChild, this);
+            try {
+                wrapjs.wrap.insertBefore(wrapjs.wrap.lastChild, this);
+            } catch (e) {}
         });
 
         title.className = 'command-title';
@@ -543,7 +545,7 @@ var wrapjs = {
             pos4 = event.changedTouches[0].clientY;
             element.parentNode.style.top = (element.parentNode.offsetTop - pos2) + "px";
             element.parentNode.style.left = (element.parentNode.offsetLeft - pos1) + "px";
-            console.log('y:',element.parentNode.offsetTop - pos2,'x:',(element.parentNode.offsetLeft - pos1))
+            console.log('y:', element.parentNode.offsetTop - pos2, 'x:', (element.parentNode.offsetLeft - pos1))
         }
     }
 };
@@ -922,7 +924,7 @@ var primarySetting = {
                 var appContainer = document.createElement('div');
                 if (appList[key]['url'].indexOf('https') !== -1) {
                     appContainer.setAttribute('onclick',
-                        'if(window.confirm("'+key+'('+appList[key]['url']+')\\n해당페이지로 이동하시겠습니까?"))' +
+                        'if(window.confirm("' + key + '(' + appList[key]['url'] + ')\\n해당페이지로 이동하시겠습니까?"))' +
                         ' window.open("' + appList[key]['url'] + '")');
                 } else {
                     appContainer.setAttribute('onclick',

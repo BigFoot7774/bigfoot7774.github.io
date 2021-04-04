@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-#headerLogo{
+#headerLogo {
     display: block;
     opacity: 1 !important;
     cursor: pointer;
@@ -18,11 +18,11 @@
     background-size: cover;
 }
 
-#headerLogo:HOVER{
+#headerLogo:HOVER {
     cursor: pointer;
 }
 
-nav{
+nav {
     /* 로딩 중 nav태그 컨텐츠가 표시되도록 함 */
     position: fixed;
     top: 0px;
@@ -42,7 +42,8 @@ nav{
     font-size: 10rem;
     animation: navCreate 0.3s;
 }
-.nav-title{
+
+.nav-title {
     border-top: 1px solid rgba(255, 255, 255, 0.5);
 
     padding-top: 20px;
@@ -51,27 +52,30 @@ nav{
     background: rgba(0, 0, 0, 1);
     min-height: 10vh;
 }
-.nav-contents{
+
+.nav-contents {
     border-bottom: 1px solid rgba(255, 255, 255, 0.5);
 
     padding-top: 20px;
     margin-bottom: 35vh;
     font-size: 30px;
-    
+
     background: rgba(0, 0, 0, 1);
     min-height: 10vh;
 }
-@keyframes navCreate{
-    from{
+
+@keyframes navCreate {
+    from {
         left: 50vw;
         width: 0vw;
     }
-    to{
+    to {
         left: 0vw;
         width: 100%;
     }
 }
-aside{
+
+aside {
     z-index: 2;
     position: fixed;
     top: 0px;
@@ -82,41 +86,52 @@ aside{
     box-sizing: border-box;
     color: rgba(255, 255, 255, 1);
     background-color: rgba(0, 0, 0, 1);
-    border-left: 1px solid rgba(255, 255, 255, 1);
+    border-left: 1px solid rgba(150, 0, 0, 0.5);
     text-align: left;
     transition: 0.3s all;
     transform: rotate(-45deg) translateX(70px) translateY(-25px);
     transform-origin: top;
 }
-aside>*{
+
+aside > * {
     opacity: 1;
 }
-aside>div:first-child{
+
+aside > div:first-child {
     display: flex;
     justify-content: space-around;
     padding-top: 40px;
 }
-.aside-focus{
+
+.aside-focus {
     transform: rotate(0deg);
     /* background: rgba(0, 0, 0, 0.2); */
 }
-.aside-list{
+
+.aside-list {
     list-style: none;
     margin-top: 100px;
     padding: 5px;
     font-size: 1em;
     max-height: 50vh;
     overflow: auto;
+    box-shadow: 2px 2px 5px rgba(150, 0, 0, 0.5),
+                2px -2px 5px rgba(150, 0, 0, 0.5),
+                -2px -2px 5px rgba(150, 0, 0, 0.5),
+                -2px 2px 5px rgba(150, 0, 0, 0.5);
 }
-.aside-list>li{
+
+.aside-list > li {
     margin: 1em 0px;
     cursor: pointer;
 }
-@media(min-width:1200px){
-    aside{
+
+@media (min-width: 1200px) {
+    aside {
         transform: rotate(0deg);
     }
-    aside *{
+
+    aside * {
         opacity: 1;
     }
 }
