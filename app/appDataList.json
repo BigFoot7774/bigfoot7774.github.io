@@ -3,17 +3,29 @@
     "url": "app/list/profile.html",
     "icon": "img/icon/profile.png"
   },
+  "Stacks": {
+    "url": "./",
+    "icon": "img/icon/skill.png"
+  },
   "Project": {
+    "url": "./",
+    "icon": "img/icon/introduction.png"
+  },
+  "Salary": {
     "url": "app/list/project.html",
-    "icon": "img/icon/home.png"
+    "icon": "img/icon/salary.png"
   },
   "Contact Me": {
     "url": "app/list/contact-me.html",
     "icon": "img/icon/contact-me.png"
   },
-  "[Project] My Blog": {
-    "url": "https://myblog.xasquatch.net",
-    "icon": "img/icon/Xasquatch.png"
+  "바로가기": {
+    "url": "./",
+    "icon": "img/icon/link.png"
+  },
+  "PDF로 저장": {
+    "url": "./",
+    "icon": "img/icon/pdf.png"
   },
   "Github": {
     "url": "https://github.com/xasquatch",
