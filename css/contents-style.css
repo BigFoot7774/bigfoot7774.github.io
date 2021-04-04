@@ -12,6 +12,12 @@
     min-width: 70vw;
 }
 
+@media (max-width: 1200px) {
+    .command {
+        left: 0;
+    }
+}
+
 .command * {
     z-index: 1;
 }
