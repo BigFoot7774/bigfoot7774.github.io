@@ -90,24 +90,6 @@
         }
     }
 
-    function keySet() {
-        window.addEventListener('keydown', function (event) {
-            if (event.keyCode === 27) {
-                event.preventDefault();
-                wrapjs.consoleClose();
-            }
-            if (event.keyCode === 17 && event.keyCode === 83) {
-                event.preventDefault();
-                wrapjs.consoleSave();
-            }
-            if (event.keyCode === 17 && event.keyCode === 79) {
-                event.preventDefault();
-
-            }
-        });
-
-    }
-
     primarySetting.getAppList();
 
 
