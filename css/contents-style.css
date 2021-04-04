@@ -26,10 +26,13 @@
     padding-right: 150px;
     position: absolute;
     width: 100%;
+    min-height: 50vh;
     left: 0 !important;
     box-sizing: border-box;
 }
-
+.command-max-width>#mainConsole{
+    min-height: 60vh;
+}
 .command-header {
     color: black;
     display: table;
