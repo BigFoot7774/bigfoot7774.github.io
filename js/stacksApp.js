@@ -2,45 +2,71 @@ var skill = {
 
     levelLoading: function (level, tagName, description) {
         var count = 0;
+        var levelPercent = 0;
         var targetTag = document.querySelector(tagName);
         var levelBar = '';
         var percent;
-        var levelPercent;
         var interval = setInterval(function () {
                 try {
+
+
+
                     if (count < level) {
-                        levelBar += '■';
+                        levelBar += '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">';
+                        levelPercent += 10;
                     } else if (count < 10) {
-                        levelBar += '□';
+                        levelBar += '<img src="img/language%20icon/square-blank.png" style="width: 1em;height: 1em;">';
                     }
 
                     switch (levelBar) {
-                        case '■':
+                        case '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">':
                             percent = '% (하)';
                             break;
-                        case '■■■':
+                        case '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
+                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
+                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">':
                             percent = '% (중하)';
                             break;
-                        case '■■■■■':
+                        case '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
+                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
+                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
+                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
+                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">':
                             percent = '% (중)';
                             break;
-                        case '■■■■■■■':
+                        case '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
+                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
+                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
+                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
+                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
+                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
+                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">':
                             percent = '% (중상)';
                             break;
-                        case '■■■■■■■■■':
+                        case '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
+                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
+                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
+                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
+                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
+                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
+                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
+                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
+                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">':
                             percent = '% (상)';
                             break;
-                        case '■■■■■■■■■■':
+                        case '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
+                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
+                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
+                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
+                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
+                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
+                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
+                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
+                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
+                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">':
                             percent = '% (최상)';
                             break;
                     }
-
-                    if (levelBar.indexOf('□') * 10 < 0) {
-                        levelPercent = (count + 1) * 10;
-                    } else {
-                        levelPercent = levelBar.indexOf('□') * 10;
-                    }
-
                     targetTag.innerHTML = 'Level : ' + levelBar + '<BR>' + levelPercent + percent;
                     count++;
 
@@ -69,6 +95,8 @@ var skill = {
         skillContainer.className = 'profile-skill';
         title.className = 'profile-skill-title flex';
         titleImg.src = imgURL;
+        titleImg.style.maxWidth = '70px';
+        titleImg.style.maxHeight = '70px';
         titleImg.setAttribute('onload', 'skill.levelLoading(' + level + ',\"#' + language + '\",\"#' + language + 'Description\")');
         skillSet.className = 'profile-skill-set';
         skillLevel.id = language;

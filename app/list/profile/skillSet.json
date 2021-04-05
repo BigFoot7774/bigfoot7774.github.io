@@ -1,13 +1,13 @@
 {
   "java": {"imgURL": "img/language icon/java.png",
-    "level": 4,
+    "level": 6,
     "description": "JAVA"
   },
-  "SpringFramework": {"imgURL": "img/language icon/spring.png",
-    "level": 2,
+  "SpringFramework": {"imgURL": "img/language icon/spring.svg",
+    "level": 4,
     "description": "Spring"
   },
-  "HTML5": {"imgURL": "img/language icon/HTML5.svg",
+  "HTML5": {"imgURL": "img/language icon/HTML.png",
     "level": 7,
     "description": "HTML"
   },
@@ -15,11 +15,11 @@
     "level": 3,
     "description": "CSS"
   },
-  "js": {"imgURL": "img/language icon/js.png",
+  "js": {"imgURL": "img/language icon/javascript.png",
     "level": 4,
     "description": "javascript"
   },
-  "Confidence": {"imgURL": "img/language icon/confidence.png",
+  "Passion": {"imgURL": "img/language icon/passion.png",
     "level": 10,
     "description": "Confidence"
   }

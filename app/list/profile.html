@@ -1,21 +1,11 @@
-
-
-<fieldset>
-    <legend class="profile-category">Category</legend>
-    <ul class="profile-list">
-        <li>
-            <a class="profile-title"
-               href="javascript: request.manipulateElement('app/list/profile/skillSet.json',skill.parseList, '#profileDetails')">
-                Skill Level
-            </a>
-        </li>
-    </ul>
-</fieldset>
 <fieldset>
     <legend id="contentsDetails">Contents Details</legend>
-    <img src="img/icon/loading.gif">
+    <img src="img/icon/loading.gif"
+         onload="request.manipulateElement('app/list/profile/skillSet.json',skill.parseList, '#profileDetails');
+         this.remove();">
 
     <div id="profileDetails">
+        ddd
     </div>
 </fieldset>
 

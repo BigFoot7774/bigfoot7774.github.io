@@ -138,55 +138,6 @@
     }
 }
 
-.profile-category {
-    font-size: 2em;
-}
-
-.profile-list > li {
-    padding: 20px;
-    display: inline-block;
-}
-
-#profileDetails {
-    font-size: 15px;
-}
-
-#profileDetails fieldset {
-    padding-left: 2px;
-    padding-right: 2px;
-}
-
-.profile-title {
-    font-size: 1.5em;
-}
-
-.profile-skill {
-    display: flex;
-    padding: 10px;
-}
-
-.profile-skill > * {
-    padding: 5px;
-}
-
-.profile-skill-set {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-}
-
-.profile-skill-title {
-    background-color: white;
-    border-radius: 5%;
-    width: 50px;
-}
-
-.profile-skill-title > img {
-    max-width: 50px;
-    max-height: 50px;
-    margin: 0px auto;
-}
-
 .consoleImg {
     border: 1px solid;
     width: 400px;
