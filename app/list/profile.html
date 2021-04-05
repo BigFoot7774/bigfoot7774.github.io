@@ -1,12 +1,11 @@
-<body>
+
+
 <fieldset>
     <legend class="profile-category">Category</legend>
     <ul class="profile-list">
         <li>
             <a class="profile-title"
-               href="javascript: profileScript.titleActive('app/list/profile/skillSet.json', function(data) {
-                    profileScript.skillListParse(data);
-                 }, 'Skill Level')">
+               href="javascript: request.manipulateElement('app/list/profile/skillSet.json',skill.parseList, '#profileDetails')">
                 Skill Level
             </a>
         </li>
@@ -20,4 +19,3 @@
     </div>
 </fieldset>
 
-</body>

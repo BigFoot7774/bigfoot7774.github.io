@@ -1,5 +1,4 @@
 var request = {
-
     json: 'application/json',
     form: 'application/x-www-form-urlencoded',
     formFile: 'multipart/form-data',
@@ -55,108 +54,28 @@ var request = {
         });
     },
 
-    forward: function (URL, title, contents, element) {
-        navJs.active('loading...', contents);
+
+    manipulateElement: function (URL, callback, targetQueryName) {
+        request.submit('GET', URL, function (data){
+            document.querySelector(targetQueryName).append(callback(data));
+        });
+    },
+
+    forward: function (URL, title, loadingExplain, element) {
+        navJs.active('loading...', loadingExplain);
 
         setTimeout(function () {
             request.submit('GET', URL, function (data) {
-                wrapjs.reset(title + '[Day:' + new Date().getDate() + ', ' + new Date().toLocaleTimeString() + ']', data, element);
-                wrapjs.viewPageHistory();
+                myConsole.reset(title + '[Day:' + new Date().getDate() + ', ' + new Date().toLocaleTimeString() + ']', data, element);
+                myConsole.viewPageHistory();
                 navJs.inactive();
                 aside.removeFocus();
             });
         }, 500);
     },
-
-
 }
 
-var projectJs = {
-    manageProjectHistory: function () {
-        window.onpopstate = function (e) {
-            if (e.state !== null) {
-                document.querySelector('#myblog-main-section').innerHTML = e.state;
-            }
-
-        }
-
-    },
-    makeBoardList: function (boardInfo) {
-
-        var mainFieldset = document.createElement('fieldset');
-        mainFieldset.style.margin = '5px';
-        var titleLegend = document.createElement('legend');
-        titleLegend.style.fontSize = '50px';
-        titleLegend.style.fontWeight = 'bold';
-        titleLegend.innerText = boardInfo.title;
-        mainFieldset.appendChild(titleLegend);
-
-        var nameFiledSet = document.createElement('fieldset');
-        var nameLegend = document.createElement('legend');
-        nameLegend.innerText = 'Nick Name';
-        var nameValue = document.createElement('p');
-        nameValue.innerHTML = boardInfo.mbr_nickname;
-        nameFiledSet.appendChild(nameLegend);
-        nameFiledSet.appendChild(nameValue);
-
-        var dateFiledSet = document.createElement('fieldset');
-        var dateLegend = document.createElement('legend');
-        dateLegend.innerText = 'Created Date';
-        var dateValue = document.createElement('p');
-        dateValue.innerHTML = boardInfo.created_date;
-        dateFiledSet.appendChild(dateLegend);
-        dateFiledSet.appendChild(dateValue);
-
-        var contentsFieldset = document.createElement('fieldset');
-        var contentsLegend = document.createElement('legend');
-        contentsLegend.innerText = 'Contents'
-        var contentsDiv = document.createElement('div');
-        contentsDiv.innerHTML = boardInfo.contents;
-        contentsFieldset.appendChild(contentsLegend);
-        contentsFieldset.appendChild(contentsDiv);
-
-        var backDiv = document.createElement('div');
-        backDiv.style.padding = '20px';
-        backDiv.style.textAlign = 'center';
-        var backBtn = document.createElement('button');
-        backBtn.setAttribute('onclick', 'history.back();');
-        backBtn.innerHTML = 'BACK';
-        backDiv.appendChild(backBtn);
-
-        mainFieldset.appendChild(nameFiledSet);
-        mainFieldset.appendChild(dateFiledSet);
-        mainFieldset.appendChild(contentsFieldset);
-        mainFieldset.appendChild(backDiv);
-
-        var mainSection = document.querySelector('#myblog-main-section');
-        mainSection.innerHTML = '';
-        mainSection.appendChild(mainFieldset);
-        window.history.pushState(mainSection.innerHTML, null, 'members/8/boards/' + boardInfo.no);
-
-    },
-
-    boardClickEventManagement: function (e, element) {
-        e.preventDefault();
-        navJs.active('now loading...', element.querySelector('p').innerText);
-
-        request.submit('GET', element.href, function (data) {
-            var boardInfo = JSON.parse(data).data.board;
-
-            projectJs.makeBoardList(boardInfo);
-            projectJs.manageProjectHistory();
-            navJs.inactive();
-        });
-
-
-    }
-
-
-}
-
-
-//-loadingjs객체(리팩토링 완): innertext 대체&추가, 정지&로딩바제거,
 var loadingjs = {
-
 //interval 주소값 저장 배열
     intervalAddr: [],
 //tag HTML값 복원을 위한 오브젝트
@@ -248,7 +167,6 @@ var loadingjs = {
 
 //-navJs객체(리팩토링 완): 생성, 닫기
 var navJs = {
-
     active: function (title, contents) {
         nav = document.createElement('nav');
         navTitle = document.createElement('div');
@@ -264,7 +182,7 @@ var navJs = {
         navTitle.innerHTML = title;
         // loadingjs 삽입
         loadingjs.plus('.nav-title');
-        new Textjs.insertText('.nav-contents', contents, 10);
+        new text.insertText('.nav-contents', contents, 10);
 
     },
     normalActive: function (title, contents) {
@@ -292,14 +210,9 @@ var navJs = {
         for (var i = 0; i < navs.length; i++) {
             document.body.removeChild(navs[i]);
         }
-        // navs.forEach(function(nav) {
-        //     document.body.removeChild(nav);
-        // });
     }
 };
 
-//-navJs객체(리팩토링 완): 생성, 닫기, 드래그
-// new키워드를 통한 새로운 오브젝트 생성의 필요가 없음
 var modaljs = {
 
     create: function (titleText, contentsText) {
@@ -331,7 +244,7 @@ var modaljs = {
         document.body.appendChild(container);
 
         close.addEventListener('click', modaljs.close);
-        wrapjs.dragElement(header);
+        myConsole.dragElement(header);
     },
 
     close: function () {
@@ -343,23 +256,23 @@ var modaljs = {
     }
 };
 
-//-wrapjs객체(리팩토링 완): 틀만 생성(세부컨텐츠는 별도로 스크립트 구성 필요), wrap 더하기, wrap 초기화
-var wrapjs = {
+//-myConsole객체(리팩토링 완): 틀만 생성(세부컨텐츠는 별도로 스크립트 구성 필요), wrap 더하기, wrap 초기화
+var myConsole = {
 
     bodyContainer: document.querySelector('#bodyContainer'),
     wrap: document.querySelector('.wrap'),
     localPageHistory: document.querySelector('#localPageHistory'),
 
     add: function (titleHTML, contentsHTML) {
-        var container = wrapjs.console(titleHTML, contentsHTML);
-        wrapjs.wrap.appendChild(container);
+        var container = myConsole.create(titleHTML, contentsHTML);
+        myConsole.wrap.appendChild(container);
     },
     reset: function (titleHTML, contentsHTML, element) {
-        var container = wrapjs.console(titleHTML, contentsHTML, element.querySelector('img').src);
-        wrapjs.dragElement(container.querySelector('.command-header'));
-        wrapjs.wrap.appendChild(container);
+        var container = myConsole.create(titleHTML, contentsHTML, element.querySelector('img').src);
+        myConsole.dragElement(container.querySelector('.command-header'));
+        myConsole.wrap.appendChild(container);
     },
-    console: function (titleHTML, contentsHTML, imgSrc) {
+    create: function (titleHTML, contentsHTML, imgSrc) {
         var container = document.createElement('div');
         var header = document.createElement('div');
         var title = document.createElement('div');
@@ -375,7 +288,7 @@ var wrapjs = {
         header.className = 'command-header';
         container.addEventListener('click', function (event) {
             try {
-                wrapjs.wrap.insertBefore(wrapjs.wrap.lastChild, this);
+                myConsole.wrap.insertBefore(myConsole.wrap.lastChild, this);
             } catch (e) {
             }
         });
@@ -403,9 +316,9 @@ var wrapjs = {
         btn3.className = 'command-btn command-btn-close';
         btn2.appendChild(square);
         btn3.innerHTML = '&times;';
-        btn1.setAttribute('onclick', 'wrapjs.consoleSave(this)');
-        btn2.setAttribute('onclick', 'wrapjs.consoleMaxWidth(this)');
-        btn3.setAttribute('onclick', 'wrapjs.consoleClose(this)');
+        btn1.setAttribute('onclick', 'myConsole.save(this)');
+        btn2.setAttribute('onclick', 'myConsole.maxWidth(this)');
+        btn3.setAttribute('onclick', 'myConsole.close(this)');
         mainConsole.classList.add('mainConsole');
         mainConsole.classList.add('console-black');
 
@@ -424,20 +337,20 @@ var wrapjs = {
 
         return container;
     },
-    consoleMaxWidth: function (element) {
+    maxWidth: function (element) {
         var thisContainer = element.parentNode.parentNode;
         thisContainer.classList.toggle('command-max-width');
         thisContainer.querySelector('.mainConsole').classList.toggle('console-black-max-height');
 
     },
-    consoleClose: function (element) {
+    close: function (element) {
         try {
             element.parentNode.parentNode.remove();
         } catch (e) {
             console.log(e);
         }
     },
-    consoleSave: function (element) {
+    save: function (element) {
         var pageHistory = JSON.parse(localStorage.getItem('localPageHistory'));
         var thisContainer = element.parentNode.parentNode;
         var key = thisContainer.querySelector('.command-title>span:first-child').innerHTML
@@ -454,59 +367,58 @@ var wrapjs = {
             localStorage.setItem('localPageHistory', JSON.stringify(pageList));
 
         }
-        wrapjs.consoleClose(element);
-        wrapjs.viewPageHistory();
+        myConsole.close(element);
+        myConsole.viewPageHistory();
         aside.addFocus();
     },
-    consoleAllClose: function () {
+    allClose: function () {
         var closeBtnList = document.querySelectorAll('.command-btn-close');
         for (var closeBtn of closeBtnList) {
-            wrapjs.consoleClose(closeBtn);
+            myConsole.close(closeBtn);
         }
 
     },
-    consoleAllSave: function () {
+    allSave: function () {
         var saveBtnList = document.querySelectorAll('.command-btn-save');
         for (var saveBtn of saveBtnList) {
-            wrapjs.consoleSave(saveBtn);
+            myConsole.save(saveBtn);
         }
 
     },
     viewPageHistory: function () {
-        wrapjs.localPageHistory.innerHTML = '';
+        myConsole.localPageHistory.innerHTML = '';
         var pageHistory = JSON.parse(localStorage.getItem('localPageHistory'));
         for (var key in pageHistory) {
             if (pageHistory.hasOwnProperty(key)) {
                 var span = document.createElement('li');
                 span.className = 'non-flip';
                 span.innerHTML = key;
-                span.setAttribute('onclick', 'wrapjs.getPageHistory(\'' + key + '\')');
-                wrapjs.localPageHistory.appendChild(span);
+                span.setAttribute('onclick', 'myConsole.getPageHistory(\'' + key + '\')');
+                myConsole.localPageHistory.appendChild(span);
             }
         }
     },
     getPageHistory: function (key) {
         var pageHistory = JSON.parse(localStorage.getItem('localPageHistory'));
-        var container = wrapjs.console(key, pageHistory[key], undefined);
-        wrapjs.dragElement(container.querySelector('.command-header'));
-        wrapjs.wrap.appendChild(container);
+        var container = myConsole.create(key, pageHistory[key], undefined);
+        myConsole.dragElement(container.querySelector('.command-header'));
+        myConsole.wrap.appendChild(container);
         pageHistory[key] = undefined;
 
         localStorage.setItem('localPageHistory', JSON.stringify(pageHistory));
-        wrapjs.viewPageHistory();
+        myConsole.viewPageHistory();
     },
     dropPageHistory: function () {
         localStorage.removeItem('localPageHistory');
-        wrapjs.viewPageHistory();
+        myConsole.viewPageHistory();
     },
     //w3s 인용
     //출처 : https://www.w3schools.com/howto/howto_js_draggable.asp
     dragElement: function (element) {
-        wrapjs.dragMouseElement(element);
-        wrapjs.dragTouchElement(element);
+        myConsole.dragMouseElement(element);
+        myConsole.dragTouchElement(element);
     },
     dragMouseElement: function (element) {
-
         var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
         try {
             element.onmousedown = dragMouseDown;
@@ -541,7 +453,6 @@ var wrapjs = {
 
     },
     dragTouchElement: function (element) {
-
         var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
         try {
             element.ontouchstart = dragTouchStart;
@@ -575,7 +486,7 @@ var wrapjs = {
 };
 
 
-//-Textjs객체 문자열을 character로 변환하여 한 자씩 interval로 반복해가며 삽입
+//-text객체 문자열을 character로 변환하여 한 자씩 interval로 반복해가며 삽입
 //지금까지 확인된 사항: 
 // 1. 단일태그는 문제없이 삽입가능 (예시:<img>태그나 <BR>태그)
 // 2. 시작과 끝이 있는 태그는 class, id나 속성은 삽입불가능
@@ -583,7 +494,7 @@ var wrapjs = {
 //              <div class="greet">hi</div> 불가능
 //          해결할 수는 있지만 코드가 엄청 난해해지고 복잡해질 수 밖에 없음
 //          해결 후 성능적 이슈가 없을 것이라는 장담이 어려움
-var Textjs = {
+var text = {
 
     insertText: function (tagName, insertTextValue, interval, callback) {
 
@@ -619,7 +530,7 @@ var Textjs = {
                         frontSpan.appendChild(localTag);
 
                         var localInsertText = insertTextsubstr.substr(substrText.length, insertTextsubstr.indexOf(closeTag) - substrText.length);
-                        // new Textjs.insertText('#'+localTag.id, localInsertText, 1);
+                        // new text.insertText('#'+localTag.id, localInsertText, 1);
                         localTag.innerHTML = localInsertText;
 
                         timeCount = true;
@@ -691,10 +602,8 @@ var aside = {
     }
 };
 
-
 //기타 스크롤 이벤트에 관련된 보조객체
 var scrolljs = {
-
 //브라우저: 페이지 스크롤시 모든 동영상태그는 포커스되면 자동 재생(애드이벤트리스너 콜백구현)
     autoPlayVideo: function (event) {
         var videos = document.querySelectorAll('#bodyContainer video');
@@ -748,125 +657,6 @@ var scrolljs = {
 
 };
 
-var profileScript = {
-
-    levelLoading: function (level, tagName, description) {
-        var count = 0;
-        var targetTag = document.querySelector(tagName);
-        var levelBar = '';
-        var percent;
-        var levelPercent;
-        var interval = setInterval(function () {
-                try {
-                    if (count < level) {
-                        levelBar += '■';
-                    } else if (count < 10) {
-                        levelBar += '□';
-                    }
-
-                    switch (levelBar) {
-                        case '■':
-                            percent = '% (하)';
-                            break;
-                        case '■■■':
-                            percent = '% (중하)';
-                            break;
-                        case '■■■■■':
-                            percent = '% (중)';
-                            break;
-                        case '■■■■■■■':
-                            percent = '% (중상)';
-                            break;
-                        case '■■■■■■■■■':
-                            percent = '% (상)';
-                            break;
-                        case '■■■■■■■■■■':
-                            percent = '% (최상)';
-                            break;
-                    }
-
-                    if (levelBar.indexOf('□') * 10 < 0) {
-                        levelPercent = (count + 1) * 10;
-                    } else {
-                        levelPercent = levelBar.indexOf('□') * 10;
-                    }
-
-                    targetTag.innerHTML = 'Level : ' + levelBar + '<BR>' + levelPercent + percent;
-                    count++;
-
-                    if (count === 10) {
-                        clearInterval(interval);
-                        loadingjs.stop();
-                    }
-                } catch
-                    (error) {
-                    clearInterval(interval);
-                    loadingjs.stop();
-                }
-            }, 100
-        );
-        loadingjs.insert(description);
-    },
-
-    create: function (language, imgURL, level, description) {
-        var skillContainer = document.createElement('div');
-        var title = document.createElement('div');
-        var titleImg = document.createElement('img');
-        var skillSet = document.createElement('div');
-        var skillLevel = document.createElement('div');
-        var skillDescription = document.createElement('div');
-
-        skillContainer.className = 'profile-skill';
-        title.className = 'profile-skill-title flex';
-        titleImg.src = imgURL;
-        titleImg.setAttribute('onload', 'profileScript.levelLoading(' + level + ',\"#' + language + '\",\"#' + language + 'Description\")');
-        skillSet.className = 'profile-skill-set';
-        skillLevel.id = language;
-        skillDescription.id = language + 'Description';
-        skillDescription.className = 'profile-skill-description';
-        skillDescription.innerHTML = description;
-
-        skillContainer.appendChild(title);
-        skillContainer.appendChild(skillSet);
-
-        title.appendChild(titleImg);
-        skillSet.appendChild(skillLevel);
-        skillSet.appendChild(skillDescription);
-
-        return skillContainer;
-    },
-
-    skillListParse: function (data) {
-        var profileDetails = document.querySelector('#profileDetails');
-        profileDetails.innerHTML = '';
-        var parsedData = JSON.parse(data);
-
-        for (var key in parsedData) {
-            if (parsedData.hasOwnProperty(key)) {
-                var language = key;
-                var img = parsedData[key].imgURL;
-                var skillLevel = parsedData[key].level;
-                var skillDescription = parsedData[key].description;
-
-                var contents = profileScript.create(language, img, skillLevel, skillDescription);
-                profileDetails.appendChild(contents);
-            }
-        }
-    },
-    titleActive: function (URL, callback, contentsName) {
-        var contentsDetails = document.querySelector('#contentsDetails');
-
-        if (contentsName !== undefined) {
-            contentsDetails.innerHTML = 'Contents Details: ' + contentsName;
-
-        } else {
-            contentsDetails.innerHTML = 'Contents Details';
-
-        }
-
-        request.submit('GET', URL, callback);
-    }
-}
 var primary = {
     getAppList: function () {
         var iconContainer = document.querySelector('#icon-container');
@@ -874,6 +664,7 @@ var primary = {
             var appList = JSON.parse(data);
             for (var key in appList) {
                 var appContainer = document.createElement('div');
+                appContainer.id = 'app-' + key
                 if (appList[key]['url'].indexOf('https') !== -1) {
                     appContainer.setAttribute('onclick',
                         'if(window.confirm("' + key + '  ' + appList[key]['url'] + '\\n해당페이지로 이동하시겠습니까?"))' +
@@ -883,7 +674,6 @@ var primary = {
                         'request.forward("' + appList[key]['url'] + '", "' + key + '", "Now Loading....", this)');
 
                 }
-
                 appContainer.setAttribute('onerror',
                     "this.src = 'img/icon/Xasquatch.png'");
 
@@ -899,6 +689,7 @@ var primary = {
             }
         });
     },
+
     clickAndScrollSetting: function () {
         aside.headerLogo.addEventListener('click', aside.toggleFocus);
         window.addEventListener('click', function (event) {
@@ -911,6 +702,7 @@ var primary = {
         });
         window.addEventListener('scroll', aside.navContents);
     },
+
     checkBrowser: function () {
         if (navigator.userAgent.toLowerCase().indexOf("chrome") !== -1) return;
         request.submit('GET', 'app/browserCheck.json', function (data) {
@@ -919,17 +711,18 @@ var primary = {
         });
 
     },
+
     keySet: function () {
         window.addEventListener('keydown', function (event) {
             if (event.keyCode === 27) {
                 event.preventDefault();
                 var btnClose = document.querySelectorAll('.command-btn-close');
-                wrapjs.consoleClose(btnClose[btnClose.length - 1]);
+                myConsole.close(btnClose[btnClose.length - 1]);
             }
             if (event.ctrlKey && event.keyCode === 83) {
                 event.preventDefault();
                 var btnSave = document.querySelectorAll('.command-btn-save');
-                wrapjs.consoleSave(btnSave[btnSave.length - 1]);
+                myConsole.save(btnSave[btnSave.length - 1]);
             }
             if (event.ctrlKey && event.keyCode === 79) {
                 event.preventDefault();
@@ -937,6 +730,7 @@ var primary = {
             }
         });
     },
+
     closeNavWelcome: function () {
         if (sessionStorage.getItem('everVisited') !== 'true') {
             setTimeout(navJs.inactive, 1000);

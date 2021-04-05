@@ -33,17 +33,17 @@
     <footer>
         <ul>
             <li>
-                <a href="javascript:if (window.confirm('현재 페이지 히스토리를 전부 비우시겠습니까?'))wrapjs.dropPageHistory();">
+                <a href="javascript:if (window.confirm('현재 페이지 히스토리를 전부 비우시겠습니까?'))myConsole.dropPageHistory();">
                     스토리지<BR>비우기
                 </a>
             </li>
             <li>
-                <a href="javascript:if (window.confirm('현재 열려있는 모든 콘솔창을 닫으시겠습니까?'))wrapjs.consoleAllClose();">
+                <a href="javascript:if (window.confirm('현재 열려있는 모든 콘솔창을 닫으시겠습니까?'))myConsole.allClose();">
                     모든 창 닫기
                 </a>
             </li>
             <li>
-                <a href="javascript:if (window.confirm('현재 열려있는 모든 콘솔창을 저장하시겠습니까?'))wrapjs.consoleAllSave();">
+                <a href="javascript:if (window.confirm('현재 열려있는 모든 콘솔창을 저장하시겠습니까?'))myConsole.allSave();">
                     모든 창 저장
                 </a>
             </li>
@@ -66,8 +66,11 @@
 </section>
 
 <script src="js/script.js"></script>
+<!------------Application-->
 <script src="js/projectApp.js"></script>
-<script src="js/myblog-api.js"></script>
+<script src="js/stacksApp.js"></script>
+<!------------My Blog-->
+<!--<script src="js/myblog-api.js"></script>-->
 <script>
     //--------------------시점: 스크립트 로드 완료 후 최초실행--------------------------
     document.addEventListener('DOMContentLoaded', function () {
@@ -80,11 +83,15 @@
         primary.keySet();
         window.addEventListener('scroll', scrolljs.autoPlayVideo);
         window.addEventListener('resize', scrolljs.autoPlayVideo);
+
+        request.forward('app/list/profile.html', 'example', 'example', document.querySelector('#app-Profile'));
+
     }
     primary.getAppList();
     primary.checkBrowser();
     primary.clickAndScrollSetting();
-    wrapjs.viewPageHistory();
+    myConsole.viewPageHistory();
+
 
 </script>
 </body>
