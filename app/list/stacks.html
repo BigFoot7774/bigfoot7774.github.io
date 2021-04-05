@@ -1,5 +1,12 @@
-<section>
-    <img class="loading-img" src="img/icon/loading.gif"
-         onload="">
+<fieldset>
+    <legend>Stacks</legend>
+    <img src="img/icon/loading.gif"
+         onload="request.manipulateElement('app/list/profile/skillSet.json',
+         skill.parseList, this.parentNode.querySelector('div'));
+         this.remove();">
 
-</section>
+    <div id="profileDetails">
+
+    </div>
+</fieldset>
+

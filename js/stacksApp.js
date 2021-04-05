@@ -1,87 +1,60 @@
 var skill = {
 
-    levelLoading: function (level, tagName, description) {
+    levelLoading: function (level, tagElement, descriptionElement) {
         var count = 0;
         var levelPercent = 0;
-        var targetTag = document.querySelector(tagName);
         var levelBar = '';
         var percent;
+        var squareFull = '<img src="img/language%20icon/square-full.png" style="width: 1em; height: 1em; margin: 1px;">';
+        var squareBlank = '<img src="img/language%20icon/square-blank.png" style="width: 1em; height: 1em; margin: 1px;">';
         var interval = setInterval(function () {
                 try {
 
 
-
                     if (count < level) {
-                        levelBar += '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">';
+                        levelBar += squareFull;
                         levelPercent += 10;
                     } else if (count < 10) {
-                        levelBar += '<img src="img/language%20icon/square-blank.png" style="width: 1em;height: 1em;">';
+                        levelBar += squareBlank;
                     }
 
                     switch (levelBar) {
-                        case '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">':
+                        case squareFull:
                             percent = '% (하)';
                             break;
-                        case '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
-                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
-                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">':
+                        case squareFull + squareFull + squareFull:
                             percent = '% (중하)';
                             break;
-                        case '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
-                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
-                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
-                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
-                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">':
+                        case squareFull + squareFull + squareFull + squareFull + squareFull:
                             percent = '% (중)';
                             break;
-                        case '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
-                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
-                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
-                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
-                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
-                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
-                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">':
+                        case squareFull + squareFull + squareFull + squareFull + squareFull
+                        + squareFull + squareFull:
                             percent = '% (중상)';
                             break;
-                        case '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
-                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
-                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
-                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
-                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
-                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
-                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
-                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
-                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">':
+                        case squareFull + squareFull + squareFull + squareFull + squareFull
+                        + squareFull + squareFull + squareFull + squareFull:
                             percent = '% (상)';
                             break;
-                        case '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
-                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
-                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
-                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
-                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
-                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
-                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
-                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
-                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">' +
-                        '<img src="img/language%20icon/square-full.png" style="width: 1em;height: 1em;">':
+                        case  squareFull + squareFull + squareFull + squareFull + squareFull
+                        + squareFull + squareFull + squareFull + squareFull + squareFull:
                             percent = '% (최상)';
                             break;
                     }
-                    targetTag.innerHTML = 'Level : ' + levelBar + '<BR>' + levelPercent + percent;
+                    tagElement.innerHTML = 'Level : ' + levelBar + '<BR>' + levelPercent + percent;
                     count++;
 
                     if (count === 10) {
                         clearInterval(interval);
-                        loadingjs.stop();
+                        // loadingjs.stop();
                     }
-                } catch
-                    (error) {
+                } catch (error) {
                     clearInterval(interval);
-                    loadingjs.stop();
+                    // loadingjs.stop();
                 }
             }, 100
         );
-        loadingjs.insert(description);
+        // loadingjs.plusElement(descriptionElement);
     },
 
     create: function (language, imgURL, level, description) {
@@ -92,16 +65,19 @@ var skill = {
         var skillLevel = document.createElement('div');
         var skillDescription = document.createElement('div');
 
-        skillContainer.className = 'profile-skill';
-        title.className = 'profile-skill-title flex';
+        skillContainer.className = 'stacks-container';
+        title.className = 'stacks--title flex';
         titleImg.src = imgURL;
-        titleImg.style.maxWidth = '70px';
-        titleImg.style.maxHeight = '70px';
-        titleImg.setAttribute('onload', 'skill.levelLoading(' + level + ',\"#' + language + '\",\"#' + language + 'Description\")');
+        titleImg.style.maxWidth = '60px';
+        titleImg.style.maxHeight = '60px';
+        titleImg.style.padding = '5px';
+        titleImg.setAttribute('onload',
+            'skill.levelLoading(' + level + ',this.parentNode.parentNode.querySelector(\'#' + language + '\'),' +
+            'this.parentNode.parentNode.querySelector(\'#' + language + 'Description\'))');
         skillSet.className = 'profile-skill-set';
         skillLevel.id = language;
         skillDescription.id = language + 'Description';
-        skillDescription.className = 'profile-skill-description';
+        skillDescription.className = 'stacks-description';
         skillDescription.innerHTML = description;
 
         skillContainer.appendChild(title);

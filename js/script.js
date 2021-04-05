@@ -55,11 +55,10 @@ var request = {
     },
 
 
-    manipulateElement: function (URL, callback, targetQueryName) {
+    manipulateElement: function (URL, callback, element) {
         request.submit('GET', URL, function (data) {
-            var querySelector = document.querySelector(targetQueryName);
-            querySelector.innerHTML = '';
-            querySelector.append(callback(data));
+            element.innerHTML = '';
+            element.append(callback(data));
         });
     },
 
@@ -84,6 +83,36 @@ var loadingjs = {
     recoveryTagAddr: {},
     loadingPackage: ['-', '\\', '\|', '\/'],
 
+    plusElement: function (element) {
+        var originElement = element.cloneNode();
+        originElement.innerHTML = element.innerHTML;
+        loadingjs.recoveryTagAddr[element] = element.innerHTML;
+
+        var count = 0;
+        var localAddr = setInterval(function () {
+            try {
+                if (count === 0 && element.innerHTML.length === originElement.innerHTML.length) {
+                    element.innerHTML += loadingjs.loadingPackage[count];
+                    count++;
+                } else if (count === 3) {
+                    element.innerHTML = originElement.innerHTML;
+                    element.innerHTML += loadingjs.loadingPackage[3];
+                    count = 0;
+                } else {
+                    element.innerHTML = originElement.innerHTML;
+                    element.innerHTML += loadingjs.loadingPackage[count];
+                    count++;
+                }
+            } catch (error) {
+                clearInterval(localAddr);
+                var addrIndex = loadingjs.intervalAddr.indexOf(localAddr);
+                loadingjs.intervalAddr.splice(addrIndex, 1);
+            }
+            // element.innerHTML = originElement.innerHTML;
+
+        }, 100);
+        loadingjs.intervalAddr.push(localAddr);
+    },
     insert: function (tagName) {
         var tagContents = document.querySelector(tagName);
         var count = 0;
@@ -123,7 +152,7 @@ var loadingjs = {
                 if (count === 0 && tagContents.innerHTML.length === textLength.length) {
                     tagContents.innerHTML += loadingjs.loadingPackage[count];
                     count++;
-                } else if (count === 0 && tagContents.innerHTML.length != textLength.length) {
+                } else if (count === 0 && tagContents.innerHTML.length !== textLength.length) {
                     tagContents.innerHTML = textLength.substr(0, textLength.length);
                     tagContents.innerHTML += loadingjs.loadingPackage[count];
                     count++;
@@ -148,7 +177,6 @@ var loadingjs = {
         for (var index = 0; index < loadingjs.intervalAddr.length; index++) {
             clearInterval(loadingjs.intervalAddr[index]);
         }
-
         loadingjs.intervalAddr = [];
 
         for (var key in loadingjs.recoveryTagAddr) {
@@ -156,8 +184,11 @@ var loadingjs = {
 
                 try {
                     document.querySelector(key).innerHTML = loadingjs.recoveryTagAddr[key];
-                } catch (error) {
-                    //Interval종료 후 복구될 recoveryTagAddr값이 다를 경우의 예외처리
+                } catch (e) {
+                }
+                try {
+                    key.innerHTML = loadingjs.recoveryTagAddr[key];
+                } catch (e) {
                 }
             }
         }
