@@ -56,8 +56,10 @@ var request = {
 
 
     manipulateElement: function (URL, callback, targetQueryName) {
-        request.submit('GET', URL, function (data){
-            document.querySelector(targetQueryName).append(callback(data));
+        request.submit('GET', URL, function (data) {
+            var querySelector = document.querySelector(targetQueryName);
+            querySelector.innerHTML = '';
+            querySelector.append(callback(data));
         });
     },
 
