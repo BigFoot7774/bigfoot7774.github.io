@@ -56,8 +56,9 @@ var skill = {
 
         setTimeout(function () {
             element.style.background = '';
-        },500);
+        }, 500);
 
+        window.scrollTo(0, element.offsetTop);
         if (element.querySelector('.stacks-description .description') !== null) return;
 
         var description = element.querySelector('.stacks-description');
@@ -75,8 +76,8 @@ var skill = {
             }
 
         }
-        maxWidth(element);
 
+        maxWidth(element);
     },
     expandDescriptionClickIcon: function (element, key) {
         var parentComponent = element.parentNode.parentNode.parentNode.parentNode;
