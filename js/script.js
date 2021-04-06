@@ -219,7 +219,7 @@ var navJs = {
         navTitle.innerHTML = title;
         // loadingjs 삽입
         loadingjs.plus('.nav-title');
-        new text.insertText('.nav-contents', contents, 10);
+        new text.insert('.nav-contents', contents, 10);
 
     },
     normalActive: function (title, contents) {
@@ -534,14 +534,14 @@ var myConsole = {
 //          해결 후 성능적 이슈가 없을 것이라는 장담이 어려움
 var text = {
 
-    insertText: function (tagName, insertTextValue, interval, callback) {
-
-        var frontSpan = document.createElement('span');
-        var backSpan = document.createElement('span');
-        backSpan.className = 'input-character';
-        document.querySelector(tagName).appendChild(frontSpan);
-        document.querySelector(tagName).appendChild(backSpan);
-
+    insert: function (element, insertTextValue, interval, callback) {
+        try {
+            text.insertForObject(element, insertTextValue, interval, callback)
+        } catch (e) {
+            text.insertForTagName(element, insertTextValue, interval, callback);
+        }
+    },
+    operation: function (insertTextValue, frontSpan, backSpan, callback, interval) {
         var timeCount = true;
         var loopCount = 0;
         var intervalAddr = setInterval(function () {
@@ -551,8 +551,6 @@ var text = {
 
                 if (insertTextValue.length === loopCount) {
                     throw 'go catch';
-
-// 문자중에 lessthan이 나올 떄 greater than을 찾아 태그로 묶어서 삽입
 
                 } else if (character === '<') {
                     var insertTextsubstr = insertTextValue.substr(loopCount, insertTextValue.length);
@@ -568,7 +566,7 @@ var text = {
                         frontSpan.appendChild(localTag);
 
                         var localInsertText = insertTextsubstr.substr(substrText.length, insertTextsubstr.indexOf(closeTag) - substrText.length);
-                        // new text.insertText('#'+localTag.id, localInsertText, 1);
+                        // new text.insert('#'+localTag.id, localInsertText, 1);
                         localTag.innerHTML = localInsertText;
 
                         timeCount = true;
@@ -604,6 +602,25 @@ var text = {
                 }
             }
         }, interval);
+    },
+    insertForObject: function (element, insertTextValue, interval, callback) {
+        var frontSpan = document.createElement('span');
+        var backSpan = document.createElement('span');
+        backSpan.className = 'input-character';
+        element.appendChild(frontSpan);
+        element.appendChild(backSpan);
+        text.operation(insertTextValue, frontSpan, backSpan, callback, interval);
+
+    },
+    insertForTagName: function (tagName, insertTextValue, interval, callback) {
+
+        var frontSpan = document.createElement('span');
+        var backSpan = document.createElement('span');
+        backSpan.className = 'input-character';
+        document.querySelector(tagName).appendChild(frontSpan);
+        document.querySelector(tagName).appendChild(backSpan);
+        text.operation(insertTextValue, frontSpan, backSpan, callback, interval);
+
     }
 };
 
