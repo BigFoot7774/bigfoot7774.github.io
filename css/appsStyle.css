@@ -1,27 +1,52 @@
 @charset "UTF-8";
 /*-----------stacks------------*/
-.stacks-container, .stacks-icon-container{
+.stacks-container, .stacks-icon-container {
     display: flex;
     transition: 0.5s all;
 }
-.stacks-container, .stacks-icon-container>img{
+
+.stacks-container, .stacks-icon-container > img {
     cursor: pointer;
 
 }
 
-.stacks-container:HOVER, .stacks-icon-container>img:HOVER {
+.stacks-container:HOVER, .stacks-icon-container > img:HOVER {
     background: silver;
 
 }
-.stacks-icon-container>img{
+
+.stacks-icon-container > img {
     margin: 0 5px;
 }
 
 .stacks-description > div {
     box-shadow: 2px 2px 5px rgba(150, 0, 0, 0.5),
-                2px -2px 5px rgba(150, 0, 0, 0.5),
-                -2px -2px 5px rgba(150, 0, 0, 0.5),
-                -2px 2px 5px rgba(150, 0, 0, 0.5);
+    2px -2px 5px rgba(150, 0, 0, 0.5),
+    -2px -2px 5px rgba(150, 0, 0, 0.5),
+    -2px 2px 5px rgba(150, 0, 0, 0.5);
     padding: 10px;
     margin: 10px;
+}
+
+/*-----------salary------------*/
+.salary-mode-asciiArt {
+    text-align: center;
+    font-family: sans-serif;
+    transition: 1s all;
+}
+
+.salary-mode-asciiArt-normal {
+    background: rgba(0, 0, 100, 1);
+}
+
+.salary-mode-asciiArt-normal:HOVER {
+    background: lightblue;
+}
+
+.salary-mode-asciiArt-hard {
+    background: rgba(100, 0, 0, 1);
+}
+
+.salary-mode-asciiArt-hard:HOVER {
+    background: red;
 }

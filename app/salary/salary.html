@@ -1,5 +1,62 @@
 <section>
-    <img class="loading-img" src="img/icon/loading.gif"
-         onload="text.insert('#sdfasdfasd','0<span style=\'color:red;\'>1<img src=\'img/icon/Xasquatch.png\'/> 2</span>3456789',1)">
-    <div id="sdfasdfasd"></div>
+    <fieldset style="text-align: center">
+        <legend>Salary</legend>
+        <div>
+            <img src="img/icon/loading.gif" onload="salary.meant1(this, 10);">
+        </div>
+        <div>
+            <img src="img/icon/loading.gif" onload="salary.meant2(this, 10);">
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>Type</legend>
+        <div class="grid-component-1200">
+            <div class="grid-600">
+                <fieldset>
+                    <legend style="color: lightblue;">Normal Mode</legend>
+                    <div>
+                        <img class="loading-img" src="img/icon/loading.gif"
+                             onload="salary.typeBar(this,7,10);">
+
+                    </div>
+                    <div class="salary-mode-asciiArt salary-mode-asciiArt-normal">
+                        <img class="loading-img" src="img/icon/loading.gif"
+                             onload="salary.normalType(this,1);">
+                    </div>
+                    <h2>개발자 모드</h2>
+                    <ul>
+                        <li><h3 style="color: lightblue;">희망연봉 수준의 적정모드</h3></li>
+                        <li>법정 근무 8시간 준수</li>
+                        <li>합리적인 프론트엔드 개발</li>
+                        <li>정상적인 백엔드 개발</li>
+                        <li>주말, 공휴일 근무 미지원</li>
+                        <li>야간, 철야 근무 미지원</li>
+                    </ul>
+                </fieldset>
+            </div>
+            <div class="grid-600">
+                <fieldset>
+                    <legend style="color: red;">Hard Mode</legend>
+                    <div>
+                        <img class="loading-img" src="img/icon/loading.gif"
+                             onload="salary.typeBar(this,10,10);">
+
+                    </div>
+                    <div class="salary-mode-asciiArt salary-mode-asciiArt-hard">
+                        <img class="loading-img" src="img/icon/loading.gif"
+                             onload="salary.hardType(this,1);">
+                    </div>
+                    <h2>철야 모드</h2>
+                    <ul>
+                        <li><h3 style="color: red">분수에 벗어난 연봉에 애사심을 불태우는 모드</h3></li>
+                        <li>법이 뭐지? 무조건 8시간 이상 근무 지원</li>
+                        <li>흥분되는 주말, 공휴일 근무 지원</li>
+                        <li>설레는 야간, 철야 근무 지원</li>
+                        <li>행복한 프론트엔드 개발</li>
+                        <li>짜릿한 백엔드 개발</li>
+                    </ul>
+                </fieldset>
+            </div>
+        </div>
+    </fieldset>
 </section>
