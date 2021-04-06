@@ -560,7 +560,6 @@ var text = {
                     var tagName;
                     var isSoloTag = false;
                     var soloTagList = text.soloTagList;
-                    if (tagAttributes.indexOf('BR') !== -1) debugger;
                     if (tagAttributes.indexOf(' ') !== -1) {
                         tagName = textSubString.substring(1, tagAttributes.indexOf(' '));
 
@@ -574,7 +573,6 @@ var text = {
                             break;
                         }
                     }
-                    console.log(tagName);
                     var tagContents;
                     if (isSoloTag) {
                         tagContents = textSubString.substring(0, startTagEndIndex + 1);
