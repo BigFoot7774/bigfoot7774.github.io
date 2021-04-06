@@ -53,8 +53,8 @@ header{
     word-break: keep-all;
 }
 .header-modal-component{
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     height: auto;
     min-height: 50px;
     box-sizing: border-box;
@@ -62,7 +62,7 @@ header{
     color: rgba(0, 0, 0, 1);
     
     position: fixed;
-    right: 30vw;
+    right: 5em;
     top: 70px;
     display: none;
     flex-direction: column;
@@ -96,8 +96,8 @@ header{
     color: rgba(0, 0, 0, 1);
     border: 1px groove silver;
     background-color: silver;
-    padding: 0px 0px 0px 5px;
-    width: 50vw;
+    padding: 0 0 0 5px;
+    width: 100%;
     box-sizing: border-box;
     max-width: 600px;
     /* border-radius: 1rem; */
@@ -108,7 +108,7 @@ header{
 .header-modal-contents{
     border: 1px groove silver;
     padding: 5px;
-    width: 50vw;
+    width: 100%;
     box-sizing: border-box;
     max-width: 600px;
     /* border-radius: 1rem; */
