@@ -23,9 +23,9 @@
     "url": "app/shortcuts/shortcuts.html",
     "icon": "img/icon/link.png"
   },
-  "PDF로 저장": {
-    "url": "https://xasquatch.net/app/pdf/pdf.html",
-    "icon": "img/icon/pdf.png"
+  "한장정리 페이지 (출력용)": {
+    "url": "https://xasquatch.net/app/one-page/one-page.html",
+    "icon": "img/icon/one-page.png"
   },
   "Github": {
     "url": "https://github.com/xasquatch",
