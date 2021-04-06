@@ -550,7 +550,7 @@ var text = {
             try {
 
                 var character = insertTextValue.charAt(loopCount);
-
+                console.log(character);
                 if (insertTextValue.length === loopCount) {
                     throw 'go catch';
 
@@ -560,10 +560,10 @@ var text = {
                     var tagAttributes = textSubString.substr(0, startTagEndIndex + 1);
                     var tagName;
                     if (tagAttributes.indexOf(' ') !== -1) {
-                        tagName = insertTextValue.substring(loopCount + 1, tagAttributes.indexOf(' ') + 1);
+                        tagName = textSubString.substring(1, tagAttributes.indexOf(' '));
 
                     } else {
-                        tagName = textSubString.substring(1, startTagEndIndex);
+                        tagName = textSubString.substring(1, startTagEndIndex - 1);
 
                     }
                     var isSoloTag = false;
@@ -579,8 +579,6 @@ var text = {
                         tagContents = textSubString.substring(0, closeTagLastIndex + closeTagName.length);
 
                     }
-                    console.log(tagName,":",isSoloTag);
-
                     frontSpan.innerHTML += tagContents;
                     backSpan.innerHTML = '';
                     timeCount = true;
@@ -590,6 +588,10 @@ var text = {
                 } else if (timeCount === true) {
                     backSpan.innerHTML = insertTextValue.charAt(loopCount);
                     timeCount = false;
+
+                } else if (character === '\\') {
+                    debugger;
+                    loopCount++;
 
                 } else {
                     frontSpan.innerHTML += backSpan.innerHTML;
