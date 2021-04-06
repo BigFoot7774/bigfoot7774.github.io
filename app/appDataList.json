@@ -1,30 +1,30 @@
 {
   "Profile": {
-    "url": "app/list/profile.html",
+    "url": "app/profile/profile.html",
     "icon": "img/icon/profile.png"
   },
   "Stacks": {
-    "url": "app/list/stacks.html",
+    "url": "app/stacks/stacks.html",
     "icon": "img/icon/skill.png"
   },
   "Project": {
-    "url": "app/list/project.html",
+    "url": "app/project/project.html",
     "icon": "img/icon/introduction.png"
   },
   "Salary": {
-    "url": "app/list/salary.html",
+    "url": "app/salary/salary.html",
     "icon": "img/icon/salary.png"
   },
   "Contact Me": {
-    "url": "app/list/contact-me.html",
+    "url": "app/contact-me/contact-me.html",
     "icon": "img/icon/contact-me.png"
   },
   "바로가기": {
-    "url": "app/list/shortcuts.html",
+    "url": "app/shortcuts/shortcuts.html",
     "icon": "img/icon/link.png"
   },
   "PDF로 저장": {
-    "url": "https://xasquatch.net/app/list/pdf.html",
+    "url": "https://xasquatch.net/app/pdf/pdf.html",
     "icon": "img/icon/pdf.png"
   },
   "Github": {
