@@ -70,6 +70,7 @@
 <!------------Application-->
 <script src="js/projectApp.js"></script>
 <script src="js/stacksApp.js"></script>
+<script src="js/salaryApp.js"></script>
 <!------------My Blog-->
 <!--<script src="js/myblog-api.js"></script>-->
 <script>
@@ -85,7 +86,7 @@
         primary.keySet();
         setTimeout(navJs.inactive, 1000);
 
-        request.forward('app/salary/salary.html', 'example', 'example', document.querySelector('#app-Profile'));
+        request.forward('app/profile/profile.html', 'example', 'example', document.querySelector('#app-Profile'));
 
     }
     primary.getAppList();
