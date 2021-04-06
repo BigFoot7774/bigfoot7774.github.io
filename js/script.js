@@ -326,8 +326,10 @@ var myConsole = {
         header.className = 'command-header';
         container.addEventListener('click', function (event) {
             try {
+                if (myConsole.wrap.lastChild === this) return;
                 myConsole.wrap.insertBefore(myConsole.wrap.lastChild, this);
             } catch (e) {
+                console.log(e);
             }
         });
 
@@ -568,7 +570,7 @@ var text = {
 
                     }
                     for (var soloTag of soloTagList) {
-                        if(soloTag === tagName.toUpperCase()){
+                        if (soloTag === tagName.toUpperCase()) {
                             isSoloTag = true;
                             break;
                         }
