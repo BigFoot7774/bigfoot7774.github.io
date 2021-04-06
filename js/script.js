@@ -563,13 +563,12 @@ var text = {
                         tagName = insertTextValue.substring(loopCount + 1, tagAttributes.indexOf(' ') + 1);
 
                     } else {
-                        tagName = textSubString.substring(1, startTagEndIndex - 1);
+                        tagName = textSubString.substring(1, startTagEndIndex);
 
                     }
                     var isSoloTag = false;
                     var soloTagList = text.soloTagList;
                     for (var soloTag of soloTagList) isSoloTag = soloTag === tagName.toUpperCase();
-
                     var tagContents;
                     if (isSoloTag) {
                         tagContents = textSubString.substring(0, startTagEndIndex);
@@ -580,6 +579,7 @@ var text = {
                         tagContents = textSubString.substring(0, closeTagLastIndex + closeTagName.length);
 
                     }
+                    console.log(tagName,":",isSoloTag);
 
                     frontSpan.innerHTML += tagContents;
                     backSpan.innerHTML = '';
