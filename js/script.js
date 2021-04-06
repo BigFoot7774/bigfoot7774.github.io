@@ -534,6 +534,8 @@ var myConsole = {
 //          해결 후 성능적 이슈가 없을 것이라는 장담이 어려움
 var text = {
 
+    soloTagList: ['IMG', 'BR', 'HR', 'META', 'LINK', 'INPUT'],
+
     insert: function (element, insertTextValue, interval, callback) {
         try {
             text.insertForObject(element, insertTextValue, interval, callback)
@@ -553,32 +555,37 @@ var text = {
                     throw 'go catch';
 
                 } else if (character === '<') {
-                    var insertTextsubstr = insertTextValue.substr(loopCount, insertTextValue.length);
-                    var tagEnd = insertTextsubstr.indexOf('>');
-                    var substrText = insertTextsubstr.substr(0, tagEnd + 1);
-
-                    var closeTag = '</' + substrText.substr(1, substrText.length);
-                    var localTagName = substrText.substr(1, substrText.length - 2);
-
-                    if (insertTextsubstr.indexOf(closeTag) !== -1) {
-                        var localTag = document.createElement(localTagName);
-                        // localTag.id = 'localTag' + intervalAddr;
-                        frontSpan.appendChild(localTag);
-
-                        var localInsertText = insertTextsubstr.substr(substrText.length, insertTextsubstr.indexOf(closeTag) - substrText.length);
-                        // new text.insert('#'+localTag.id, localInsertText, 1);
-                        localTag.innerHTML = localInsertText;
-
-                        timeCount = true;
-                        loopCount += insertTextsubstr.indexOf(closeTag) + closeTag.length;
-
+                    var textSubString = insertTextValue.substr(loopCount, insertTextValue.length);
+                    var startTagEndIndex = textSubString.indexOf('>');
+                    var tagAttributes = textSubString.substr(0, startTagEndIndex + 1);
+                    var tagName;
+                    if (tagAttributes.indexOf(' ') !== -1) {
+                        tagName = insertTextValue.substring(loopCount + 1, tagAttributes.indexOf(' ') + 1);
 
                     } else {
-                        frontSpan.innerHTML += substrText;
-                        timeCount = true;
-                        loopCount += substrText.length;
+                        tagName = textSubString.substring(1, startTagEndIndex - 1);
 
                     }
+                    var isSoloTag = false;
+                    var soloTagList = text.soloTagList;
+                    for (var soloTag of soloTagList) isSoloTag = soloTag === tagName.toUpperCase();
+
+                    var tagContents;
+                    if (isSoloTag) {
+                        tagContents = textSubString.substring(0, startTagEndIndex);
+
+                    } else {
+                        var closeTagName = '</' + tagName + '>';
+                        var closeTagLastIndex = textSubString.lastIndexOf(closeTagName);
+                        tagContents = textSubString.substring(0, closeTagLastIndex + closeTagName.length);
+
+                    }
+
+                    frontSpan.innerHTML += tagContents;
+                    backSpan.innerHTML = '';
+                    timeCount = true;
+                    loopCount += tagContents.length;
+
 
                 } else if (timeCount === true) {
                     backSpan.innerHTML = insertTextValue.charAt(loopCount);
