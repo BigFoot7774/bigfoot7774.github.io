@@ -20,23 +20,8 @@
 <body>
 <header>
     <div class="header-contents-frame">
-        <div class="header-contents">
-            <span style="display: flex;">
-<!--                <img style="width:2em; height:2em;" src="img/icon/ctrl.png">-->
-                <!--                +-->
-                <!--                <img style="width:2em; height:2em;" src="img/icon/s-key.png">-->
-                Ctrl + S: 창 저장
-            </span>
-            <span style="display: flex;">
-<!--                <img style="width:2em; height:2em;" src="img/icon/esc.png">-->
-                Esc: 창 닫기
-            </span>
-            <span style="display: flex;">
-<!--                <img style="width:2em; height:2em;" src="img/icon/ctrl.png">-->
-<!--                +-->
-<!--                <img style="width:2em; height:2em;" src="img/icon/o-key.png">-->
-                Ctrl + O: 저장목록
-            </span>
+        <div class="header-contents" style="text-align: center;">
+            <a class="msg-information" href="javascript:primary.getGuidance();">도움말 보기</a>
         </div>
     </div>
 </header>
@@ -44,7 +29,6 @@
     <div>
         <h4 id="headerLogo" class="header-logo">Xasquatch</h4>
         <ul id="localPageHistory" class="aside-list">
-
         </ul>
     </div>
     <footer>
@@ -96,12 +80,12 @@
     });
     //--------------------시점: DOM 로드 완료 후 실행----------------------------------
     window.onload = function () {
-        primary.closeNavWelcome();
-        primary.keySet();
         window.addEventListener('scroll', scrolljs.autoPlayVideo);
         window.addEventListener('resize', scrolljs.autoPlayVideo);
+        primary.keySet();
+        setTimeout(navJs.inactive, 1000);
 
-        request.forward('app/stacks/stacks.html', 'example', 'example', document.querySelector('#app-Profile'));
+        request.forward('app/contact-me/contact-me.html', 'example', 'example', document.querySelector('#app-Profile'));
 
     }
     primary.getAppList();

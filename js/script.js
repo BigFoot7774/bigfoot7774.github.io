@@ -71,6 +71,10 @@ var request = {
                 myConsole.viewPageHistory();
                 navJs.inactive();
                 aside.removeFocus();
+
+                if (sessionStorage.getItem('everVisited') !== 'true') primary.getGuidance();
+
+
             });
         }, 500);
     },
@@ -249,6 +253,7 @@ var navJs = {
 var modaljs = {
 
     create: function (titleText, contentsText) {
+        // if (document.querySelector('.header-modal')) return;
 
         var container = document.createElement('div');
         var header = document.createElement('div');
@@ -762,13 +767,16 @@ var primary = {
             }
         });
     },
-
-    closeNavWelcome: function () {
-        if (sessionStorage.getItem('everVisited') !== 'true') {
-            setTimeout(navJs.inactive, 1000);
-            sessionStorage.setItem('everVisited', true);
-        } else {
-            navJs.inactive();
-        }
+    getGuidance: function () {
+        sessionStorage.setItem('everVisited', true);
+        modaljs.create('GUIDE',
+            '1. <span style="color: red;">Ctrl + S</span>: 현재 창을 저장할 수 있습니다.<BR><BR>' +
+            '2. <span style="color: red;">Esc</span>: 현재 창을 닫을 수 있습니다.<BR><BR>' +
+            '3. <span style="color: red;">Ctrl + O</span>: 저장한 창목록을 우측에서 확인하고 불러올 수 있습니다.<BR><BR>' +
+            '4. 창을 드래그하여 다른 위치로 이동 할 수 있습니다.<BR><BR>' +
+            '5. 나중에 다시보기를 원하신다면 상단의 <span style="color: red;">도움말 보기</span>버튼을 눌러주시기바랍니다<BR><BR>' +
+            '<div onclick="this.parentNode.parentNode.remove();" style="text-align: center; cursor:pointer; color: red; font-size: 30px">' +
+            '닫기' +
+            '</div>');
     }
 }
