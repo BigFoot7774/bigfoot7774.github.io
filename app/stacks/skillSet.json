@@ -1,0 +1,32 @@
+{
+  "Java": {
+    "imgURL": "img/language icon/java.png",
+    "level": 6,
+    "description": "ㅎㅇ"
+  },
+  "SpringFramework": {
+    "imgURL": "img/language icon/spring.png",
+    "level": 4,
+    "description": "ㅎㅇ"
+  },
+  "HTML": {
+    "imgURL": "img/language icon/html.png",
+    "level": 7,
+    "description": "HTML의 대부분의 문법을 구사할 수 있습니다.<BR> 그 외 모르는 태그들도 있지만 금방 찾아서 적용하고 응용 할 수 있습니다."
+  },
+  "CSS": {
+    "imgURL": "img/language icon/css.png",
+    "level": 3,
+    "description": "Sass와 Less는 못합니다.<BR>(필요를 못느껴서 못배웠지만 기회가 된다면 한번 시도해보고 싶습니다.)<BR>대부분의 꾸미고 싶은 기술들은 CSS3를 통해서 구현 가능합니다.<BR>현재 이 포트폴리오도 프레임워크, 라이브러리없이 css와 vanilla javaScript만으로도 만들었습니다."
+  },
+  "javaScript": {
+    "imgURL": "img/language icon/javascript.png",
+    "level": 4,
+    "description": "ES5까지 사용가능 합니다.<BR>자바스크립트를 통한 AJAX기술, request는 주로 XMLHTTPREQUEST객체를 이용합니다.<BR> 제이쿼리 라이브러리를 통한 AJAX도 사용 할 수 있지만<BR>제이쿼리 사용하는 것 자체를 지양하는 편입니다."
+  },
+  "Passion": {
+    "imgURL": "img/language icon/passion.png",
+    "level": 10,
+    "description": "저는 열정과 끈기빼면 시체입니다."
+  }
+}

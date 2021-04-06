@@ -1,6 +1,24 @@
 @charset "UTF-8";
 
-.stacks-container{
+.stacks-container, .stacks-icon-container{
     display: flex;
+    transition: 0.5s all;
+    cursor: pointer;
+}
 
+.stacks-container:HOVER, .stacks-icon-container>img:HOVER {
+    background: silver;
+
+}
+.stacks-icon-container>img{
+    margin: 0 5px;
+}
+
+.stacks-description > div {
+    box-shadow: 2px 2px 5px rgba(150, 0, 0, 0.5),
+                2px -2px 5px rgba(150, 0, 0, 0.5),
+                -2px -2px 5px rgba(150, 0, 0, 0.5),
+                -2px 2px 5px rgba(150, 0, 0, 0.5);
+    padding: 10px;
+    margin: 10px;
 }

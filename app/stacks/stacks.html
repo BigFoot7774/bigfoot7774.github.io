@@ -1,0 +1,30 @@
+<fieldset>
+    <legend></legend>
+    <div class="stacks-icon-container">
+        <img src="img/icon/loading.gif"
+             onload="var parentNode = this.parentNode;
+                request.submit('GET','app/stacks/skillSet.json',function(data) {
+                var parsedData = JSON.parse(data);
+                for (var key in parsedData) {
+                    var iCon = document.createElement('img');
+                    iCon.style.maxWidth = '50px';
+                    iCon.style.maxHeight = '50px';
+                    iCon.src = parsedData[key]['imgURL'];
+                    iCon.setAttribute('onclick','skill.expandDescriptionClickIcon(this,\'#'+key+'\')');
+                    parentNode.appendChild(iCon);
+
+                }
+         });this.remove();">
+    </div>
+</fieldset>
+<fieldset>
+    <legend>Stacks</legend>
+    <img src="img/icon/loading.gif"
+         onload="request.manipulateElement('app/stacks/skillSet.json',
+         skill.parseList, this.parentNode.querySelector('div'));
+         this.remove();">
+
+    <div>
+
+    </div>
+</fieldset>

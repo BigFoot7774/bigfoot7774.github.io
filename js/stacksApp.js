@@ -1,6 +1,6 @@
 var skill = {
 
-    levelLoading: function (level, tagElement, descriptionElement) {
+    levelLoading: function (level, tagElement) {
         var count = 0;
         var levelPercent = 0;
         var levelBar = '';
@@ -9,8 +9,6 @@ var skill = {
         var squareBlank = '<img src="img/language%20icon/square-blank.png" style="width: 1em; height: 1em; margin: 1px;">';
         var interval = setInterval(function () {
                 try {
-
-
                     if (count < level) {
                         levelBar += squareFull;
                         levelPercent += 10;
@@ -46,17 +44,39 @@ var skill = {
 
                     if (count === 10) {
                         clearInterval(interval);
-                        // loadingjs.stop();
                     }
                 } catch (error) {
                     clearInterval(interval);
-                    // loadingjs.stop();
                 }
             }, 100
         );
-        // loadingjs.plusElement(descriptionElement);
     },
+    expandDescription: function (element, descriptionMsg) {
+        var description = element.querySelector('.stacks-description');
+        if (element.querySelector('.stacks-description .description') !== null) return;
 
+        var msgContainer = document.createElement('div');
+        msgContainer.className = 'description';
+        msgContainer.innerHTML = descriptionMsg;
+        description.appendChild(msgContainer);
+
+        function maxWidth(tagElement) {
+            try {
+                if (tagElement.parentNode.classList.contains('command-max-width')) return;
+                tagElement.querySelector('.command-btn-square').click();
+            } catch (e) {
+                maxWidth(tagElement.parentNode)
+            }
+
+        }
+        maxWidth(element);
+
+    },
+    expandDescriptionClickIcon: function (element, key) {
+        var parentComponent = element.parentNode.parentNode.parentNode.parentNode;
+        var keyElement = parentComponent.querySelector(key + '-stacks-container');
+        keyElement.click();
+    },
     create: function (language, imgURL, level, description) {
         var skillContainer = document.createElement('div');
         var title = document.createElement('div');
@@ -65,7 +85,9 @@ var skill = {
         var skillLevel = document.createElement('div');
         var skillDescription = document.createElement('div');
 
+        skillContainer.id = language + '-stacks-container';
         skillContainer.className = 'stacks-container';
+        skillContainer.setAttribute('onclick', 'skill.expandDescription(this,"' + description + '");');
         title.className = 'stacks--title flex';
         titleImg.src = imgURL;
         titleImg.style.maxWidth = '60px';
@@ -78,7 +100,7 @@ var skill = {
         skillLevel.id = language;
         skillDescription.id = language + 'Description';
         skillDescription.className = 'stacks-description';
-        skillDescription.innerHTML = description;
+        skillDescription.innerHTML = '<h2 style="margin: 0;">' + language + "</h2>";
 
         skillContainer.appendChild(title);
         skillContainer.appendChild(skillSet);
@@ -105,6 +127,11 @@ var skill = {
                 resultElement.appendChild(contents);
             }
         }
+        var notice = document.createElement('h3');
+        notice.innerHTML = '위의 등급은 작성자 본인의 주관적인 판단으로 다소 편차가 있을 수도 있습니다.'
+        resultElement.appendChild(notice);
+
+
         return resultElement;
     }
 }
