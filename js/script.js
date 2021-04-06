@@ -205,9 +205,9 @@ var loadingjs = {
 //-navJs객체(리팩토링 완): 생성, 닫기
 var navJs = {
     active: function (title, contents) {
-        nav = document.createElement('nav');
-        navTitle = document.createElement('div');
-        navContents = document.createElement('div');
+        var nav = document.createElement('nav');
+        var navTitle = document.createElement('div');
+        var navContents = document.createElement('div');
 
         nav.className = 'z-index-100';
         navTitle.className = 'nav-title';
@@ -219,13 +219,13 @@ var navJs = {
         navTitle.innerHTML = title;
         // loadingjs 삽입
         loadingjs.plus('.nav-title');
-        new text.insert('.nav-contents', contents, 10);
+        new text.insert('.nav-contents', contents, 1);
 
     },
     normalActive: function (title, contents) {
-        nav = document.createElement('nav');
-        navTitle = document.createElement('div');
-        navContents = document.createElement('div');
+        var nav = document.createElement('nav');
+        var navTitle = document.createElement('div');
+        var navContents = document.createElement('div');
 
         nav.className = 'z-index-100';
         navTitle.className = 'nav-title';
@@ -236,10 +236,10 @@ var navJs = {
         nav.appendChild(navContents);
         document.body.appendChild(nav);
         navTitle.innerHTML = title;
-        navContents.innerHTML = contents;
         // loadingjs 삽입
         loadingjs.plus('.nav-title');
 
+        navContents.innerHTML = contents;
     },
     inactive: function () {
         loadingjs.stop();
