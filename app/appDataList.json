@@ -1,8 +1,4 @@
 {
-  "Profile": {
-    "url": "app/profile/profile.html",
-    "icon": "img/icon/profile.png"
-  },
   "Stacks": {
     "url": "app/stacks/stacks.html",
     "icon": "img/icon/skill.png"
