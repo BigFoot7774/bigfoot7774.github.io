@@ -550,7 +550,6 @@ var text = {
             try {
 
                 var character = insertTextValue.charAt(loopCount);
-                console.log(character);
                 if (insertTextValue.length === loopCount) {
                     throw 'go catch';
 
@@ -559,6 +558,8 @@ var text = {
                     var startTagEndIndex = textSubString.indexOf('>');
                     var tagAttributes = textSubString.substr(0, startTagEndIndex + 1);
                     var tagName;
+                    var isSoloTag = false;
+                    var soloTagList = text.soloTagList;
                     if (tagAttributes.indexOf(' ') !== -1) {
                         tagName = textSubString.substring(1, tagAttributes.indexOf(' '));
 
@@ -566,12 +567,15 @@ var text = {
                         tagName = textSubString.substring(1, startTagEndIndex - 1);
 
                     }
-                    var isSoloTag = false;
-                    var soloTagList = text.soloTagList;
-                    for (var soloTag of soloTagList) isSoloTag = soloTag === tagName.toUpperCase();
+                    for (var soloTag of soloTagList) {
+                        if(soloTag === tagName.toUpperCase()){
+                            isSoloTag = true;
+                            break;
+                        }
+                    }
                     var tagContents;
                     if (isSoloTag) {
-                        tagContents = textSubString.substring(0, startTagEndIndex);
+                        tagContents = textSubString.substring(0, startTagEndIndex + 1);
 
                     } else {
                         var closeTagName = '</' + tagName + '>';
