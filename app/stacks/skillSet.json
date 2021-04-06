@@ -27,22 +27,22 @@
   "ApacheTomcat": {
     "imgURL": "img/language icon/tomcat.png",
     "level": 4,
-    "description": ""
+    "description": "standAlone으로 만든 My BLog 프로젝트를 직접 호스팅해보고 싶은 마음에<BR>집에 남는 노트북으로 24시간 돌려가며<BR>현재 직접 서버호스팅 중입니다.<BR>서버호스팅까지의 과정에서 아파치의 로드밸런싱, 톰캣에서의 server.xml Connector설정,<BR> SSL키 발급과 키스토어 등록 등 여러 가지를 직접 경험해보았습니다."
   },
   "Oracle": {
     "imgURL": "img/language icon/oracle.png",
     "level": 3,
-    "description": ""
+    "description": "일전에 국비지원학원을 6개월 간 다니면서<BR> oracle과목도 함께 공부하여 이수하였습니다.<BR>선호하는 database는 아니지만 상황에 맞춰 필요로 한다면 언제든지 쓸 준비가 되있습니다."
   },
   "MySQL": {
     "imgURL": "img/language icon/mysql.png",
     "level": 4,
-    "description": ""
+    "description": "가장 선호하는 SQL database입니다.<BR> 워크 벤치 툴이 잘되어 있어 자주 활용하며<BR>학원에서도 사용헀던 적이 많아서<BR>손에 익어 편해서 주로 사용하는 database입니다."
   },
   "MariaDB": {
     "imgURL": "img/language icon/mariadb.png",
     "level": 4,
-    "description": ""
+    "description": "mysql에서 파생되어 유사한 형태의 오픈소스 데이터베이스라고하여<BR>이번 standAlone프로젝트(My Blog)로 사용했던 경험이 있습니다."
   },
   "Passion": {
     "imgURL": "img/language icon/passion.png",
