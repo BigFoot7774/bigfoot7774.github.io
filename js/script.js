@@ -560,11 +560,12 @@ var text = {
                     var tagName;
                     var isSoloTag = false;
                     var soloTagList = text.soloTagList;
+                    if (tagAttributes.indexOf('BR') !== -1) debugger;
                     if (tagAttributes.indexOf(' ') !== -1) {
                         tagName = textSubString.substring(1, tagAttributes.indexOf(' '));
 
                     } else {
-                        tagName = textSubString.substring(1, startTagEndIndex - 1);
+                        tagName = textSubString.substring(1, startTagEndIndex);
 
                     }
                     for (var soloTag of soloTagList) {
@@ -573,6 +574,7 @@ var text = {
                             break;
                         }
                     }
+                    console.log(tagName);
                     var tagContents;
                     if (isSoloTag) {
                         tagContents = textSubString.substring(0, startTagEndIndex + 1);
@@ -587,7 +589,6 @@ var text = {
                     backSpan.innerHTML = '';
                     timeCount = true;
                     loopCount += tagContents.length;
-
 
                 } else if (timeCount === true) {
                     backSpan.innerHTML = insertTextValue.charAt(loopCount);
