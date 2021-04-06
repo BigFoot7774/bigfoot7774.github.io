@@ -50,7 +50,7 @@ var request = {
     alertModal: function (fileURL) {
         request.submit('GET', fileURL, function (data) {
             var data_ = JSON.parse(data);
-            modaljs.create(data_.title, data_.contents);
+            modal.create(data_.title, data_.contents);
         });
     },
 
@@ -250,7 +250,7 @@ var navJs = {
     }
 };
 
-var modaljs = {
+var modal = {
 
     create: function (titleText, contentsText) {
         // if (document.querySelector('.header-modal')) return;
@@ -281,7 +281,7 @@ var modaljs = {
 
         document.body.appendChild(container);
 
-        close.addEventListener('click', modaljs.close);
+        close.addEventListener('click', modal.close);
         myConsole.dragElement(header);
     },
 
@@ -744,7 +744,7 @@ var primary = {
         if (navigator.userAgent.toLowerCase().indexOf("chrome") !== -1) return;
         request.submit('GET', 'app/browserCheck.json', function (data) {
             var parsedData = JSON.parse(data);
-            modaljs.create(parsedData.title, parsedData.contents);
+            modal.create(parsedData.title, parsedData.contents);
         });
 
     },
@@ -769,7 +769,7 @@ var primary = {
     },
     getGuidance: function () {
         sessionStorage.setItem('everVisited', true);
-        modaljs.create('GUIDE',
+        modal.create('GUIDE',
             '1. <span style="color: red;">Ctrl + S</span>: 현재 창을 저장할 수 있습니다.<BR><BR>' +
             '2. <span style="color: red;">Esc</span>: 현재 창을 닫을 수 있습니다.<BR><BR>' +
             '3. <span style="color: red;">Ctrl + O</span>: 저장한 창목록을 우측에서 확인하고 불러올 수 있습니다.<BR><BR>' +
@@ -777,6 +777,6 @@ var primary = {
             '5. 나중에 다시보기를 원하신다면 상단의 <span style="color: red;">도움말 보기</span>버튼을 눌러주시기바랍니다<BR><BR>' +
             '<div onclick="this.parentNode.parentNode.remove();" style="text-align: center; cursor:pointer; color: red; font-size: 30px">' +
             '닫기' +
-            '</div>');
+            '</div><BR><BR>');
     }
 }
