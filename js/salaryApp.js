@@ -25,10 +25,10 @@ var salary = {
         }
         var levelExplain;
         if (level >= 8) {
-            levelExplain = '% (철야 모드)';
+            levelExplain = '%<BR> (철야 모드)';
 
         } else {
-            levelExplain = '% (개발자 모드)';
+            levelExplain = '%<BR> (개발자 모드)';
 
         }
 
