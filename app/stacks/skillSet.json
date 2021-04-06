@@ -24,6 +24,26 @@
     "level": 4,
     "description": "ES5까지 사용가능 합니다.<BR>자바스크립트를 통한 AJAX기술, request는 주로 XMLHTTPREQUEST객체를 주로 이용합니다.<BR> 제이쿼리 라이브러리를 통한 AJAX도 사용 할 수 있지만<BR>너무 편리한 제이쿼리 사용하는 것 자체를 지양하는 편입니다."
   },
+  "ApacheTomcat": {
+    "imgURL": "img/language icon/tomcat.png",
+    "level": 4,
+    "description": ""
+  },
+  "Oracle": {
+    "imgURL": "img/language icon/oracle.png",
+    "level": 3,
+    "description": ""
+  },
+  "MySQL": {
+    "imgURL": "img/language icon/mysql.png",
+    "level": 4,
+    "description": ""
+  },
+  "MariaDB": {
+    "imgURL": "img/language icon/mariadb.png",
+    "level": 4,
+    "description": ""
+  },
   "Passion": {
     "imgURL": "img/language icon/passion.png",
     "level": 10,
