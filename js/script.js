@@ -723,7 +723,7 @@ var primary = {
         });
     },
 
-    clickAndScrollSetting: function () {
+    clickSetting: function () {
         aside.headerLogo.addEventListener('click', aside.toggleFocus);
         window.addEventListener('click', function (event) {
             if (event.target.className.indexOf('non-flip') === -1
@@ -733,7 +733,6 @@ var primary = {
 
             }
         });
-        window.addEventListener('scroll', aside.navContents);
     },
 
     checkBrowser: function () {
