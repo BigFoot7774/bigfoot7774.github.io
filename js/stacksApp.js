@@ -52,19 +52,19 @@ var skill = {
         );
     },
     expandDescription: function (element, descriptionMsg) {
-        var description = element.querySelector('.stacks-description');
-        if (element.querySelector('.stacks-description .description') !== null) return;
-
-        var msgContainer = document.createElement('div');
-        msgContainer.className = 'description';
-        msgContainer.innerHTML = descriptionMsg;
-        description.appendChild(msgContainer);
-
         element.style.background = 'silver';
 
         setTimeout(function () {
             element.style.background = '';
         },500);
+
+        if (element.querySelector('.stacks-description .description') !== null) return;
+
+        var description = element.querySelector('.stacks-description');
+        var msgContainer = document.createElement('div');
+        msgContainer.className = 'description';
+        msgContainer.innerHTML = descriptionMsg;
+        description.appendChild(msgContainer);
 
         function maxWidth(tagElement) {
             try {

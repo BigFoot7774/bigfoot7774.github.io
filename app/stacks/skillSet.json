@@ -1,13 +1,13 @@
 {
   "Java": {
     "imgURL": "img/language icon/java.png",
-    "level": 6,
-    "description": "ㅎㅇ"
+    "level": 4,
+    "description": "쓰레드와 파일 입출력<BR>그리고 스트림을 이용한 함수형 프로그래밍 등에<BR>다소 미흡한 편입니다.<BR>그 외 기능은 거의 구현이 가능하지만 어떻게 되는지는 심도깊게 알지 못하는 수준입니다.<BR>(언어는 심도깊게 파면팔수록 더 끝이없는 것 같습니다.)"
   },
   "SpringFramework": {
     "imgURL": "img/language icon/spring.png",
     "level": 4,
-    "description": "ㅎㅇ"
+    "description": "단순히 편리한 스프링 부트가 아닌 스프링으로도<BR> 웹어플리케이션을 만들 수 있습니다.<BR> &quot;dispatcherServlet&quot;이 어떻게 동작 하게 되는지와 <BR>디펜던시 인젝션, 인버전 컨트롤(IOC) 등 기본 적인 원리를 알고 있으며<BR>홀로 프로젝트를 통해 비즈니스 로직을 구현해 본 적도 있습니다."
   },
   "HTML": {
     "imgURL": "img/language icon/html.png",
@@ -22,11 +22,11 @@
   "javaScript": {
     "imgURL": "img/language icon/javascript.png",
     "level": 4,
-    "description": "ES5까지 사용가능 합니다.<BR>자바스크립트를 통한 AJAX기술, request는 주로 XMLHTTPREQUEST객체를 이용합니다.<BR> 제이쿼리 라이브러리를 통한 AJAX도 사용 할 수 있지만<BR>제이쿼리 사용하는 것 자체를 지양하는 편입니다."
+    "description": "ES5까지 사용가능 합니다.<BR>자바스크립트를 통한 AJAX기술, request는 주로 XMLHTTPREQUEST객체를 주로 이용합니다.<BR> 제이쿼리 라이브러리를 통한 AJAX도 사용 할 수 있지만<BR>너무 편리한 제이쿼리 사용하는 것 자체를 지양하는 편입니다."
   },
   "Passion": {
     "imgURL": "img/language icon/passion.png",
     "level": 10,
-    "description": "저는 열정과 끈기빼면 시체입니다."
+    "description": "목표가 있는 저는 열정과 끈기빼면 시체입니다."
   }
 }
