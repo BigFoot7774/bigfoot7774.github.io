@@ -60,6 +60,12 @@ var skill = {
         msgContainer.innerHTML = descriptionMsg;
         description.appendChild(msgContainer);
 
+        element.style.background = 'silver';
+
+        setTimeout(function () {
+            element.style.background = '';
+        },500);
+
         function maxWidth(tagElement) {
             try {
                 if (tagElement.parentNode.classList.contains('command-max-width')) return;

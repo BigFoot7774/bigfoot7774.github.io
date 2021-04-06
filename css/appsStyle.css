@@ -1,9 +1,12 @@
 @charset "UTF-8";
-
+/*-----------stacks------------*/
 .stacks-container, .stacks-icon-container{
     display: flex;
     transition: 0.5s all;
+}
+.stacks-container, .stacks-icon-container>img{
     cursor: pointer;
+
 }
 
 .stacks-container:HOVER, .stacks-icon-container>img:HOVER {
