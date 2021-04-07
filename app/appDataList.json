@@ -19,8 +19,8 @@
     "url": "app/shortcuts/shortcuts.html",
     "icon": "img/icon/link.png"
   },
-  "출력용페이지": {
-    "url": "app/one-page/one-page.html",
+  "한페이지로 보기": {
+    "url": "https://xasquatch.net/app/one-page/one-page.html",
     "icon": "img/icon/one-page.png"
   },
   "Github": {
