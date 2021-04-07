@@ -52,3 +52,15 @@
 .salary-mode-asciiArt-hard:HOVER {
     background: red;
 }
+/*-----------project------------*/
+.project-container{
+    display: flex;
+
+}
+.project-container>*{
+    margin: 5px;
+}
+.project-container img{
+    width: 100px;
+    height: 100px;
+}
