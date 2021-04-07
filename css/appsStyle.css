@@ -52,15 +52,44 @@
 .salary-mode-asciiArt-hard:HOVER {
     background: red;
 }
-/*-----------project------------*/
-.project-container{
-    display: flex;
 
+/*-----------project------------*/
+.project-container {
+    display: flex;
 }
-.project-container>*{
+
+.project-container > * {
     margin: 5px;
 }
-.project-container img{
+
+.project-container > div {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 20px;
+    width: 100%;
+}
+
+.project-container img {
     width: 100px;
     height: 100px;
+}
+
+.project-list-myblog {
+    background: URL('../img/background/11.gif');
+}
+
+.project-list-github {
+    background: URL('../img/background/f7531767a6c3f8af51123596437735bd.gif');
+}
+
+.project-list {
+    transition: 1s all;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+}
+
+.project-list:HOVER {
+    background: black;
 }

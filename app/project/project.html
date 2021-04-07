@@ -1,22 +1,37 @@
-<section class="grid-component-1200">
-    <fieldset class="grid-600">
-        <legend>My Blog</legend>
-        <div class="project-container" onclick="">
-            <img src="img/icon/my-blog-by-xasquatch.png">
-            <div>
-                My Blog
+<section>
+    <hr>
+    <div style="font-size: 30px; font-weight: bold; text-align: center;">
+        <img src="img/icon/loading.gif"
+             onload="text.insert(this.parentNode,'Project List',30);this.remove()">
+    </div>
+    <div style="font-weight: bold; text-align: center;">
+        <img src="img/icon/loading.gif"
+             onload="text.insert(this.parentNode,'<BR><BR>아래 프로젝트 목록을 클릭하시면<BR><BR>보다 상세하게 볼 수 있습니다.',10);
+             this.remove()">
+    </div>
+    <hr>
+    <div class="grid-component-1200">
+        <fieldset class="grid-600 project-list project-list-myblog"
+                  onclick="">
+            <legend>My Blog: https://myblog.xasquatch.net</legend>
+            <div class="project-container">
+                <img src="img/icon/my-blog-by-xasquatch.png">
+                <div>
+                    <img src="img/icon/loading.gif" onload="project.explainMyBlog(this,10);">
+                </div>
             </div>
-        </div>
 
-    </fieldset>
-    <fieldset class="grid-600">
-        <legend>github.io: xasquatch.net</legend>
-        <div class="project-container" onclick="">
-            <img src="img/icon/Xasquatch.png" style="border-radius: 20px; background: darkgray;">
-            <div>
-                My Blog
+        </fieldset>
+        <fieldset class="grid-600 project-list project-list-github"
+                  onclick="">
+            <legend>github.io: https://xasquatch.net</legend>
+            <div class="project-container">
+                <img src="img/icon/Xasquatch.png" style="border-radius: 20px; background: darkgray;">
+                <div>
+                    <img src="img/icon/loading.gif" onload="project.explainGithub(this,10);">
+                </div>
             </div>
-        </div>
-    </fieldset>
+        </fieldset>
+    </div>
 </section>
 
