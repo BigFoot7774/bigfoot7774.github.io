@@ -306,7 +306,14 @@ var myConsole = {
         myConsole.wrap.appendChild(container);
     },
     reset: function (titleHTML, contentsHTML, element) {
-        var container = myConsole.create(titleHTML, contentsHTML, element.querySelector('img').src);
+        var imgSrc;
+        try {
+            imgSrc = element.querySelector('img').src;
+        } catch (e) {
+            imgSrc = 'img/icon/cmdIcon.png'
+        }
+
+        var container = myConsole.create(titleHTML, contentsHTML, imgSrc);
         myConsole.dragElement(container.querySelector('.command-header'));
         myConsole.wrap.appendChild(container);
     },
@@ -338,7 +345,7 @@ var myConsole = {
         var imgEndIndex = titleHTML.indexOf('>');
         if (imgStartIndex === -1 || imgSrc !== undefined) {
             icon.src = imgSrc;
-            // icon.setAttribute('onerror', "this.src='img/icon/cmdicon.png'");
+            // icon.setAttribute('onerror', "this.src='img/icon/cmdIcon.png'");
             icon.style.padding = '0px 3px';
             icon.style.margin = '0px';
             icon.style.width = '1.2em';
