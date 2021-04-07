@@ -1,5 +1,27 @@
-<section>
-    <img class="loading-img" src="img/icon/loading.gif"
-         onload="">
+<fieldset>
+    <legend>바로가기 리스트</legend>
+    <div class="shortcut-container">
+        <img class="loading-img" src="img/icon/loading.gif"
+             onload="
+             var container = this.parentNode;
+             request.submit('GET','app/shortcuts/shortcut-list.json',function(data) {
 
-</section>
+                 var parsedData = JSON.parse(data);
+                 for (var key in parsedData) {
+                     var shortcutElement = document.createElement('a');
+                     shortcutElement.setAttribute('href', parsedData[key]['url']);
+                     shortcutElement.setAttribute('target', '_blank');
+                     var shortcutImg = document.createElement('img');
+                     shortcutImg.setAttribute('src', parsedData[key]['imgSrc']);
+                     var shortcutTitle = document.createElement('p');
+                     shortcutTitle.innerText = key;
+
+                     shortcutElement.appendChild(shortcutImg);
+                     shortcutElement.appendChild(shortcutTitle);
+                     container.append(shortcutElement);
+                 }
+             });this.remove();">
+    </div>
+    <HR>
+    <div class="msg-information" style="text-align: center;">아이콘을 클릭하시면 새창으로 바로 이동 하실 수 있습니다.</div>
+</fieldset>

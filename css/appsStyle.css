@@ -93,3 +93,32 @@
 .project-list:HOVER {
     background: black;
 }
+/*-----------shortcut------------*/
+.shortcut-container img{
+    max-width: 100px;
+    max-height: 100px;
+    margin: 0 auto;
+    animation: modal-pop-up 1s;
+}
+.shortcut-container{
+    display: flex;
+    flex-wrap: wrap;
+
+}
+.shortcut-container>a{
+    margin: 10px;
+    padding: 10px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    text-align: center;
+    box-shadow: 1px 1px 3px rgba(150, 0, 0, 1),
+                -1px -1px 3px rgba(150, 0, 0, 1),
+                1px -1px 3px rgba(150, 0, 0, 1),
+                -1px 1px 3px rgba(150, 0, 0, 1);
+    transition: 1s all;
+}
+.shortcut-container>a:HOVER{
+    background: silver;
+}
