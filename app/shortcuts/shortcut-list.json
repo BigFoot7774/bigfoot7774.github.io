@@ -7,8 +7,8 @@
     "imgSrc": "img/icon/my-blog-by-xasquatch.png",
     "url": "https://myblog.xasquatch.net"
   },
-  "아력서(사람인)": {
+  "이력서(사람인)": {
     "imgSrc": "img/icon/saramin.jpg",
-    "url": "https://saramin.co.kr"
+    "url": "javascript:app/shortcuts/summary.pdf"
   }
 }

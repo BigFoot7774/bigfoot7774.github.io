@@ -10,28 +10,25 @@
              this.remove()">
     </div>
     <hr>
-    <div class="grid-component-1200">
-        <fieldset class="grid-600 project-list project-list-myblog"
-                  onclick="project.viewDetail(this,'https://myblog.xasquatch.net/api/members/2/boards/147')">
-            <legend>My Blog: https://myblog.xasquatch.net</legend>
-            <div class="project-container">
-                <img src="img/icon/my-blog-by-xasquatch.png">
-                <div>
-                    <img src="img/icon/loading.gif" onload="project.explainMyBlog(this,10);">
-                </div>
+    <fieldset class="project-list project-list-myblog"
+              onclick="project.viewDetail(this,'https://myblog.xasquatch.net/api/members/2/boards/147')">
+        <legend>My Blog: https://myblog.xasquatch.net</legend>
+        <div class="project-container">
+            <img src="img/icon/my-blog-by-xasquatch.png">
+            <div>
+                <img src="img/icon/loading.gif" onload="project.explainMyBlog(this,10);">
             </div>
-
-        </fieldset>
-        <fieldset class="grid-600 project-list project-list-github"
-                  onclick="project.viewDetail(this,'https://myblog.xasquatch.net/api/members/2/boards/149')">
-            <legend>github.io: https://xasquatch.net</legend>
-            <div class="project-container">
-                <img src="img/icon/Xasquatch.png" style="border-radius: 20px; background: darkgray;">
-                <div>
-                    <img src="img/icon/loading.gif" onload="project.explainGithub(this,10);">
-                </div>
+        </div>
+    </fieldset>
+    <fieldset class="project-list project-list-github"
+              onclick="project.viewDetail(this,'https://myblog.xasquatch.net/api/members/2/boards/149')">
+        <legend>github.io: https://xasquatch.net</legend>
+        <div class="project-container">
+            <img src="img/icon/Xasquatch.png" style="border-radius: 20px; background: darkgray;">
+            <div>
+                <img src="img/icon/loading.gif" onload="project.explainGithub(this,10);">
             </div>
-        </fieldset>
-    </div>
+        </div>
+    </fieldset>
 </section>
 
