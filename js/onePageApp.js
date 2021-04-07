@@ -34,7 +34,7 @@ var onePage = {
         titleImg.setAttribute('onload',
             'onePage.levelLoading(' + level + ',this.parentNode.parentNode.querySelector(\'#' + language + '\'),' +
             'this.parentNode.parentNode.querySelector(\'#' + language + 'Description\'));' +
-            'skill.expandDescription(this.parentNode,"' + description + '");');
+            'this.parentNode.parentNode.click();');
         skillSet.className = 'profile-skill-set';
         skillLevel.id = language;
         skillDescription.id = language + 'Description';
