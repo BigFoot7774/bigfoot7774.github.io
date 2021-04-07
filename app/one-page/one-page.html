@@ -17,13 +17,15 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body style="background: white; color: black; font-family: 맑은 고딕, sans-serif;">
-<section style="margin: 10px auto; max-width: 1200px;">
+<section style="margin: 10px auto; max-width: 1200px;padding: 10px;
+    box-shadow: 1px 1px 3px black, -1px -1px 3px black, -1px 1px 3px black, 1px -1px 3px black;">
+
     <h1 style="font-size: 50px;">Stacks: 보유 기술</h1>
     <fieldset>
         <legend>Stacks Level</legend>
         <img src="/img/icon/loading.gif"
              onload="request.manipulateElement('/app/stacks/skillSet.json',
-         skill.parseList, this.parentNode.querySelector('div'));
+         onePage.parseSkillList, this.parentNode.querySelector('div'));
          this.remove();">
 
         <div>
@@ -61,7 +63,7 @@
                     <legend style="color: lightblue;">Normal Mode</legend>
                     <div>
                         <img class="loading-img" src="/img/icon/loading.gif"
-                             onload="salary.typeBar(this,7,10);">
+                             onload="onePage.typeBar(this,7,10);">
 
                     </div>
                     <div class="salary-mode-asciiArt salary-mode-asciiArt-normal">
@@ -84,7 +86,7 @@
                     <legend style="color: red;">Hard Mode</legend>
                     <div>
                         <img class="loading-img" src="/img/icon/loading.gif"
-                             onload="salary.typeBar(this,10,10);">
+                             onload="onePage.typeBar(this,10,10);">
 
                     </div>
                     <div class="salary-mode-asciiArt salary-mode-asciiArt-hard">
