@@ -9,6 +9,6 @@
   },
   "이력서(사람인)": {
     "imgSrc": "img/icon/saramin.jpg",
-    "url": "javascript:app/shortcuts/summary.pdf"
+    "url": "app/shortcuts/summary.pdf"
   }
 }
