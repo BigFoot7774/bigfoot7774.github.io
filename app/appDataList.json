@@ -23,6 +23,10 @@
     "url": "https://xasquatch.net/app/one-page/one-page.html",
     "icon": "img/icon/one-page.png"
   },
+  "[Project] My Blog": {
+    "url": "https://myblog.xasquatch.net",
+    "icon": "img/icon/my-blog-by-xasquatch.png"
+  },
   "Github": {
     "url": "https://github.com/xasquatch",
     "icon": "img/icon/GitHub-Mark-Light-64px.png"

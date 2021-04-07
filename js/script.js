@@ -534,13 +534,6 @@ var myConsole = {
 
 
 //-text객체 문자열을 character로 변환하여 한 자씩 interval로 반복해가며 삽입
-//지금까지 확인된 사항: 
-// 1. 단일태그는 문제없이 삽입가능 (예시:<img>태그나 <BR>태그)
-// 2. 시작과 끝이 있는 태그는 class, id나 속성은 삽입불가능
-//      예시: <div>hi</div> 가능
-//              <div class="greet">hi</div> 불가능
-//          해결할 수는 있지만 코드가 엄청 난해해지고 복잡해질 수 밖에 없음
-//          해결 후 성능적 이슈가 없을 것이라는 장담이 어려움
 var text = {
 
     soloTagList: ['IMG', 'BR', 'HR', 'META', 'LINK', 'INPUT'],
