@@ -14,11 +14,17 @@ var project = {
     viewDetail: function (element, url) {
         navJs.active(element.querySelector('legend').innerText, url + '<BR>정보를 받아오는 중입니다.')
         request.submit('GET', url, function (data) {
-            console.log(data);
+            var board = JSON.parse(data)['data']['board'];
+            console.log(board);
+            var contentsInnerHTML = '<fieldset>' +
+                '<legend style="font-weight: bold; font-size: 30px; text-align: center;">'
+                + board['title']
+                + '</legend>'
+                + '<div style="text-align: center;">' + board['thumbnail'] + '</div>'
+                + board['contents'] + '</fieldset>'
+            myConsole.reset(board['title'], contentsInnerHTML);
 
             setTimeout(navJs.inactive, 500);
         });
-
     }
-
 }
