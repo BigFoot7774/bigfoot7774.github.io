@@ -786,7 +786,7 @@ var primary = {
             '닫기' +
             '</div><BR><BR>');
     },
-    isConnection(url, interval) {
+    isConnection: function (url, interval) {
         var msgDiv = document.querySelector('#server-connection-msg');
         var xhr = new XMLHttpRequest();
         xhr.open('GET', url);
@@ -815,5 +815,19 @@ var primary = {
         }
         xhr.send();
 
+    },
+    backToClose: function () {
+        window.history.pushState('Temporary History', document.title, './');
+        window.onpopstate = function (event) {
+            var consoleSaveBtnList = document.querySelectorAll('.command-btn-save');
+            if (consoleSaveBtnList.length === 0) return;
+
+            window.history.pushState('Temporary History', document.title, './');
+            for (var i = consoleSaveBtnList.length - 1; i >= 0; i--) {
+                myConsole.save(consoleSaveBtnList[i]);
+                break;
+
+            }
+        }
     }
 }
