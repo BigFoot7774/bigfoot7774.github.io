@@ -87,36 +87,6 @@ var loadingjs = {
     recoveryTagAddr: {},
     loadingPackage: ['-', '\\', '\|', '\/'],
 
-    plusElement: function (element) {
-        var originElement = element.cloneNode();
-        originElement.innerHTML = element.innerHTML;
-        loadingjs.recoveryTagAddr[element] = element.innerHTML;
-
-        var count = 0;
-        var localAddr = setInterval(function () {
-            try {
-                if (count === 0 && element.innerHTML.length === originElement.innerHTML.length) {
-                    element.innerHTML += loadingjs.loadingPackage[count];
-                    count++;
-                } else if (count === 3) {
-                    element.innerHTML = originElement.innerHTML;
-                    element.innerHTML += loadingjs.loadingPackage[3];
-                    count = 0;
-                } else {
-                    element.innerHTML = originElement.innerHTML;
-                    element.innerHTML += loadingjs.loadingPackage[count];
-                    count++;
-                }
-            } catch (error) {
-                clearInterval(localAddr);
-                var addrIndex = loadingjs.intervalAddr.indexOf(localAddr);
-                loadingjs.intervalAddr.splice(addrIndex, 1);
-            }
-            // element.innerHTML = originElement.innerHTML;
-
-        }, 100);
-        loadingjs.intervalAddr.push(localAddr);
-    },
     insert: function (tagName) {
         var tagContents = document.querySelector(tagName);
         var count = 0;
@@ -769,7 +739,7 @@ var primary = {
 
             }
         });
-        window.addEventListener('dblclick',function (event) {
+        window.addEventListener('dblclick', function (event) {
             if (event.target.className.indexOf('command-title') !== -1)
                 event.target.parentNode.querySelector('.command-btn-square').click();
         });
@@ -810,9 +780,40 @@ var primary = {
             '3. <span style="color: red;">Ctrl + O</span>: 저장한 창목록을 우측에서 확인하고 불러올 수 있습니다.<BR><BR>' +
             '4. 창을 드래그하여 다른 위치로 이동 할 수 있습니다.<BR><BR>' +
             '5. 창의 상단부를 더블클릭하여 최대화 시킬 수 있습니다.<BR><BR>' +
-            '6. 나중에 다시보기를 원하신다면 상단의 <span style="color: red;">도움말 보기</span>버튼을 눌러주시기바랍니다<BR><BR>' +
+            '6. 화면 상단에서 MyBlog Server가 정상적으로 동작 중인지 확인 할 수 있습니다.<BR><BR>' +
+            '7. 나중에 다시보기를 원하신다면 상단의 <span style="color: red;">도움말 보기</span>버튼을 눌러주시기바랍니다<BR><BR>' +
             '<div onclick="this.parentNode.parentNode.remove();" style="text-align: center; cursor:pointer; color: red; font-size: 30px">' +
             '닫기' +
             '</div><BR><BR>');
+    },
+    isConnection(url, interval) {
+        var msgDiv = document.querySelector('#server-connection-msg');
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url);
+        xhr.timeout = interval;
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === xhr.DONE) {
+                if (xhr.status === 200 || xhr.status === 201) {
+                    var responseResult = xhr.response;
+                    msgDiv.innerHTML = responseResult === "true" ? "Connected My Blog Server" : "My Blog Server Error";
+                    msgDiv.className = "msg-success"
+
+                } else {
+                    msgDiv.innerHTML = "My Blog Server Error";
+                    msgDiv.className = "msg-warning"
+
+                }
+                setTimeout(function () {
+                    primary.isConnection(url, interval);
+
+                }, interval);
+
+            } else {
+                msgDiv.innerHTML += '<img src="img/icon/loading.gif" style="max-height: 1em; max-width: 1em;>"';
+            }
+
+        }
+        xhr.send();
+
     }
 }

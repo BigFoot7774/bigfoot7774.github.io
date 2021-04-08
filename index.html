@@ -21,7 +21,14 @@
 <header>
     <div class="header-contents-frame">
         <div class="header-contents" style="text-align: center;">
-            <a class="msg-information" href="javascript:primary.getGuidance();">도움말 보기</a>
+            <div id="server-connection-msg">
+                <img src="img/icon/loading.gif" style="max-height: 1em; max-width: 1em;"
+                onload="primary.isConnection('https://myblog.xasquatch.net/connection',5000);">
+            </div>
+            <div>
+                <a class="msg-information" href="javascript:primary.getGuidance();">도움말 보기</a>
+            </div>
+
         </div>
     </div>
 </header>
