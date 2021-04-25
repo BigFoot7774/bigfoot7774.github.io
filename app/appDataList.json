@@ -11,6 +11,10 @@
     "url": "app/salary/salary.html",
     "icon": "img/icon/salary.png"
   },
+  "blog": {
+    "url": "app/blog/blog.html",
+    "icon": "img/icon/blog.png"
+  },
   "Contact Me": {
     "url": "app/contact-me/contact-me.html",
     "icon": "img/icon/contact-me.png"
