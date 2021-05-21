@@ -796,11 +796,11 @@ var primary = {
                 if (xhr.status === 200 || xhr.status === 201) {
                     var responseResult = xhr.response;
                     msgDiv.innerHTML = responseResult === "isConnected" ? "Connected Document X Server" : "Document X Server Error";
-                    msgDiv.className = "msg-success"
+                    msgDiv.className = "msg-success";
 
                 } else {
                     msgDiv.innerHTML = "Document X Server Error";
-                    msgDiv.className = "msg-warning"
+                    msgDiv.className = "msg-warning";
 
                 }
                 setTimeout(function () {
