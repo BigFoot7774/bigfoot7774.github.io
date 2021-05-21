@@ -795,7 +795,7 @@ var primary = {
             if (xhr.readyState === xhr.DONE) {
                 if (xhr.status === 200 || xhr.status === 201) {
                     var responseResult = xhr.response;
-                    msgDiv.innerHTML = responseResult === "true" ? "Connected Document X Server" : "Document X Server Error";
+                    msgDiv.innerHTML = responseResult === "isConnected" ? "Connected Document X Server" : "Document X Server Error";
                     msgDiv.className = "msg-success"
 
                 } else {
