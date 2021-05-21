@@ -795,11 +795,11 @@ var primary = {
             if (xhr.readyState === xhr.DONE) {
                 if (xhr.status === 200 || xhr.status === 201) {
                     var responseResult = xhr.response;
-                    msgDiv.innerHTML = responseResult === "true" ? "Connected My Blog Server" : "My Blog Server Error";
+                    msgDiv.innerHTML = responseResult === "true" ? "Connected Document X Server" : "Document X Server Error";
                     msgDiv.className = "msg-success"
 
                 } else {
-                    msgDiv.innerHTML = "My Blog Server Error";
+                    msgDiv.innerHTML = "Document X Server Error";
                     msgDiv.className = "msg-warning"
 
                 }
