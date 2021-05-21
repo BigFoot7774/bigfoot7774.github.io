@@ -786,7 +786,7 @@ var primary = {
             '닫기' +
             '</div><BR><BR>');
     },
-    isConnection: function (url, interval) {
+    isConnected: function (url, interval) {
         var msgDiv = document.querySelector('#server-connection-msg');
         var xhr = new XMLHttpRequest();
         xhr.open('GET', url);
@@ -804,7 +804,7 @@ var primary = {
 
                 }
                 setTimeout(function () {
-                    primary.isConnection(url, interval);
+                    primary.isConnected(url, interval);
 
                 }, interval);
 
